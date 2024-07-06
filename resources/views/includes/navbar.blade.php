@@ -25,12 +25,12 @@
                   <div class="mx-3 hidden md:block md:self-stretch">
                       <ul id="menu" class="flex md:flex-row justify-center items-center h-full ">
                           <li class="mx-3 h-full">
-                              <a href="index.html"
+                              <a href="{{ route('home') }}"
                                   class="h-full relative z-10 -mb-px flex items-center border-b-4 border-spacing-y-6 font-medium transition-colors duration-300 ease-out border-transparent hover:border-collapse hover:border-white hover:text-white gap-x-2 "><i
                                       class="fa-solid fa-house "></i>Beranda</a>
                           </li>
                           <li class="mx-3 h-full">
-                              <a href="games.html"
+                              <a href="{{ route('games') }}"
                                   class="h-full relative z-10 -mb-px flex items-center border-b-4 border-spacing-y-6 font-medium transition-colors duration-300 ease-out border-transparent hover:border-collapse hover:border-white hover:text-white gap-x-2 "><i
                                       class="fa-solid fa-gamepad "></i>Games</a>
                           </li>

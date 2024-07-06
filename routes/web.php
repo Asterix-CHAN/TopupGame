@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\GameListController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 
 /*
@@ -24,6 +26,10 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/games', [GameListController::class, 'index'])->name('games');
+Route::get('/order', [OrderController::class, 'index'])->name('order');
+
+
 // Route::get('/', function(){
 //     return view('pages.homepage');
 // });
