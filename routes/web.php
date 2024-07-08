@@ -21,18 +21,23 @@ use App\Http\Controllers\ProfileController;
 //     return view('welcome');
 // });
 
-Route::get('/dashboard', function () {
+Route::get('/admin', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified', 'admin'])->name('dashboard');
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/games', [GameListController::class, 'index'])->name('games');
 Route::get('/order', [OrderController::class, 'index'])->name('order');
 
 
-// Route::get('/', function(){
-//     return view('pages.homepage');
-// });
+
+
+Route::middleware(['auth', 'verified', 'redirectIfNotAdmin'])->group(function () {
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/games', [GameListController::class, 'index'])->name('games');
+    Route::get('/order', [OrderController::class, 'index'])->name('order');
+});
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
