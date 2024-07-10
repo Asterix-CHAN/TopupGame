@@ -79,33 +79,91 @@
                           class="font-medium text-lg md:text-2xl hover:text-white hover:bg-slate-600 mr-2 w-10 h-10 items-center flex justify-center rounded-md focus:text-white focus:bg-slate-600"><i
                               class="fa-solid fa-cart-shopping"></i></a>
                   </div>
-                  <!-- User -->
-                  <a href="{{ route('login') }}"
-                      class="font-semibold transition-colors duration-300 ease-out hover:text-white hidden md:block text-sm  ml-4 px-4 py-2 rounded ">Masuk</a>
-                  <!-- btn user Mobile -->
-                  <div class=" block md:hidden relative">
-                      <button id="menu-user" type="button"
-                          class="font-medium text-lg md:text-xl hover:text-white hover:bg-slate-600 ml-2 w-10 h-10 items-center flex justify-center rounded-md focus:text-white focus:bg-slate-600"><i
-                              class="fa-solid fa-user"></i></button>
-                      <!-- Dropdown -->
-                      <div id="myDropdown"
-                          class="dropdown-content absolute top-14 right-0  rounded-xl  w-[120px] h-auto  bg-white  items-center py-2 hidden ">
-                          <div class="flex flex-col mx-auto w-full h-full items-center gap-y-2 px-5">
-                              <a href="{{ route('login') }}"
-                                  class="font-semibold transition-colors duration-300 ease-out hover:text-slate-600 text-sm">Masuk</a>
-                              <a href="{{ route('register') }}"
-                                  class="px-4 py-2 text-xs font-bold text-white  transition-all duration-150 bg-cyan-700 rounded shadow outline-none hover:bg-emerald-600 hover:shadow-md focus:outline-none ease ">
-                                  Daftar
-                              </a>
+                  @guest
+                      <!-- User -->
+                      <form action="{{ route('login') }}">
+                          <button type="button"
+                              class=" font-semibold transition-colors duration-300 ease-out hover:text-white hidden md:block text-sm  ml-4 px-4 py-2 rounded "
+                              onclick="event.preventDefault(); location.href='{{ route('login') }}';">Masuk</button>
+                      </form>
+
+                      <!-- btn user Mobile -->
+                      <div class=" block md:hidden relative">
+                          <button id="menu-user" type="button"
+                              class="font-medium text-lg md:text-xl hover:text-white hover:bg-slate-600 ml-2 w-10 h-10 items-center flex justify-center rounded-md focus:text-white focus:bg-slate-600"><i
+                                  class="fa-solid fa-user"></i></button>
+                          <!-- Dropdown -->
+                          <div id="myDropdown"
+                              class="dropdown-content absolute top-14 right-0  rounded-xl  w-[120px] h-auto  bg-white  items-center py-2 hidden ">
+                              <div class="flex flex-col mx-auto w-full h-full items-center gap-y-2 px-5">
+                                  <form action="{{ route('login') }}">
+                                      <button
+                                          class="font-semibold transition-colors duration-300 ease-out hover:text-slate-600 text-sm">Masuk</button>
+                                  </form>
+                                  <form action="{{ route('register') }}">
+                                      <button
+                                          class="px-4 py-2 text-xs font-bold text-white  transition-all duration-150 bg-cyan-700 rounded shadow outline-none hover:bg-emerald-600 hover:shadow-md focus:outline-none ease ">
+                                          Daftar
+                                      </button>
+                                  </form>
+                              </div>
                           </div>
                       </div>
-                  </div>
-                  <!--  -->
-                  <a href="{{ route('register') }}"
-                      class="px-4 py-2 text-sm font-semibold text-white  transition-all duration-150 bg-cyan-700 rounded shadow outline-none active:bg-emerald-600 hover:shadow-md focus:outline-none ease-in-out hidden md:block">
-                      Daftar
-                  </a>
+                      <!--  -->
+                      <form action="{{ route('register') }}">
+                          <button
+                              class="px-4 py-2 text-sm font-semibold text-white  transition-all duration-150 bg-cyan-700 rounded shadow outline-none active:bg-emerald-600 hover:shadow-md focus:outline-none ease-in-out hidden md:block"
+                              type="button" onclick="event.preventDefault(); location.href='{{ route('register') }}';">
+                              Daftar
+                          </button>
+                      </form>
+                  @endguest
 
+
+                  @auth
+                      <!-- User -->
+                      {{-- Desktop --}}
+                        <div class="relative ml-3 lg:block hidden" x-data="{ open: false }">
+                            <div>
+                                <button @click="open = !open" @keydown.escape="open = false" type="button" class="relative flex max-w-xs items-center text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:rounded-r-full focus:rounded-l-lg" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                                    <span class="absolute -inset-1.5"></span>
+                                    <span class="">{{ Auth::user()->name }}</span>
+                                    <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                                </button>
+                            </div>
+                            <div x-show="open" @click.away="open = false" class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+                                <!-- Active: "bg-gray-100", Not Active: "" -->
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
+                            </div>
+                        </div>
+                   {{-- End Desktop --}}
+                    <!-- btn user Mobile -->
+                    <div class=" block md:hidden relative">
+                        <button id="menu-user" type="button"
+                            class="font-medium text-lg md:text-xl hover:text-white hover:bg-slate-600 ml-2 w-10 h-10 items-center flex justify-center rounded-md focus:text-white focus:bg-slate-600"><i
+                                class="fa-solid fa-user"></i></button>
+                        <!-- Dropdown -->
+                        <div id="myDropdown"
+                            class="dropdown-content absolute top-14 right-0  rounded-xl  w-[120px] h-auto  bg-white  items-center py-2 hidden ">
+                            <div class="flex flex-col mx-auto w-full h-full items-center gap-y-2 px-5">
+                                <form action="{{ url('profile.edit') }}">
+                                    <button
+                                        class="font-semibold transition-colors duration-300 ease-out hover:text-slate-600 text-sm" type="button">Profil</button>
+                                </form>
+                                <form method="POST" action="{{ url('logout') }}">
+                                    @csrf
+                                    <button
+                                        class="px-4 py-2 text-xs font-bold text-white  transition-all duration-150 bg-cyan-700 rounded shadow outline-none hover:bg-emerald-600 hover:shadow-md focus:outline-none ease " type="submit">
+                                        Keluar
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
+                  @endauth
                   <!-- End Search, Login -->
               </div>
           </div>

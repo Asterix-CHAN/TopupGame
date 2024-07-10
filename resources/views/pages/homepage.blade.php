@@ -1,6 +1,6 @@
 @extends('layouts/game/homepage')
 
-@section('title', 'homegape')
+@section('title', 'homepage')
 
 
 

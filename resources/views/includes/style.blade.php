@@ -7,4 +7,4 @@
 @vite('resources/css/app.css')
 <link rel="stylesheet" href="{{ url('Game/src/css/swiper-bundle.min.css') }}">
 <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"  rel="stylesheet" /> -->
-<script src="//unpkg.com/alpinejs" defer></script>
+{{-- <script src="//unpkg.com/alpinejs" defer></script> --}}

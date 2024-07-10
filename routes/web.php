@@ -30,15 +30,6 @@ Route::get('/games', [GameListController::class, 'index'])->name('games');
 Route::get('/order', [OrderController::class, 'index'])->name('order');
 
 
-
-
-Route::middleware(['auth', 'verified', 'redirectIfNotAdmin'])->group(function () {
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
-    Route::get('/games', [GameListController::class, 'index'])->name('games');
-    Route::get('/order', [OrderController::class, 'index'])->name('order');
-});
-
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
