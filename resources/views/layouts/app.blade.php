@@ -20,7 +20,6 @@
 
         <div class="min-w-screen flex md:gap-4 mx-auto relative justify-center">
             <!-- Page sidebar -->
-
             <div class="w-1/6 inset-0 z-50 md:z-30 md:w-1/5  ">
                 {{ $sidebar }}
             </div>
