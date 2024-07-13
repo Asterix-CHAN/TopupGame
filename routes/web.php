@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\TopupgamePackageController;
 use App\Http\Controllers\GameListController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -21,9 +22,14 @@ use App\Http\Controllers\ProfileController;
 //     return view('welcome');
 // });
 
-Route::get('/admin', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified', 'admin'])->name('dashboard');
+Route::middleware(['auth', 'verified', 'admin'])->group(function() {
+    Route::get('/admin', function () {
+        return view('dashboard');
+    })->name('dashboard');
+    
+    Route::resource('topup-package', TopupgamePackageController::class);
+});
+
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/games', [GameListController::class, 'index'])->name('games');

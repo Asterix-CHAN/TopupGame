@@ -24,5 +24,5 @@ class TopupgamePackage extends Model
         'platform_id',
     ];
 
-    protected $hidden =[];
+    protected $hidden = [];
 }
