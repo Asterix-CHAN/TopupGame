@@ -31,7 +31,8 @@ class TopupgamePackageRequest extends FormRequest
             'stock' => 'required|max:255',
             'transaction_date' => 'required|date',
             'category_id' => 'reuqired|max:255',
-            'platform_id' => 'required|max:255'
+            'platform_id' => 'required|max:255',
+            'image' => 'required|image|mimes:jpeg,png,jpg',
         ];
     }
 }

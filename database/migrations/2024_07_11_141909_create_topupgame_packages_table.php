@@ -23,6 +23,7 @@ return new class extends Migration
             $table->date('transaction_date');
             $table->foreignId('category_id');
             $table->foreignId('platform_id');
+            $table->text('image');
             $table->softDeletes();
             $table->timestamps();
         });

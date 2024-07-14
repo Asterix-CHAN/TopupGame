@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\TopupgamePackage;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\TopupgamePackageRequest;
 
 class TopupgamePackageController extends Controller
 {
@@ -22,15 +24,19 @@ class TopupgamePackageController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.topup-game-package.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(TopupgamePackageRequest $request)
     {
-        //
+        $data = $request->all();
+        $data['slug'] = Str::slug($request->name);
+
+        TopupgamePackage::create($data);
+        return redirect()->route('topup-package.index');
     }
 
     /**

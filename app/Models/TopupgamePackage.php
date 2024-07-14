@@ -22,6 +22,7 @@ class TopupgamePackage extends Model
         'transaction_date',
         'category_id',
         'platform_id',
+        'image',
     ];
 
     protected $hidden = [];
