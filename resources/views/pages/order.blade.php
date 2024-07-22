@@ -5,21 +5,21 @@
 @section('jumbotron')
 <section class="w-full ">
     <div class=" w-full h-[200px] md:h-[400px] flex flex-nowrap justify-center pt-[68px] relative mx-auto">
-        <img src="{{ url('Game/src') }}/images/content/sectionHero1.jpg" alt=""
-            class=" !object-cover !object-center absolute h-[250px] md:h-[400px] w-screen mt-0 shadow-2xl backdrop-blur-2xl drop-shadow-2xl" />
+        <img src="{{ Storage::url($item->gallery->first()->image) }}" alt=""
+            class=" object-fill object-center absolute h-[250px] md:h-[400px] w-screen mt-0 shadow-2xl backdrop-blur-2xl drop-shadow-2xl" />
     </div>
     <div class=" container h-[200px] flex top-10 md:top-0 relative mx-auto  ">
         <!-- IMG LOGO -->
         <div class="flex flex-row  gap-x-5 justify-center text-start items-center relative ">
             <div
                 class="w-[130px] h-[130px] md:w-[170px] md:h-[170px] aspect-square rounded-xl bg-black flex ring-8  ring-slate-400">
-                <img src="{{ url('Game/src') }}/images/logo/logo valorant.png" alt=""
-                    class="object-contain object-center p-1 cursor-pointer">
+                <img src="{{ Storage::url($item->image) }}" alt=""
+                    class="object-cover items-center w-full rounded-xl object-center p-1 cursor-pointer">
             </div>
 
-            <div class="relative text-white mt-9 drop-shadow-2xl">
-                <h3 class=" font-semibold text-xl md:text-3xl">Valorant</h3>
-                <p class="text-sm md:text-xl">Riot Games</p>
+            <div class="relative text-white mt-9 drop-shadow-2xl box-shadow-lg shadow-black">
+                <h3 class=" font-semibold text-xl md:text-3xl ">{{ $item->name }}</h3>
+                <p class="text-sm md:text-xl">{{ $item->developer }}</p>
             </div>
         </div>
     </div>

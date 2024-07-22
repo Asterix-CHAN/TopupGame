@@ -11,22 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('topupgame_packages', function (Blueprint $table) {
+        Schema::create('galleries', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('developer');
-            $table->text('description');
-            $table->longText('about');
-            $table->string('slug');
-            $table->double('price');
-            $table->string('stock');
+            $table->foreignId('topupgame_packages_id')->constrained(table: 'topupgame_packages', indexName: 'topupgame_package_id');
             $table->text('image');
-            $table->string('category');
-            $table->string('platform');
             $table->softDeletes();
             $table->timestamps();
         });
-        
     }
 
     /**
@@ -34,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('topupgame_packages');
+        Schema::dropIfExists('galleries');
     }
 };

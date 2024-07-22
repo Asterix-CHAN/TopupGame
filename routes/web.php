@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\Admin\TopupgamePackageController;
-use App\Http\Controllers\GameListController;
+use App\Http\Controllers\Admin\GalleryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\GameListController;
+use App\Http\Controllers\Admin\TopupgamePackageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,12 +29,16 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function() {
     })->name('dashboard');
     
     Route::resource('topup-package', TopupgamePackageController::class);
+    // Route::post('topup-package/{id}', [TopupgamePackageController::class, 'store'])->name('topup-package.store');
+
+    // Route::resource('category', CategoryController::class);
+    Route::resource('gallery', GalleryController::class);
 });
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/games', [GameListController::class, 'index'])->name('games');
-Route::get('/order', [OrderController::class, 'index'])->name('order');
+Route::get('/order/{slug}', [OrderController::class, 'index'])->name('order');
 
 
 Route::middleware('auth')->group(function () {

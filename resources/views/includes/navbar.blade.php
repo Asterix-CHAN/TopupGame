@@ -14,8 +14,8 @@
               <!-- logo -->
               <div class="flex justify-center md:justify-normal items-center">
                   <a href="#" class="font-semibold text-md md:text-xl lg:text-2xl"><img
-                          src="{{ url('Game/src/images/logo/logo aov.png') }}" alt="" srcset=""
-                          class="w-24 object-cover"></a>
+                          src="{{ url('Game/src/images/logo/nongki.png') }}" alt="" srcset=""
+                          class="w-14 object-cover object-center overflow-auto"></a>
               </div>
               <!-- End Logo -->
 
@@ -51,7 +51,7 @@
               <!-- End Navbar Menu -->
 
               <!-- Start Search, Login -->
-              <div class=" h-full items-center flex gap-x-1 md:gap-x-2  gap-y-4 md:flex-row md:gap-y-0">
+              <div class=" h-full items-center flex gap-x-1 md:gap-x-2  gap-y-4 md:flex-row md:gap-y-0 mr-2">
                   <!-- Search -->
                   <div
                       class="transition-colors duration-300 ease-out hover:text-white hover:bg-slate-600  w-10 h-10 items-center flex justify-center rounded-md focus:text-white focus:bg-slate-600">
@@ -125,10 +125,10 @@
                       {{-- Desktop --}}
                         <div class="relative ml-3 lg:block hidden" x-data="{ open: false }">
                             <div>
-                                <button @click="open = !open" @keydown.escape="open = false" type="button" class="relative flex max-w-xs items-center text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:rounded-r-full focus:rounded-l-lg" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                                <button @click="open = !open" @keydown.escape="open = false" type="button" class="relative flex max-w-xs items-center text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-1 focus:ring-offset-gray-600 focus:rounded-r-full pl-2" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                     <span class="absolute -inset-1.5"></span>
                                     <span class="">{{ Auth::user()->name }}</span>
-                                    <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                                    <img class="h-8 w-8 rounded-full ml-1" src="{{ url('Game/src/images/content/apex-legends.jpg') }}" alt="">
                                 </button>
                             </div>
                             <div x-show="open" @click.away="open = false" class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
@@ -142,7 +142,7 @@
                     <!-- btn user Mobile -->
                     <div class=" block md:hidden relative">
                         <button id="menu-user" type="button"
-                            class="font-medium text-lg md:text-xl hover:text-white hover:bg-slate-600 ml-2 w-10 h-10 items-center flex justify-center rounded-md focus:text-white focus:bg-slate-600"><i
+                            class="font-medium text-lg md:text-xl hover:text-white hover:bg-slate-600 ml-2 w-10 h-10 items-center flex justify-center rounded-md focus:text-white focus:bg-slate-600 "><i
                                 class="fa-solid fa-user"></i></button>
                         <!-- Dropdown -->
                         <div id="myDropdown"
@@ -150,15 +150,14 @@
                             <div class="flex flex-col mx-auto w-full h-full items-center gap-y-2 px-5">
                                 <form action="{{ url('profile.edit') }}">
                                     <button
-                                        class="font-semibold transition-colors duration-300 ease-out hover:text-slate-600 text-sm" type="button">Profil</button>
+                                        class="font-semibold transition-colors duration-300 ease-out hover:text-slate-600 text-sm" type="submit">Profil</button>
                                 </form>
-                                <form method="POST" action="{{ url('logout') }}">
-                                    @csrf
-                                    <button
-                                        class="px-4 py-2 text-xs font-bold text-white  transition-all duration-150 bg-cyan-700 rounded shadow outline-none hover:bg-emerald-600 hover:shadow-md focus:outline-none ease " type="submit">
+                               
+                                    <a  href="{{ route('logout') }}"
+                                        class="px-4 py-2 text-xs font-bold text-white  transition-all duration-150 bg-cyan-700 rounded shadow outline-none hover:bg-emerald-600 hover:shadow-md focus:outline-none ease " >
                                         Keluar
-                                    </button>
-                                </form>
+                                    </a>
+                                
                             </div>
                         </div>
                     </div>
@@ -197,12 +196,12 @@
           <!-- List -->
           <ul>
               <li class="w-auto rounded-lg flex my-2">
-                  <a href="index.html"
+                  <a href="{{ route('home') }}"
                       class="hover:text-white rounded-lg transition-all duration-300 w-full hover:bg-sky-500"><i
                           class="fa-solid fa-house pl-2"></i><span class="pl-2">Home</span></a>
               </li>
               <li class="w-auto rounded-lg flex my-2">
-                  <a href="games.html"
+                  <a href="{{ route('games') }}"
                       class="hover:text-white rounded-lg transition-all duration-300 w-full hover:bg-sky-500"><i
                           class="fa-solid fa-gamepad pl-2"></i><span class="pl-2">Games</span></a>
               </li>

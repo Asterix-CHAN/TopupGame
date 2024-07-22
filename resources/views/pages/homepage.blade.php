@@ -183,103 +183,25 @@
             <!-- Card Games -->
             <div class="grid text-center grid-cols-2 md:grid-cols-3 gap-3 justify-center ">
                 <!-- Start Card 1 -->
-                <a href="order.html" tabindex="0">
+                @foreach ($items as $item)
+                <a href="{{ route('order', $item->slug) }}" tabindex="0">
                     <div
                         class="w-auto flex-auto md:flex-initial px-4 md:px-4 items-center relative flex rounded-xl duration-300 ease-in-out hover:shadow-2xl hover:ring-2 hover:ring-primary-500 hover:ring-offset-2 hover:ring-offset-white md:gap-x-3 md:rounded-2x md:p-3 border-2 min-h-[100px] z-20">
                         <div class="absolute rounded-xl inset-0 bg-gradient-to-r from-black/70 ..."></div>
-                        <img src="{{ url('Game/src') }}/images/logo/valorant.jpeg" alt="Game Logo"
-                            class="relative aspect-square h-14 w-14 rounded-lg !object-cover !object-center md:h-20 md:w-20 md:rounded-xl left-0">
+                        <img src="{{ Storage::url($item->image)}}" alt="Game Logo"
+                            class="relative aspect-square h-14 w-14 rounded-lg object-cover object-center md:h-20 md:w-20 md:rounded-xl left-0">
                         <div class="relative flex w-full flex-col text-white text-start justify-start pl-2">
-                            <h4 class=" truncate text-xxs font-semibold  md:text-base">
-                                Valorant</h4>
-                            <p class="text-xxs md:text-sm">Riot Games</p>
+                            <h4 class=" truncate text-xs md:text-lg font-semibold ">
+                                {{ $item->name }}</h4>
+                            <p class="text-sm md:text-sm font-sans">{{ $item->developer }}</p>
                         </div>
 
                     </div>
                 </a>
+                @endforeach
+                
                 <!-- End Card 1 -->
-                <!-- Start Card 1 -->
-                <a href="order.html" tabindex="0">
-                    <div
-                        class="w-auto flex-auto md:flex-initial px-4 md:px-4 items-center relative flex rounded-xl duration-300 ease-in-out hover:shadow-2xl hover:ring-2 hover:ring-primary-500 hover:ring-offset-2 hover:ring-offset-white md:gap-x-3 md:rounded-2x md:p-3 border-2 min-h-[100px] z-20">
-                        <div class="absolute rounded-xl inset-0 bg-gradient-to-r from-black/70 ..."></div>
-                        <img src="{{ url('Game/src') }}/images/logo/valorant.jpeg" alt="Game Logo"
-                            class="relative aspect-square h-14 w-14 rounded-lg !object-cover !object-center md:h-20 md:w-20 md:rounded-xl left-0">
-                        <div class="relative flex w-full flex-col text-white text-start justify-start pl-2">
-                            <h4 class=" truncate text-xxs font-semibold  md:text-base">
-                                Valorant</h4>
-                            <p class="text-xxs md:text-sm">Riot Games</p>
-                        </div>
-
-                    </div>
-                </a>
-                <!-- End Card 1 -->
-                <!-- Start Card 1 -->
-                <a href="order.html" tabindex="0">
-                    <div
-                        class="w-auto flex-auto md:flex-initial px-4 md:px-4 items-center relative flex rounded-xl duration-300 ease-in-out hover:shadow-2xl hover:ring-2 hover:ring-primary-500 hover:ring-offset-2 hover:ring-offset-white md:gap-x-3 md:rounded-2x md:p-3 border-2 min-h-[100px] z-20">
-                        <div class="absolute rounded-xl inset-0 bg-gradient-to-r from-black/70 ..."></div>
-                        <img src="{{ url('Game/src') }}/images/logo/valorant.jpeg" alt="Game Logo"
-                            class="relative aspect-square h-14 w-14 rounded-lg !object-cover !object-center md:h-20 md:w-20 md:rounded-xl left-0">
-                        <div class="relative flex w-full flex-col text-white text-start justify-start pl-2">
-                            <h4 class=" truncate text-xxs font-semibold  md:text-base">
-                                Valorant</h4>
-                            <p class="text-xxs md:text-sm">Riot Games</p>
-                        </div>
-
-                    </div>
-                </a>
-                <!-- End Card 1 -->
-                <!-- Start Card 1 -->
-                <a href="order.html" tabindex="0">
-                    <div
-                        class="w-auto flex-auto md:flex-initial px-4 md:px-4 items-center relative flex rounded-xl duration-300 ease-in-out hover:shadow-2xl hover:ring-2 hover:ring-primary-500 hover:ring-offset-2 hover:ring-offset-white md:gap-x-3 md:rounded-2x md:p-3 border-2 min-h-[100px] z-20">
-                        <div class="absolute rounded-xl inset-0 bg-gradient-to-r from-black/70 ..."></div>
-                        <img src="{{ url('Game/src') }}/images/logo/valorant.jpeg" alt="Game Logo"
-                            class="relative aspect-square h-14 w-14 rounded-lg !object-cover !object-center md:h-20 md:w-20 md:rounded-xl left-0">
-                        <div class="relative flex w-full flex-col text-white text-start justify-start pl-2">
-                            <h4 class=" truncate text-xxs font-semibold  md:text-base">
-                                Valorant</h4>
-                            <p class="text-xxs md:text-sm">Riot Games</p>
-                        </div>
-
-                    </div>
-                </a>
-                <!-- End Card 1 -->
-                <!-- Start Card 1 -->
-                <a href="order.html" tabindex="0">
-                    <div
-                        class="w-auto flex-auto md:flex-initial px-4 md:px-4 items-center relative flex rounded-xl duration-300 ease-in-out hover:shadow-2xl hover:ring-2 hover:ring-primary-500 hover:ring-offset-2 hover:ring-offset-white md:gap-x-3 md:rounded-2x md:p-3 border-2 min-h-[100px] z-20">
-                        <div class="absolute rounded-xl inset-0 bg-gradient-to-r from-black/70 ..."></div>
-                        <img src="{{ url('Game/src') }}/images/logo/valorant.jpeg" alt="Game Logo"
-                            class="relative aspect-square h-14 w-14 rounded-lg !object-cover !object-center md:h-20 md:w-20 md:rounded-xl left-0">
-                        <div class="relative flex w-full flex-col text-white text-start justify-start pl-2">
-                            <h4 class=" truncate text-xxs font-semibold  md:text-base">
-                                Valorant</h4>
-                            <p class="text-xxs md:text-sm">Riot Games</p>
-                        </div>
-
-                    </div>
-                </a>
-                <!-- End Card 1 -->
-                <!-- Start Card 1 -->
-                <a href="order.html" tabindex="0">
-                    <div
-                        class="w-auto flex-auto md:flex-initial px-4 md:px-4 items-center relative flex rounded-xl duration-300 ease-in-out hover:shadow-2xl hover:ring-2 hover:ring-primary-500 hover:ring-offset-2 hover:ring-offset-white md:gap-x-3 md:rounded-2x md:p-3 border-2 min-h-[100px] z-20">
-                        <div class="absolute rounded-xl inset-0 bg-gradient-to-r from-black/70 ..."></div>
-                        <img src="{{ url('Game/src') }}/images/logo/valorant.jpeg" alt="Game Logo"
-                            class="relative aspect-square h-14 w-14 rounded-lg !object-cover !object-center md:h-20 md:w-20 md:rounded-xl left-0">
-                        <div class="relative flex w-full flex-col text-white text-start justify-start pl-2">
-                            <h4 class=" truncate text-xxs font-semibold  md:text-base">
-                                Valorant</h4>
-                            <p class="text-xxs md:text-sm">Riot Games</p>
-                        </div>
-
-                    </div>
-                </a>
-                <!-- End Card 1 -->
-
-
+              
             </div>
             <!-- Card Games -->
         </div>
@@ -295,90 +217,30 @@
             <!-- Card Games -->
 
             <div class="grid text-center grid-cols-2 md:grid-cols-4 gap-5 justify-between">
-                <!-- card 1 -->
-                <a href="order.html" tabindex="0">
+                @foreach ($items as $item)
+                        <!-- card 1 -->
+                <a href="{{ route('order', $item->slug) }}" tabindex="0">
                     <div
                         class="relative grid grid-cols-1 bg-clip-border  text-gray-700 shadow-md w-auto min-h-[240px] md:h-[350px] items-center content-end border-4 border-white rounded-2xl">
-                        <img src="{{ url('Game/src') }}/images/content/apex-legends.jpg" alt=""
+                        <img src="{{ Storage::url($item->image) }}" alt=""
                             class="absolute inset-0 h-full w-full object-cover object-center transition-all duration-300 ease-in-out hover:scale-105 rounded-xl" />
                         <div class="absolute inset-0 rounded-2xl bg-gradient-to-r from-black/70 ... "></div>
                         <div class="p-6 relative">
                             <div class="-mb-7 md:-mb-5">
                                 <h4
                                     class="block text-md font-semibold bg-green-700 rounded-xl hover:bg-orange-400 mx-2 py-1 md:py-2 text-white ">
-                                    Apex Legends
+                                    {{ $item->name }}
                                 </h4>
-                                <p class="block text-md text-white my-2 ">EA</p>
+                                <p class="block text-md text-white my-2 ">{{ $item->developer }}</p>
                             </div>
 
                         </div>
 
                     </div>
                 </a>
-                <!-- card 1 -->
-                <!-- card 1 -->
-                <a href="order.html" tabindex="0">
-                    <div
-                        class="relative grid grid-cols-1 bg-clip-border  text-gray-700 shadow-md w-auto min-h-[240px] md:h-[350px] items-center content-end border-4 border-white rounded-2xl">
-                        <img src="{{ url('Game/src/images/content/apex-legends.jpg') }}" alt=""
-                            class="absolute inset-0 h-full w-full object-cover object-center transition-all duration-300 ease-in-out hover:scale-105 rounded-xl" />
-                        <div class="absolute inset-0 rounded-2xl bg-gradient-to-r from-black/70 ... "></div>
-                        <div class="p-6 relative">
-                            <div class="-mb-7 md:-mb-5">
-                                <h4
-                                    class="block text-md font-semibold bg-green-700 rounded-xl hover:bg-orange-400 mx-2 py-1 md:py-2 text-white ">
-                                    Apex Legends
-                                </h4>
-                                <p class="block text-md text-white my-2 ">EA</p>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </a>
-                <!-- card 1 -->
-                <!-- card 1 -->
-                <a href="order.html" tabindex="0">
-                    <div
-                        class="relative grid grid-cols-1 bg-clip-border  text-gray-700 shadow-md w-auto min-h-[240px] md:h-[350px] items-center content-end border-4 border-white rounded-2xl">
-                        <img src="{{ url('Game/src/images/content/apex-legends.jpg') }}" alt=""
-                            class="absolute inset-0 h-full w-full object-cover object-center transition-all duration-300 ease-in-out hover:scale-105 rounded-xl" />
-                        <div class="absolute inset-0 rounded-2xl bg-gradient-to-r from-black/70 ... "></div>
-                        <div class="p-6 relative">
-                            <div class="-mb-7 md:-mb-5">
-                                <h4
-                                    class="block text-md font-semibold bg-green-700 rounded-xl hover:bg-orange-400 mx-2 py-1 md:py-2 text-white ">
-                                    Apex Legends
-                                </h4>
-                                <p class="block text-md text-white my-2 ">EA</p>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </a>
-                <!-- card 1 -->
-                <!-- card 1 -->
-                <a href="order.html" tabindex="0">
-                    <div
-                        class="relative grid grid-cols-1 bg-clip-border  text-gray-700 shadow-md w-auto min-h-[240px] md:h-[350px] items-center content-end border-4 border-white rounded-2xl">
-                        <img src="{{ url('Game/src/images/content/apex-legends.jpg') }}" alt=""
-                            class="absolute inset-0 h-full w-full object-cover object-center transition-all duration-300 ease-in-out hover:scale-105 rounded-xl" />
-                        <div class="absolute inset-0 rounded-2xl bg-gradient-to-r from-black/70 ... "></div>
-                        <div class="p-6 relative">
-                            <div class="-mb-7 md:-mb-5">
-                                <h4
-                                    class="block text-md font-semibold bg-green-700 rounded-xl hover:bg-orange-400 mx-2 py-1 md:py-2 text-white ">
-                                    Apex Legends
-                                </h4>
-                                <p class="block text-md text-white my-2 ">EA</p>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </a>
-                <!-- card 1 -->
+                @endforeach
+            
+               
             </div>
             <!-- Card Games -->
         </div>

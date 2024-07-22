@@ -9,33 +9,40 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
 
+
+
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="">
-    <div class="min-h-screen bg-gray-100">
+<body class="bg-blue-500">
+    <div class="min-h-screen bg-gray-100 relative" x-data="{ open: false }" x-init="if (window.innerWidth >= 768) open = true">
         @include('layouts.navigation')
 
-        <div class="min-w-screen flex md:gap-4 mx-auto relative justify-center">
+        <div class="min-w-screen flex mx-auto justify-center ">
             <!-- Page sidebar -->
-            <div class="w-1/6 inset-0 z-50 md:z-30 md:w-1/5  ">
-              
+
+            <div class="w-1/2 h-screen md:block inset-0 md:w-1/5 md:top-24 z-30 md:z-0 fixed md:sticky transition-transform duration-300 ease-in-out"
+                :class="{ 'block': open, 'hidden': !open }" @click.away="open = true">
+
                 @include('includes.admin.sidebar')
             </div>
 
-        
+
             <!-- Page Content -->
-            <main class="h-auto w-4/5 z-30 md:w-5/6 md:mr-3 items-center">
+            <main class="h-auto w-full md:w-5/6 md:mr-3 items-center">
 
                 {{ $header }}
-                
-                {{ $slot}}
+
+                {{ $slot }}
 
             </main>
         </div>
     </div>
 </body>
+
+
+<script src="{{ url('Game/src/assets/fontawesome-free-6.5.1-web/fontawesome-free-6.5.1-web/js/all.js') }}"></script>
 
 </html>

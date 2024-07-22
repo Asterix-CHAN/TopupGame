@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-2xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-2xl text-gray-800 leading-tight mt-3 ml-4">
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
@@ -12,7 +12,7 @@
                     <div class="grid text-center grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 justify-center">
                         <!-- Start Card 1 -->
                         <div
-                            class=" w-auto flex-auto md:flex-initial px-4 md:px-4 items-center relative flex rounded-xl duration-300 ease-in-out hover:shadow-2xl hover:ring-2 hover:ring-primary-500 hover:ring-offset-2 hover:ring-offset-white md:gap-x-3 md:rounded-2x md:p-3 border-2 h-[100px] z-20">
+                            class=" w-auto flex-auto md:flex-initial px-4 md:px-4 items-center relative flex rounded-xl duration-300 ease-in-out hover:shadow-2xl hover:ring-2 hover:ring-primary-500 hover:ring-offset-2 hover:ring-offset-white md:gap-x-3 md:rounded-2x md:p-3 border-2 h-[100px] ">
                             <div class="p-4 bg-blue-400 rounded-lg"><svg xmlns="http://www.w3.org/2000/svg"
                                     class="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24"
                                     stroke="currentColor">
@@ -28,7 +28,7 @@
                         <!-- End Card 1 -->
                         <!-- Start Card 1 -->
                         <div
-                            class=" w-auto flex-auto md:flex-initial px-4 md:px-4 items-center relative flex rounded-xl duration-300 ease-in-out hover:shadow-2xl hover:ring-2 hover:ring-primary-500 hover:ring-offset-2 hover:ring-offset-white md:gap-x-3 md:rounded-2x md:p-3 border-2 h-[100px] z-20">
+                            class=" w-auto flex-auto md:flex-initial px-4 md:px-4 items-center relative flex rounded-xl duration-300 ease-in-out hover:shadow-2xl hover:ring-2 hover:ring-primary-500 hover:ring-offset-2 hover:ring-offset-white md:gap-x-3 md:rounded-2x md:p-3 border-2 h-[100px] ">
                             <div class="p-4 bg-blue-400 rounded-lg"><svg xmlns="http://www.w3.org/2000/svg"
                                     class="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24"
                                     stroke="currentColor">
@@ -44,7 +44,7 @@
                         <!-- End Card 1 -->
                         <!-- Start Card 1 -->
                         <div
-                            class=" w-auto flex-auto md:flex-initial px-4 md:px-4 items-center relative flex rounded-xl duration-300 ease-in-out hover:shadow-2xl hover:ring-2 hover:ring-primary-500 hover:ring-offset-2 hover:ring-offset-white md:gap-x-3 md:rounded-2x md:p-3 border-2 h-[100px] z-20">
+                            class=" w-auto flex-auto md:flex-initial px-4 md:px-4 items-center relative flex rounded-xl duration-300 ease-in-out hover:shadow-2xl hover:ring-2 hover:ring-primary-500 hover:ring-offset-2 hover:ring-offset-white md:gap-x-3 md:rounded-2x md:p-3 border-2 h-[100px] ">
                             <div class="p-4 bg-blue-400 rounded-lg"><svg xmlns="http://www.w3.org/2000/svg"
                                     class="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24"
                                     stroke="currentColor">
@@ -60,7 +60,7 @@
                         <!-- End Card 1 -->
                         <!-- Start Card 1 -->
                         <div
-                            class=" w-auto flex-auto md:flex-initial px-4 md:px-4 items-center relative flex rounded-xl duration-300 ease-in-out hover:shadow-2xl hover:ring-2 hover:ring-primary-500 hover:ring-offset-2 hover:ring-offset-white md:gap-x-3 md:rounded-2x md:p-3 border-2 h-[100px] z-20">
+                            class=" w-auto flex-auto md:flex-initial px-4 md:px-4 items-center relative flex rounded-xl duration-300 ease-in-out hover:shadow-2xl hover:ring-2 hover:ring-primary-500 hover:ring-offset-2 hover:ring-offset-white md:gap-x-3 md:rounded-2x md:p-3 border-2 h-[100px] ">
                             <div class="p-4 bg-blue-400 rounded-lg"><svg xmlns="http://www.w3.org/2000/svg"
                                     class="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24"
                                     stroke="currentColor">

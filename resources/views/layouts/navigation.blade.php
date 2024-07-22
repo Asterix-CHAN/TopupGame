@@ -101,7 +101,7 @@
 </nav> --}}
 
 <div class="p-2 xl:ml-80">
-    <nav class="block w-full max-w-full bg-transparent text-white shadow-none rounded-xl transition-all px-0 py-1">
+    <nav class="block w-full max-w-full z-50 bg-transparent shadow-inner border text-white rounded-xl transition-all px-0 py-1 pl-6 pb-3">
         <div class="flex flex-col-reverse justify-between gap-6 md:flex-row md:items-center mt-3">
             <div class="capitalize">
                 <nav aria-label="breadcrumb" class="w-max">
@@ -129,8 +129,23 @@
                     class="block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-gray-900">
                     home</h6> --}}
             </div>
-            <div class="flex items-center ">
-                <div class="mr-auto md:mr-4 md:w-56">
+            <div class="flex items-center" >
+
+                <button
+                class="relative middle none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30 grid md:hidden mr-2"
+                type="button" @click="open = !open">
+                <span class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                        aria-hidden="true" stroke-width="3" class="h-6 w-6 text-blue-gray-500">
+                        <path fill-rule="evenodd"
+                            d="M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                </span>
+            </button>
+
+
+                <div class="mr-auto md:mr-2 md:w-56">
                     <div class="relative w-full min-w-[200px] h-10">
                         <input
                             class="rounded-lg text-slate-800 font-sans text-sm " type="text" 
@@ -138,19 +153,7 @@
                     
                     </div>
                 </div>
-                <button
-                    class="relative middle none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30 grid xl:hidden"
-                    type="button">
-                    <span class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                            aria-hidden="true" stroke-width="3" class="h-6 w-6 text-blue-gray-500">
-                            <path fill-rule="evenodd"
-                                d="M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                    </span>
-                </button>
-
+              
                 <!-- Settings Dropdown -->
                 <div class="hidden sm:flex sm:items-center sm:ms-6">
                     <x-dropdown align="right" width="48">
