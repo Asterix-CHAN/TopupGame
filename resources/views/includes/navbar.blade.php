@@ -2,22 +2,25 @@
   <header class=" pt-2 top-0 fixed z-40 w-full shadow-lg items-center ">
       <div class="container mx-auto md:relative md:flex-row gap-y-4 md:gap-y-0 top-navbar">
           <div class="flex h-[60px] justify-between">
-              <!-- Start Hamburger Menu -->
-              <div class="w-auto block md:hidden py-2">
-                  <div class="w-10 h-10 items-center flex justify-center rounded-md">
+              
+              <div class="w-auto flex items-center py-2">
+                <!-- Start Hamburger Menu -->
+                  <div class="w-10 h-10 items-center  justify-center rounded-md block md:hidden">
                       <button id="hamburger" type="button" class="font-medium md:text-2xl text-lg ">
-                          <i class="fa-solid fa-bars rounded-md "></i>
+                          <i class="fa-solid fa-bars rounded-md w-full"></i>
                       </button>
                   </div>
-              </div>
-              <!-- End Hamburger Menu -->
-              <!-- logo -->
+                   <!-- End Hamburger Menu -->
+                  <!-- logo -->
               <div class="flex justify-center md:justify-normal items-center">
-                  <a href="#" class="font-semibold text-md md:text-xl lg:text-2xl"><img
-                          src="{{ url('Game/src/images/logo/nongki.png') }}" alt="" srcset=""
-                          class="w-14 object-cover object-center overflow-auto"></a>
+                <a href="#" class="font-semibold text-md md:text-xl lg:text-2xl"><img
+                        src="{{ url('Game/src/images/logo/nongki.png') }}" alt="" srcset=""
+                        class="w-10 md:w-13 object-cover object-center overflow-auto"></a>
+            </div>
+            <!-- End Logo -->
               </div>
-              <!-- End Logo -->
+             
+              
 
               <!-- Navbar Menu -->
               <div class="flex items-center md:flex-row md:gap-x-10 md:gap-y-0">
@@ -25,24 +28,25 @@
                   <div class="mx-3 hidden md:block md:self-stretch">
                       <ul id="menu" class="flex md:flex-row justify-center items-center h-full ">
                           <li class="mx-3 h-full">
-                              <a href="{{ route('home') }}"
+                              <x-nav-link href="{{ route('home') }}" 
+                                  class="h-full relative z-10 -mb-px flex items-center border-b-4 border-spacing-y-6 font-medium transition-colors duration-300 ease-out border-transparent hover:border-collapse hover:border-white hover:text-white dark:text-white gap-x-2 ">
+                                  <i class="fa-solid fa-house " ></i>Beranda
+                              </x-nav-link>
+                          </li>
+                          <li class="mx-3 h-full">
+                              <x-nav-link href="{{ route('games') }}"
                                   class="h-full relative z-10 -mb-px flex items-center border-b-4 border-spacing-y-6 font-medium transition-colors duration-300 ease-out border-transparent hover:border-collapse hover:border-white hover:text-white gap-x-2 "><i
-                                      class="fa-solid fa-house "></i>Beranda</a>
+                                      class="fa-solid fa-gamepad " ></i>Games</x-nav-link>
                           </li>
                           <li class="mx-3 h-full">
-                              <a href="{{ route('games') }}"
-                                  class="h-full relative z-10 -mb-px flex items-center border-b-4 border-spacing-y-6 font-medium transition-colors duration-300 ease-out border-transparent hover:border-collapse hover:border-white hover:text-white gap-x-2 "><i
-                                      class="fa-solid fa-gamepad "></i>Games</a>
-                          </li>
-                          <li class="mx-3 h-full">
-                              <a href="#_"
+                              <x-nav-link href="#_"
                                   class="h-full relative z-10 -mb-px flex items-center border-b-4 border-spacing-y-6 font-medium transition-colors duration-300 ease-out border-transparent hover:border-collapse hover:border-white hover:text-white gap-x-2"><i
-                                      class="fa-solid fa-money-bill"></i>Transaksi</a>
+                                      class="fa-solid fa-money-bill"></i>Transaksi</x-nav-link>
                           </li>
                           <li class="mx-3 h-full">
-                              <a href="#_"
+                              <x-nav-link href="#_"
                                   class="h-full relative z-10 -mb-px flex items-center border-b-4 border-spacing-y-6 font-medium transition-colors duration-300 ease-out border-transparent hover:border-collapse hover:border-white hover:text-white gap-x-2"><i
-                                      class="fa-regular fa-newspaper"></i>Blog</a>
+                                      class="fa-regular fa-newspaper"></i>Blog</x-nav-link>
                           </li>
                       </ul>
                   </div>
@@ -123,45 +127,55 @@
                   @auth
                       <!-- User -->
                       {{-- Desktop --}}
-                        <div class="relative ml-3 lg:block hidden" x-data="{ open: false }">
-                            <div>
-                                <button @click="open = !open" @keydown.escape="open = false" type="button" class="relative flex max-w-xs items-center text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-1 focus:ring-offset-gray-600 focus:rounded-r-full pl-2" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
-                                    <span class="absolute -inset-1.5"></span>
-                                    <span class="">{{ Auth::user()->name }}</span>
-                                    <img class="h-8 w-8 rounded-full ml-1" src="{{ url('Game/src/images/content/apex-legends.jpg') }}" alt="">
-                                </button>
-                            </div>
-                            <div x-show="open" @click.away="open = false" class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-                                <!-- Active: "bg-gray-100", Not Active: "" -->
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
-                                <a href="{{ route('logout') }}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
-                            </div>
-                        </div>
-                   {{-- End Desktop --}}
-                    <!-- btn user Mobile -->
-                    <div class=" block md:hidden relative">
-                        <button id="menu-user" type="button"
-                            class="font-medium text-lg md:text-xl hover:text-white hover:bg-slate-600 ml-2 w-10 h-10 items-center flex justify-center rounded-md focus:text-white focus:bg-slate-600 "><i
-                                class="fa-solid fa-user"></i></button>
-                        <!-- Dropdown -->
-                        <div id="myDropdown"
-                            class="dropdown-content absolute top-14 right-0  rounded-xl  w-[120px] h-auto  bg-white  items-center py-2 hidden ">
-                            <div class="flex flex-col mx-auto w-full h-full items-center gap-y-2 px-5">
-                                <form action="{{ url('profile.edit') }}">
-                                    <button
-                                        class="font-semibold transition-colors duration-300 ease-out hover:text-slate-600 text-sm" type="submit">Profil</button>
-                                </form>
-                               
-                                    <a  href="{{ route('logout') }}"
-                                        class="px-4 py-2 text-xs font-bold text-white  transition-all duration-150 bg-cyan-700 rounded shadow outline-none hover:bg-emerald-600 hover:shadow-md focus:outline-none ease " >
-                                        Keluar
-                                    </a>
+                      <div class="relative ml-3 lg:block hidden" x-data="{ open: false }">
+                          <div>
+                              <button @click="open = !open" @keydown.escape="open = false" type="button"
+                                  class="relative flex max-w-xs items-center text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-1 focus:ring-offset-gray-600 focus:rounded-r-full pl-2"
+                                  id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                                  <span class="absolute -inset-1.5"></span>
+                                  <span class="">{{ Auth::user()->name }}</span>
+                                  <img class="h-8 w-8 rounded-full ml-1"
+                                      src="{{ url('Game/src/images/content/apex-legends.jpg') }}" alt="">
+                              </button>
+                          </div>
+                          <div x-show="open" @click.away="open = false"
+                              class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                              role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+                              <!-- Active: "bg-gray-100", Not Active: "" -->
+                              <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
+                                  tabindex="-1" id="user-menu-item-0">Your Profile</a>
+                              <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
+                                  tabindex="-1" id="user-menu-item-1">Settings</a>
+                              <a href="{{ route('logout') }}" class="block px-4 py-2 text-sm text-gray-700"
+                                  role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
                                 
-                            </div>
-                        </div>
-                    </div>
-                    <!--  -->
+                          </div>
+                      </div>
+                      {{-- End Desktop --}}
+                      <!-- btn user Mobile -->
+                      <div class=" block md:hidden relative">
+                          <button id="menu-user" type="button"
+                              class="font-medium text-lg md:text-xl hover:text-white hover:bg-slate-600 ml-2 w-10 h-10 items-center flex justify-center rounded-md focus:text-white focus:bg-slate-600 "><i
+                                  class="fa-solid fa-user"></i></button>
+                          <!-- Dropdown -->
+                          <div id="myDropdown"
+                              class="dropdown-content absolute top-14 right-0  rounded-xl  w-[120px] h-auto  bg-white  items-center py-2 hidden ">
+                              <div class="flex flex-col mx-auto w-full h-full items-center gap-y-2 px-5">
+                                  <form action="{{ url('profile.edit') }}">
+                                      <button
+                                          class="font-semibold transition-colors duration-300 ease-out hover:text-slate-600 text-sm"
+                                          type="submit">Profil</button>
+                                  </form>
+
+                                  <a href="{{ route('logout') }}"
+                                      class="px-4 py-2 text-xs font-bold text-white  transition-all duration-150 bg-cyan-700 rounded shadow outline-none hover:bg-emerald-600 hover:shadow-md focus:outline-none ease ">
+                                      Keluar
+                                  </a>
+
+                              </div>
+                          </div>
+                      </div>
+                      <!--  -->
                   @endauth
                   <!-- End Search, Login -->
               </div>

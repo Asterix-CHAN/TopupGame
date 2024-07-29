@@ -71,11 +71,11 @@
                                         </tr>
                                     </thead>
                                     <tbody class="bg-white divide-y divide-gray-200 items-center">
-                                        @forelse ($items as $item)
+                                        @forelse ($items as $index=>$item)
                                             <tr>
                                                 <td scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    {{ $item->id }}</td>
+                                                    {{ $index+1 }}</td>
                                                 <td scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     {{ $item->name }}</td>
@@ -104,49 +104,9 @@
                                                         class="p-2 bg-blue-500 hover:bg-blue-600 rounded-lg text-white"><i
                                                             class="fa fa-pencil-alt mx-1"></i>
                                                     </a>
-                                                    {{-- <div x-data="{ isOpen: false }" class="relative ...">
-                                                        <button type="button" @click="isOpen = !isOpen" class="p-2 bg-blue-500 hover:bg-blue-600 rounded-lg text-white">
-                                                            <i
-                                                            class="fa fa-pencil-alt mx-1"></i>
-                                                        </button>
-                    
-                                                        <div x-show="isOpen" x-transition:enter="transition ease-in-out duration-300 "
-                                                            x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                                                            x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
-                                                            x-transition:leave="ease-in duration-200"
-                                                            x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
-                                                            x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                                                            class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg">
-                                                            <div class="rounded-md bg-white shadow-xs">
-                                                                @include('pages.admin.topup-game-package.modal-edit')
-                                                            </div>
-                                                        </div>
-                                                    </div> --}}
+                                                
+                                                    <a href="{{ route('topup-package.destroy', $item->id) }}" class="p-2 bg-red-500 hover:bg-red-600 rounded-lg text-white" data-confirm-delete="true"><i class="fa fa-trash mx-1"></i></a>
 
-                                                       <div x-data="{ isOpen: false }" class="relative ...">
-                                                        <button type="button" @click="isOpen = !isOpen" class="p-2 bg-red-500 hover:bg-red-600 rounded-lg text-white">
-                                                            <i class="fa fa-trash mx-1"></i></i>
-                                                        </button>
-                    
-                                                        <div x-show="isOpen" x-transition:enter="transition ease-in-out duration-300 "
-                                                            x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                                                            x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
-                                                            x-transition:leave="ease-in duration-200"
-                                                            x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
-                                                            x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                                                            class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg">
-                                                            <div class="rounded-md bg-white shadow-xs">
-                                                                @include('pages.admin.topup-game-package.modal-delete')
-                                                        </div>
-                                                    </div>
-                                                    {{-- <form action="{{ route('topup-package.destroy', $item->id) }}"
-                                                        method="POST" class="">
-                                                        @csrf
-                                                        @method('delete')
-                                                        <button
-                                                            class="p-2 bg-red-500 hover:bg-red-600 rounded-lg text-white"
-                                                            type="submit"><i class="fa fa-trash mx-1"></i></button>
-                                                    </form> --}}
                                                 </td>
                                             </tr>
                                         @empty
@@ -157,6 +117,7 @@
 
                                     </tbody>
                                 </table>
+                                {{ $items->links() }}
                             </div>
                         </div>
                     </div>

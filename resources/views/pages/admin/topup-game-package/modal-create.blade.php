@@ -27,8 +27,30 @@
           <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
             <div class=" w-full">
              {{--  --}}
+            
+
              <form method="post" action="{{ route('topup-package.store') }}" enctype="multipart/form-data">
                 @csrf
+                @if(Session::has('success'))
+                <script>
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success!',
+                        text: '{{ Session::get('success') }}'
+                    });
+                </script>
+            @endif
+            
+            @if(Session::has('error'))
+                <script>
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error!',
+                        text: '{{ Session::get('error') }}'
+                    });
+                </script>
+            @endif
+            
                 <div class="card mt-5 w-full">
                     <div class="card-body flex gap-2">
                         <div class="w-full">

@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!DOCTYPE html >
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -8,7 +8,7 @@
     @include('includes.style')
 </head>
 
-<body>
+<body class="bg-white dark:bg-slate-800">
     @include('includes.navbar')
 
     <!-- Start Main -->

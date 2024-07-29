@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Models\TopupgamePackage;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\TopupgamePackageRequest;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class TopupgamePackageController extends Controller
 {
@@ -19,6 +21,9 @@ class TopupgamePackageController extends Controller
     {
 
         $items = TopupgamePackage::paginate(10);
+        $title = 'Delete Product!';
+        $text = "Are you sure you want to delete?";
+        confirmDelete($title, $text);
         return view('pages.admin.topup-game-package.index', compact('items'));
     }
 
@@ -37,22 +42,26 @@ class TopupgamePackageController extends Controller
      */
 
     
-    public function store(TopupgamePackageRequest $request)
-    {
-        $data = $request->all();
-
-        $data['slug'] = Str::slug($request->name);
-        
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('assets/gallery', 'public');
-            $data['image'] = $imagePath;
-        }
-    
-        TopupgamePackage::create($data);
-    
-        return redirect()->back();
-    }
-    
+     public function store(TopupgamePackageRequest $request)
+     {
+         $data = $request->all();
+         $data['slug'] = Str::slug($request->name);
+     
+         if ($request->hasFile('image')) {
+             $imagePath = $request->file('image')->store('assets/gallery', 'public');
+             $data['image'] = $imagePath;
+         }
+     
+         try {
+             TopupgamePackage::create($data);
+             Alert::success('Success Title', 'Success Message');
+             return redirect()->back()->with('success', 'Data Berhasil ditambahkan');
+         } catch (\Exception $e) {
+             Alert::error('Error Title', 'Error Message');
+             return redirect()->back()->with('error', 'Data Gagal ditambahkan');
+         }
+     }
+     
 
 
     /**
@@ -112,6 +121,7 @@ class TopupgamePackageController extends Controller
     {
         $item = TopupgamePackage::findOrFail($id);
         $item->delete();
+      
         return redirect()->back();
     }
 }
