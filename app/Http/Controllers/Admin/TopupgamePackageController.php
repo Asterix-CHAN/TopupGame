@@ -20,7 +20,8 @@ class TopupgamePackageController extends Controller
     public function index()
     {
 
-        $items = TopupgamePackage::paginate(10);
+        $items = TopupgamePackage::all();
+
         $title = 'Delete Product!';
         $text = "Are you sure you want to delete?";
         confirmDelete($title, $text);

@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\GameListController;
 use App\Http\Controllers\Admin\GalleryController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\TopupgamePackageController;
 
 /*
@@ -31,8 +32,7 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function() {
     
     Route::resource('topup-package', TopupgamePackageController::class);
     // Route::post('topup-package/{id}', [TopupgamePackageController::class, 'store'])->name('topup-package.store');
-
-    // Route::resource('category', CategoryController::class);
+    Route::resource('category', CategoryController::class);
     Route::resource('gallery', GalleryController::class);
 });
 

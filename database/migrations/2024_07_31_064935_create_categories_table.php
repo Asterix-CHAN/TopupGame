@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('topup_packages_id')->constrained(table: 'topupgame_packages', indexName: 'topupgame_packages_id');
             $table->string('name');
+            $table->string('slug')->unique();
             $table->timestamps();
         });
     }

@@ -1,8 +1,6 @@
 <?php
 
 namespace App\Models;
-
-use App\Models\Admin\Category;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -20,16 +18,16 @@ class TopupgamePackage extends Model
         'slug',
         'price',
         'stock',
-        'category',
+        'category_id',
         'platform',
         'image',
     ];
 
     protected $hidden = [];
 
-    public function category_id(){
-        return $this->hasMany(Category::class, 'topupgame_packages', 'id');
-    }
+    // public function category(){
+    //     return $this->belongsTo(Category::class, 'category_id', 'id');
+    // }
 
     
     public function gallery(){

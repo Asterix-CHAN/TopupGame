@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\CategoryRequest;
-use App\Models\Admin\Category;
-use App\Models\TopupgamePackage;
+use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class CategoryController extends Controller
 {
@@ -15,10 +14,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-
-        // Category::with(['topupgame_package'])->get();
-      
-        // return view('pages.topup-game-package.create');
+        // $data = Category::all();
+        // // dd($data);
+        // return view('pages.admin.topup-game-package.index', [
+        //     'data' => $data
+        // ]);
     }
 
     /**
@@ -26,20 +26,26 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $topupgame_package = TopupgamePackage::all();
-        return view('pages.topup-game-package.create',['topupgame_packages' => $topupgame_package]);
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CategoryRequest $request)
+    public function store(Request $request)
     {
-        $item = $request->all();
-        Category::create($item);
-        
-        return redirect()->route('topup-package.index');
+        $validated = $request->validate([
+            'name' => 'required|string|max:10'
+        ]);
+    
+        // Generate the slug
+        $validated['slug'] = Str::slug($request->name);
+
+        Category::create($validated);
+        return redirect()->back();
+      
     }
+    
 
     /**
      * Display the specified resource.
