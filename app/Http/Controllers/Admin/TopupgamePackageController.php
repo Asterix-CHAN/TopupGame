@@ -81,8 +81,8 @@ class TopupgamePackageController extends Controller
     public function edit(string $id)
     {
         $item = TopupgamePackage::findOrFail($id);
-
-        return view('pages.admin.topup-game-package.edit', compact('item'));
+        $categories = Category::all();     
+        return view('pages.admin.topup-game-package.edit', compact('item', 'categories'));
     }
 
     /**
@@ -98,8 +98,9 @@ class TopupgamePackageController extends Controller
             'about' => 'required|max:255',
             'price' => 'required|numeric',
             'stock' => 'required|max:255',
-            'category' => 'required|max:255',
-            'platform' => 'required|max:255',
+            'category_id' => 'required|array|min:1',
+            'category_id.*' => 'required|integer|exists:categories,id',
+            // 'platform' => 'required|max:255',
             'image' => 'image|mimes:jpeg,png,jpg',
         ]);
 
@@ -113,7 +114,7 @@ class TopupgamePackageController extends Controller
 
         $item = TopupgamePackage::findOrFail($id);
         $item->update($data);
-
+        $item->categories()->sync($request->category_id);
         return redirect()->route('topup-package.index');
     }
 

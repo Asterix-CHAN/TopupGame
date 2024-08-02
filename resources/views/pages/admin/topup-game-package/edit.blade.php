@@ -69,17 +69,23 @@
                                             name="stock" value="{{ $item->stock }}" >
                                     </div>
                                     <div class="mb-4">
-                                        <label class="block text-gray-700 text-sm font-bold mb-2">Category</label>
-                                        <input type="text"
-                                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                            name="category" value="{{ $item->category }}">
+                                        <select name="category_id[]" id="category_id"
+                                        class="select2-multiple shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline overflow-y-hidden"
+                                        multiple>
+                                     
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}"{{ (in_array($category->id, old('category_id', $item->categories->pluck('id')->toArray()))) ? 'selected' : '' }} >{{ $category->name }}</option>
+                                        @endforeach
+                                    </select>
                                     </div>
-                                    <div class="mb-4">
+
+                                    
+                                    {{-- <div class="mb-4">
                                         <label class="block text-gray-700 text-sm font-bold mb-2">Platform</label>
                                         <input type="text"
                                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                             name="platform" value="{{ $item->platform }}">
-                                    </div>
+                                    </div> --}}
                                     <div class="mb-4">
                                         <label for="formFile"
                                             class="block text-gray-700 text-sm font-bold mb-2">Image</label>
