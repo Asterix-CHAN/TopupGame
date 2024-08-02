@@ -6,6 +6,7 @@
     </x-slot>
 
 
+
     <main>
         <!-- Begin Page Content -->
         <div class="container-fluid pt-10">
@@ -21,7 +22,8 @@
                                     class="bg-blue-500 rounded-lg px-2 py-1 hover:bg-blue-700 focus:bg-blue-600 text-white text-lg font-sans">Tambah
                                     Game</a> --}}
                                 <div x-data="{ isOpen: false }" class="relative ...">
-                                    <button type="button" @click="isOpen = !isOpen" class=" bg-blue-500 hover:bg-blue-700 font-semibold text-white px-2 rounded-md">
+                                    <button type="button" @click="isOpen = !isOpen"
+                                        class=" bg-blue-500 hover:bg-blue-700 font-semibold text-white px-2 rounded-md">
                                         Tambah Produk
                                     </button>
 
@@ -38,7 +40,7 @@
                                     </div>
                                 </div>
 
-                                <div x-data="{ isOpen: false }" class="relative ...">
+                                {{-- <div x-data="{ isOpen: false }" class="relative ...">
                                     <button type="button" @click="isOpen = !isOpen" class=" bg-blue-500 hover:bg-blue-700 font-semibold text-white px-2 rounded-md">
                                         Tambah Kategori
                                     </button>
@@ -54,7 +56,7 @@
                                             @include('pages.admin.category.modal-category')
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
 
                             <div class="overflow-hidden shadow-md sm:rounded-lg">
@@ -76,7 +78,7 @@
                                             <th scope="col"
                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Stock</th>
-                                         
+
                                             <th scope="col"
                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Category</th>
@@ -93,14 +95,14 @@
                                             <tr>
                                                 <td scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    {{ $index+1 }}</td>
+                                                    {{ $index + 1 }}</td>
                                                 <td scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     {{ $item->name }}</td>
                                                 <td scope="col"
                                                     class="px-6 py-3 tracking-wider w-36 h-36 aspect-square">
                                                     <img src="{{ Storage::url($item->image) }}" alt=""
-                                                        class="object-cover w-full items-center rounded-lg object-center" >
+                                                        class="object-cover w-full items-center rounded-lg object-center">
                                                 </td>
                                                 <td scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -108,13 +110,19 @@
                                                 <td scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     {{ $item->stock }}</td>
+
                                                 <td scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    {{ $item->category_id }}</td>
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider flex flex-col">
+                                                    @forelse ($item->categories as $category)
+                                                        {{ $category->name }}
+                                                    @empty
+                                                        <span>no category</span>
+                                                    @endforelse
+                                                </td>
+
                                                 <td scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     {{ $item->platform }}</td>
-
 
                                                 <td scope="col"
                                                     class="px-6 py-3 text-left text-sm font-medium text-gray-500 tracking-wider w-full h-full my-10 flex items-center align-items-center justify-center gap-2">
@@ -122,8 +130,10 @@
                                                         class="p-2 bg-blue-500 hover:bg-blue-600 rounded-lg text-white"><i
                                                             class="fa fa-pencil-alt mx-1"></i>
                                                     </a>
-                                                
-                                                    <a href="{{ route('topup-package.destroy', $item->id) }}" class="p-2 bg-red-500 hover:bg-red-600 rounded-lg text-white" data-confirm-delete="true"><i class="fa fa-trash mx-1"></i></a>
+
+                                                    <a href="{{ route('topup-package.destroy', $item->id) }}"
+                                                        class="p-2 bg-red-500 hover:bg-red-600 rounded-lg text-white"
+                                                        data-confirm-delete="true"><i class="fa fa-trash mx-1"></i></a>
 
                                                 </td>
                                             </tr>
@@ -135,7 +145,7 @@
 
                                     </tbody>
                                 </table>
-                                {{-- {{ $items->links() }} --}}
+                                {{ $items->links() }}
                             </div>
                         </div>
                     </div>
@@ -145,6 +155,9 @@
 
 
     </main>
-  
+
+
+
+
 
 </x-app-layout>

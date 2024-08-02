@@ -21,8 +21,8 @@ return new class extends Migration
             $table->double('price');
             $table->string('stock');
             $table->text('image');
-            $table->string('category_id');
-            $table->string('platform');
+            // $table->string('categories');
+            // $table->string('platform');
             $table->softDeletes();
             $table->timestamps();
         });

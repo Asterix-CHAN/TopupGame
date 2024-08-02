@@ -17,10 +17,6 @@ class GalleryController extends Controller
     {
         $items = Gallery::with(['topupgame_packages'])->get();
     
-        // if ($items->isEmpty()) {
-        //     return redirect()->route('topup-package.index');
-        // }
-        // dd($items);
         return view('pages.admin.galleries.index', ['items' => $items]);
     }
     

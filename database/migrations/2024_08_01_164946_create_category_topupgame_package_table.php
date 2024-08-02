@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('category_topupgame_package', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            // $table->string('slug')->unique();
-            $table->softDeletes();
+            $table->foreignId('topupgame_package_id')->constrained()->onDelete('cascade');
+            $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('category_topupgame_package');
     }
 };

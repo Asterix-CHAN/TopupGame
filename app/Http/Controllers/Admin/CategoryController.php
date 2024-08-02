@@ -39,10 +39,10 @@ class CategoryController extends Controller
         ]);
     
         // Generate the slug
-        $validated['slug'] = Str::slug($request->name);
+        // $validated['slug'] = Str::slug($request->name);
 
-        Category::create($validated);
-        return redirect()->back();
+       $item = Category::create($validated);
+        return redirect($item);
       
     }
     

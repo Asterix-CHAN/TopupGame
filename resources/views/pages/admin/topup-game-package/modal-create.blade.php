@@ -29,7 +29,20 @@
                     <div class=" w-full">
                         {{--  --}}
 
-
+                        {{-- @if ($errors->any())
+                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+                                role="alert">
+                                <div class="alert-title">
+                                    <h4 class="text-lg font-semibold">Whoops!</h4>
+                                </div>
+                                <span class="block sm:inline">There are some problems with your input.</span>
+                                <ul class="mt-2 list-disc pl-5">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif --}}
                         <form method="post" action="{{ route('topup-package.store') }}" enctype="multipart/form-data">
                             @csrf
                             @if (Session::has('success'))
@@ -42,15 +55,15 @@
                                 </script>
                             @endif
 
-                            @if (Session::has('error'))
-                                <script>
-                                    Swal.fire({
-                                        icon: 'error',
-                                        title: 'Error!',
-                                        text: '{{ Session::get('error') }}'
-                                    });
-                                </script>
-                            @endif
+                            @if (Session::has('errors') && $errors->any())
+                            <script>
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error!',
+                                    text: '{{ implode(', ', Session::get('errors')->all()) }}'
+                                });
+                            </script>
+                        @endif
 
                             <div class="card mt-5">
                                 <div class="card-body flex gap-2">
@@ -89,27 +102,19 @@
                                         </div>
 
                                         <div class="mb-4 w-full">
-                                            <label for="select2Multiple" class="block text-gray-700 text-sm font-bold mb-2">Category</label>
-                                            
-                                            <input type="text"
-                                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                                name="category_id" value="{{ old('category_id') }}" placeholder="Category">
-                                                {{-- <select class=" form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"  >
-                                                    @forelse ($items as $data )
-                                                    <option value="{{ $data->category->id }}">{{ $data->category->name }}</option>
-                                                    @empty
-                                                    <option>Kosong</option>
-                                                    @endforelse
-                                                  </select> --}}
+                                            <label for="categories">Categories</label>
+                                            <select name="category_id[]" id="category_id"
+                                                class="select2-multiple shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline overflow-y-hidden"
+                                                multiple>
+                                             
+                                                @foreach ($categories as $category)
+                                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                @endforeach
+                                            </select>
+
+                                         
                                         </div>
 
-
-                                        <div class="mb-4">
-                                            <label class="block text-gray-700 text-sm font-bold mb-2">Platform</label>
-                                            <input type="text"
-                                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                                name="platform" value="{{ old('platform') }}" placeholder="Platform">
-                                        </div>
                                         <div class="mb-4">
                                             <label class="block text-gray-700 text-sm font-bold mb-2">Stock</label>
                                             <input type="text"
@@ -141,10 +146,8 @@
                         @click="isOpen = !isOpen">Cancel</button>
                 </div>
 
-               
+
             </div>
         </div>
     </div>
 </div>
-
-

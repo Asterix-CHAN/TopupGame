@@ -17,17 +17,18 @@ class TopupgamePackage extends Model
         'about',
         'slug',
         'price',
+        // 'categories',
+        // 'platform',
         'stock',
-        'category_id',
-        'platform',
         'image',
     ];
 
     protected $hidden = [];
 
-    // public function category(){
-    //     return $this->belongsTo(Category::class, 'category_id', 'id');
-    // }
+    public function categories()
+{
+    return $this->belongsToMany(Category::class);
+}
 
     
     public function gallery(){

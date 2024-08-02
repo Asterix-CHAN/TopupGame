@@ -32,8 +32,10 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function() {
     
     Route::resource('topup-package', TopupgamePackageController::class);
     // Route::post('topup-package/{id}', [TopupgamePackageController::class, 'store'])->name('topup-package.store');
-    Route::resource('category', CategoryController::class);
+    // Route::resource('category', CategoryController::class);
     Route::resource('gallery', GalleryController::class);
+    Route::get('topup-package/{id}', [TopupgamePackageController::class, 'index'])->name('topupgame-package.index');
+
 });
 
 
