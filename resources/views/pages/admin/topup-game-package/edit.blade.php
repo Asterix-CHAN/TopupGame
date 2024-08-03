@@ -101,7 +101,7 @@
                                 </div>
                             </div>
                             <div class="card-footer flex justify-end">
-                                <button class="p-1 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md px-3" type="submit">Ubah</button>
+                                <x-primary-button type='submit'>Ubah</x-primary-button>
                             </div>
                         </div>
                     </form>

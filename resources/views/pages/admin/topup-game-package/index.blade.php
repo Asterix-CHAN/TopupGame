@@ -11,7 +11,7 @@
         <!-- Begin Page Content -->
         <div class="container-fluid pt-10">
             <!-- Page Heading -->
-            <div class="container mx-auto">
+            <div class="md:container mx-auto">
                 <div class="flex flex-col">
                     {{-- sm:-mx-6 lg:-mx-8 --}}
                     <div class="overflow-x-auto ">
@@ -22,17 +22,11 @@
                                     class="bg-blue-500 rounded-lg px-2 py-1 hover:bg-blue-700 focus:bg-blue-600 text-white text-lg font-sans">Tambah
                                     Game</a> --}}
                                 <div x-data="{ isOpen: false }" class="relative ...">
-                                    <button type="button" @click="isOpen = !isOpen"
-                                        class=" bg-blue-500 hover:bg-blue-700 font-semibold text-white px-2 rounded-md">
-                                        Tambah Produk
-                                    </button>
+                                    <x-secondary-button @click="isOpen = !isOpen">{{ __('Tambah Produk') }}
+                                    </x-secondary-button>
 
-                                    <div x-show="isOpen" x-transition:enter="transition ease-in-out duration-300 "
-                                        x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                                        x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
-                                        x-transition:leave="ease-in duration-200"
-                                        x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
-                                        x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                    <div x-show="isOpen" 
+                                
                                         class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg">
                                         <div class="rounded-md bg-white shadow-xs">
                                             @include('pages.admin.topup-game-package.modal-create')

@@ -5,22 +5,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>{{ config('app.name', 'Laravel') }}</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     {{-- selec2 cdn --}}
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    {{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> --}}
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @livewireStyles
+    
     @include('sweetalert::alert')
 </head>
 
-<body class="bg-blue-500">
-    <div class="min-h-screen bg-gray-100 relative" x-data="{ open: false }" x-init="if (window.innerWidth >= 768) open = true">
+<body class="bg-gray-100">
+    <div class="min-h-screen  relative" x-data="{ open: false }" x-init="if (window.innerWidth >= 768) open = true"> {{-- <- x-init for sidebar --}}
         @include('layouts.navigation')
 
         <div class="min-w-screen flex mx-auto justify-center ">
@@ -45,26 +46,18 @@
     </div>
 </body>
 
-
+@livewireScripts
 <script src="{{ url('Game/src/assets/fontawesome-free-6.5.1-web/fontawesome-free-6.5.1-web/js/all.js') }}"></script>
-{{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 
-{{-- <script>
-    $(document).ready(function() {
-        // Select2 Multiple
-        $('.select2-multiple').select2({
-            placeholder: "Select",
-            allowClear: true
-        });
-
-    }); --}}
     <script>
         $(document).ready(function() {
             // Select2 Multiple
             $('.select2-multiple').select2({
                 placeholder: "Select",
+                multiple: true,
+                tags: true,
                 allowClear: true
             });
 

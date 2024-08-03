@@ -6,17 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
     @include('includes.style')
+    @livewireStyles
 </head>
 
 <body>
     @include('includes.navbar')
+
+   
 
     <!-- Start Main -->
     @yield('content')
     {{-- End Main --}}
 
     @include('includes.footer')
-
+    @livewireScripts
     @include('includes.script')
 
 </body>

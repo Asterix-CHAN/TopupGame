@@ -1,48 +1,21 @@
-<div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-    <!--
-      Background backdrop, show/hide based on modal state.
-  
-      Entering: "ease-out duration-300"
-        From: "opacity-0"
-        To: "opacity-100"
-      Leaving: "ease-in duration-200"
-        From: "opacity-100"
-        To: "opacity-0"
-    -->
+<div class="relative z-10 " aria-labelledby="modal-title" role="dialog" aria-modal="true" x-on:click="show = false"
+    x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+    x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
+
     <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity z-40" aria-hidden="true"></div>
 
     <div class="fixed inset-0 z-50 w-screen overflow-y-auto">
-        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-            <!--
-          Modal panel, show/hide based on modal state.
-  
-          Entering: "ease-out duration-300"
-            From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-            To: "opacity-100 translate-y-0 sm:scale-100"
-          Leaving: "ease-in duration-200"
-            From: "opacity-100 translate-y-0 sm:scale-100"
-            To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-        -->
+        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"
+            x-transition:enter="ease-out duration-300"
+            x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="ease-in duration-200"
+            x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+            x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
             <div
-                class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-                <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
-                    <div class=" w-full">
+                class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg ">
+                <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4 ">
+                    <div class=" w-full ">
                         {{--  --}}
-
-                        {{-- @if ($errors->any())
-                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
-                                role="alert">
-                                <div class="alert-title">
-                                    <h4 class="text-lg font-semibold">Whoops!</h4>
-                                </div>
-                                <span class="block sm:inline">There are some problems with your input.</span>
-                                <ul class="mt-2 list-disc pl-5">
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif --}}
                         <form method="post" action="{{ route('topup-package.store') }}" enctype="multipart/form-data">
                             @csrf
                             @if (Session::has('success'))
@@ -56,96 +29,80 @@
                             @endif
 
                             @if (Session::has('errors') && $errors->any())
-                            <script>
-                                Swal.fire({
-                                    icon: 'error',
-                                    title: 'Error!',
-                                    text: '{{ implode(', ', Session::get('errors')->all()) }}'
-                                });
-                            </script>
-                        @endif
+                                <script>
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Error!',
+                                        text: '{{ implode(', ', Session::get('errors')->all()) }}'
+                                    });
+                                </script>
+                            @endif
 
                             <div class="card mt-5">
                                 <div class="card-body flex gap-2">
                                     <div class="w-full">
                                         <div class="mb-4">
                                             <label class="block text-gray-700 text-sm font-bold mb-2">Name</label>
-                                            <input type="text"
-                                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                                name="name" value="{{ old('name') }}" placeholder="Name">
+                                            <x-text-input type="text" name="name" value="{{ old('name') }}"
+                                                placeholder="Name" ></x-text-input>
                                         </div>
                                         <div class="mb-4">
                                             <label class="block text-gray-700 text-sm font-bold mb-2">Developer</label>
-                                            <input type="text"
-                                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                                name="developer" value="{{ old('developer') }}" placeholder="Developer">
+                                            <x-text-input type="text" name="developer" value="{{ old('developer') }}"
+                                                placeholder="Developer" ></x-text-input>
                                         </div>
                                         <div class="mb-4">
                                             <label
                                                 class="block text-gray-700 text-sm font-bold mb-2">Description</label>
-                                            <input type="text"
-                                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                                name="description" value="{{ old('description') }}"
-                                                placeholder="Description">
+                                            <x-text-input type="text" name="description"
+                                                value="{{ old('description') }}" placeholder="Description" ></x-text-input>
                                         </div>
                                         <div class="mb-4">
                                             <label class="block text-gray-700 text-sm font-bold mb-2">About</label>
                                             <textarea type="text" cols="50"
-                                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                class="shadow appearance-none border rounded w-full px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                                 name="about" placeholder="About">{{ old('about') }}</textarea>
                                         </div>
                                         <div class="mb-4">
                                             <label class="block text-gray-700 text-sm font-bold mb-2">Price</label>
-                                            <input type="text"
-                                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                                name="price" value="{{ old('price') }}" placeholder="Price">
+                                            <x-text-input type="text"  name="price" value="{{ old('price') }}"
+                                                placeholder="Price" ></x-text-input>
                                         </div>
-
-                                        <div class="mb-4 w-full">
-                                            <label for="categories">Categories</label>
+                                        <div class="mb-4">
+                                            <label for="category_id"
+                                                class=" block text-gray-700 text-sm font-bold mb-2">Categories</label>
                                             <select name="category_id[]" id="category_id"
-                                                class="select2-multiple shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline overflow-y-hidden"
-                                                multiple>
-                                             
+                                                class="select2-multiple min-w-full"
+                                                multiple="multiple">
                                                 @foreach ($categories as $category)
                                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                                                 @endforeach
                                             </select>
-
-                                         
                                         </div>
 
                                         <div class="mb-4">
                                             <label class="block text-gray-700 text-sm font-bold mb-2">Stock</label>
-                                            <input type="text"
-                                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                                name="stock" value="{{ old('stock') }}" placeholder="Stock">
+                                            <x-text-input type="text" name="stock" value="{{ old('stock') }}"
+                                                placeholder="Stock" ></x-text-input>
                                         </div>
 
                                         <div class="mb-4">
                                             <label for="formFile"
                                                 class="block text-gray-700 text-sm font-bold mb-2">Image</label>
-                                            <input
-                                                class="shadow appearance-none border rounded w-1/2 h-11 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-sm"
-                                                type="file" name="image" id="formFile">
+                                            <x-text-input type="text" type="file" name="image" id="formFile" ></x-text-input>
                                         </div>
                                     </div>
                                 </div>
 
                             </div>
 
-                            {{--  --}}
                     </div>
                 </div>
                 <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row gap-2 justify-end sm:px-6">
-                    <button type="submit"
-                        class="inline-flex w-full justify-center rounded-md bg-blue-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-600 sm:ml-3 sm:w-auto">Create</button>
+                    <x-primary-button type='submit'>Create</x-primary-button>
                     </form>
-                    <button type="button"
-                        class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
-                        @click="isOpen = !isOpen">Cancel</button>
+                    <x-secondary-button @click="isOpen = !isOpen">Cancel</x-secondary-button>
                 </div>
-
 
             </div>
         </div>

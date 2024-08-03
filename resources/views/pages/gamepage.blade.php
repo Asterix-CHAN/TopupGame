@@ -1,4 +1,4 @@
-@extends('layouts.game.gamelistpage')
+@extends('layouts.game.homepage')
 @section('title', 'games')
 
 

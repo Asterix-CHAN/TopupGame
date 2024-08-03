@@ -1,26 +1,26 @@
   <!-- Start Header -->
   <header class=" pt-2 top-0 fixed z-40 w-full shadow-lg items-center ">
-      <div class="container mx-auto md:relative md:flex-row gap-y-4 md:gap-y-0 top-navbar">
+      <div class="mx-7 md:container lg:mx-auto md:relative md:flex-row gap-y-4 md:gap-y-0 top-navbar">
           <div class="flex h-[60px] justify-between">
-              
+
               <div class="w-auto flex items-center py-2">
-                <!-- Start Hamburger Menu -->
+                  <!-- Start Hamburger Menu -->
                   <div class="w-10 h-10 items-center  justify-center rounded-md block md:hidden">
                       <button id="hamburger" type="button" class="font-medium md:text-2xl text-lg ">
                           <i class="fa-solid fa-bars rounded-md w-full"></i>
                       </button>
                   </div>
-                   <!-- End Hamburger Menu -->
+                  <!-- End Hamburger Menu -->
                   <!-- logo -->
-              <div class="flex justify-center md:justify-normal items-center">
-                <a href="#" class="font-semibold text-md md:text-xl lg:text-2xl"><img
-                        src="{{ url('Game/src/images/logo/nongki.png') }}" alt="" srcset=""
-                        class="w-10 md:w-13 object-cover object-center overflow-auto"></a>
-            </div>
-            <!-- End Logo -->
+                  <div class="flex justify-center md:justify-normal items-center">
+                      <a href="#" class="font-semibold text-md md:text-xl lg:text-2xl"><img
+                              src="{{ url('Game/src/images/logo/nongki.png') }}" alt="" srcset=""
+                              class="w-10 md:w-13 object-cover object-center overflow-auto"></a>
+                  </div>
+                  <!-- End Logo -->
               </div>
-             
-              
+
+
 
               <!-- Navbar Menu -->
               <div class="flex items-center md:flex-row md:gap-x-10 md:gap-y-0">
@@ -28,25 +28,23 @@
                   <div class="mx-3 hidden md:block md:self-stretch">
                       <ul id="menu" class="flex md:flex-row justify-center items-center h-full ">
                           <li class="mx-3 h-full">
-                              <x-nav-link href="{{ route('home') }}" 
-                                  class="h-full relative z-10 -mb-px flex items-center border-b-4 border-spacing-y-6 font-medium transition-colors duration-300 ease-out border-transparent hover:border-collapse hover:border-white hover:text-white dark:text-white gap-x-2 ">
-                                  <i class="fa-solid fa-house " ></i>Beranda
-                              </x-nav-link>
+                            <x-nav-link href="{{ route('home') }}" wire:navigate :active="request()->routeIs('home')">
+                                <i class="fa-solid fa-house"></i>{{ __('Beranda') }}
+                            </x-nav-link>
                           </li>
                           <li class="mx-3 h-full">
-                              <x-nav-link href="{{ route('games') }}"
-                                  class="h-full relative z-10 -mb-px flex items-center border-b-4 border-spacing-y-6 font-medium transition-colors duration-300 ease-out border-transparent hover:border-collapse hover:border-white hover:text-white gap-x-2 "><i
-                                      class="fa-solid fa-gamepad " ></i>Games</x-nav-link>
+                              <x-nav-link href="{{ route('games') }}" wire:navigate wire:navigate :active="request()->routeIs('games')">
+                                <i class="fa-solid fa-gamepad "></i>{{ __('Games') }}</x-nav-link>
                           </li>
                           <li class="mx-3 h-full">
-                              <x-nav-link href="#_"
-                                  class="h-full relative z-10 -mb-px flex items-center border-b-4 border-spacing-y-6 font-medium transition-colors duration-300 ease-out border-transparent hover:border-collapse hover:border-white hover:text-white gap-x-2"><i
-                                      class="fa-solid fa-money-bill"></i>Transaksi</x-nav-link>
+                              <x-nav-link href="#_" wire:navigate 
+                                 ><i
+                                      class="fa-solid fa-money-bill"></i>{{ __('Transaksi') }}</x-nav-link>
                           </li>
                           <li class="mx-3 h-full">
-                              <x-nav-link href="#_"
-                                  class="h-full relative z-10 -mb-px flex items-center border-b-4 border-spacing-y-6 font-medium transition-colors duration-300 ease-out border-transparent hover:border-collapse hover:border-white hover:text-white gap-x-2"><i
-                                      class="fa-regular fa-newspaper"></i>Blog</x-nav-link>
+                              <x-nav-link href="#_" wire:navigate 
+                                  ><i
+                                      class="fa-regular fa-newspaper"></i>{{ __('Blog') }}</x-nav-link>
                           </li>
                       </ul>
                   </div>
@@ -127,33 +125,33 @@
                   @auth
                       <!-- User -->
                       {{-- Desktop --}}
-                      <div class="relative ml-3 lg:block hidden" x-data="{ open: false }">
-                          <div>
-                              <button @click="open = !open" @keydown.escape="open = false" type="button"
-                                  class="relative flex max-w-xs items-center text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-1 focus:ring-offset-gray-600 focus:rounded-r-full pl-2"
-                                  id="user-menu-button" aria-expanded="false" aria-haspopup="true">
-                                  <span class="absolute -inset-1.5"></span>
-                                  <span class="">{{ Auth::user()->name }}</span>
-                                  <img class="h-8 w-8 rounded-full ml-1"
-                                      src="{{ url('Game/src/images/content/apex-legends.jpg') }}" alt="">
-                              </button>
-                          </div>
-                          <div x-show="open" @click.away="open = false"
-                              class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-                              role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-                              <!-- Active: "bg-gray-100", Not Active: "" -->
-                              <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
-                                  tabindex="-1" id="user-menu-item-0">Your Profile</a>
-                              <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
-                                  tabindex="-1" id="user-menu-item-1">Settings</a>
-                              <a href="{{ route('logout') }}" class="block px-4 py-2 text-sm text-gray-700"
-                                  role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
-                                
-                          </div>
+                      <div class="relative ml-3 ">
+                          <x-dropdown>
+                              <x-slot name="trigger">
+                                  <button
+                                      class="relative flex max-w-xs items-center text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-1 focus:ring-offset-gray-600 focus:rounded-r-full pl-2"
+                                      id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                                      <span class="absolute -inset-1.5"></span>
+                                      <span class="">{{ Auth::user()->name }}</span>
+                                      <img class="h-8 w-8 rounded-full ml-1"
+                                          src="{{ url('Game/src/images/content/apex-legends.jpg') }}" alt="">
+                                  </button>
+                              </x-slot>
+
+                              <x-slot name='content'>
+                                  <x-dropdown-link :href="route('profile.edit')" class="block px-4 py-2 text-sm text-gray-700">
+                                      {{ __('Your Profile') }}
+                                  </x-dropdown-link>
+
+                                  <x-dropdown-link :href="route('logout')" class="block px-4 py-2 text-sm text-gray-700">
+                                      {{ __('Sign Out') }}
+                                  </x-dropdown-link>
+                              </x-slot>
+                          </x-dropdown>
                       </div>
                       {{-- End Desktop --}}
                       <!-- btn user Mobile -->
-                      <div class=" block md:hidden relative">
+                      {{-- <div class=" block md:hidden relative">
                           <button id="menu-user" type="button"
                               class="font-medium text-lg md:text-xl hover:text-white hover:bg-slate-600 ml-2 w-10 h-10 items-center flex justify-center rounded-md focus:text-white focus:bg-slate-600 "><i
                                   class="fa-solid fa-user"></i></button>
@@ -174,13 +172,12 @@
 
                               </div>
                           </div>
-                      </div>
+                      </div> --}}
                       <!--  -->
                   @endauth
                   <!-- End Search, Login -->
               </div>
           </div>
-
   </header>
   <!-- END Header -->
 
@@ -210,24 +207,21 @@
           <!-- List -->
           <ul>
               <li class="w-auto rounded-lg flex my-2">
-                  <a href="{{ route('home') }}"
-                      class="hover:text-white rounded-lg transition-all duration-300 w-full hover:bg-sky-500"><i
-                          class="fa-solid fa-house pl-2"></i><span class="pl-2">Home</span></a>
+                  <x-side-link href="{{ route('home') }}"
+                      class=" w-full " wire:navigate :active="request()->routeIs('home')"><i
+                          class="fa-solid fa-house pl-2"></i><span class="pl-2">Home</span></x-side-link>
               </li>
               <li class="w-auto rounded-lg flex my-2">
-                  <a href="{{ route('games') }}"
-                      class="hover:text-white rounded-lg transition-all duration-300 w-full hover:bg-sky-500"><i
-                          class="fa-solid fa-gamepad pl-2"></i><span class="pl-2">Games</span></a>
+                  <x-side-link href="{{ route('games') }}" class="w-full" wire:navigate :active="request()->routeIs('games')"> <i
+                          class="fa-solid fa-gamepad pl-2"></i><span class="pl-2">Games</span></x-side-link>
               </li>
               <li class="w-auto rounded-lg flex my-2">
-                  <a href="#"
-                      class="hover:text-white rounded-lg transition-all duration-300 w-full hover:bg-sky-500"><i
-                          class="fa-solid fa-money-bill pl-2"></i><span class="pl-2">Transaksi</span></a>
+                  <x-side-link href="#" class=" w-full "><i
+                          class="fa-solid fa-money-bill pl-2"></i><span class="pl-2">Transaksi</span></x-side-link>
               </li>
               <li class="w-auto rounded-lg flex my-2">
-                  <a href="#"
-                      class="hover:text-white rounded-lg transition-all duration-300 w-full hover:bg-sky-500"><i
-                          class="fa-regular fa-newspaper pl-2"></i><span class="pl-2">Blog</span></a>
+                  <x-side-link href="#" class=" w-full"><i
+                          class="fa-regular fa-newspaper pl-2"></i><span class="pl-2">Blog</span></x-side-link>
               </li>
           </ul>
       </div>
