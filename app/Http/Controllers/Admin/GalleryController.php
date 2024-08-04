@@ -85,7 +85,9 @@ class GalleryController extends Controller
     public function destroy(string $id)
     {
         $data = Gallery::findOrFail($id);
+   
         $data->delete();
+       
         return redirect()->route('gallery.index');
     }
 }

@@ -17,9 +17,10 @@ class CategoryController extends Controller
     public function index()
     {
         $data = Category::all();
-        $title = 'Delete Product!';
+        $title = 'Delete Category!';
         $text = "Are you sure you want to delete?";
         confirmDelete($title, $text);
+       
         return view('pages.admin.category.index', [
             'datas' => $data
         ]);
@@ -84,6 +85,11 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $data = Category::findOrFail($id);
+        $data->delete();
+
+        return redirect()->back();
+        
+        
     }
 }

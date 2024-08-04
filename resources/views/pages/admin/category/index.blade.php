@@ -1,3 +1,6 @@
+
+
+
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-2xl text-gray-800 leading-tight mt-3 ml-4">
@@ -29,7 +32,15 @@
                                 </div>
                             </div>
                             </div>
-
+                            @if (Session::has('success'))
+                            <script>
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Success!',
+                                    text: '{{ Session::get('success') }}'
+                                });
+                            </script>
+                            @endif
                             <div class="overflow-hidden shadow-md sm:rounded-lg">
                                 <table class="min-w-full divide-y divide-gray-200 items-center">
                                     <thead class="bg-gray-50 ">
@@ -49,11 +60,11 @@
                                         </tr>
                                     </thead>
                                     <tbody class="bg-white divide-y divide-gray-200 items-center">
-                                        @forelse ($datas as $item)
+                                        @forelse ($datas as $index=>$item)
                                             <tr>
                                                 <td scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    {{ $item->id }}</td>
+                                                    {{ $index+1 }}</td>
                                                 <td scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     {{ $item->name }}</td>
