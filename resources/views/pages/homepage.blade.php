@@ -22,7 +22,7 @@
                             fast, safe, reliable, legal</p>
 
                         <a href="#explore-now"
-                            class="btn btn-sm bg-sky-500 gap-x-3 mx-auto md:mx-0 w-72 text-white hover:bg-sky-700 left-0"></i>Explore
+                            class="btn btn-sm bg-teal-500 gap-x-3 mx-auto md:mx-0 w-72 text-white hover:bg-teal-400 left-0"></i>Explore
                             Now <i class="fa-solid fa-arrow-right"></i></a>
 
                     </div>
@@ -213,7 +213,6 @@
                     </h2>
                 </div>
                 <!-- Card Games -->
-
                 <div class="grid text-center grid-cols-2 md:grid-cols-4 gap-5 justify-between">
                     @foreach ($items as $item)
                         <!-- card 1 -->
@@ -226,19 +225,16 @@
                                 <div class="p-6 relative">
                                     <div class="-mb-7 md:-mb-5">
                                         <h4
-                                            class="block text-md font-semibold bg-green-700 rounded-xl hover:bg-orange-400 mx-2 py-1 md:py-2 text-white ">
+                                            class="block text-md font-semibold bg-teal-500 rounded-xl hover:bg-teal-400 mx-2 py-1 md:py-2 text-white hover:shadow-xl hover:shadow-teal-500/50">
                                             {{ $item->name }}
                                         </h4>
                                         <p class="block text-md text-white my-2 ">{{ $item->developer }}</p>
                                     </div>
 
                                 </div>
-
                             </div>
                         </a>
                     @endforeach
-
-
                 </div>
                 <!-- Card Games -->
             </div>

@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\TopupgamePackage;
 use App\Http\Controllers\Controller;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CategoryController extends Controller
 {
@@ -14,11 +16,13 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        // $data = Category::all();
-        // // dd($data);
-        // return view('pages.admin.topup-game-package.index', [
-        //     'data' => $data
-        // ]);
+        $data = Category::all();
+        $title = 'Delete Product!';
+        $text = "Are you sure you want to delete?";
+        confirmDelete($title, $text);
+        return view('pages.admin.category.index', [
+            'datas' => $data
+        ]);
     }
 
     /**
@@ -40,9 +44,9 @@ class CategoryController extends Controller
     
         // Generate the slug
         // $validated['slug'] = Str::slug($request->name);
-
-       $item = Category::create($validated);
-        return redirect($item);
+       Category::create($validated);
+       Alert::success('Success Title', 'Success Message');
+        return redirect()->back()->with('success', 'Data berhasil ditambahkan');
       
     }
     
@@ -60,7 +64,11 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = Category::with(['topupgame_packages'])->findOrFail($id);
+        $topupgame_packages = TopupgamePackage::all();
+        // $topupgame_packages = TopupgamePackage::where('id', $data->id)->first();
+        // dd($topupgame_packages);
+        return view('pages.admin.galleries.edit', ['datas' => $data, 'game' => $topupgame_packages]);
     }
 
     /**

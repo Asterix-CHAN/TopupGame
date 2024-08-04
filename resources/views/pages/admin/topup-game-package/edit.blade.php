@@ -1,8 +1,10 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-2xl text-gray-800 leading-tight mt-3 ml-4">
-            {{ __('Edit Produk') }}
-        </h2>
+        <div class="md:container mx-auto sm:px-6 lg:px-8">
+            <h2 class="font-semibold text-2xl text-gray-800 leading-tight mt-3">
+                {{ __('Edit Produk') }}
+            </h2>
+        </div>
     </x-slot>
 
 
@@ -33,15 +35,13 @@
                                 <div class="w-full">
                                     <div class="mb-4">
                                         <label class="block text-gray-700 text-sm font-bold mb-2">Name</label>
-                                        <input type="text"
-                                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                            name="name" value="{{ $item->name }}">
+                                        <x-text-input type="text"
+                                            name="name" value="{{ $item->name }}"></x-text-input>
                                     </div>
                                     <div class="mb-4">
                                         <label class="block text-gray-700 text-sm font-bold mb-2">Developer</label>
-                                        <input type="text"
-                                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                            name="developer" value="{{ $item->developer }}" >
+                                        <x-text-input type="text"
+                                            name="developer" value="{{ $item->developer }}" ></x-text-input>
                                     </div>
                                     <div class="mb-4">
                                         <label class="block text-gray-700 text-sm font-bold mb-2">Description</label>

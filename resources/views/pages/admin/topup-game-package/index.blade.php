@@ -1,8 +1,10 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-2xl text-gray-800 leading-tight mt-3 ml-4">
-            {{ __('Daftar Produk') }}
-        </h2>
+        <div class="md:container mx-auto sm:px-6 lg:px-8">
+            <h2 class="font-semibold text-2xl text-gray-800 leading-tight mt-3">
+                {{ __('Daftar Produk') }}
+            </h2>
+        </div>
     </x-slot>
 
 
@@ -25,8 +27,7 @@
                                     <x-secondary-button @click="isOpen = !isOpen">{{ __('Tambah Produk') }}
                                     </x-secondary-button>
 
-                                    <div x-show="isOpen" 
-                                
+                                    <div x-show="isOpen"
                                         class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg">
                                         <div class="rounded-md bg-white shadow-xs">
                                             @include('pages.admin.topup-game-package.modal-create')

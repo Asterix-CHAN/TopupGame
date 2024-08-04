@@ -3,7 +3,7 @@
 
 
 @section('content')
-    
+
     <!-- Start Section Hero -->
     <section class="w-full items-center pt-24">
         <div class="flex md:gap-4 mx-auto relative">
@@ -13,14 +13,14 @@
                 <div id="filter-container" class="flex md:flex-none flex-col relative h-full">
                     <!-- Btn Close -->
                     <div class="top-8 ml-10 relative visible md:invisible cursor-pointer transition-all">
-                        <button id="close-btn-filter" type="button" class="text-3xl ">
+                        <x-secondary-button id="close-btn-filter" >
                             <i class="fa-solid fa-chevron-left"></i> Filter
-                        </button>
+                        </x-secondary-button>
 
                     </div>
                     <!-- btn Close -->
                     <!-- List Kategori -->
-                
+
 
                     <form id="filterForm">
                         <div class="ml-3 flex flex-col">
@@ -97,9 +97,9 @@
                                 </ul>
                             </div>
                             <!-- button -->
-                            <button type="button"
-                                class="bg-yellow-600 hover:bg-orange-800 text-white px-7 md:px-8 py-1 rounded-full mx-auto mt-8 text-sm md:text-lg">Apply
-                                Filter</button>
+                            <x-primary-button 
+                                class="bg-teal-600 hover:bg-teal-400 text-white px-7 md:px-8  rounded-xl mx-auto mt-8 text-xs md:text-sm">Apply
+                                Filter</x-primary-button>
                         </div>
                     </form>
                     <!-- List Kategori -->
@@ -113,8 +113,7 @@
                             <a href="#" class="text-gray-500 hover:text-gray-900"> <i
                                     class="fa-brands fa-whatsapp"></i>
                             </a>
-                            <a href="#" class="text-gray-500 hover:text-gray-900"><i
-                                    class="fa-solid fa-phone"></i>
+                            <a href="#" class="text-gray-500 hover:text-gray-900"><i class="fa-solid fa-phone"></i>
                             </a>
 
                         </div>
@@ -143,7 +142,8 @@
                                             Nongki Top Up</h4>
                                         <p class="block antialiased text-lg font-medium md:text-xl">Dapatkan 10% Promo
                                             <br />with
-                                            code: Glory10</p>
+                                            code: Glory10
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -175,10 +175,10 @@
 
                 <!-- Start Btn Filter -->
                 <div class="w-auto block md:hidden py-2 mt-10">
-                    <button id="filter-btn" type="button"
-                        class="items-center flex justify-center rounded-md md:text-2xl text-lg px-6 bg-white hover:bg-sky-500 font-semibold">
+                    <x-secondary-button id="filter-btn" 
+                       >
                         Filter
-                    </button>
+                    </x-secondary-button>
                 </div>
                 <!-- End Btn Filter -->
 
@@ -192,26 +192,26 @@
                 <!-- Game Menu -->
                 <div
                     class="grid text-center grid-cols-3 md:grid-cols-4 xl:grid-cols-5 md:mr-2 gap-4 md:gap-8 justify-center pt-5 ">
-                @foreach ($items as $item)
-                  <!-- Start Card 1 -->
-                  <div
-                  class="min-w-[30px] max-w-[250px] p-3 flex-col items-center relative flex rounded-xl duration-300 ease-in-out hover:shadow-2xl hover:ring-2 hover:ring-primary-500 hover:ring-offset-2 hover:ring-offset-white md:rounded-2x h-[150] z-20 backdrop-blur-xl backdrop-brightness-75 backdrop-contrast-100 shadow-md overflow-auto">
-                  <a href="{{ route('order', $item->slug) }}" tabindex="0">
-                          <img src="{{ Storage::url($item->image) }}" alt="Game Logo"
-                              class="relative aspect-square min-w-50 min-h-50 rounded-lg object-cover object-center ring-1 md:rounded-x hover:scale-110 transition-all duration-300" />
-                              <div class="absolute rounded-xl inset-0 bg-gradient-to-r from-black/70 ..."></div>
-                      <div
-                          class="relative flex w-full flex-col text-white text-start justify-start pl-0 md:pl-2 mt-6 ">
-                          <h4 class="truncate text-sm md:text-lg lg:text-xl  font-semibold ">
-                              {{ $item->name }}</h4>
-                          <p class="text-xs md:text-sm">{{ $item->developer }}</p>
-                      </div>
-                  </a>
-              </div>
-              <!-- End Card 1 -->
-                @endforeach
-                
-                  
+                    @foreach ($items as $item)
+                        <!-- Start Card 1 -->
+                        <div
+                            class="min-w-[30px] max-w-[250px] p-3 flex-col items-center relative flex rounded-xl duration-300 ease-in-out hover:shadow-2xl hover:ring-2 hover:ring-primary-500 hover:ring-offset-2 hover:ring-offset-white md:rounded-2x h-[150] z-20 backdrop-blur-xl backdrop-brightness-75 backdrop-contrast-100 shadow-md overflow-auto">
+                            <a href="{{ route('order', $item->slug) }}" tabindex="0">
+                                <img src="{{ Storage::url($item->image) }}" alt="Game Logo"
+                                    class="relative aspect-square min-w-50 min-h-50 rounded-lg object-cover object-center ring-1 md:rounded-x hover:scale-110 transition-all duration-300" />
+                                <div class="absolute rounded-xl inset-0 bg-gradient-to-r from-black/70 ..."></div>
+                                <div
+                                    class="relative flex w-full flex-col text-white text-start justify-start pl-0 md:pl-2 mt-6 ">
+                                    <h4 class="truncate text-sm md:text-lg lg:text-xl  font-semibold ">
+                                        {{ $item->name }}</h4>
+                                    <p class="text-xs md:text-sm">{{ $item->developer }}</p>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- End Card 1 -->
+                    @endforeach
+
+
                 </div>
                 <!-- Game Menu -->
 
@@ -225,25 +225,25 @@
                 <!-- Game Menu -->
                 <div
                     class="grid text-center grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 md:mr-2 gap-8 justify-center pt-5 ">
-                @foreach ($items as $item)
-                <div
-                class="min-w-[30px] max-w-[250px] p-3 flex-col items-center relative flex rounded-xl duration-300 ease-in-out hover:shadow-2xl hover:ring-2 hover:ring-primary-500 hover:ring-offset-2 hover:ring-offset-white md:rounded-2x h-[150]  z-20 backdrop-blur-xl backdrop-brightness-105">
-                <a href="{{ route('order', $item->slug) }}" tabindex="0">
-                    <div class="w-full min-h-100 ">
-                        <img src="{{ Storage::url($item->image) }}" alt="Game Logo"
-                            class="relative aspect-square h-full w-full rounded-lg object-cover object-center ring-1 md:rounded-xl" />
-                    </div>
-                    <div class="absolute rounded-xl inset-0 bg-gradient-to-r from-black/70 ..."></div>
-                    <div class="relative flex w-full flex-col text-white text-start justify-start pl-2 mt-6">
-                        <h4 class="truncate text-xxs font-semibold ">
-                            {{ $item->name }}</h4>
-                        <p class="text-xxs md:text-sm">{{ $item->developer }}</p>
-                    </div>
-                </a>
-            </div>
-                @endforeach
+                    @foreach ($items as $item)
+                        <div
+                            class="min-w-[30px] max-w-[250px] p-3 flex-col items-center relative flex rounded-xl duration-300 ease-in-out hover:shadow-2xl hover:ring-2 hover:ring-primary-500 hover:ring-offset-2 hover:ring-offset-white md:rounded-2x h-[150]  z-20 backdrop-blur-xl backdrop-brightness-105">
+                            <a href="{{ route('order', $item->slug) }}" tabindex="0">
+                                <div class="w-full min-h-100 ">
+                                    <img src="{{ Storage::url($item->image) }}" alt="Game Logo"
+                                        class="relative aspect-square h-full w-full rounded-lg object-cover object-center ring-1 md:rounded-xl" />
+                                </div>
+                                <div class="absolute rounded-xl inset-0 bg-gradient-to-r from-black/70 ..."></div>
+                                <div class="relative flex w-full flex-col text-white text-start justify-start pl-2 mt-6">
+                                    <h4 class="truncate text-xxs font-semibold ">
+                                        {{ $item->name }}</h4>
+                                    <p class="text-xxs md:text-sm">{{ $item->developer }}</p>
+                                </div>
+                            </a>
+                        </div>
+                    @endforeach
                     <!-- Start Card 1 -->
-                  
+
                     <!-- End Card 1 -->
                     <!-- Start Card 1 -->
                     {{-- <div
@@ -262,7 +262,7 @@
                         </a>
                     </div> --}}
                     <!-- End Card 1 -->
-                  
+
                 </div>
                 <!-- Game Menu -->
             </div>
