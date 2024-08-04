@@ -74,17 +74,16 @@
                                                 </td>
                                             
                                                 <td scope="col"
-                                                    class="px-6 py-3 text-left text-sm font-medium text-gray-500 uppercase flex items-center justify-center gap-2 my-10">
-                                                    <a href="#"
-                                                        class="p-2 bg-blue-500 hover:bg-blue-600 rounded-lg text-white"><i
-                                                            class="fa fa-pencil-alt mx-1"></i>
-                                                    </a>
-                                                    <a href="{{ route('category.destroy', $item->id) }}"
-                                                        class="p-2 bg-red-500 hover:bg-red-600 rounded-lg text-white"
-                                                            data-confirm-delete="true"
-                                                            type="submit"><i class="fa fa-trash mx-1"></i>
-                                                    </a>
-                                                </td>
+                                                class="px-6 py-3 text-center text-xs font-medium text-gray-500 tracking-wider gap-2">
+
+                                                <a href="#"
+                                                    class="text-blue-500 hover:text-blue-400"><i class="fa-solid fa-pen-to-square mx-1"></i>Edit
+                                                </a>
+                                                <a href="{{ route('category.destroy', $item->id) }}"
+                                                    class="text-red-500 hover:text-red-400"
+                                                    data-confirm-delete="true"><i class="fa fa-trash mx-1"></i>Delete</a>
+
+                                            </td>
                                             </tr>
                                         @empty
                                             <tr>

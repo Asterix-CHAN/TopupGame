@@ -81,7 +81,7 @@
                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Platform</th>
                                             <th scope="col"
-                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
                                                 Action</th>
                                         </tr>
                                     </thead>
@@ -95,9 +95,9 @@
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     {{ $item->name }}</td>
                                                 <td scope="col"
-                                                    class="px-6 py-3 tracking-wider w-36 h-36 aspect-square">
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     <img src="{{ Storage::url($item->image) }}" alt=""
-                                                        class="object-cover w-full items-center rounded-lg object-center">
+                                                        class="object-cover w-16 aspect-square rounded-lg object-center">
                                                 </td>
                                                 <td scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -107,7 +107,7 @@
                                                     {{ $item->stock }}</td>
 
                                                 <td scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider flex flex-col">
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
                                                     @forelse ($item->categories as $category)
                                                         {{ $category->name }}
                                                     @empty
@@ -120,15 +120,14 @@
                                                     {{ $item->platform }}</td>
 
                                                 <td scope="col"
-                                                    class="px-6 py-3 text-left text-sm font-medium text-gray-500 tracking-wider w-full h-full my-10 flex items-center align-items-center justify-center gap-2">
-                                                    <a href="{{ route('topup-package.edit', $item->id) }}"
-                                                        class="p-2 bg-blue-500 hover:bg-blue-600 rounded-lg text-white"><i
-                                                            class="fa fa-pencil-alt mx-1"></i>
-                                                    </a>
+                                                    class="px-6 py-3 text-center text-xs font-medium text-gray-500 tracking-wider gap-2">
 
+                                                    <a href="{{ route('topup-package.edit', $item->id) }}"
+                                                        class="text-blue-500 hover:text-blue-400"><i class="fa-solid fa-pen-to-square mx-1"></i>Edit
+                                                    </a>
                                                     <a href="{{ route('topup-package.destroy', $item->id) }}"
-                                                        class="p-2 bg-red-500 hover:bg-red-600 rounded-lg text-white"
-                                                        data-confirm-delete="true"><i class="fa fa-trash mx-1"></i></a>
+                                                        class="text-red-500 hover:text-red-400"
+                                                        data-confirm-delete="true"><i class="fa fa-trash mx-1"></i>Delete</a>
 
                                                 </td>
                                             </tr>
