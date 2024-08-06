@@ -22,15 +22,15 @@
                                 </script>
                             @endif
 
-                            @if (Session::has('error'))
-                                <script>
-                                    Swal.fire({
-                                        icon: 'error',
-                                        title: 'Error!',
-                                        text: '{{ Session::get('error') }}'
-                                    });
-                                </script>
-                            @endif
+                            @if (Session::has('errors') && $errors->any())
+                            <script>
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error!',
+                                    text: '{{ implode(', ', Session::get('errors')->all()) }}'
+                                });
+                            </script>
+                        @endif
 
                             <div class="card">
                                 <div class="card-body flex gap-2">
@@ -41,11 +41,11 @@
                                                     name="name" value="{{ old('name') }}" placeholder="Category"></x-text-input>
                                             </div>
 
-                                            <div class="mb-4">
+                                            {{-- <div class="mb-4">
                                                 <label class="block text-gray-700 text-sm font-bold mb-2">Platform</label>
                                                 <x-text-input type="text"
                                                     name="platform" value="{{ old('platform') }}" placeholder="Platform"></x-text-input>
-                                            </div>
+                                            </div> --}}
                                     </div>
                                 </div>
                             </div>

@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Category;
 
 
+use App\Models\Platform;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\TopupgamePackage;
@@ -21,15 +22,17 @@ class TopupgamePackageController extends Controller
      */
     public function index()
     {
-
-        $items = TopupgamePackage::paginate(10);
+        $platforms = Platform::with(['topup'])->get();
+        $items = TopupgamePackage::with(['platform_name'])->get();
         $categories = Category::all();        
-
+       
         $title = 'Delete Product!';
         $text = "Are you sure you want to delete?";
         confirmDelete($title, $text);
-        return view('pages.admin.topup-game-package.index', compact('items', 'categories'));
+        return view('pages.admin.topup-game-package.index', compact('items', 'categories', 'platforms'));
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -48,7 +51,7 @@ class TopupgamePackageController extends Controller
     {
         $data = $request->all();
         $data['slug'] = Str::slug($request->name);
-        
+      
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('assets/gallery', 'public');
             $data['image'] = $imagePath;
@@ -56,6 +59,7 @@ class TopupgamePackageController extends Controller
 
         try {
             $items = TopupgamePackage::create($data);
+           
             $items->categories()->attach($request->category_id);
             Alert::success('Success Title', 'Success Message');
 
@@ -80,9 +84,12 @@ class TopupgamePackageController extends Controller
      */
     public function edit(string $id)
     {
-        $item = TopupgamePackage::findOrFail($id);
+        // $platforms = Platform::with(['topup'])->findOrFail($id);
+      
+        $item = TopupgamePackage::with(['platform_name'])->findOrFail($id);
+       $platforms = Platform::all();
         $categories = Category::all();     
-        return view('pages.admin.topup-game-package.edit', compact('item', 'categories'));
+        return view('pages.admin.topup-game-package.edit', compact('item', 'categories', 'platforms'));
     }
 
     /**
@@ -100,7 +107,7 @@ class TopupgamePackageController extends Controller
             'stock' => 'required|max:255',
             'category_id' => 'required|array|min:1',
             'category_id.*' => 'required|integer|exists:categories,id',
-            // 'platform' => 'required|max:255',
+            'platform_id' => 'required|max:255',
             'image' => 'image|mimes:jpeg,png,jpg',
         ]);
 

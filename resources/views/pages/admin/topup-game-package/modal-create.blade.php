@@ -28,15 +28,20 @@
                                 </script>
                             @endif
 
-                            @if (Session::has('errors') && $errors->any())
-                                <script>
-                                    Swal.fire({
-                                        icon: 'error',
-                                        title: 'Error!',
-                                        text: '{{ implode(', ', Session::get('errors')->all()) }}'
-                                    });
-                                </script>
-                            @endif
+                            @if ($errors->any())
+                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+                                role="alert">
+                                <div class="alert-title">
+                                    <h4 class="text-lg font-semibold">Whoops!</h4>
+                                </div>
+                                <span class="block sm:inline">There are some problems with your input.</span>
+                                <ul class="mt-2 list-disc pl-5">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
 
                             <div class="card mt-5">
                                 <div class="card-body flex gap-2">
@@ -44,18 +49,19 @@
                                         <div class="mb-4">
                                             <label class="block text-gray-700 text-sm font-bold mb-2">Name</label>
                                             <x-text-input type="text" name="name" value="{{ old('name') }}"
-                                                placeholder="Name" ></x-text-input>
+                                                placeholder="Name"></x-text-input>
                                         </div>
                                         <div class="mb-4">
                                             <label class="block text-gray-700 text-sm font-bold mb-2">Developer</label>
                                             <x-text-input type="text" name="developer" value="{{ old('developer') }}"
-                                                placeholder="Developer" ></x-text-input>
+                                                placeholder="Developer"></x-text-input>
                                         </div>
                                         <div class="mb-4">
                                             <label
                                                 class="block text-gray-700 text-sm font-bold mb-2">Description</label>
                                             <x-text-input type="text" name="description"
-                                                value="{{ old('description') }}" placeholder="Description" ></x-text-input>
+                                                value="{{ old('description') }}"
+                                                placeholder="Description"></x-text-input>
                                         </div>
                                         <div class="mb-4">
                                             <label class="block text-gray-700 text-sm font-bold mb-2">About</label>
@@ -65,17 +71,29 @@
                                         </div>
                                         <div class="mb-4">
                                             <label class="block text-gray-700 text-sm font-bold mb-2">Price</label>
-                                            <x-text-input type="text"  name="price" value="{{ old('price') }}"
-                                                placeholder="Price" ></x-text-input>
+                                            <x-text-input type="text" name="price" value="{{ old('price') }}"
+                                                placeholder="Price"></x-text-input>
                                         </div>
                                         <div class="mb-4">
                                             <label for="category_id"
-                                                class=" block text-gray-700 text-sm font-bold mb-2">Categories</label>
+                                                class="block text-gray-700 text-sm font-bold mb-2">Categories</label>
                                             <select name="category_id[]" id="category_id"
-                                                class="select2-multiple min-w-full"
-                                                multiple="multiple">
+                                                class="select2-multiple min-w-full" multiple="multiple">
                                                 @foreach ($categories as $category)
-                                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                @endforeach
+                                                
+                                            </select>
+                                        </div>
+                                        <div class="mb-4">
+                                            <label for="platforms"
+                                                class="block text-gray-700 text-sm font-bold mb-2">Platform</label>
+                                            <select name="platform_id"
+                                                class="w-full rounded-md" >
+                                                <option disabled>Pilih Platform!</option>
+
+                                                @foreach ($platforms as $platform)
+                                                <option value="{{ $platform->id }}">{{ $platform->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -83,13 +101,14 @@
                                         <div class="mb-4">
                                             <label class="block text-gray-700 text-sm font-bold mb-2">Stock</label>
                                             <x-text-input type="text" name="stock" value="{{ old('stock') }}"
-                                                placeholder="Stock" ></x-text-input>
+                                                placeholder="Stock"></x-text-input>
                                         </div>
 
                                         <div class="mb-4">
                                             <label for="formFile"
                                                 class="block text-gray-700 text-sm font-bold mb-2">Image</label>
-                                            <x-text-input type="text" type="file" name="image" id="formFile" ></x-text-input>
+                                            <x-text-input type="text" type="file" name="image"
+                                                id="formFile"></x-text-input>
                                         </div>
                                     </div>
                                 </div>

@@ -9,9 +9,8 @@
                 <img src="{{ Storage::url($item->gallery->first()->image) }}" alt=""
                     class="object-fill object-center absolute h-[250px] md:h-[400px] w-screen mt-0 shadow-2xl backdrop-blur-2xl drop-shadow-2xl" />
             @else
-                @php
-                    abort(404);
-                @endphp
+                <img src="{{ Storage::url($item->image) }}" alt=""
+                class="object-fill object-center absolute h-[250px] md:h-[400px] w-screen mt-0 shadow-2xl backdrop-blur-2xl drop-shadow-2xl" /> 
             @endif
         </div>
         <div class=" container h-[200px] flex top-10 md:top-0 relative mx-auto  ">

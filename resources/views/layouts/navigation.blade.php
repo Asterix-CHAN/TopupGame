@@ -20,7 +20,7 @@
                     <ol
                     class="flex flex-wrap items-center w-full bg-opacity-60 rounded-md bg-transparent p-0 transition-all">
                         <li class="shrink-0 flex items-center mr-7">
-                            <a href="{{ route('home') }}">
+                            <a href="{{ route('home') }}" wire:navigate>
                                 <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
                             </a>
                         </li>

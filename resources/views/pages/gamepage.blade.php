@@ -6,11 +6,13 @@
 
     <!-- Start Section Hero -->
     <section class="w-full items-center pt-24">
-        <div class="flex md:gap-4 mx-auto relative">
+        <div class="flex flex-row md:gap-4 mx-auto relative" >
             <!-- Left Side -->
+            
             <div id="filterNav"
-                class="w-full h-screen inset-0 z-50 md:z-30 md:w-1/5 fixed bg-white shadow-2xl md:rounded-3xl md:ml-8 -left-full md:block md:sticky md:top-24 ... transition-all duration-300 ease-in-out">
-                <div id="filter-container" class="flex md:flex-none flex-col relative h-full">
+                class="w-full h-screen inset-0 z-50 md:z-30 md:w-1/5 fixed bg-black bg-opacity-85 shadow-2xl md:ml-8 -left-full md:block md:sticky md:top-24 transition-all duration-300 ease-in-out md:bg-transparent">
+                
+                <div id="filter-container" class="flex md:flex-none flex-col relative w-full sm:w-1/2 md:w-full h-full bg-white md:rounded-2xl ">
                     <!-- Btn Close -->
                     <div class="top-8 ml-10 relative visible md:invisible cursor-pointer transition-all">
                         <x-secondary-button id="close-btn-filter" >
@@ -20,8 +22,6 @@
                     </div>
                     <!-- btn Close -->
                     <!-- List Kategori -->
-
-
                     <form id="filterForm">
                         <div class="ml-3 flex flex-col">
                             <div class="font-medium mt-20 md:mt-5 ml-7">
@@ -126,7 +126,7 @@
             <div class="h-auto w-full z-30 md:w-4/5 md:mr-3 mx-2 items-center ">
                 <!-- Carousel -->
                 <div class="w-full h-[200px] md:h-[400px] flex relative ">
-                    <div class="swiper mySwiper w-full h-full rounded-3xl ml-9 ">
+                    <div class="swiper mySwiper w-full h-full rounded-2xl ml-9 ">
                         <div class="swiper-wrapper ">
 
                             <!-- Card Carousel 1 -->
@@ -175,9 +175,7 @@
 
                 <!-- Start Btn Filter -->
                 <div class="w-auto block md:hidden py-2 mt-10">
-                    <x-secondary-button id="filter-btn" 
-                       >
-                        Filter
+                    <x-secondary-button id="filter-btn" type='button'>Filter
                     </x-secondary-button>
                 </div>
                 <!-- End Btn Filter -->
@@ -190,21 +188,25 @@
                 <!-- H2 -->
 
                 <!-- Game Menu -->
+                
                 <div
-                    class="grid text-center grid-cols-3 md:grid-cols-4 xl:grid-cols-5 md:mr-2 gap-4 md:gap-8 justify-center pt-5 ">
+                    class="inline-grid w-full text-center grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-2 sm:gap-4 md:gap-6 lg:gap-8 pt-5 items-center align-middle justify-center relative">
                     @foreach ($items as $item)
                         <!-- Start Card 1 -->
                         <div
-                            class="min-w-[30px] max-w-[250px] p-3 flex-col items-center relative flex rounded-xl duration-300 ease-in-out hover:shadow-2xl hover:ring-2 hover:ring-primary-500 hover:ring-offset-2 hover:ring-offset-white md:rounded-2x h-[150] z-20 backdrop-blur-xl backdrop-brightness-75 backdrop-contrast-100 shadow-md overflow-auto">
+                            class="min-w-[30px] max-w-[250px] p-3 flex-col items-center relative flex rounded-xl duration-300 ease-in-out hover:shadow-2xl hover:ring-2 hover:ring-primary-500 hover:ring-offset-2 hover:ring-offset-white md:rounded-2x  z-20 backdrop-blur-xl backdrop-brightness-75 backdrop-contrast-100  shadow-md overflow-hidden">
                             <a href="{{ route('order', $item->slug) }}" tabindex="0">
+                                <div class="min-w-50 min-h-50">
                                 <img src="{{ Storage::url($item->image) }}" alt="Game Logo"
-                                    class="relative aspect-square min-w-50 min-h-50 rounded-lg object-cover object-center ring-1 md:rounded-x hover:scale-110 transition-all duration-300" />
+                                    class="relative aspect-square w-full h-full rounded-lg object-cover object-center ring-1 md:rounded-xl">
+                                </div>
                                 <div class="absolute rounded-xl inset-0 bg-gradient-to-r from-black/70 ..."></div>
+        
                                 <div
                                     class="relative flex w-full flex-col text-white text-start justify-start pl-0 md:pl-2 mt-6 ">
-                                    <h4 class="truncate text-sm md:text-lg lg:text-xl  font-semibold ">
+                                    <h4 class="truncate text-xs sm:text-sm  xl:text-lg  font-semibold ">
                                         {{ $item->name }}</h4>
-                                    <p class="text-xs md:text-sm">{{ $item->developer }}</p>
+                                    <p class="text-xs sm:text-sm md:text-lg">{{ $item->developer }}</p>
                                 </div>
                             </a>
                         </div>
@@ -213,6 +215,7 @@
 
 
                 </div>
+          
                 <!-- Game Menu -->
 
                 <!-- H2 -->
@@ -227,7 +230,7 @@
                     class="grid text-center grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 md:mr-2 gap-8 justify-center pt-5 ">
                     @foreach ($items as $item)
                         <div
-                            class="min-w-[30px] max-w-[250px] p-3 flex-col items-center relative flex rounded-xl duration-300 ease-in-out hover:shadow-2xl hover:ring-2 hover:ring-primary-500 hover:ring-offset-2 hover:ring-offset-white md:rounded-2x h-[150]  z-20 backdrop-blur-xl backdrop-brightness-105">
+                            class="min-w-[30px] max-w-[250px] p-3 flex-col items-center relative flex rounded-xl duration-300 ease-in-out hover:shadow-2xl hover:ring-2 hover:ring-primary-500 hover:ring-offset-2 hover:ring-offset-white md:rounded-2x h-[150] z-20 backdrop-blur-xl backdrop-brightness-105">
                             <a href="{{ route('order', $item->slug) }}" tabindex="0">
                                 <div class="w-full min-h-100 ">
                                     <img src="{{ Storage::url($item->image) }}" alt="Game Logo"

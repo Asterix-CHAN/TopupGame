@@ -1,8 +1,10 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-2xl text-gray-800 leading-tight mt-3 ml-4">
-            {{ __('Gallery') }}
-        </h2>
+        <div class="md:container mx-auto sm:px-8 lg:px-10">
+            <h2 class="font-semibold text-2xl text-gray-800 leading-tight mt-3">
+                {{ __('Gallery') }}
+            </h2>
+        </div>
     </x-slot>
 
 
@@ -52,9 +54,9 @@
                                                 <td scope="col"
                                                     class="px-6 py-3 w-36 h-32 text-left aspect-square text-xs font-medium text-gray-500 uppercase tracking-wider ">
                                                     <img src="{{ Storage::url($item->image) }}" alt=""
-                                                        class="object-cover rounded-sm object-center w-full" >
+                                                        class="object-cover rounded-sm object-center w-full">
                                                 </td>
-                                            
+
                                                 <td scope="col"
                                                     class="px-6 py-3 text-left text-sm font-medium text-gray-500 uppercase flex items-center justify-center gap-2 my-10">
                                                     <a href="{{ route('gallery.edit', $item->id) }}"

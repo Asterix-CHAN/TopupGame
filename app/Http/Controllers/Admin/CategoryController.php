@@ -20,7 +20,7 @@ class CategoryController extends Controller
         $title = 'Delete Category!';
         $text = "Are you sure you want to delete?";
         confirmDelete($title, $text);
-       
+
         return view('pages.admin.category.index', [
             'datas' => $data
         ]);
@@ -40,17 +40,23 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:10'
+            'name' => 'required|string|max:10',
+            // 'platform' => 'required|string|min:2|max:20'
+
         ]);
-    
+
         // Generate the slug
         // $validated['slug'] = Str::slug($request->name);
-       Category::create($validated);
-       Alert::success('Success Title', 'Success Message');
-        return redirect()->back()->with('success', 'Data berhasil ditambahkan');
-      
+        try {
+            Category::create($validated);
+            Alert::success('Success Title', 'Success Message');
+            return redirect()->back()->with('success', 'Data berhasil ditambahkan');
+        } catch (\Exception $e) {
+            Alert::success('Error Title', 'Error Message');
+            return redirect()->back()->with('error', 'Data gagal ditambahkan');
+        }
     }
-    
+
 
     /**
      * Display the specified resource.
@@ -89,7 +95,5 @@ class CategoryController extends Controller
         $data->delete();
 
         return redirect()->back();
-        
-        
     }
 }
