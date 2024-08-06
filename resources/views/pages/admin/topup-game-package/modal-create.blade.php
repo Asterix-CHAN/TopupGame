@@ -74,11 +74,11 @@
                                             <x-text-input type="text" name="price" value="{{ old('price') }}"
                                                 placeholder="Price"></x-text-input>
                                         </div>
-                                        <div class="mb-4">
+                                        <div class="mb-2">
                                             <label for="category_id"
                                                 class="block text-gray-700 text-sm font-bold mb-2">Categories</label>
                                             <select name="category_id[]" id="category_id"
-                                                class="select2-multiple min-w-full" multiple="multiple">
+                                                class="select2-multiple" multiple>
                                                 @foreach ($categories as $category)
                                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                                                 @endforeach

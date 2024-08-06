@@ -46,9 +46,8 @@
                                     </div>
                                     <div class="mb-4">
                                         <label class="block text-gray-700 text-sm font-bold mb-2">Description</label>
-                                        <input type="text"
-                                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                            name="description" value="{{ $item->description }}">
+                                        <x-text-input type="text"
+                                            name="description" value="{{ $item->description }}"></x-text-input>
                                     </div>
                                     <div class="mb-4">
                                         <label class="block text-gray-700 text-sm font-bold mb-2">About</label>
@@ -58,15 +57,13 @@
                                     </div>
                                     <div class="mb-4">
                                         <label class="block text-gray-700 text-sm font-bold mb-2">Price</label>
-                                        <input type="text"
-                                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                            name="price" value="{{ $item->price }}">
+                                        <x-text-input type="text"
+                                            name="price" value="{{ $item->price }}"></x-text-input>
                                     </div>
                                     <div class="mb-4">
                                         <label class="block text-gray-700 text-sm font-bold mb-2">Stock</label>
-                                        <input type="text"
-                                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                            name="stock" value="{{ $item->stock }}">
+                                        <x-text-input type="text"
+                                            name="stock" value="{{ $item->stock }}"></x-text-input>
                                     </div>
                                     <div class="mb-4">
                                         <select name="category_id[]" id="category_id"
@@ -98,15 +95,15 @@
                                     <div class="mb-4">
                                         <label for="formFile"
                                             class="block text-gray-700 text-sm font-bold mb-2">Image</label>
-                                        <input
-                                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                            type="file" name="image" id="image">
-                                        @if ($item->image)
+                                            @if ($item->image)
                                             <div class="mt-2">
                                                 <img src="{{ Storage::url($item->image) }}" alt="Current Image"
-                                                    class="w-32 h-32 object-cover">
+                                                    class="w-32 h-32 object-cover object-center rounded-lg shadow-lg border border-collapse aspect-square">
                                             </div>
                                         @endif
+                                        <x-text-input
+                                            type="file" name="image" id="image"></x-text-input>
+                                       
                                     </div>
                                 </div>
                             </div>
