@@ -103,7 +103,6 @@
                                         @endif
                                         <x-text-input
                                             type="file" name="image" id="image"></x-text-input>
-                                       
                                     </div>
                                 </div>
                             </div>

@@ -11,8 +11,8 @@
     </div> --}}
 
 
-<div class="p-2 xl:ml-80">
-    <nav class="block w-full max-w-full z-50 bg-transparent shadow-inner border text-white rounded-xl transition-all px-0 py-1 pl-6 pb-3">
+<div class="p-2 xl:ml-80 ">
+    <nav class="block w-full max-w-full z-50 bg-transparent shadow-inner border text-white rounded-xl transition-all px-0 py-1 pl-6 pb-3 ">
         <div class="flex flex-col-reverse justify-between gap-6 md:flex-row md:items-center mt-3">
             <div class="capitalize">
                 

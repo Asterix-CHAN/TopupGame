@@ -22,13 +22,15 @@ class TopupgamePackageController extends Controller
      */
     public function index()
     {
+        $categories = Category::all();
         $platforms = Platform::with(['topup'])->get();
         $items = TopupgamePackage::with(['platform_name'])->get();
-        $categories = Category::all();        
        
+        // sweetAlert Delete message
         $title = 'Delete Product!';
         $text = "Are you sure you want to delete?";
         confirmDelete($title, $text);
+        
         return view('pages.admin.topup-game-package.index', compact('items', 'categories', 'platforms'));
     }
 
@@ -51,7 +53,7 @@ class TopupgamePackageController extends Controller
     {
         $data = $request->all();
         $data['slug'] = Str::slug($request->name);
-      
+
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('assets/gallery', 'public');
             $data['image'] = $imagePath;
@@ -59,10 +61,10 @@ class TopupgamePackageController extends Controller
 
         try {
             $items = TopupgamePackage::create($data);
-           
+            // create data topupgame and categories to pivot table
             $items->categories()->attach($request->category_id);
-            Alert::success('Success Title', 'Success Message');
 
+            Alert::success('Success Title', 'Success Message');
             return redirect()->back()->with('success', 'Data Berhasil ditambahkan');
         } catch (\Exception $e) {
             Alert::error('Error Title', 'Error Message');
@@ -84,11 +86,9 @@ class TopupgamePackageController extends Controller
      */
     public function edit(string $id)
     {
-        // $platforms = Platform::with(['topup'])->findOrFail($id);
-      
         $item = TopupgamePackage::with(['platform_name'])->findOrFail($id);
-       $platforms = Platform::all();
-        $categories = Category::all();     
+        $platforms = Platform::all();
+        $categories = Category::all();
         return view('pages.admin.topup-game-package.edit', compact('item', 'categories', 'platforms'));
     }
 
@@ -130,9 +130,14 @@ class TopupgamePackageController extends Controller
      */
     public function destroy(string $id)
     {
-        $item = TopupgamePackage::findOrFail($id);
-        $item->delete();
-
-        return redirect()->back();
+        try {
+            $item = TopupgamePackage::findOrFail($id);
+            $item->delete();
+            Alert::success('Success Title', 'Success Message');
+            return redirect()->back()->with('success', 'Data Berhasil dihapus');
+        } catch (\Exception $e) {
+            Alert::error('Error Title', 'Error Message');
+            return redirect()->back()->with('error', 'Data gagal dihapus');
+        }
     }
 }
