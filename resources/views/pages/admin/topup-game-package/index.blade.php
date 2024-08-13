@@ -1,5 +1,19 @@
 <x-app-layout>
+   
+    
+    @if (Session::has('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: '{{ Session::get('success') }}'
+            });
+        </script>
+    @endif
+
+
     <x-slot name="header">
+      
         <div class="mx-2 md:container md:mx-auto sm:px-8 lg:px-10">
             <h2 class="font-semibold text-2xl text-gray-800 leading-tight mt-3 ">
                 {{ __('Daftar Produk') }}
@@ -20,6 +34,7 @@
                         <div class="py-2 inline-block w-full sm:px-6 lg:px-8">
 
                             <div class="col-lg-12 mb-4 flex justify-end">
+
                                 <div x-data="{ isOpen: false }" class="relative ...">
                                     <x-secondary-button @click="isOpen = !isOpen">{{ __('Tambah Produk') }}
                                     </x-secondary-button>
@@ -96,7 +111,7 @@
 
                                                 <td scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                        {{ $item->platform_name->name }}
+                                                    {{ $item->platform_name->name }}
                                                 <td scope="col"
                                                     class="px-6 py-3 text-center items-center  text-xs font-medium text-gray-500 tracking-wider gap-1 ">
                                                     <a href="{{ route('topup-package.edit', $item->id) }}"

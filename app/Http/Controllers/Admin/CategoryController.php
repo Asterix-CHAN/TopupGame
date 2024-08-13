@@ -71,11 +71,11 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        $data = Category::with(['topupgame_packages'])->findOrFail($id);
+        $data = Category::findOrFail($id);
         $topupgame_packages = TopupgamePackage::all();
         // $topupgame_packages = TopupgamePackage::where('id', $data->id)->first();
         // dd($topupgame_packages);
-        return view('pages.admin.galleries.edit', ['datas' => $data, 'game' => $topupgame_packages]);
+        return view('pages.admin.category.edit', ['datas' => $data, 'game' => $topupgame_packages]);
     }
 
     /**
@@ -83,7 +83,23 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
+        $data = Category::findOrFail($id);
+        $validated = $request->validate([
+            'name' => 'required|string|max:10'
+        ]);
+
+        // Generate the slug
+        // $validated['slug'] = Str::slug($request->name);
+        try {
+            
+            $data->update($validated);
+            Alert::success('Success Title', 'Success Message');
+            return redirect()->back()->with('success', 'Data berhasil diubah');
+        } catch (\Exception $e) {
+            Alert::success('Error Title', 'Error Message');
+            return redirect()->back()->with('error', 'Data gagal diubah');
+        }
     }
 
     /**

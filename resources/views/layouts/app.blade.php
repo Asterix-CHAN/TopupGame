@@ -23,6 +23,9 @@
 <body class="bg-gray-100">
     <div class="min-h-screen  relative" x-data="{ open: false }" x-init="if (window.innerWidth >= 768) open = true"> {{-- <- x-init for sidebar --}}
         @include('layouts.navigation')
+        {{-- resources/views/app.blade.php --}}
+
+        {{-- {{ Breadcrumbs::render('dashboard') }} --}}
 
         <div class="min-w-screen flex mx-auto justify-center ">
             <!-- Page sidebar -->

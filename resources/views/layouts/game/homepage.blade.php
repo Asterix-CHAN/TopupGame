@@ -10,10 +10,8 @@
 </head>
 
 <body>
+
     @include('includes.navbar')
-
-   
-
     <!-- Start Main -->
     @yield('content')
     {{-- End Main --}}

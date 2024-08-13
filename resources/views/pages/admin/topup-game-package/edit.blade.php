@@ -1,5 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
+        
+        {{ Breadcrumbs::render('topup-package.edit', $item) }}
+
         <div class="md:container mx-auto sm:px-6 lg:px-8">
             <h2 class="font-semibold text-2xl text-gray-800 leading-tight mt-3">
                 {{ __('Edit Produk') }}
@@ -107,7 +110,7 @@
                                 </div>
                             </div>
                             <div class="card-footer flex justify-end">
-                                <x-primary-button type='submit'>Ubah</x-primary-button>
+                                <x-primary-button>{{ __('Ubah') }}</x-primary-button>
                             </div>
                         </div>
                     </form>

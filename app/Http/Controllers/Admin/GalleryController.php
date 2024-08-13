@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Exception;
 use App\Models\Gallery;
 use Illuminate\Http\Request;
 use App\Models\TopupgamePackage;
 use App\Http\Controllers\Controller;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\Admin\GalleryRequest;
 
 class GalleryController extends Controller
@@ -16,7 +18,10 @@ class GalleryController extends Controller
     public function index()
     {
         $items = Gallery::with(['topupgame_packages'])->get();
-    
+        $title = 'Delete Category!';
+        $text = "Are you sure you want to delete?";
+        confirmDelete($title, $text);
+
         return view('pages.admin.galleries.index', ['items' => $items]);
     }
     
@@ -40,9 +45,15 @@ class GalleryController extends Controller
         $item = $request->all();
         $item['image'] = $request->file('image')->store('assets/galleries', 'public');
 
+        try {
         Gallery::create($item);
-        return redirect()->route('gallery.index');
-
+        Alert::success('Success Title', 'Success Message');
+        return redirect()->back()->with('success', 'Data berhasil diubah');
+    } catch (Exception $e){
+        Alert::error('Error Title', 'Error Message');
+        return redirect()->back()->with('error', 'Data gagal diubah');
+    }
+      
     }
 
     /**
@@ -62,7 +73,7 @@ class GalleryController extends Controller
         $topupgame_packages = TopupgamePackage::all();
         // $topupgame_packages = TopupgamePackage::where('id', $data->id)->first();
         // dd($topupgame_packages);
-        return view('pages.admin.galleries.edit', ['galeri' => $data, 'game' => $topupgame_packages]);
+        return view('pages.admin.galleries.edit', ['galeri' => $data, 'games' => $topupgame_packages]);
     }
 
     /**
@@ -73,10 +84,17 @@ class GalleryController extends Controller
         $item = $request->all();
            
         $item['image'] = $request->file('image')->store('assets/galleries', 'public');
-        $data = Gallery::findOrFail($id);
-        $data->update($item);
-
-        return redirect()->route('gallery.index');
+       
+        try {
+            $data = Gallery::findOrFail($id);
+            $data->update($item);
+            Alert::success('Success Title', 'Success Message');
+            return redirect()->back()->with('success', 'Data berhasil diubah');
+        } catch (Exception $e){
+            Alert::error('Error Title', 'Error Message');
+            return redirect()->back()->with('error', 'Data gagal diubah');
+        }
+        
     }
 
     /**
@@ -87,7 +105,7 @@ class GalleryController extends Controller
         $data = Gallery::findOrFail($id);
    
         $data->delete();
-       
-        return redirect()->route('gallery.index');
+        Alert::success('Success Title', 'Success Message');
+        return redirect()->back()->with('success', 'Data berhasil diubah');
     }
 }

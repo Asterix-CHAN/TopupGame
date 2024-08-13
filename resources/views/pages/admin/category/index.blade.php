@@ -74,8 +74,8 @@
                                                 <td scope="col"
                                                     class="px-6 py-3 text-center text-xs font-medium text-gray-500 tracking-wider gap-2">
                                                   
-                                                    <a href="#" class="text-blue-600 hover:text-blue-400 "><i
-                                                            class="fa-solid fa-pen-to-square mx-1"></i>Edit
+                                                    <a href="{{ route('category.edit', $item->id) }}" class="text-blue-600 hover:text-blue-400 "><i
+                                                            class="fa-solid fa-pen-to-square mx-1"></i>{{ __('Edit') }}
                                                     </a>
                                                     <a href="{{ route('category.destroy', $item->id) }}"
                                                         class="text-red-600 hover:text-red-400 "

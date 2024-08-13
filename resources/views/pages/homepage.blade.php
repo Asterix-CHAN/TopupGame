@@ -3,6 +3,15 @@
 @section('title', 'homepage')
 
 @section('content')
+@if (Session::has('success'))
+<script>
+    Swal.fire({
+        icon: 'success',
+        Title: 'Success!',
+        text: '{{ Session::get('success') }}'
+    });
+</script>
+@endif
     <main>
         <!-- Start Hero Section -->
         <section class="hero top-0 bg-gray-300 relative pb-5">

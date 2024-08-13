@@ -27,23 +27,22 @@ use App\Http\Controllers\Admin\TopupgamePackageController;
 
 Route::middleware(['auth', 'verified', 'admin'])->group(function() {
     Route::get('/admin', function () {
-        return view('dashboard');
-    })->name('dashboard');
+        return view('dashboard');})->name('dashboard');
     Route::resource('topup-package', TopupgamePackageController::class);
-    // Route::post('topup-package/{id}', [TopupgamePackageController::class, 'store'])->name('topup-package.store');
     Route::resource('category', CategoryController::class);
     Route::resource('gallery', GalleryController::class);
-    // Route::get('topup-package/{id}', [TopupgamePackageController::class, 'index'])->name('topupgame-package.index');
 
 });
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/games', [GameListController::class, 'index'])->name('games');
+Route::get('/filter/{name}', [GamelistController::class, 'show'])->name('showPlatform');
 
 Route::get('/order/{slug}', [OrderController::class, 'index'])->name('order');
-
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

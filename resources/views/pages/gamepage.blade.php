@@ -4,100 +4,65 @@
 
 @section('content')
 
+
+
     <!-- Start Section Hero -->
     <section class="w-full items-center pt-24">
-        <div class="flex flex-row md:gap-4 mx-auto relative" >
+        <div class="flex flex-row md:gap-4 mx-auto relative">
             <!-- Left Side -->
-            
+
             <div id="filterNav"
                 class="w-full h-screen inset-0 z-50 md:z-30 md:w-1/5 fixed bg-black bg-opacity-85 shadow-2xl md:ml-8 -left-full md:block md:sticky md:top-24 transition-all duration-300 ease-in-out md:bg-transparent">
-                
-                <div id="filter-container" class="flex md:flex-none flex-col relative w-full sm:w-1/2 md:w-full h-full bg-white md:rounded-2xl ">
+
+                <div id="filter-container"
+                    class="flex md:flex-none flex-col relative w-full sm:w-1/2 md:w-full h-full bg-white md:rounded-2xl ">
                     <!-- Btn Close -->
                     <div class="top-8 ml-10 relative visible md:invisible cursor-pointer transition-all">
-                        <x-secondary-button id="close-btn-filter" >
+                        <x-secondary-button id="close-btn-filter">
                             <i class="fa-solid fa-chevron-left"></i> Filter
                         </x-secondary-button>
 
                     </div>
                     <!-- btn Close -->
                     <!-- List Kategori -->
-                    <form id="filterForm">
+                    <form id="filterForm" action="">
+                        @csrf
                         <div class="ml-3 flex flex-col">
                             <div class="font-medium mt-20 md:mt-5 ml-7">
                                 <!-- Genre game -->
                                 <h2 class="font-semibold mb-4 text-2xl">Kategori</h2>
                                 <ul class="gap-4 text-xl">
                                     <!-- List Kategori -->
-                                    <li class="mb-2">
-                                        <label class="flex items-center">
-                                            <input type="checkbox" name="category"
-                                                class="form-checkbox bg-transparent rounded-sm mr-2">
-                                            <span class="text-sm">Action</span>
-                                        </label>
-                                    </li>
-                                    <li class="mb-2">
-                                        <label class="flex items-center">
-                                            <input type="checkbox" name="category"
-                                                class="form-checkbox bg-transparent rounded-sm mr-2">
-                                            <span class="text-sm">Adventure</span>
-                                        </label>
-                                    </li>
-                                    <li class="mb-2">
-                                        <label class="flex items-center">
-                                            <input type="checkbox" name="category"
-                                                class="form-checkbox bg-transparent rounded-sm mr-2">
-                                            <span class="text-sm">MMO</span>
-                                        </label>
-                                    </li>
-                                    <li class="mb-2">
-                                        <label class="flex items-center">
-                                            <input type="checkbox" name="category"
-                                                class="form-checkbox bg-transparent rounded-sm mr-2">
-                                            <span class="text-sm">Simulasi</span>
-                                        </label>
-                                    </li>
-                                    <li class="mb-2">
-                                        <label class="flex items-center">
-                                            <input type="checkbox" name="category"
-                                                class="form-checkbox bg-transparent rounded-sm mr-2">
-                                            <span class="text-sm">Strategy</span>
-                                        </label>
-                                    </li>
-
+                                    @foreach ($cats as $cat)
+                                        <li class="mb-2">
+                                            <label class="flex items-center">
+                                                <input type="checkbox" name="category"
+                                                    class="form-checkbox bg-transparent rounded-sm mr-2">
+                                                <span class="text-sm">{{ $cat->name }}</span>
+                                            </label>
+                                        </li>
+                                    @endforeach
                                     <!-- List Kategori -->
                                 </ul>
-
                                 <!-- Platform -->
                                 <h2 class="font-semibold mt-8 mb-4 text-2xl">Platform</h2>
                                 <ul class="gap-4 text-xl">
                                     <!-- List Platform -->
-                                    <li class="mb-2">
-                                        <label class="flex items-center">
-                                            <input type="checkbox" name="platform"
-                                                class="form-checkbox  bg-transparent rounded-sm  mr-2">
-                                            <span class="text-sm">PC</span>
-                                        </label>
-                                    </li>
-                                    <li class="mb-2">
-                                        <label class="flex items-center">
-                                            <input type="checkbox" name="platform"
-                                                class="form-checkbox bg-transparent rounded-sm mr-2">
-                                            <span class="text-sm">Playstation</span>
-                                        </label>
-                                    </li>
-                                    <li class="mb-2">
-                                        <label class="flex items-center">
-                                            <input type="checkbox" name="platform"
-                                                class="form-checkbox bg-transparent rounded-sm mr-2">
-                                            <span class="text-sm">Mobile</span>
-                                        </label>
-                                    </li>
+                                    @foreach ($plats as $plat)
+                                        <li class="mb-2">
+                                            <label class="flex items-center">
+                                                <input type="checkbox" name="platform"
+                                                    class="form-checkbox  bg-transparent rounded-sm  mr-2">
+                                                <span class="text-sm">{{ $plat->name }}</span>
+                                            </label>
+                                        </li>
+                                    @endforeach
+
                                     <!-- List Platform -->
                                 </ul>
                             </div>
                             <!-- button -->
-                            <x-primary-button 
+                            <x-primary-button
                                 class="bg-teal-600 hover:bg-teal-400 text-white px-7 md:px-8  rounded-xl mx-auto mt-8 text-xs md:text-sm">Apply
                                 Filter</x-primary-button>
                         </div>
@@ -188,7 +153,7 @@
                 <!-- H2 -->
 
                 <!-- Game Menu -->
-                
+
                 <div
                     class="inline-grid w-full text-center grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-2 sm:gap-4 md:gap-6 lg:gap-8 pt-5 items-center align-middle justify-center relative">
                     @foreach ($items as $item)
@@ -197,11 +162,11 @@
                             class="min-w-[30px] max-w-[250px] p-3 flex-col items-center relative flex rounded-xl duration-300 ease-in-out hover:shadow-2xl hover:ring-2 hover:ring-primary-500 hover:ring-offset-2 hover:ring-offset-white md:rounded-2x  z-20 backdrop-blur-xl backdrop-brightness-75 backdrop-contrast-100  shadow-md overflow-hidden">
                             <a href="{{ route('order', $item->slug) }}" tabindex="0">
                                 <div class="min-w-50 min-h-50">
-                                <img src="{{ Storage::url($item->image) }}" alt="Game Logo"
-                                    class="relative aspect-square w-full h-full rounded-lg object-cover object-center ring-1 md:rounded-xl">
+                                    <img src="{{ Storage::url($item->image) }}" alt="Game Logo"
+                                        class="relative aspect-square w-full h-full rounded-lg object-cover object-center ring-1 md:rounded-xl">
                                 </div>
                                 <div class="absolute rounded-xl inset-0 bg-gradient-to-r from-black/70 ..."></div>
-        
+
                                 <div
                                     class="relative flex w-full flex-col text-white text-start justify-start pl-0 md:pl-2 mt-6 ">
                                     <h4 class="truncate text-xs sm:text-sm  xl:text-lg  font-semibold ">
@@ -215,7 +180,7 @@
 
 
                 </div>
-          
+
                 <!-- Game Menu -->
 
                 <!-- H2 -->

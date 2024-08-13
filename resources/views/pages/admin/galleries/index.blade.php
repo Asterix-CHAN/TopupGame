@@ -38,40 +38,36 @@
                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Image</th>
                                             <th scope="col"
-                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Action</th>
                                         </tr>
                                     </thead>
                                     <tbody class="bg-white divide-y divide-gray-200 items-center">
-                                        @forelse ($items as $item)
+                                        @forelse ($items as $index=>$item)
                                             <tr>
                                                 <td scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    {{ $item->id }}</td>
+                                                    {{ $index+1 }}</td>
                                                 <td scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     {{ $item->topupgame_packages->name }}</td>
                                                 <td scope="col"
-                                                    class="px-6 py-3 w-36 h-32 text-left aspect-square text-xs font-medium text-gray-500 uppercase tracking-wider ">
+                                                    class="px-6 py-3  text-left  rounded-lg  text-xs font-medium text-gray-500 uppercase tracking-wider ">
                                                     <img src="{{ Storage::url($item->image) }}" alt=""
-                                                        class="object-cover rounded-sm object-center w-full">
+                                                        class="object-cover aspect-video rounded-lg shadow-lg object-center w-32 h-24">
                                                 </td>
 
                                                 <td scope="col"
-                                                    class="px-6 py-3 text-left text-sm font-medium text-gray-500 uppercase flex items-center justify-center gap-2 my-10">
-                                                    <a href="{{ route('gallery.edit', $item->id) }}"
-                                                        class="p-2 bg-blue-500 hover:bg-blue-600 rounded-lg text-white"><i
-                                                            class="fa fa-pencil-alt mx-1"></i>
-                                                    </a>
-                                                    <form action="{{ route('gallery.destroy', $item->id) }}"
-                                                        method="POST" class="">
-                                                        @csrf
-                                                        @method('delete')
-                                                        <button
-                                                            class="p-2 bg-red-500 hover:bg-red-600 rounded-lg text-white"
-                                                            type="submit"><i class="fa fa-trash mx-1"></i></button>
-                                                    </form>
-                                                </td>
+                                                class="px-6 py-3 text-center text-xs font-medium text-gray-500 tracking-wider gap-2">
+                                              
+                                                <a href="{{ route('gallery.edit', $item->id) }}" class="text-blue-600 hover:text-blue-400 "><i
+                                                        class="fa-solid fa-pen-to-square mx-1"></i>{{ __('Edit') }}
+                                                </a>
+                                                <a href="{{ route('gallery.destroy', $item->id) }}"
+                                                    class="text-red-600 hover:text-red-400 "
+                                                    data-confirm-delete="true"><i
+                                                        class="fa fa-trash mx-1"></i>Delete</a>
+                                            </td>
                                             </tr>
                                         @empty
                                             <tr>

@@ -59,17 +59,15 @@ class TopupgamePackageController extends Controller
             $data['image'] = $imagePath;
         }
 
-        try {
+       
             $items = TopupgamePackage::create($data);
             // create data topupgame and categories to pivot table
             $items->categories()->attach($request->category_id);
 
             Alert::success('Success Title', 'Success Message');
             return redirect()->back()->with('success', 'Data Berhasil ditambahkan');
-        } catch (\Exception $e) {
-            Alert::error('Error Title', 'Error Message');
-            return redirect()->back()->with('error', 'Data Gagal ditambahkan');
-        }
+        
+        
     }
 
 
