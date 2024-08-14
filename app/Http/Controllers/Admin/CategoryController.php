@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Category;
+use App\Models\Platform;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\TopupgamePackage;
@@ -16,13 +17,15 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $data = Category::all();
+        $data = Category::paginate(10);
+        $item = Platform::paginate(10);
         $title = 'Delete Category!';
         $text = "Are you sure you want to delete?";
         confirmDelete($title, $text);
 
         return view('pages.admin.category.index', [
-            'datas' => $data
+            'datas' => $data,
+            'items' => $item
         ]);
     }
 
@@ -41,8 +44,6 @@ class CategoryController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:10',
-            // 'platform' => 'required|string|min:2|max:20'
-
         ]);
 
         // Generate the slug
@@ -91,15 +92,9 @@ class CategoryController extends Controller
 
         // Generate the slug
         // $validated['slug'] = Str::slug($request->name);
-        try {
-            
-            $data->update($validated);
-            Alert::success('Success Title', 'Success Message');
-            return redirect()->back()->with('success', 'Data berhasil diubah');
-        } catch (\Exception $e) {
-            Alert::success('Error Title', 'Error Message');
-            return redirect()->back()->with('error', 'Data gagal diubah');
-        }
+        $data->update($validated);
+        Alert::success('Success Title', 'Success Message');
+        return redirect()->back()->with('success', 'Data berhasil diubah');
     }
 
     /**

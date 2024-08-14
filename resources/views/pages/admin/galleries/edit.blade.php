@@ -36,6 +36,7 @@
                             </ul>
                         </div>
                     @endif
+                    
                     <form method="post" action="{{ route('gallery.update', $galeri->id) }}"
                         enctype="multipart/form-data">
                         @csrf
@@ -57,38 +58,26 @@
                                         </select>
                                     </div>
 
-                                    <div class="flex items-center justify-center w-full gap-4">
-                                        <label for="dropzone-file"
-                                            class="flex flex-col items-center justify-center w-1/2 h-40 aspect-video border-2 border-gray-300 border-dashed  cursor-pointer bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600  object-cover object-center rounded-lg shadow-lg  border-collapse ">
-                                            <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                                                @if ($galeri->image)
+    
+                                        <div class="mb-4">
+                                            <div class="bg-white p-6 rounded-lg shadow-lg">
+                                                <h1 class="text-2xl font-semibold mb-4">Upload an Image</h1>
+                                                <div class="preview mt-4 mb-3" id="imagePreview">
+                                                    @if ($galeri->image)
                                                     <div>
                                                         <img src="{{ Storage::url($galeri->image) }}"
                                                             alt="Current Image"
-                                                            class="w-36 h-40 object-cover object-center rounded-lg shadow-lg border border-collapse aspect-square">
+                                                            class="max-w-xs max-h-xs rounded-lg shadow-lg border border-collapse ">
                                                     </div>
                                                 @endif
-                                                <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span
-                                                        class="font-semibold">Click to upload</span> or drag and drop
-                                                </p>
-                                                <p class="text-xs text-gray-500 dark:text-gray-400">PNG, JPG
-                                                    (MAX. 800x400px)</p>
+                                                </div>
+                                                <x-text-input type="file" id="imageUpload" name="image" 
+                                                    class="block"></x-text-input>
                                             </div>
-                                            <input id="dropzone-file" type="file" name="image" class="hidden" />
-                                        </label>
-                                    </div>
+                                        </div>
+                                    
 
-                                    {{-- <div class="mb-4">
-                                        <label for="formFile"
-                                            class="block text-gray-700 text-sm font-bold mb-2">Image</label>
-                                        @if ($galeri->image)
-                                            <div class="mt-2">
-                                                <img src="{{ Storage::url($galeri->image) }}" alt="Current Image"
-                                                    class="w-32 h-32 object-cover object-center rounded-lg shadow-lg border border-collapse aspect-square">
-                                            </div>
-                                        @endif
-                                        <x-text-input type="file" name="image"></x-text-input>
-                                    </div> --}}
+                                    
                                 </div>
                             </div>
                             <div class="card-footer flex justify-end mt-2">

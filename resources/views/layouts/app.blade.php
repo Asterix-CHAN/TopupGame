@@ -16,7 +16,7 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
-    
+
     @include('sweetalert::alert')
 </head>
 
@@ -47,11 +47,12 @@
             </main>
         </div>
     </div>
-</body>
 
-@livewireScripts
-<script src="{{ url('Game/src/assets/fontawesome-free-6.5.1-web/fontawesome-free-6.5.1-web/js/all.js') }}"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+
+    @livewireScripts
+    <script src="{{ url('Game/src/assets/fontawesome-free-6.5.1-web/fontawesome-free-6.5.1-web/js/all.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 
     <script>
@@ -65,8 +66,8 @@
             });
 
         });
-
     </script>
 
-
+    @stack('addon-script')
+</body>
 </html>
