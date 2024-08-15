@@ -95,7 +95,7 @@
                             `<img src="${this.result}" alt="Image Preview" class="max-w-xs max-h-xs mt-2 border border-gray-300 rounded-lg">`;
                     });
 
-                    reader.readAsDataURL(file);
+                    reader.readAsDataURL(file); 
                 } else {
                     imagePreview.innerHTML = '<p class="text-gray-500">No image selected</p>';
                 }

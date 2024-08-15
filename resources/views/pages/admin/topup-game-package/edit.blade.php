@@ -96,17 +96,19 @@
                                         </select>
                                     </div>
                                     <div class="mb-4">
-                                        <label for="formFile"
-                                            class="block text-gray-700 text-sm font-bold mb-2">Image</label>
+                                        <div class="bg-white p-6 rounded-lg shadow-lg">
+                                            <h1 class="text-2xl font-semibold mb-4">Upload an Image</h1>
+                                            <div class="preview mt-4 mb-3" id="imagePreview">
                                             @if ($item->image)
                                             <div class="mt-2">
                                                 <img src="{{ Storage::url($item->image) }}" alt="Current Image"
-                                                    class="w-32 h-32 object-cover object-center rounded-lg shadow-lg border border-collapse aspect-square">
+                                                class="max-w-xs max-h-xs rounded-lg shadow-lg border border-collapse aspect-video">
                                             </div>
-                                        @endif
-                                        <x-text-input
-                                            type="file" name="image" id="image"></x-text-input>
+                                            @endif
+                                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">PNG, JPG, JPEG (MAX. 2MB)</p>
                                     </div>
+                                        <x-text-input
+                                            type="file" name="image" id="imageLoad" ></x-text-input>
                                 </div>
                             </div>
                             <div class="card-footer flex justify-end">
@@ -123,5 +125,26 @@
 
         </div>
     </main>
+
+    @push('addon-script')
+<script>
+    const imageUpload = document.getElementById('imageLoad'); // Sesuaikan id-nya (case sensitive)
+    const imagePreview = document.getElementById('imagePreview');
+
+    imageUpload.addEventListener('change', function() {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+
+            reader.addEventListener('load', function() {
+                const result = reader.result;
+                imagePreview.innerHTML = `<img src="${result}" alt="Current Image" class="max-w-xs max-h-xs rounded-lg shadow-lg border border-collapse ">`;
+            });
+
+            reader.readAsDataURL(file);
+        }
+    });
+</script>
+@endpush
 
 </x-app-layout>

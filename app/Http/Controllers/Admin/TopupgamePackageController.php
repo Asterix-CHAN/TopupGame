@@ -120,7 +120,8 @@ class TopupgamePackageController extends Controller
         $item = TopupgamePackage::findOrFail($id);
         $item->update($data);
         $item->categories()->sync($request->category_id);
-        return redirect()->route('topup-package.index');
+        Alert::success('Success Title', 'Success Message');
+        return redirect()->route('topup-package.index')->with('success', 'Data berhasil diubah');
     }
 
     /**
