@@ -1,0 +1,1 @@
+<script src="{{ url('resources/js/image.js') }}"></script>

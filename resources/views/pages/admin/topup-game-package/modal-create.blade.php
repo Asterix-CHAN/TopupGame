@@ -111,10 +111,15 @@
                                         </div>
 
                                         <div class="mb-4">
-                                            <label for="formFile"
+                                            <label for="imageUpload"
                                                 class="block text-gray-700 text-sm font-bold mb-2">Image</label>
+                                                <div class="preview mt-4 mb-3" id="imagePreview">
+                                                    <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">No image selected</p>
+                                                    <p class="text-xs text-gray-500 dark:text-gray-400">PNG, JPG, JPEG (MAX. 2MB)</p>
+
+                                                </div>
                                             <x-text-input type="text" type="file" name="image"
-                                                id="formFile"></x-text-input>
+                                                id="imageUpload"></x-text-input>
                                             @error('image')
                                                 <x-input-error :messages="$message"></x-input-error>
                                             @enderror
@@ -137,3 +142,27 @@
         </div>
     </div>
 </div>
+
+
+@push('addon-script')
+        <script>
+            const imageUpload = document.getElementById('imageUpload');
+            const imagePreview = document.getElementById('imagePreview');
+
+            imageUpload.addEventListener('change', function() {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+
+                    reader.addEventListener('load', function() {
+                        imagePreview.innerHTML =
+                            `<img src="${this.result}" alt="Image Preview" class="max-w-xs max-h-xs mt-2 border border-gray-300 rounded-lg">`;
+                    });
+
+                    reader.readAsDataURL(file);
+                } else {
+                    imagePreview.innerHTML = '<p class="text-gray-500">No image selected</p>';
+                }
+            });
+        </script>
+    @endpush

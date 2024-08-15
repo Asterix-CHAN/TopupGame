@@ -32,7 +32,7 @@ class TopupgamePackageRequest extends FormRequest
             // 'categories' => 'required|max:255',
             'category_id' => 'required|array|min:1',
             'category_id.*' => 'required|integer|exists:categories,id',
-            'image' => 'required|image|mimes:jpeg,png,jpg',
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ];
     }
 }

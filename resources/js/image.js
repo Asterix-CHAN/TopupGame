@@ -7,7 +7,8 @@ imageUpload.addEventListener('change', function() {
         const reader = new FileReader();
 
         reader.addEventListener('load', function() {
-            imagePreview.innerHTML = `<img src="${this.result}" alt="Image Preview" class="max-w-xs max-h-xs mt-2 border border-gray-300 rounded-lg">`;
+            imagePreview.innerHTML =
+                `<img src="${this.result}" alt="Image Preview" class="max-w-xs max-h-xs mt-2 border border-gray-300 rounded-lg">`;
         });
 
         reader.readAsDataURL(file);

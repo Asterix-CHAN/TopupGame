@@ -27,6 +27,7 @@
                                 </script>
                             @endif
                             <div class="overflow-x-auto flex flex-row gap-6">
+
                                 {{-- Category --}}
                                 <div class="w-1/2 py-5">
                                     <div class="col-lg-12 mb-4 flex justify-end gap-4">
@@ -86,6 +87,8 @@
                                     </tbody>
                                 </table>
                             </div>
+                            {{-- End Category --}}
+                            
                             {{-- Platform --}}
                             <div class="w-1/2 py-5">
                                 <div class="col-lg-12 mb-4 flex justify-end gap-4">
@@ -96,7 +99,7 @@
                                         <div x-show="isOpen"
                                             class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg">
                                             <div class="rounded-md bg-white shadow-xs">
-                                                @include('pages.admin.category.modal-category')
+                                                @include('pages.admin.category.modal-platform')
                                             </div>
                                         </div>
                                     </div>
@@ -129,7 +132,7 @@
                                                 <td scope="col"
                                                     class="px-6 py-3 text-center text-xs font-medium text-gray-500 tracking-wider gap-2">
                                                   
-                                                    <a href="" class="text-blue-600 hover:text-blue-400 "><i
+                                                    <a href="{{ route('platform.edit', $item->id) }}" class="text-blue-600 hover:text-blue-400 "><i
                                                             class="fa-solid fa-pen-to-square mx-1"></i>{{ __('Edit') }}
                                                     </a>
                                                     <a href=""

@@ -106,7 +106,7 @@ class TopupgamePackageController extends Controller
             'category_id' => 'required|array|min:1',
             'category_id.*' => 'required|integer|exists:categories,id',
             'platform_id' => 'required|max:255',
-            'image' => 'image|mimes:jpeg,png,jpg',
+            'image' => 'image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
         $data['slug'] = Str::slug($request->name);

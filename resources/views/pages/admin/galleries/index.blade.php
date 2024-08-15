@@ -20,8 +20,7 @@
 
                             <div class="col-lg-12 mb-4 flex justify-end">
                                 <a href="{{ route('gallery.create') }}"
-                                    class="bg-blue-500 rounded-lg px-2 py-1 hover:bg-blue-700 focus:bg-blue-600 text-white text-lg font-sans">Tambah
-                                    Gambar</a>
+                                    class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-slate-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150">{{ __('Tambah Gambar') }}</a>
                             </div>
 
                             <div class="overflow-hidden shadow-md sm:rounded-lg">

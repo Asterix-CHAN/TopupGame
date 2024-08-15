@@ -45,14 +45,11 @@ class GalleryController extends Controller
         $item = $request->all();
         $item['image'] = $request->file('image')->store('assets/galleries', 'public');
 
-        try {
+       
         Gallery::create($item);
         Alert::success('Success Title', 'Success Message');
-        return redirect()->back()->with('success', 'Data berhasil diubah');
-    } catch (Exception $e){
-        Alert::error('Error Title', 'Error Message');
-        return redirect()->back()->with('error', 'Data gagal diubah');
-    }
+        return redirect()->back()->with('success', 'Data berhasil ditambahkan');
+    
       
     }
 
@@ -85,15 +82,11 @@ class GalleryController extends Controller
            
         $item['image'] = $request->file('image')->store('assets/galleries', 'public');
        
-        try {
             $data = Gallery::findOrFail($id);
             $data->update($item);
             Alert::success('Success Title', 'Success Message');
             return redirect()->back()->with('success', 'Data berhasil diubah');
-        } catch (Exception $e){
-            Alert::error('Error Title', 'Error Message');
-            return redirect()->back()->with('error', 'Data gagal diubah');
-        }
+        
         
     }
 

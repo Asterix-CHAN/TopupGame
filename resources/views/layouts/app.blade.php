@@ -53,8 +53,8 @@
     @livewireScripts
     <script src="{{ url('Game/src/assets/fontawesome-free-6.5.1-web/fontawesome-free-6.5.1-web/js/all.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
-
+    <script src="{{ url('resources/js/image.js') }}"></script>
+    {{-- <script src="{{ url('select2/dist/js/select2.min.js') }}"></script> --}}
     <script>
         $(document).ready(function() {
             // Select2 Multiple

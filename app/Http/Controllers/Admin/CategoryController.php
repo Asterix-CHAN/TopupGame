@@ -73,10 +73,7 @@ class CategoryController extends Controller
     public function edit(string $id)
     {
         $data = Category::findOrFail($id);
-        $topupgame_packages = TopupgamePackage::all();
-        // $topupgame_packages = TopupgamePackage::where('id', $data->id)->first();
-        // dd($topupgame_packages);
-        return view('pages.admin.category.edit', ['datas' => $data, 'game' => $topupgame_packages]);
+        return view('pages.admin.category.edit', ['datas' => $data]);
     }
 
     /**
@@ -94,7 +91,7 @@ class CategoryController extends Controller
         // $validated['slug'] = Str::slug($request->name);
         $data->update($validated);
         Alert::success('Success Title', 'Success Message');
-        return redirect()->back()->with('success', 'Data berhasil diubah');
+        return redirect()->route('category.index')->with('success', 'Data berhasil diubah');
     }
 
     /**

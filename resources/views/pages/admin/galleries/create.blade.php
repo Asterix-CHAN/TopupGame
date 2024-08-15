@@ -1,7 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
+        {{ Breadcrumbs::render('gallery.create') }}
         <h2 class="font-semibold text-2xl text-gray-800 leading-tight mt-3 ml-4">
-            {{ __('Tambah Game') }}
+            {{ __('Tambah Image') }}
         </h2>
     </x-slot>
 
@@ -36,9 +37,7 @@
                     <form method="post" action="{{ route('gallery.store') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="card mt-5">
-                            <div class="card-header">
-                                <h3>New Image</h3>
-                            </div>
+                        
                             <div class="card-body flex gap-2">
                                 <div class="w-full">
 
@@ -51,6 +50,9 @@
                                                 <option value="{{ $item->id }}">{{ $item->name }}</option>
                                             @endforeach
                                         </select>
+                                        @error('topupgame_packages_id')
+                                        <x-input-error :messages="$message"></x-input-error>
+                                         @enderror
                                     </div>
                                     <div class="mb-4">
                                         <div class="bg-white p-6 rounded-lg shadow-lg">
@@ -60,6 +62,9 @@
                                             </div>
                                             <x-text-input type="file" id="imageUpload" name="image" accept="image/*"
                                                 class="block"></x-text-input>
+                                                @error('image')
+                                                <x-input-error :messages="$message"></x-input-error>
+                                                 @enderror
                                         </div>
                                     </div>
                                 </div>
