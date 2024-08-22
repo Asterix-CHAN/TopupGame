@@ -49,26 +49,26 @@ class TopupgamePackageController extends Controller
      * Store a newly created resource in storage.
      */
 
-    public function store(TopupgamePackageRequest $request)
-    {
-        $data = $request->all();
-        $data['slug'] = Str::slug($request->name);
+    // public function store(TopupgamePackageRequest $request)
+    // {
+    //     $data = $request->all();
+    //     $data['slug'] = Str::slug($request->name);
 
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('assets/gallery', 'public');
-            $data['image'] = $imagePath;
-        }
+    //     if ($request->hasFile('image')) {
+    //         $imagePath = $request->file('image')->store('assets/gallery', 'public');
+    //         $data['image'] = $imagePath;
+    //     }
 
        
-            $items = TopupgamePackage::create($data);
-            // create data topupgame and categories to pivot table
-            $items->categories()->attach($request->category_id);
+    //         $items = TopupgamePackage::create($data);
+    //         // create data topupgame and categories to pivot table
+    //         $items->categories()->attach($request->category_id);
 
-            Alert::success('Success Title', 'Success Message');
-            return redirect()->back()->with('success', 'Data Berhasil ditambahkan');
+    //         Alert::success('Success Title', 'Success Message');
+    //         return redirect()->back()->with('success', 'Data Berhasil ditambahkan');
         
         
-    }
+    // }
 
 
     /**

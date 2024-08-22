@@ -35,7 +35,7 @@
 
                             <div class="col-lg-12 mb-4 flex justify-end">
 
-                                <div x-data="{ isOpen: false }" class="relative ...">
+                                {{-- <div x-data="{ isOpen: false }" class="relative ...">
                                     <x-secondary-button @click="isOpen = !isOpen">{{ __('Tambah Produk') }}
                                     </x-secondary-button>
 
@@ -45,7 +45,10 @@
                                             @include('pages.admin.topup-game-package.modal-create')
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
+                                <x-secondary-button onclick="Livewire.dispatch('openModal', { component: 'tambah-produk' })">Tambah Produk</x-secondary-button>
+
+
                             </div>
 
                             <div class="overflow-x-auto shadow-md sm:rounded-lg">

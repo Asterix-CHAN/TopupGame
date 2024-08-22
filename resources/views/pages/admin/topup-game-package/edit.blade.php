@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        
+
         {{ Breadcrumbs::render('topup-package.edit', $item) }}
 
         <div class="md:container mx-auto sm:px-6 lg:px-8">
@@ -49,8 +49,8 @@
                                     </div>
                                     <div class="mb-4">
                                         <label class="block text-gray-700 text-sm font-bold mb-2">Description</label>
-                                        <x-text-input type="text"
-                                            name="description" value="{{ $item->description }}"></x-text-input>
+                                        <x-text-input type="text" name="description"
+                                            value="{{ $item->description }}"></x-text-input>
                                     </div>
                                     <div class="mb-4">
                                         <label class="block text-gray-700 text-sm font-bold mb-2">About</label>
@@ -60,13 +60,13 @@
                                     </div>
                                     <div class="mb-4">
                                         <label class="block text-gray-700 text-sm font-bold mb-2">Price</label>
-                                        <x-text-input type="text"
-                                            name="price" value="{{ $item->price }}"></x-text-input>
+                                        <x-text-input type="text" name="price"
+                                            value="{{ $item->price }}"></x-text-input>
                                     </div>
                                     <div class="mb-4">
                                         <label class="block text-gray-700 text-sm font-bold mb-2">Stock</label>
-                                        <x-text-input type="text"
-                                            name="stock" value="{{ $item->stock }}"></x-text-input>
+                                        <x-text-input type="text" name="stock"
+                                            value="{{ $item->stock }}"></x-text-input>
                                     </div>
                                     <div class="mb-4">
                                         <select name="category_id[]" id="category_id"
@@ -99,22 +99,22 @@
                                         <div class="bg-white p-6 rounded-lg shadow-lg">
                                             <h1 class="text-2xl font-semibold mb-4">Upload an Image</h1>
                                             <div class="preview mt-4 mb-3" id="imagePreview">
-                                            @if ($item->image)
-                                            <div class="mt-2">
-                                                <img src="{{ Storage::url($item->image) }}" alt="Current Image"
-                                                class="max-w-xs max-h-xs rounded-lg shadow-lg border border-collapse aspect-video">
+                                                @if ($item->image)
+                                                    <div class="mt-2">
+                                                        <img src="{{ Storage::url($item->image) }}" alt="Current Image"
+                                                            class="max-w-xs max-h-xs rounded-lg shadow-lg border border-collapse aspect-video">
+                                                    </div>
+                                                @endif
+                                                <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">PNG, JPG, JPEG
+                                                    (MAX. 2MB)</p>
                                             </div>
-                                            @endif
-                                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">PNG, JPG, JPEG (MAX. 2MB)</p>
+                                            <x-text-input type="file" name="image" id="imageLoad"></x-text-input>
+                                        </div>
                                     </div>
-                                        <x-text-input
-                                            type="file" name="image" id="imageLoad" ></x-text-input>
+                                    <div class="card-footer flex justify-end">
+                                        <x-primary-button>{{ __('Ubah') }}</x-primary-button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="card-footer flex justify-end">
-                                <x-primary-button>{{ __('Ubah') }}</x-primary-button>
-                            </div>
-                        </div>
                     </form>
                 </div>
                 {{-- righ content --}}
@@ -127,24 +127,25 @@
     </main>
 
     @push('addon-script')
-<script>
-    const imageUpload = document.getElementById('imageLoad'); // Sesuaikan id-nya (case sensitive)
-    const imagePreview = document.getElementById('imagePreview');
+        <script>
+            const imageUpload = document.getElementById('imageLoad'); // Sesuaikan id-nya (case sensitive)
+            const imagePreview = document.getElementById('imagePreview');
 
-    imageUpload.addEventListener('change', function() {
-        const file = this.files[0];
-        if (file) {
-            const reader = new FileReader();
+            imageUpload.addEventListener('change', function() {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
 
-            reader.addEventListener('load', function() {
-                const result = reader.result;
-                imagePreview.innerHTML = `<img src="${result}" alt="Current Image" class="max-w-xs max-h-xs rounded-lg shadow-lg border border-collapse ">`;
+                    reader.addEventListener('load', function() {
+                        const result = reader.result;
+                        imagePreview.innerHTML =
+                            `<img src="${result}" alt="Current Image" class="max-w-xs max-h-xs rounded-lg shadow-lg border border-collapse ">`;
+                    });
+
+                    reader.readAsDataURL(file);
+                }
             });
-
-            reader.readAsDataURL(file);
-        }
-    });
-</script>
-@endpush
+        </script>
+    @endpush
 
 </x-app-layout>
