@@ -155,7 +155,7 @@
 
                     reader.addEventListener('load', function() {
                         imagePreview.innerHTML =
-                            `<img src="${this.result}" alt="Image Preview" class="max-w-xs max-h-xs mt-2 border border-gray-300 rounded-lg">`;
+                            `<img src="${this.result}" alt="Image Preview" class="w-32 h-20 mt-2 border border-gray-300 rounded-lg">`;
                     });
 
                     reader.readAsDataURL(file);
