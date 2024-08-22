@@ -1,4 +1,14 @@
 <x-modal>
+    @if (session('status'))
+    <script>
+        Swal.fire({
+            title: '{{ session('status') }}',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        });
+    </script>
+@endif
+
     <x-slot name="title">
         Tambah Produk
     </x-slot>
@@ -62,7 +72,7 @@
                                 <label for="category_id"
                                     class="block text-gray-700 text-sm font-bold mb-2">Categories</label>
                                 <select name="category_id[]" id="category_id" wire:model="category_id" class="select2-multiple"
-                                    multiple>
+                                    multiple="multiple">
                                     @foreach ($categories as $category)
                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                                     @endforeach
@@ -127,4 +137,5 @@
         </div>
     </x-slot>
 
+    
 </x-modal>

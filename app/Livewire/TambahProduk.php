@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 use App\Models\TopupgamePackage;
 use LivewireUI\Modal\ModalComponent;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class TambahProduk extends ModalComponent
 {
@@ -61,9 +62,11 @@ class TambahProduk extends ModalComponent
         // Attach categories
         $product->save();
         $product->categories()->sync($this->category_id);
+        Alert::success('Success Title', 'Success Message');
+
+        session()->flash('status', 'successfully');
+
         
-        session()->flash('status', 'Post successfully updated.');
- 
         $this->closeModal();
         
     }
