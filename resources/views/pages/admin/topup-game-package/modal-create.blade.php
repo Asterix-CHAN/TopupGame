@@ -90,8 +90,7 @@
                                             <label for="platforms"
                                                 class="block text-gray-700 text-sm font-bold mb-2">Platform</label>
                                             <select name="platform_id" class="w-full rounded-md">
-                                                <option disabled>Pilih Platform!</option>
-
+                                                <option >Pilih Platform!</option>
                                                 @foreach ($platforms as $platform)
                                                     <option value="{{ $platform->id }}">{{ $platform->name }}</option>
                                                 @endforeach
