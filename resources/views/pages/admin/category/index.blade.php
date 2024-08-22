@@ -1,4 +1,15 @@
 <x-app-layout>
+
+    @if (Session::has('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: '{{ Session::get('success') }}'
+        });
+    </script>
+    @endif
+
     <x-slot name="header">
         <div class="md:container mx-auto sm:px-8 lg:px-10">
         <h2 class="font-semibold text-2xl text-gray-800 leading-tight mt-3">

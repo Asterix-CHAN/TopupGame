@@ -102,6 +102,7 @@ class CategoryController extends Controller
         $data = Category::findOrFail($id);
         $data->delete();
 
-        return redirect()->back();
+        Alert::success('Success Title', 'Success Message');
+        return redirect()->back()->with('success', 'Data Berhasil dihapus');
     }
 }

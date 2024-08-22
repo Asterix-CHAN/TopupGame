@@ -24,7 +24,7 @@ class TopupgamePackageController extends Controller
     {
         $categories = Category::all();
         $platforms = Platform::with(['topup'])->get();
-        $items = TopupgamePackage::with(['platform_name'])->get();
+        $items = TopupgamePackage::with(['platform_name'])->paginate(10);
        
         // sweetAlert Delete message
         $title = 'Delete Product!';
@@ -58,16 +58,13 @@ class TopupgamePackageController extends Controller
             $imagePath = $request->file('image')->store('assets/gallery', 'public');
             $data['image'] = $imagePath;
         }
-
-       
             $items = TopupgamePackage::create($data);
             // create data topupgame and categories to pivot table
             $items->categories()->attach($request->category_id);
 
             Alert::success('Success Title', 'Success Message');
             return redirect()->back()->with('success', 'Data Berhasil ditambahkan');
-        
-        
+    
     }
 
 

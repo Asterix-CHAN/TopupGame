@@ -46,8 +46,8 @@
                                         </div>
                                     </div>
                                 </div>
+                                {{-- Livewire Button  --}}
                                 {{-- <x-secondary-button onclick="Livewire.dispatch('openModal', { component: 'tambah-produk' })">Tambah Produk</x-secondary-button> --}}
-
 
                             </div>
 
@@ -135,7 +135,7 @@
 
                                     </tbody>
                                 </table>
-                                {{-- {{ $items->links() }} --}}
+                                {{ $items->links() }}
                             </div>
                         </div>
                     </div>
