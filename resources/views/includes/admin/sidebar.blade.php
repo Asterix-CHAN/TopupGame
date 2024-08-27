@@ -8,16 +8,11 @@
     <div class="space-y-6 md:space-y-10 mt-10 container">
         <div class="flex items-end justify-end">
             <button
-                class="relative middle none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30 grid md:hidden"
+                class="relative middle none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] text-gray-500 hover:bg-blue-gray-500/10  md:hidden items-center"
                 type="button" @click="open = !open">
-                <span class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"
-                        stroke-width="3" class="h-6 w-6 text-blue-gray-500">
-                        <path fill-rule="evenodd"
-                            d="M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                </span>
+               
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-[30px] h-[30px] fill-current inline-block" viewBox="0 0 384 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
+               
             </button>
         </div>
         <!-- Sidebar header -->
@@ -62,7 +57,7 @@
                 <span>Gallery</span>
             </x-side-link>
 
-            <x-side-link href="{{ route('users.show') }}" wire:navigate  :active="request()->routeIs('UserDashboard')">
+            <x-side-link href="{{ route('users.show') }}" wire:navigate  :active="request()->routeIs('users.show')">
                 <svg class="w-6 h-6 fill-current inline-block" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z">

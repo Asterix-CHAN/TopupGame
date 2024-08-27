@@ -84,8 +84,8 @@
                                                 <td scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     {{ $user->email }}</td>
-                                                    <td scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                <td scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider {{ $user->roles == 'ADMIN' ? 'text-orange-600' : 'text-cyan-600' }}" >
                                                     {{ $user->roles }}</td>
                                                 <td scope="col"
                                                     class="px-6 py-3 text-center items-center  text-xs font-medium text-gray-500 tracking-wider gap-1 ">
@@ -101,13 +101,13 @@
                                             </tr>
                                         @empty
                                             <tr>
-                                                <td colspan="9" class="text-center">Data Kosong</td>
+                                                <td colspan="5" class="text-center">Data Kosong</td>
                                             </tr>
                                         @endforelse
 
                                     </tbody>
                                 </table>
-                               
+                                {{ $users->links() }}
                             </div>
                         </div>
                     </div>

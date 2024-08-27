@@ -42,6 +42,8 @@
                             </li>
                         @elseif(request()->routeIs('gallery.index'))
                             <li> {{ Breadcrumbs::render('gallery.index') }} </li>
+                        @elseif(request()->routeIs('users.show'))
+                        <li> {{ Breadcrumbs::render('users.show') }} </li>
                         @endif
                         {{-- End Bredcrumbs --}}
                     </ol>
@@ -61,6 +63,8 @@
                         </svg>
                     </span>
                 </button>
+
+                {{-- Search --}}
                 <div class="mr-auto md:mr-2 md:w-56">
                     <div class="relative w-full min-w-[200px] h-10">
                         <input class="rounded-lg text-slate-800 font-sans text-sm " type="text"

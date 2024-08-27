@@ -6,10 +6,12 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+
 class UserController extends Controller
 {
     public function show(){
         $users = User::paginate(10);
+       
         return view('pages.admin.users.index', compact('users'));
     }
 

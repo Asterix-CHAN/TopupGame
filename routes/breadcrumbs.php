@@ -65,3 +65,9 @@ Breadcrumbs::for('gallery.create', function (BreadcrumbTrail $trail): void {
     $trail->push('Create', route('gallery.create'));
 });
 // End Gallery
+
+
+// User 
+Breadcrumbs::for('users.show', function (BreadcrumbTrail $trail){
+    $trail->push('User', route('users.show'));
+});
