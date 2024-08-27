@@ -515,9 +515,11 @@
                                             dipilih</p>
                                     </div>
                                 </div>
+                                <form action="">
                                 <button disabled type="submit"
                                     class="bg-slate-800  text-white focus:bg-sky-500 focus:outline-none w-56 md:w-full py-2 rounded-2xl text-lg focus:text-sky-700 transition-all duration-200 px-6 mx-auto items-center"><i
                                         class="fa-solid fa-cart-shopping mr-2"></i>Pesan Sekarang</button>
+                                </form>
                             </div>
                             <!-- Tombol -->
                         </form>

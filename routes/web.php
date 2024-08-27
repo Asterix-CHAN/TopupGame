@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
@@ -33,6 +34,7 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function() {
     Route::resource('category', CategoryController::class);
     Route::resource('gallery', GalleryController::class);
     Route::resource('platform', PlatformController::class);
+    Route::get('/users', [User::class, 'index'])->name('UserDashboard');
 });
 
 
