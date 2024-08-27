@@ -12,6 +12,7 @@ return array(
     'App\\Http\\Controllers\\Admin\\GalleryController' => $baseDir . '/app/Http/Controllers/Admin/GalleryController.php',
     'App\\Http\\Controllers\\Admin\\PlatformController' => $baseDir . '/app/Http/Controllers/Admin/PlatformController.php',
     'App\\Http\\Controllers\\Admin\\TopupgamePackageController' => $baseDir . '/app/Http/Controllers/Admin/TopupgamePackageController.php',
+    'App\\Http\\Controllers\\Admin\\User' => $baseDir . '/app/Http/Controllers/Admin/User.php',
     'App\\Http\\Controllers\\Auth\\AuthenticatedSessionController' => $baseDir . '/app/Http/Controllers/Auth/AuthenticatedSessionController.php',
     'App\\Http\\Controllers\\Auth\\ConfirmablePasswordController' => $baseDir . '/app/Http/Controllers/Auth/ConfirmablePasswordController.php',
     'App\\Http\\Controllers\\Auth\\EmailVerificationNotificationController' => $baseDir . '/app/Http/Controllers/Auth/EmailVerificationNotificationController.php',

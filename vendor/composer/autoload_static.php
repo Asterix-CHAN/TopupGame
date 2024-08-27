@@ -579,6 +579,7 @@ class ComposerStaticInit9c491b8531eec05ba41a11d9276a5749
         'App\\Http\\Controllers\\Admin\\GalleryController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/GalleryController.php',
         'App\\Http\\Controllers\\Admin\\PlatformController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/PlatformController.php',
         'App\\Http\\Controllers\\Admin\\TopupgamePackageController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/TopupgamePackageController.php',
+        'App\\Http\\Controllers\\Admin\\User' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/User.php',
         'App\\Http\\Controllers\\Auth\\AuthenticatedSessionController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/AuthenticatedSessionController.php',
         'App\\Http\\Controllers\\Auth\\ConfirmablePasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmablePasswordController.php',
         'App\\Http\\Controllers\\Auth\\EmailVerificationNotificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/EmailVerificationNotificationController.php',

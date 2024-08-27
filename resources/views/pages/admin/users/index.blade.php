@@ -35,7 +35,7 @@
 
                             <div class="col-lg-12 mb-4 flex justify-end">
 
-                                <div x-data="{ isOpen: false }" class="relative ...">
+                                {{-- <div x-data="{ isOpen: false }" class="relative ...">
                                     <x-secondary-button @click="isOpen = !isOpen">{{ __('Tambah Produk') }}
                                     </x-secondary-button>
 
@@ -45,7 +45,7 @@
                                             @include('pages.admin.topup-game-package.modal-create')
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 {{-- Livewire Button  --}}
                                 {{-- <x-secondary-button onclick="Livewire.dispatch('openModal', { component: 'tambah-produk' })">Tambah Produk</x-secondary-button> --}}
 
@@ -73,24 +73,27 @@
                                         </tr>
                                     </thead>
                                     <tbody class="bg-white divide-y divide-gray-200 items-center">
-                                        @forelse ($data as $index=>$item)
+                                        @forelse ($users as $index=>$user)
                                             <tr>
                                                 <td scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     {{ $index + 1 }}</td>
                                                 <td scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    {{ $item->name }}</td>
+                                                    {{ $user->name }}</td>
                                                 <td scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    {{ $item->email }}</td>
+                                                    {{ $user->email }}</td>
+                                                    <td scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    {{ $user->roles }}</td>
                                                 <td scope="col"
                                                     class="px-6 py-3 text-center items-center  text-xs font-medium text-gray-500 tracking-wider gap-1 ">
-                                                    <a href="{{ }}"
+                                                    <a href=""
                                                         class="text-blue-600 hover:text-blue-400 flex flex-row"><i
                                                             class="fa-solid fa-pen-to-square mx-1"></i>Edit
                                                     </a>
-                                                    <a href="{{ }}"
+                                                    <a href="{{ route('users.delete', $user->id)  }}"
                                                         class="text-red-600 hover:text-red-400 flex flex-row"
                                                         data-confirm-delete="true"><i
                                                             class="fa fa-trash mx-1"></i>Delete</a>

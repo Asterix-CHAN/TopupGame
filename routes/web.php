@@ -1,12 +1,13 @@
 <?php
 
-use App\Models\User;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\GameListController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\PlatformController;
@@ -34,7 +35,8 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function() {
     Route::resource('category', CategoryController::class);
     Route::resource('gallery', GalleryController::class);
     Route::resource('platform', PlatformController::class);
-    Route::get('/users', [User::class, 'index'])->name('UserDashboard');
+    Route::get('/users', [UserController::class, 'show'])->name('users.show');
+    Route::get('/users/{id}', [UserController::class, 'destroy'])->name('users.delete');
 });
 
 

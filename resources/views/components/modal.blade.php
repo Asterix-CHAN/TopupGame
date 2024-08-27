@@ -1,4 +1,4 @@
-@props(['formAction' => false])
+{{-- @props(['formAction' => false])
 
 <div>
     @if($formAction)
@@ -23,4 +23,4 @@
     @if($formAction)
         </form>
     @endif
-</div>
+</div> --}}
