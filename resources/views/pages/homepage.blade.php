@@ -251,7 +251,7 @@
         </section>
         <!-- Section Game Terlaris -->
 
-        <!-- Section Berita -->
+        {{-- <!-- Section Berita -->
         <section>
             <div class="container mx-auto">
 
@@ -547,6 +547,6 @@
                 </div>
             </div>
         </section>
-        <!-- End Section Berita -->
+        <!-- End Section Berita --> --}}
     </main>
 @endsection
