@@ -10,7 +10,7 @@
                     class="object-fill object-center absolute h-[250px] md:h-[400px] w-screen mt-0 shadow-2xl backdrop-blur-2xl drop-shadow-2xl" />
             @else
                 <img src="{{ Storage::url($item->image) }}" alt=""
-                class="object-fill object-center absolute h-[250px] md:h-[400px] w-screen mt-0 shadow-2xl backdrop-blur-2xl drop-shadow-2xl" /> 
+                    class="object-fill object-center absolute h-[250px] md:h-[400px] w-screen mt-0 shadow-2xl backdrop-blur-2xl drop-shadow-2xl" />
             @endif
         </div>
         <div class=" container h-[200px] flex top-10 md:top-0 relative mx-auto  ">
@@ -285,7 +285,7 @@
                     id="shipping-detail">
                     <div class=" px-4 relative flex flex-col w-full">
                         <h2 class="font-semibold text-xl md:text-2xl border-b mb-4">Masukkan Data Akun Anda</h2>
-                        <form action="succes.html " class="flex flex-col justify-center items-center md:items-stretch">
+                        <form action="{{ route('checkout') }} " class="flex flex-col justify-center items-center md:items-stretch">
                             <!-- START: Input Id User-->
                             <div class="flex flex-col mb-4 w-full">
                                 <label for="id-user" class="text-sm md:text-lg font-semibold mb-2">
@@ -516,9 +516,9 @@
                                     </div>
                                 </div>
                                 <form action="">
-                                <button disabled type="submit"
-                                    class="bg-slate-800  text-white focus:bg-sky-500 focus:outline-none w-56 md:w-full py-2 rounded-2xl text-lg focus:text-sky-700 transition-all duration-200 px-6 mx-auto items-center"><i
-                                        class="fa-solid fa-cart-shopping mr-2"></i>Pesan Sekarang</button>
+                                    <button disabled type="submit"
+                                        class="bg-slate-800  text-white focus:bg-sky-500 focus:outline-none w-56 md:w-full py-2 rounded-2xl text-lg focus:text-sky-700 transition-all duration-200 px-6 mx-auto items-center"><i
+                                            class="fa-solid fa-cart-shopping mr-2"></i>Pesan Sekarang</button>
                                 </form>
                             </div>
                             <!-- Tombol -->

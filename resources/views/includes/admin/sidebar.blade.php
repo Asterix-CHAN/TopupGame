@@ -31,7 +31,7 @@
                 <h2 class="font-semibold text-sm md:text-md text-center text-teal-500">
                     {{ Auth::user()->name }}
                 </h2>
-                <p class="text-xs md:text-sm text-gray-500 text-center">{{ Auth::user()->roles }}</p>
+                <p class="text-xs md:text-sm text-gray-500 text-center">{{ Auth::user()->roles->pluck('name')->implode(', ') }}</p>
             </div>
         </div>
 

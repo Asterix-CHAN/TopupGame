@@ -85,8 +85,8 @@
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     {{ $user->email }}</td>
                                                 <td scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider {{ $user->roles == 'ADMIN' ? 'text-orange-600' : 'text-cyan-600' }}" >
-                                                    {{ $user->roles }}</td>
+                                                    class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider {{ $user->roles->pluck('name')->implode(', ') == 'admin' ? 'text-orange-600' : 'text-cyan-600' }}" >
+                                                    {{ $user->roles->pluck('name')->implode(', ')  }}</td>
                                                 <td scope="col"
                                                     class="px-6 py-3 text-center items-center  text-xs font-medium text-gray-500 tracking-wider gap-1 ">
                                                     <a href=""

@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('category_topupgame_package', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('topupgame_package_id')->constrained()->onDelete('cascade');
-            $table->foreignId('category_id')->constrained()->onDelete('cascade');
+            $table->foreignId('topupgame_package_id')->constrained('topupgame_packages')->onDelete('cascade');
+            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->timestamps();
         });
     }

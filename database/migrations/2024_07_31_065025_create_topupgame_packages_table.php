@@ -21,7 +21,7 @@ return new class extends Migration
             $table->double('price');
             $table->string('stock');
             $table->text('image');
-            // $table->string('categories');
+            // $table->foreignId('category_id')->constrained(table: 'categories');
             // $table->string('platform');
             $table->softDeletes();
             $table->timestamps();
