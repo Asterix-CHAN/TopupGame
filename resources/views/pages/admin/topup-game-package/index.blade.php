@@ -114,7 +114,8 @@
 
                                                 <td scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    {{ $item->platform_name->name }}
+                                                    {{ $item->platform_name ? $item->platform_name->name : 'No platform available' }}
+
                                                 <td scope="col"
                                                     class="px-6 py-3 text-center items-center  text-xs font-medium text-gray-500 tracking-wider gap-1 ">
                                                     <a href="{{ route('topup-package.edit', $item->id) }}"

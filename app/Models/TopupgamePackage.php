@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class TopupgamePackage extends Model
 {
@@ -30,7 +31,7 @@ class TopupgamePackage extends Model
 
     public function platform_name(): BelongsTo
     {
-        return $this->belongsTo(Platform::class, 'platform_id', 'id');
+        return $this->belongsTo(Platform::class,  'platform_id', 'id');
     }
     
     public function categories(): BelongsToMany
@@ -43,4 +44,7 @@ class TopupgamePackage extends Model
         return $this->hasMany(Gallery::class, 'topupgame_packages_id', 'id');
     }
 
+    public function product() {
+        return $this->hasMany(ProductPackage::class, 'topupgame_package_id', 'id');
+    }
 }

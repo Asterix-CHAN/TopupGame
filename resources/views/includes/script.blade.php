@@ -20,4 +20,4 @@
     <script src="{{ url('Game/src/js/anchorLink.js') }}"></script>
     <script src="{{ url('Game/src/js/modal.js') }}"></script>
     <script src="{{ url('Game/src/js/dropdown.js') }}"></script>
-    
+    <script src="{{ url('frontend/libraries/jquery/jquery-3.7.1.js') }}"></script>

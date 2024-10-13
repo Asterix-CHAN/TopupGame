@@ -23,6 +23,7 @@ return new class extends Migration
             $table->text('image');
             // $table->foreignId('category_id')->constrained(table: 'categories');
             // $table->string('platform');
+            // $table->foreignId('product_id')->constrained('products_packages');
             $table->softDeletes();
             $table->timestamps();
         });

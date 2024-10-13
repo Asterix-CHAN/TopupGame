@@ -4,23 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Platform extends Model
+class ProductPackage extends Model
 {
     use HasFactory;
     use SoftDeletes;
-
-   
     protected $fillable = [
-        'name'
+        'price', 'diamond', 'topupgame_package_id'
     ];
 
     protected $hidden = [];
 
-    public function topup(): HasMany
-    {
-        return $this->hasMany(TopupgamePackage::class, 'platform_id', 'id');
+    public function game_packages() {
+        return $this->belongsTo(TopupgamePackage::class, 'topupgame_package_id', 'id');
     }
 }

@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\PlatformController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\TopupgamePackageController;
 
 /*
@@ -38,6 +39,7 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function() {
     Route::get('/admin', function () {
         return view('dashboard');
     })->name('dashboard');
+    Route::resource('product-packages', ProductController::class);
     Route::resource('topup-package', TopupgamePackageController::class);
     Route::resource('category', CategoryController::class);
     Route::resource('gallery', GalleryController::class);

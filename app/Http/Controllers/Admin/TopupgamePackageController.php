@@ -91,15 +91,15 @@ class TopupgamePackageController extends Controller
     {
 
         $data = $request->validate([
-            'name' => 'required|max:255',
+            'name' => 'required|string|max:255',
             'developer' => 'required|max:255',
             'description' => 'required|max:255',
             'about' => 'required|max:255',
             'price' => 'required|numeric',
-            'stock' => 'required|max:255',
+            'stock' => 'required|numeric',
             'category_id' => 'required|array|min:1',
             'category_id.*' => 'required|integer|exists:categories,id',
-            'platform_id' => 'required|max:255',
+            'platform_id' => 'required|integer|max:255',
             'image' => 'image|mimes:jpeg,png,jpg|max:2048',
         ]);
 

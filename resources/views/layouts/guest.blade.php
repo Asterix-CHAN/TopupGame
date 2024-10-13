@@ -19,11 +19,10 @@
 </head>
 
 <body class="font-sans text-gray-900 antialiased mx-2 ">
-    <div class="min-h-screen  flex flex-col sm:justify-center items-center  pt-6 sm:pt-0 bg-gray-100">
+    <div class=" container min-h-screen min-w-full flex flex-col justify-center items-center  pt-6 sm:pt-0 bg-gray-100">
         {{ $header }}
-
-        <div class="w-full  md:w-1/2 sm:max-w-md mt-6 px-6 py-4 bg-transparent shadow-md overflow-hidden sm:rounded-lg ">
-
+        <div
+            class="w-full  md:w-1/2 sm:max-w-md mt-6 px-6 py-4 bg-transparent shadow-md overflow-hidden sm:rounded-lg ">
             {{ $slot }}
         </div>
     </div>
