@@ -51,7 +51,10 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        //
+        // $items = ProductPackage::with('game_packages')->findOrFail($id);
+
+        // return view('pages.admin.topup-game-package.show-producst', compact('items'));
+
     }
 
     /**

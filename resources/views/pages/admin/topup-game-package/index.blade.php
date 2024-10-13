@@ -122,6 +122,10 @@
                                                         class="text-blue-600 hover:text-blue-400 flex flex-row"><i
                                                             class="fa-solid fa-pen-to-square mx-1"></i>Edit
                                                     </a>
+                                                    <a href="{{ route('topup-package.show', $item->id) }}" class="text-blue-600 hover:text-blue-400 flex flex-row">
+                                                        <i
+                                                        class="fa-solid fa-pen-to-square mx-1"></i>Product
+                                                    </a>
                                                     <a href="{{ route('topup-package.destroy', $item->id) }}"
                                                         class="text-red-600 hover:text-red-400 flex flex-row"
                                                         data-confirm-delete="true"><i

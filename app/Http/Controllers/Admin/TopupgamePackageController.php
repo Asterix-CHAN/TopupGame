@@ -13,7 +13,7 @@ use App\Models\TopupgamePackage;
 use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\Admin\TopupgamePackageRequest;
-
+use App\Models\ProductPackage;
 
 class TopupgamePackageController extends Controller
 {
@@ -70,7 +70,16 @@ class TopupgamePackageController extends Controller
      */
     public function show(string $id)
     {
-        //
+        
+    $items = TopupgamePackage::find($id);
+    
+    $products = ProductPackage::with('game_packages')->where('topupgame_package_id', $id)->get();
+
+    if (!$items || $products->isEmpty()) {
+        return redirect()->back()->with('error', 'Data not found');
+    }
+
+    return view('pages.admin.topup-game-package.show-products', compact('items', 'products'));
     }
 
     /**
