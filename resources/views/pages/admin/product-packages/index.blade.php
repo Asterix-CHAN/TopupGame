@@ -35,7 +35,10 @@
                                                 Name</th>
                                             <th scope="col"
                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                Image</th>
+                                                Price</th>
+                                                <th scope="col"
+                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Diamond</th>
                                             <th scope="col"
                                                 class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Action</th>
@@ -50,9 +53,9 @@
                                                 <td scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     {{$item->game_packages->name}}</td>
-                                                    <td scope="col"
+                                                <td scope="col"
                                                     class="px-6 py-3  text-left  rounded-lg  text-xs font-medium text-gray-500 uppercase tracking-wider ">
-                                                    {{ $item->price }}
+                                                    Rp. {{ $item->price }}
                                                 </td>
                                                 <td scope="col"
                                                 class="px-6 py-3  text-left  rounded-lg  text-xs font-medium text-gray-500 uppercase tracking-wider ">
