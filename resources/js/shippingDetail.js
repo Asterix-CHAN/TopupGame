@@ -44,11 +44,6 @@
   
   
 let data = {
-  "id-user": '',
-  "server-user": '',
-  "phone-number": '',
-  // "topup-value": '',
-
 };
 
 const inputs = document.querySelectorAll("#shipping-detail input[data-input]");
