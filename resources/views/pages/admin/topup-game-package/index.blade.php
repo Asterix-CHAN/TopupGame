@@ -1,6 +1,6 @@
 <x-app-layout>
-   
-    
+
+
     @if (Session::has('success'))
         <script>
             Swal.fire({
@@ -13,7 +13,7 @@
 
 
     <x-slot name="header">
-      
+
         <div class="mx-2 md:container md:mx-auto sm:px-8 lg:px-10">
             <h2 class="font-semibold text-2xl text-gray-800 leading-tight mt-3 ">
                 {{ __('Daftar Produk') }}
@@ -36,7 +36,7 @@
                             <div class="col-lg-12 mb-4 flex justify-end">
 
                                 <div x-data="{ isOpen: false }" class="relative ...">
-                                    <x-secondary-button @click="isOpen = !isOpen">{{ __('Tambah Produk') }}
+                                    <x-secondary-button @click="isOpen = !isOpen">{{ __('Tambah Game') }}
                                     </x-secondary-button>
 
                                     <div x-show="isOpen"
@@ -122,9 +122,9 @@
                                                         class="text-blue-600 hover:text-blue-400 flex flex-row"><i
                                                             class="fa-solid fa-pen-to-square mx-1"></i>Edit
                                                     </a>
-                                                    <a href="{{ route('topup-package.show', $item->id) }}" class="text-blue-600 hover:text-blue-400 flex flex-row">
-                                                        <i
-                                                        class="fa-solid fa-pen-to-square mx-1"></i>Product
+                                                    <a href="{{ route('topup-package.show', $item->id) }}"
+                                                        class="text-orange-500 hover:text-orange-400 flex flex-row">
+                                                        <i class="fa-solid fa-warehouse mx-1"></i>Product
                                                     </a>
                                                     <a href="{{ route('topup-package.destroy', $item->id) }}"
                                                         class="text-red-600 hover:text-red-400 flex flex-row"

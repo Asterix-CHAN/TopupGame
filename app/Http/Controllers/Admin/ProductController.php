@@ -17,8 +17,11 @@ class ProductController extends Controller
     public function index()
     {
         $items = ProductPackage::with('game_packages')->get();
-    
-        return view('pages.admin.product-packages.index', compact( 'items'));
+         // sweetAlert Delete message
+         $title = 'Delete Product!';
+         $text = "Are you sure you want to delete?";
+         confirmDelete($title, $text);
+        return view('pages.admin.product-packages.index', compact('items'));
     }
 
     /**
@@ -43,7 +46,7 @@ class ProductController extends Controller
 
         ProductPackage::create($data);
         Alert::success('Success Title', 'Success Message');
-        return redirect()->route('product-packages.index');
+        return redirect()->route('product-packages.index')->with('success', 'Data Berhasil Ditambahkan');
     }
 
     /**
@@ -78,6 +81,15 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        
+      try {
+        $data = ProductPackage::findOrFail($id);
+        $data->delete();
+        Alert::success('Success Title', 'Success Message');
+        return redirect()->back()->with('success', 'Data Berhasil Dihapus');
+      } catch (\Throwable $th) {
+        Alert::error('Error Title', 'Error Message');
+        return redirect()->back()->with('error', 'Data gagal dihapus');
+      } 
     }
 }

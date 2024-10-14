@@ -70,16 +70,16 @@ class TopupgamePackageController extends Controller
      */
     public function show(string $id)
     {
-        
-    $items = TopupgamePackage::find($id);
-    
-    $products = ProductPackage::with('game_packages')->where('topupgame_package_id', $id)->get();
 
-    if (!$items || $products->isEmpty()) {
-        return redirect()->back()->with('error', 'Data not found');
-    }
+        $items = TopupgamePackage::find($id);
 
-    return view('pages.admin.topup-game-package.show-products', compact('items', 'products'));
+        $products = ProductPackage::with('game_packages')->where('topupgame_package_id', $id)->get();
+
+        if (!$items || $products->isEmpty()) {
+            return redirect()->back()->with('error', 'Data not found');
+        }
+
+        return view('pages.admin.topup-game-package.show-products', compact('items', 'products'));
     }
 
     /**

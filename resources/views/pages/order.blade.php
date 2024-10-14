@@ -187,60 +187,61 @@
                 <div id="offcanvas"
                     class="w-full px-4 py-6 rounded-lg rounded-b-none md:rounded-lg md:relative md:z-10 bg-slate-500 shadow-md shadow-slate-700 flex h-auto fixed bottom-0 left-0 right-0 translate-y-full transition-transform duration-300 ease-in-out  md:translate-y-0 md:flex md:flex-col z-40">
                     <div id="shipping-detail" class=" px-4 relative flex flex-col w-full">
-                        
+
                         <button id="close-offcanvas" class="md:hidden text-right text-white">
                             <i class="fa-solid fa-xmark text-2xl"></i>
                         </button>
-                        <form action="{{ route('checkout') }}" >
-                        <div" class="flex flex-col justify-center items-center md:items-stretch">
-                            {{-- Total Diamon --}}
-                            <div class="flex flex-col mb-4 w-full">
-                                <p id="topup" class="text-white font-semibold">Informasi Pesanan</p>
-                                <input data-input id="topup-value" type="hidden" value="" />
+                        <form action="{{ route('checkout') }}">
+                            @csrf
+                            <div" class="flex flex-col justify-center items-center md:items-stretch">
+                                {{-- Total Diamon --}}
+                                <div class="flex flex-col mb-4 w-full">
+                                    <p id="topup" class="text-white font-semibold">Informasi Pesanan</p>
+                                    <input data-input id="topup-value" type="hidden" value="" name="" />
 
-                            </div>
-                            {{-- Total Diamond --}}
-                            <!-- START: Input Id User-->
-                            <div class="flex flex-col mb-4 w-full">
-                                <label for="id-user" class="text-sm md:text-lg font-semibold mb-2">
-                                    ID
-                                </label>
-                                <input data-input type="text" id="id-user"
-                                    class="border border-gray-200 rounded-lg px-4 py-2 bg-white text-small focus:border-blue-200 focus:outline-none"
-                                    placeholder="Masukkan User ID..." />
-                            </div>
-                            <!-- END: Input Id User -->
-                            <!-- START: Input Server User-->
-                            <div class="flex flex-col mb-4 w-full">
-                                <label for="server-user" class="text-sm md:text-lg font-semibold mb-2">
-                                    Server
-                                </label>
-                                <input data-input type="text" id="server-user"
-                                    class="border border-gray-200 rounded-lg px-4 py-2 bg-white text-small focus:border-blue-200 focus:outline-none"
-                                    placeholder="Masukkan User Server..." />
-                            </div>
-                            <!-- END:  Input Server User -->
-                            <!-- START: Phone Number-->
-                            <div class="flex flex-col mb-4 w-full">
-                                <label for="phone-number" class="text-sm md:text-lg font-semibold  mb-2">
-                                    Nomor WhatsApp
-                                </label>
-                                <input data-input type="tel" id="phone-number"
-                                    class="border border-gray-200 rounded-lg px-4 py-2 bg-white text-small focus:border-blue-200 focus:outline-none"
-                                    placeholder="Masukkan Nomor WhatsApp" />
-                            </div>
-                            <!-- END:Phone Number  -->
-
-                            <!-- START: Choose Payment-->
-                            <div class="mb-4 w-full h-auto  ">
-                                <label class="text-sm md:text-lg font-semibold mb-2 gap-y-2 text-white">
-                                    Total
-                                </label>
-                                <div>
-                                    <p id="price-list" class="right-0 text-base md:text-lg text-white"></p>
                                 </div>
-                                <!-- Item Wrapper -->
-                                {{-- <div class=" max-w-xl mx-auto">
+                                {{-- Total Diamond --}}
+                                <!-- START: Input Id User-->
+                                <div class="flex flex-col mb-4 w-full">
+                                    <label for="id-user" class="text-sm md:text-lg font-semibold mb-2">
+                                        ID
+                                    </label>
+                                    <input data-input type="text" id="id-user"
+                                        class="border border-gray-200 rounded-lg px-4 py-2 bg-white text-small focus:border-blue-200 focus:outline-none"
+                                        placeholder="Masukkan User ID..." />
+                                </div>
+                                <!-- END: Input Id User -->
+                                <!-- START: Input Server User-->
+                                <div class="flex flex-col mb-4 w-full">
+                                    <label for="server-user" class="text-sm md:text-lg font-semibold mb-2">
+                                        Server
+                                    </label>
+                                    <input data-input type="text" id="server-user"
+                                        class="border border-gray-200 rounded-lg px-4 py-2 bg-white text-small focus:border-blue-200 focus:outline-none"
+                                        placeholder="Masukkan User Server..." />
+                                </div>
+                                <!-- END:  Input Server User -->
+                                <!-- START: Phone Number-->
+                                <div class="flex flex-col mb-4 w-full">
+                                    <label for="phone-number" class="text-sm md:text-lg font-semibold  mb-2">
+                                        Nomor WhatsApp
+                                    </label>
+                                    <input data-input type="tel" id="phone-number"
+                                        class="border border-gray-200 rounded-lg px-4 py-2 bg-white text-small focus:border-blue-200 focus:outline-none"
+                                        placeholder="Masukkan Nomor WhatsApp" />
+                                </div>
+                                <!-- END:Phone Number  -->
+
+                                <!-- START: Choose Payment-->
+                                <div class="mb-4 w-full h-auto  ">
+                                    <label class="text-sm md:text-lg font-semibold mb-2 gap-y-2 text-white">
+                                        Total
+                                    </label>
+                                    <div>
+                                        <p id="price-list" class="right-0 text-base md:text-lg text-white"></p>
+                                    </div>
+                                    <!-- Item Wrapper -->
+                                    {{-- <div class=" max-w-xl mx-auto">
                                     <ul class="shadow-box text-white ">
                                         <!-- List E-Wallet -->
                                         <li class="relative border-b border-gray-200" x-data="{ selected: null }">
@@ -309,27 +310,27 @@
                                         <!-- End E-wallet -->
                                     </ul>
                                 </div> --}}
-                                <!-- End Item Wrapper -->
-                            </div>
-                            <!-- END:Choose Payment  -->
+                                    <!-- End Item Wrapper -->
+                                </div>
+                                <!-- END:Choose Payment  -->
 
-                            <!-- Tombol -->
-                            @auth
-                              <div class="w-full">
-                                    <button disabled type="submit"
-                                        class=" bg-slate-800  text-white focus:bg-sky-500 focus:outline-none w-full py-2  md:rounded-2xl rounded-lg text-base md:text-lg focus:text-sky-700 transition-all duration-200 px-6 mx-auto items-center col-end-7 col-span-2 md:col-start-1 md:col-end-7"><i
-                                            class="fa-solid fa-cart-shopping mr-2"></i>Beli</button>
-                                        </div>
-                                
-                            @endauth
+                                <!-- Tombol -->
+                                @auth
+                                    <div class="w-full">
+                                        <button disabled type="submit"
+                                            class=" bg-slate-800  text-white focus:bg-sky-500 focus:outline-none w-full py-2  md:rounded-2xl rounded-lg text-base md:text-lg focus:text-sky-700 transition-all duration-200 px-6 mx-auto items-center col-end-7 col-span-2 md:col-start-1 md:col-end-7"><i
+                                                class="fa-solid fa-cart-shopping mr-2"></i>Beli</button>
+                                    </div>
+
+                                @endauth
                         </form>
-                            @guest
-                                <a href="{{ route('login') }}"
-                                    class=" bg-cyan-900 hover:bg-cyan-600 text-white focus:bg-sky-800 focus:outline-none md:w-full py-2  md:rounded-2xl rounded-lg text-xs md:text-base text-center focus:text-white transition-all duration-200 px-6 mx-auto items-center col-end-7 col-span-2 md:col-start-1 md:col-end-7">Login
-                                    Atau Register Untuk Transaksi</a>
-                            @endguest
+                        @guest
+                            <a href="{{ route('login') }}"
+                                class=" bg-cyan-900 hover:bg-cyan-600 text-white focus:bg-sky-800 focus:outline-none md:w-full py-2  md:rounded-2xl rounded-lg text-xs md:text-base text-center focus:text-white transition-all duration-200 px-6 mx-auto items-center col-end-7 col-span-2 md:col-start-1 md:col-end-7">Login
+                                Atau Register Untuk Transaksi</a>
+                        @endguest
 
-                            <!-- Tombol -->
+                        <!-- Tombol -->
                     </div>
                 </div>
             </div>
@@ -360,7 +361,7 @@
 
 @push('top-addon-script')
     {{-- Input --}}
-   @vite('resources/js/shippingDetail.js')
+    @vite('resources/js/shippingDetail.js')
 
     {{-- button topup --}}
     <script>
@@ -390,5 +391,4 @@
 
     {{-- offcanvas --}}
     @vite('resources/js/buttonOrder.js')
-   
 @endpush

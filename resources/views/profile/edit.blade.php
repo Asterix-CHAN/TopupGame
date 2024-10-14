@@ -1,9 +1,9 @@
 <x-app-layout>
-    @foreach ($roles as $role)
+    {{-- @foreach ($roles as $role)
         <input type="checkbox" name="roles[]" value="{{ $role->name }}"
             {{ $user->hasRole($role->name) ? 'checked' : '' }}>
         {{ $role->name }}
-    @endforeach
+    @endforeach --}}
     <x-slot name="header">
         <h2 class="font-semibold text-2xl text-gray-800 leading-tight mt-3 ml-4">
             {{ __('Profile') }}

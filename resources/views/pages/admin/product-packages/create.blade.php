@@ -37,7 +37,7 @@
                     <form method="post" action="{{ route('product-packages.store') }}">
                         @csrf
                         <div class="card mt-5">
-                        
+
                             <div class="card-body flex gap-2">
                                 <div class="w-full">
 
@@ -51,8 +51,8 @@
                                             @endforeach
                                         </select>
                                         @error('topupgame_package_id')
-                                        <x-input-error :messages="$message"></x-input-error>
-                                         @enderror
+                                            <x-input-error :messages="$message"></x-input-error>
+                                        @enderror
                                     </div>
                                     <div class="mb-4">
                                         <div class="bg-white p-6 rounded-lg shadow-lg">
@@ -60,17 +60,17 @@
                                             <div class="preview mt-4 mb-3" id="imagePreview">
                                                 <p class="text-gray-500">No image selected</p>
                                             </div>
-                                            <x-text-input type="number" name="price" 
-                                                class="block" placeholder="Harga"></x-text-input>
-                                                @error('price')
+                                            <x-text-input type="number" name="price" class="block"
+                                                placeholder="Harga"></x-text-input>
+                                            @error('price')
                                                 <x-input-error :messages="$message"></x-input-error>
-                                                 @enderror
+                                            @enderror
 
-                                                 <x-text-input type="number" name="diamond" 
-                                                class="block" placeholder="diamond"></x-text-input>
-                                                @error('diamond')
+                                            <x-text-input type="number" name="diamond" class="block"
+                                                placeholder="diamond"></x-text-input>
+                                            @error('diamond')
                                                 <x-input-error :messages="$message"></x-input-error>
-                                                 @enderror
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -85,7 +85,7 @@
         </div>
         </div>
     </main>
-    
-   
+
+
 
 </x-app-layout>

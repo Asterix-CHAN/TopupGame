@@ -1,4 +1,27 @@
 <x-app-layout>
+
+    {{-- Sweet Alert --}}
+    @if (Session::has('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: '{{ Session::get('success') }}'
+            });
+        </script>
+    @endif
+
+    @if (Session::has('error'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: '{{ Session::get('error') }}'
+            })
+        </script>
+    @endif
+    {{-- Sweet Alert --}}
+
     <x-slot name="header">
         <div class="md:container mx-auto sm:px-8 lg:px-10">
             <h2 class="font-semibold text-2xl text-gray-800 leading-tight mt-3">
@@ -36,7 +59,7 @@
                                             <th scope="col"
                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Price</th>
-                                                <th scope="col"
+                                            <th scope="col"
                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Diamond</th>
                                             <th scope="col"
@@ -49,37 +72,36 @@
                                             <tr>
                                                 <td scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    {{ $index+1 }}</td>
+                                                    {{ $index + 1 }}</td>
                                                 <td scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    {{$item->game_packages->name}}</td>
+                                                    <a href="" class="hover:text-blue-600"> {{ $item->game_packages->name }}</a>
+                                                   </td>
                                                 <td scope="col"
                                                     class="px-6 py-3  text-left  rounded-lg  text-xs font-medium text-gray-500 uppercase tracking-wider ">
                                                     Rp. {{ $item->price }}
                                                 </td>
                                                 <td scope="col"
-                                                class="px-6 py-3  text-left  rounded-lg  text-xs font-medium text-gray-500 uppercase tracking-wider ">
-                                                {{ $item->diamond }}
-                                            </td>
-
+                                                    class="px-6 py-3  text-left  rounded-lg  text-xs font-medium text-gray-500 uppercase tracking-wider ">
+                                                    {{ $item->diamond }}
+                                                </td>
                                                 <td scope="col"
-                                                class="px-6 py-3 text-center text-xs font-medium text-gray-500 tracking-wider gap-2">
-                                              
-                                                <a href="" class="text-blue-600 hover:text-blue-400 "><i
-                                                        class="fa-solid fa-pen-to-square mx-1"></i>{{ __('Edit') }}
-                                                </a>
-                                                <a href=""
-                                                    class="text-red-600 hover:text-red-400 "
-                                                    data-confirm-delete="true"><i
-                                                        class="fa fa-trash mx-1"></i>Delete</a>
-                                            </td>
+                                                    class="px-6 py-3 text-center text-xs font-medium text-gray-500 tracking-wider gap-2">
+
+                                                    <a href="" class="text-blue-600 hover:text-blue-400 "><i
+                                                            class="fa-solid fa-pen-to-square mx-1"></i>{{ __('Edit') }}
+                                                    </a>
+                                                    <a href="{{ route('product-packages.destroy', $item->id) }}"
+                                                        class="text-red-600 hover:text-red-400 "
+                                                        data-confirm-delete="true"><i
+                                                            class="fa fa-trash mx-1"></i>Delete</a>
+                                                </td>
                                             </tr>
                                         @empty
                                             <tr>
                                                 <td colspan="4" class="text-center">Data Kosong</td>
                                             </tr>
                                         @endforelse
-
                                     </tbody>
                                 </table>
                             </div>
@@ -89,7 +111,7 @@
             </div>
         </div>
 
-       
+
 
     </main>
 
