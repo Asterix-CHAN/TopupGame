@@ -19,7 +19,7 @@ class UserTableSeeder extends Seeder
             'email' => 'admin@example.com',
             'password' => bcrypt('password'),
         ]);
-        // atau user id yang sesuai
+       
         $admin->assignRole('admin');
 
         // $user = User::find(1); 

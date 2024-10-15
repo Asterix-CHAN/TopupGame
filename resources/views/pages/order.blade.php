@@ -81,8 +81,9 @@
                     <!-- H2 -->
                     <!-- Card Promo Diamond -->
                     <div class="grid text-center grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 justify-center ">
-                        <!-- Start Card 1 -->
-                        <button data-price="120000" data-topup="5" id="btn-buy-1"
+                        <!-- Start Card 1 -->         <!-- id btn-buy-1 untuk buttonOrder.js animasi screen handphone -->
+                                                    {{-- untuk jquery pake class price-button --}} 
+                        <button data-price="120000" data-topup="5" id="btn-buy-1"  
                             class=" price-button w-auto flex-auto md:flex-initial px-2 md:px-4 items-center relative flex duration-300 ease-in-out hover:shadow-2xl hover:ring-2 hover:ring-primary-500 hover:ring-offset-2 hover:ring-offset-white md:rounded-2x border-2 min-h-[50px] z-20 rounded-xl cursor-pointer hover:bg-white gap-2 py-1 overflow-x-hidden">
                             <div class="absolute rounded-xl inset-0 bg-gradient-to-r from-black/70 z-10"></div>
                             <img src="{{ url('Game/src') }}/images/logo/diamond.png" alt="Game Logo"
@@ -107,7 +108,7 @@
                     <!-- H2 -->
                     <!-- Card Weekly Pass -->
                     <div class="grid text-center grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-2 justify-center">
-                        <!-- Start Card 1 -->
+                        <!-- Start Card 1 -->  <!-- id btn-buy-2 untuk buttonOrder.js animasi screen handphone -->
                         <button data-price="Rp 27.000" data-topup="x1 Weekly Diamond Pass (Misi Top Up + 100)"
                             id="btn-buy-2"
                             class="price-button w-auto flex-auto md:flex-initial pl-2 pr-0 md:pr-1 items-center relative flex duration-300 ease-in-out hover:shadow-2xl hover:ring-2 hover:ring-primary-500 hover:ring-offset-2 hover:ring-offset-white md:rounded-2x border-2 min-h-[50px]  z-20 rounded-xl cursor-pointer hover:bg-white hover:text-slate-700 overflow-x-hidden gap-1">
@@ -122,34 +123,7 @@
                             </div>
                         </button>
                         <!-- End Card 1 -->
-                        <!-- Start Card 1 -->
-                        <div
-                            class="w-auto flex-auto md:flex-initial px-4 md:px-4 items-center relative flex duration-300 ease-in-out hover:shadow-2xl hover:ring-2 hover:ring-primary-500 hover:ring-offset-2 hover:ring-offset-white md:rounded-2x border-2 min-h-[70px] z-20 rounded-xl cursor-pointer hover:bg-white hover:text-slate-700">
-                            <div class="absolute rounded-xl inset-0 bg-gradient-to-r from-black/70 e z-10"></div>
-                            <img src="../images/logo/diamond.png" alt="Game Logo"
-                                class="relative aspect-square h-10 w-10 rounded-lg !object-cover !object-center md:h-14 md:w-14 md:rounded-xl left-0 z-20">
-                            <div
-                                class=" flex w-full flex-col text-white  text-start justify-start pl-2 flex-1 z-20 relative my-2">
-                                <h5 class=" text-xs font-semibold  md:text-base text-ellipsis overflow-hidden">
-                                    x1 Weekly Diamond Pass (Misi Top Up + 100)</h5>
-                                <p class="text-xs md:text-sm text-ellipsis overflow-hidden">Rp 27.000</p>
-                            </div>
-                        </div>
-                        <!-- End Card 1 -->
-                        <!-- Start Card 1 -->
-                        <div
-                            class="w-auto flex-auto md:flex-initial px-4 md:px-4 items-center relative flex duration-300 ease-in-out hover:shadow-2xl hover:ring-2 hover:ring-primary-500 hover:ring-offset-2 hover:ring-offset-white md:rounded-2x border-2 min-h-[70px] z-20 rounded-xl cursor-pointer hover:bg-white hover:text-slate-700">
-                            <div class="absolute rounded-xl inset-0 bg-gradient-to-r from-black/70 e z-10"></div>
-                            <img src="../images/logo/diamond.png" alt="Game Logo"
-                                class="relative aspect-square h-10 w-10 rounded-lg !object-cover !object-center md:h-14 md:w-14 md:rounded-xl left-0 z-20">
-                            <div
-                                class=" flex w-full flex-col text-white  text-start justify-start pl-2 flex-1 z-20 relative my-2">
-                                <h5 class=" text-xs font-semibold  md:text-base text-ellipsis overflow-hidden">
-                                    x1 Weekly Diamond Pass (Misi Top Up + 100)</h5>
-                                <p class="text-xs md:text-sm text-ellipsis overflow-hidden">Rp 27.000</p>
-                            </div>
-                        </div>
-                        <!-- End Card 1 -->
+                       
                     </div>
                     <!-- End Card Wekkly Pass -->
                     <!-- H2 -->

@@ -36,6 +36,7 @@ Route::get('/order/{slug}', [OrderController::class, 'index'])->name('order');
 
 // Role Admin
 Route::middleware(['auth', 'verified', 'role:admin'])->group(function() {
+
     Route::get('/admin', function () {
         return view('dashboard');
     })->name('dashboard');
@@ -46,13 +47,15 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function() {
     Route::resource('platform', PlatformController::class);
     Route::get('/users', [UserController::class, 'show'])->name('users.show');
     Route::get('/users/{id}', [UserController::class, 'destroy'])->name('users.delete');
-    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+    // Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
 });
 
- 
+ Route::middleware(['auth'])->group(function(){
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+ });
 // Role User
 Route::middleware('role:user')->group(function(){
-    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+    // Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
 });
 
 
