@@ -8,8 +8,10 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\GameListController;
-use App\Http\Controllers\Admin\RoleController;
+
 use App\Http\Controllers\Admin\UserController;
+
+use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\DiamondController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\ProductController;
@@ -45,12 +47,14 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function() {
     })->name('dashboard');
     Route::resource('product-packages', ProductController::class);
     Route::get('product-packages/create/{id}', [ProductController::class, 'create'])->name('product-packages.create');
-
+    // Route::post('diamonds/event', [DiamondController::class, 'createEvent'])->name('diamonds.createEvent');
     Route::resource('game-packages', TopupgamePackageController::class);
     Route::resource('category', CategoryController::class);
     Route::resource('gallery', GalleryController::class);
     Route::resource('platform', PlatformController::class);
     Route::resource('diamonds', DiamondController::class);
+    Route::resource('events', EventController::class);
+    Route::get('events/create/{id}', [EventController::class, 'create'])->name('event.create');
     Route::get('/users', [UserController::class, 'show'])->name('users.show');
     Route::get('/users/{id}', [UserController::class, 'destroy'])->name('users.delete');
     // Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');

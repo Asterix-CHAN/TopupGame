@@ -42,10 +42,10 @@
                                 <div class="w-full">
 
                                     <div class="mb-4">
-                                        <select 
+                                        <select
                                             class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 "
-                                            name="game_id" id="grid-state">                          
-                                            <option  value="{{ $data->id }}">{{ $data->name }}</option>
+                                            name="game_id" id="grid-state">
+                                            <option value="{{ $data->id }}">{{ $data->name }}</option>
                                         </select>
                                         @error('game_id')
                                             <x-input-error :messages="$message"></x-input-error>
@@ -53,7 +53,7 @@
                                     </div>
                                     <div class="mb-4">
                                         <div class="bg-white p-6 rounded-lg shadow-lg gap-3 flex flex-col">
-                                            <h1 class="text-2xl font-semibold mb-4">Tambah Produk Diamond</h1>
+                                            <h1 class="text-2xl font-semibold mb-4">Tambah Produk Diamonds</h1>
                                             <x-text-input type="number" name="price" class="block"
                                                 placeholder="Harga"></x-text-input>
                                             @error('price')
@@ -61,7 +61,7 @@
                                             @enderror
 
                                             <x-text-input type="number" name="diamond" class="block"
-                                                placeholder="diamond" ></x-text-input>
+                                                placeholder="diamond"></x-text-input>
                                             @error('diamond')
                                                 <x-input-error :messages="$message"></x-input-error>
                                             @enderror
@@ -73,11 +73,42 @@
                         <div class="card-footer flex justify-end">
                             <x-primary-button>Create</x-primary-button>
                         </div>
+                    </form>
+
+                   
                 </div>
-                </form>
+               
+
+                {{-- <div class="container w-1/2">
+                    @if (Session::has('success'))
+                        <script>
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success!',
+                                text: '{{ Session::get('success') }}'
+                            });
+                        </script>
+                    @endif
+                    @if ($errors->any())
+                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+                            role="alert">
+                            <div class="alert-title">
+                                <h4 class="text-lg font-semibold">Whoops!</h4>
+                            </div>
+                            <span class="block sm:inline">There are some problems with your input.</span>
+                            <ul class="mt-2 list-disc pl-5">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                   
+                </div> --}}
+
             </div>
         </div>
-        </div>
+       
     </main>
 
 

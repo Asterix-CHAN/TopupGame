@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('game_id')->constrained('topupgame_packages');
             $table->integer('diamond');
             $table->decimal('price');
+            $table->string('slug');
             $table->softDeletes();
             $table->timestamps();
         });

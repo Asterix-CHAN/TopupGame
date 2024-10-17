@@ -24,7 +24,7 @@ class GalleryController extends Controller
 
         return view('pages.admin.galleries.index', ['items' => $items]);
     }
-    
+
 
     /**
      * Show the form for creating a new resource.
@@ -45,12 +45,10 @@ class GalleryController extends Controller
         $item = $request->all();
         $item['image'] = $request->file('image')->store('assets/galleries', 'public');
 
-       
+
         Gallery::create($item);
         Alert::success('Success Title', 'Success Message');
         return redirect()->back()->with('success', 'Data berhasil ditambahkan');
-    
-      
     }
 
     /**
@@ -79,15 +77,13 @@ class GalleryController extends Controller
     public function update(GalleryRequest $request, string $id)
     {
         $item = $request->all();
-           
+
         $item['image'] = $request->file('image')->store('assets/galleries', 'public');
-       
-            $data = Gallery::findOrFail($id);
-            $data->update($item);
-            Alert::success('Success Title', 'Success Message');
-            return redirect()->back()->with('success', 'Data berhasil diubah');
-        
-        
+
+        $data = Gallery::findOrFail($id);
+        $data->update($item);
+        Alert::success('Success Title', 'Success Message');
+        return redirect()->back()->with('success', 'Data berhasil diubah');
     }
 
     /**
@@ -96,7 +92,7 @@ class GalleryController extends Controller
     public function destroy(string $id)
     {
         $data = Gallery::findOrFail($id);
-   
+
         $data->delete();
         Alert::success('Success Title', 'Success Message');
         return redirect()->back()->with('success', 'Data berhasil diubah');

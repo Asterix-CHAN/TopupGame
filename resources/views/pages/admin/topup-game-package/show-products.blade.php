@@ -25,7 +25,7 @@
                                     class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-slate-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150">{{ __('Tambah Produk') }}</a>
                             </div>
 
-                            <div class="overflow-hidden shadow-md sm:rounded-lg">
+                            <div class="overflow-hidden shadow-md sm:rounded-lg flex flex-row gap-3">
                                 <table class="min-w-full divide-y divide-gray-200 items-center">
                                     <thead class="bg-gray-50 ">
                                         <tr>
@@ -38,6 +38,7 @@
                                             <th scope="col"
                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Diamond</th>
+                    
                                             <th scope="col"
                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Price</th>
@@ -67,6 +68,74 @@
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     {{ $item->price }}
                                                 </td>
+
+                                                <td
+                                                    class="px-6 py-3 text-center text-xs font-medium text-gray-500 tracking-wider gap-2">
+                                                    <a href="" class="text-blue-600 hover:text-blue-400">
+                                                        <i
+                                                            class="fa-solid fa-pen-to-square mx-1"></i>{{ __('Edit') }}
+                                                    </a>
+                                                    <a href="{{ route('event.create', $item->id) }}" class="text-green-600 hover:text-green-400">
+                                                        <i
+                                                            class="fa-solid fa-pen-to-square mx-1"></i>{{ __('Tambah Event') }}
+                                                    </a>
+                                                    <a href="" class="text-red-600 hover:text-red-400"
+                                                        data-confirm-delete="true">
+                                                        <i class="fa fa-trash mx-1"></i>{{ __('Delete') }}
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="5" class="text-center">Data Kosong</td>
+                                            </tr>
+                                        @endforelse
+
+                                    </tbody>
+                                </table>
+                                {{-- <table class="w-1/2 divide-y divide-gray-200 items-center">
+                                    <thead class="bg-gray-50 ">
+                                        <tr>
+                                            <th scope="col"
+                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                ID</th>
+                                            <th scope="col"
+                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Name</th>
+                                            <th scope="col"
+                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Diamond Event</th>
+                    
+                                            <th scope="col"
+                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Price</th>
+                                            <th scope="col"
+                                                class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Action</th>
+                                        </tr>
+                                    </thead>
+
+
+                                    <tbody class="bg-white divide-y divide-gray-200 items-center">
+                                        @forelse ($events as $index=>$event)
+                                            <tr>
+                                                <td
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    {{ $index + 1 }}
+                                                </td>
+                                                <td
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    {{ $event->game_packages->name }}
+                                                </td>
+                                                <td
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    {{ $event->diamond_event }}
+                                                </td>
+                                                <td
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    {{ $event->price }}
+                                                </td>
+
                                                 <td
                                                     class="px-6 py-3 text-center text-xs font-medium text-gray-500 tracking-wider gap-2">
                                                     <a href="" class="text-blue-600 hover:text-blue-400">
@@ -86,7 +155,7 @@
                                         @endforelse
 
                                     </tbody>
-                                </table>
+                                </table> --}}
                             </div>
                         </div>
                     </div>

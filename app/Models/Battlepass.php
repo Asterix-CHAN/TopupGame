@@ -11,7 +11,7 @@ class Battlepass extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'price', 'name'
+        'price', 'name', 'slug'
     ];
 
     protected $hidded = [];

@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('developer');
-            $table->text('description');
-            $table->longText('about');
+            $table->text('description')->nullable();
+            $table->longText('about')->nullable();
             $table->string('slug');
             $table->double('price');
-            $table->string('stock');
-            $table->text('image');
+            $table->string('stock')->nullable();
+            $table->text('image')->nullable();
             // $table->foreignId('category_id')->constrained(table: 'categories');
             // $table->string('platform');
             // $table->foreignId('product_id')->constrained('products_packages');

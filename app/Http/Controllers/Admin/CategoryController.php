@@ -24,7 +24,8 @@ class CategoryController extends Controller
         confirmDelete($title, $text);
 
         return view('pages.admin.category.index', [
-            'datas' => $data,'items' => $item
+            'datas' => $data,
+            'items' => $item
         ]);
     }
 

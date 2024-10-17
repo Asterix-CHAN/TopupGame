@@ -12,16 +12,18 @@ class Event extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'price','diamond_event', 'diamond_id'
+        'price', 'diamond_event', 'slug', 'game_id', 'diamond_id'
     ];
 
     protected $hidden = [];
 
-    public function diamond(){
-        return $this->belongsTo(Diamond::class, 'diamond_id', 'id');
+    
+
+    public function game_packages(){
+        return $this->belongsTo(TopupgamePackage::class, 'game_id', 'id');
     }
 
-    public function game(){
-        return $this->belongsTo(TopupgamePackage::class, 'game_id', 'id');
+    public function diamond(){
+        return $this->belongsTo(Diamond::class, 'diamond_id', 'id');
     }
 }

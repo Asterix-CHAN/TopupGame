@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+
 use App\Models\Event;
+
 use App\Models\Diamond;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -10,19 +12,14 @@ use App\Models\TopupgamePackage;
 use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class DiamondController extends Controller
+class EventController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $items = Diamond::with('game_packages')->get();
-        // sweetAlert Delete message
-        $title = 'Delete Diamond!';
-        $text = "Are you sure you want to delete?";
-        confirmDelete($title, $text);
-        return view('pages.admin.product-packages.index', compact('items'));
+        //
     }
 
     /**
@@ -30,7 +27,8 @@ class DiamondController extends Controller
      */
     public function create($id)
     {
-       
+        $data = Diamond::with([ 'game_packages'])->findOrFail($id);
+        return view('pages.admin.product-packages.create-events', compact('data'));
     }
 
     /**
@@ -38,18 +36,23 @@ class DiamondController extends Controller
      */
     public function store(Request $request)
     {
-        
+        // Validate the incoming request data
         $data = $request->validate([
             'price' => 'required|numeric|min:0|max:100000000',
-            'diamond' => 'required|integer',
+            'diamond_event' => 'integer',
             'game_id' => 'required|integer|exists:topupgame_packages,id',
+            'diamond_id' => 'integer|exists:diamonds,id'
         ]);
 
         $gamePackage = TopupgamePackage::findOrFail($request->game_id);
         $data['slug'] = Str::slug($gamePackage->name);
-        
-        Diamond::create($data);
-        Alert::success('Success Title', 'Success Message');
+
+          // If diamond_id is not provided, set it to null
+        $data['diamond_id'] = $request->diamond_id ?? null;
+
+        Event::create($data);
+
+        Alert::success('Success', 'Data Berhasil Ditambahkan');
         return redirect()->route('game-packages.index')->with('success', 'Data Berhasil Ditambahkan');
     }
 
@@ -61,17 +64,12 @@ class DiamondController extends Controller
         //
     }
 
-    public function event($id) {
-     
-    }
-    
-
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-       
+        //
     }
 
     /**

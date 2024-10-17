@@ -16,10 +16,9 @@ class PlatformController extends Controller
     {
         $item = Platform::paginate(10);
         return view('pages.admin.category.index', [
-          
+
             'items' => $item
         ]);
-
     }
 
     /**
@@ -58,7 +57,7 @@ class PlatformController extends Controller
     public function edit(string $id)
     {
         $item = Platform::findOrFail($id);
-        return view('pages.admin.category.edit-platform',compact('item'));
+        return view('pages.admin.category.edit-platform', compact('item'));
     }
 
     /**
@@ -83,8 +82,7 @@ class PlatformController extends Controller
     {
         $data = Platform::findOrFail($id);
         $data->delete();
-       
+
         return redirect()->back();
-        
     }
 }

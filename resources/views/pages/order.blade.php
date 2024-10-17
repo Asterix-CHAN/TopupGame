@@ -83,8 +83,8 @@
                     <div class="grid text-center grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 justify-center ">
                         <!-- Start Card 1 --> <!-- id btn-buy-1 untuk buttonOrder.js animasi screen handphone -->
                         {{-- untuk jquery pake class price-button --}}
-                        @forelse ($diamonds as $diamond)
-                        <button data-price="{{ $diamond->price }}" data-topup="{{ $diamond->diamond}}" id="btn-buy-1"
+                        @forelse ($events as $event)
+                        <button data-price="{{ $event->price }}" data-topup="{{ $event->diamond->diamond}}" id="btn-buy-1"
                             class=" price-button w-auto flex-auto md:flex-initial px-2 md:px-4 items-center relative flex duration-300 ease-in-out hover:shadow-2xl hover:ring-2 hover:ring-primary-500 hover:ring-offset-2 hover:ring-offset-white md:rounded-2x border-2 min-h-[50px] z-20 rounded-xl cursor-pointer hover:bg-white gap-2 py-1 overflow-x-hidden">
                             <div class="absolute rounded-xl inset-0 bg-gradient-to-r from-black/70 z-10"></div>
                             <img src="{{ url('Game/src') }}/images/logo/diamond.png" alt="Game Logo"
@@ -92,11 +92,14 @@
                             <div
                                 class=" flex w-full flex-col text-white text-start justify-start pl-2 flex-1 z-20 relative">
                                 <h4 class=" text-xs xl:text-md font-medium  md:text-base text-ellipsis overflow-hidden">
-                                    {{ $diamond->diamond}} Diamond</h4>
-                                <p class="text-xs xl:text-md text-ellipsis overflow-hidden">{{ $diamond->price }}</p>
+                                    {{ $event->diamond->diamond}} Diamond</h4>
+                                <p class="text-xs xl:text-md text-ellipsis overflow-hidden">{{ $event->price }}</p>
+                               
                                 <p
-                                    class="text-xs md:text-sm text-ellipsis overflow-hidden line-through text-white italic mt-2 bg-red-600 w-20 animate-pulse skew-y-3">
-                                    Rp 2000</p>
+                                class="text-xs md:text-sm text-ellipsis overflow-hidden line-through text-white italic mt-2 bg-red-600 w-20 animate-pulse skew-y-3">
+                                Rp {{ $event->diamond->price }}</p>
+                             
+                              
                             </div>
                         </button>
                         @empty

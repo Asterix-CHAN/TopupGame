@@ -15,6 +15,7 @@ use App\Models\TopupgamePackage;
 use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\Admin\TopupgamePackageRequest;
+use App\Models\Event;
 
 class TopupgamePackageController extends Controller
 {
@@ -38,10 +39,7 @@ class TopupgamePackageController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(string $id)
-    {
-      
-    }
+    public function create(string $id) {}
 
     /**
      * Store a newly created resource in storage.
@@ -74,11 +72,12 @@ class TopupgamePackageController extends Controller
         $items = TopupgamePackage::find($id);
         // $products = ProductPackage::with('game_packages')->where('topupgame_package_id', $id)->get();
         $diamonds = Diamond::with('game_packages')->where('game_id', $id)->get();
+        $events = Event::with('game_packages')->where('game_id', $id)->get();
         // if (!$items || $products->isEmpty()) {
         //     return redirect()->back()->with('error', 'Data not found');
         // }
-       
-        return view('pages.admin.topup-game-package.show-products', compact('items', 'diamonds'));
+
+        return view('pages.admin.topup-game-package.show-products', compact('items', 'diamonds', 'events'));
     }
 
     /**

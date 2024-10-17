@@ -31,10 +31,11 @@ class ProductController extends Controller
     public function create(string $id)
     {
         $data = TopupgamePackage::find($id);
-        if(!$data){
+        $diamonds = Diamond::all();
+        if (!$data) {
             return redirect()->back()->with('error', 'Product Package not found');
         }
-        return view('pages.admin.product-packages.create', compact('data'));
+        return view('pages.admin.product-packages.create', compact('data', 'diamonds'));
     }
 
     /**
@@ -85,15 +86,15 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        
-      try {
-        $data = ProductPackage::findOrFail($id);
-        $data->delete();
-        Alert::success('Success Title', 'Success Message');
-        return redirect()->back()->with('success', 'Data Berhasil Dihapus');
-      } catch (\Throwable $th) {
-        Alert::error('Error Title', 'Error Message');
-        return redirect()->back()->with('error', 'Data gagal dihapus');
-      } 
+
+        try {
+            $data = ProductPackage::findOrFail($id);
+            $data->delete();
+            Alert::success('Success Title', 'Success Message');
+            return redirect()->back()->with('success', 'Data Berhasil Dihapus');
+        } catch (\Throwable $th) {
+            Alert::error('Error Title', 'Error Message');
+            return redirect()->back()->with('error', 'Data gagal dihapus');
+        }
     }
 }
