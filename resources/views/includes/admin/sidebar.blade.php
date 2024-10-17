@@ -64,7 +64,7 @@
 
                 <div x-show="expanded" x-collapse.duration.1000ms class="w-full py-2 pr-2 pl-1 gap-2 flex flex-col bg-slate-200 rounded-md rounded-t-none shadow-xl">
                    
-                    <x-side-link href="{{ route('product-packages.index') }}" wire:navigate :active="request()->routeIs('product-packages.index')">
+                    <x-side-link href="{{ route('diamonds.index') }}" wire:navigate :active="request()->routeIs('diamonds.index')">
                         <svg class="w-5 h-5 fill-current inline-block" xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 512 512">
                             <path
@@ -73,7 +73,7 @@
                         <span>Diamond</span>
                     </x-side-link>
 
-                    <x-side-link href="{{ route('topup-package.index') }}" wire:navigate :active="request()->routeIs('topup-package.index')">
+                    <x-side-link href="{{ route('game-packages.index') }}" wire:navigate :active="request()->routeIs('game-packages.index')">
                         <svg  class="w-5 h-5 fill-current inline-block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M274.9 34.3c-28.1-28.1-73.7-28.1-101.8 0L34.3 173.1c-28.1 28.1-28.1 73.7 0 101.8L173.1 413.7c28.1 28.1 73.7 28.1 101.8 0L413.7 274.9c28.1-28.1 28.1-73.7 0-101.8L274.9 34.3zM200 224a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zM96 200a24 24 0 1 1 0 48 24 24 0 1 1 0-48zM224 376a24 24 0 1 1 0-48 24 24 0 1 1 0 48zM352 200a24 24 0 1 1 0 48 24 24 0 1 1 0-48zM224 120a24 24 0 1 1 0-48 24 24 0 1 1 0 48zm96 328c0 35.3 28.7 64 64 64l192 0c35.3 0 64-28.7 64-64l0-192c0-35.3-28.7-64-64-64l-114.3 0c11.6 36 3.1 77-25.4 105.5L320 413.8l0 34.2zM480 328a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/></svg>
                         <span>Games</span>
                     </x-side-link>

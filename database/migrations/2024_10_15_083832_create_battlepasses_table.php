@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('product_packages', function (Blueprint $table) {
+        Schema::create('battlepasses', function (Blueprint $table) {
             $table->id();
-            $table->double('price');
-            $table->integer('diamond');
-            $table->foreignId('topupgame_package_id')->constrained('topupgame_packages');
+            $table->string('name');
+            $table->foreignId('game_id')->constrained('topupgame_packages');
+            $table->decimal('price');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('product_packages');
+        Schema::dropIfExists('battlepasses');
     }
 };

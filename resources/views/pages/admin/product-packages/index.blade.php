@@ -41,11 +41,11 @@
                     <div class="overflow-x-auto ">
                         <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
 
-                            <div class="col-lg-12 mb-4 flex justify-end">
-                                <a href="{{ route('product-packages.create') }}"
+                            {{-- <div class="col-lg-12 mb-4 flex justify-end">
+                                <a href="{{ route('product-packages.create', $items->id) }}"
                                     class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-slate-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150">{{ __('Tambah Produk') }}</a>
                                     
-                            </div>
+                            </div> --}}
 
                             <div class="overflow-hidden shadow-md sm:rounded-lg">
                                 <table class="min-w-full divide-y divide-gray-200 items-center">
@@ -56,7 +56,7 @@
                                                 ID</th>
                                             <th scope="col"
                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                Name</th>
+                                                Name Game</th>
                                             <th scope="col"
                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Price</th>
@@ -76,7 +76,7 @@
                                                     {{ $index + 1 }}</td>
                                                 <td scope="col"
                                                     class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                                                    <a href="" class="hover:text-blue-600">
+                                                    <a href="{{ route('game-packages.show', $item->id) }}" class="hover:text-blue-600">
                                                     {{ $item->game_packages->name }}</a>
                                                 </td>
                                                 <td scope="col"

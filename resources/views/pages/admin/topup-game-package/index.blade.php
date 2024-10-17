@@ -16,7 +16,7 @@
 
         <div class="mx-2 md:container md:mx-auto sm:px-8 lg:px-10">
             <h2 class="font-semibold text-2xl text-gray-800 leading-tight mt-3 ">
-                {{ __('Daftar Produk') }}
+                {{ __('Daftar Game') }}
             </h2>
         </div>
     </x-slot>
@@ -118,15 +118,15 @@
 
                                                 <td scope="col"
                                                     class="px-6 py-3 text-center items-center  text-xs font-medium text-gray-500 tracking-wider gap-1 ">
-                                                    <a href="{{ route('topup-package.edit', $item->id) }}"
+                                                    <a href="{{ route('game-packages.edit', $item->id) }}"
                                                         class="text-blue-600 hover:text-blue-400 flex flex-row"><i
                                                             class="fa-solid fa-pen-to-square mx-1"></i>Edit
                                                     </a>
-                                                    <a href="{{ route('topup-package.show', $item->id) }}"
+                                                    <a href="{{ route('game-packages.show', $item->id) }}"
                                                         class="text-orange-500 hover:text-orange-400 flex flex-row">
                                                         <i class="fa-solid fa-warehouse mx-1"></i>Product
                                                     </a>
-                                                    <a href="{{ route('topup-package.destroy', $item->id) }}"
+                                                    <a href="{{ route('game-packages.destroy', $item->id) }}"
                                                         class="text-red-600 hover:text-red-400 flex flex-row"
                                                         data-confirm-delete="true"><i
                                                             class="fa fa-trash mx-1"></i>Delete</a>

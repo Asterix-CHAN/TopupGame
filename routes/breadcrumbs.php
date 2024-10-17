@@ -3,6 +3,7 @@
 use App\Models\Gallery;
 use App\Models\Category;
 use App\Models\Platform;
+use App\Models\ProductPackage;
 use App\Models\TopupgamePackage;
 use Diglactic\Breadcrumbs\Breadcrumbs;
 use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
@@ -14,19 +15,26 @@ Breadcrumbs::for('dashboard', function (BreadcrumbTrail $trail) {
 // End Dashboard
 
 // Produk
-Breadcrumbs::for('topup-package.index', function (BreadcrumbTrail $trail) {
-    $trail->push('Produk', route('topup-package.index'));
+Breadcrumbs::for('game-packages.index', function (BreadcrumbTrail $trail) {
+    $trail->push('Games', route('game-packages.index'));
 });
 
-Breadcrumbs::for('topup-package.edit', function (BreadcrumbTrail $trail, TopupgamePackage $item): void {
-    $trail->parent('topup-package.index');
-    $trail->push($item->name . ' / Edit', route('topup-package.edit', $item));
+Breadcrumbs::for('game-packages.edit', function (BreadcrumbTrail $trail, TopupgamePackage $item): void {
+    $trail->parent('game-packages.index');
+    $trail->push($item->name . ' / Edit', route('game-packages.edit', $item));
 });
 
-Breadcrumbs::for('topup-package.show', function (BreadcrumbTrail $trail, TopupgamePackage $item): void {
-    $trail->parent('topup-package.index');
-    $trail->push($item->name . ' / Product', route('topup-package.show', $item));
+Breadcrumbs::for('game-packages.show', function (BreadcrumbTrail $trail, TopupgamePackage $item): void {
+    $trail->parent('game-packages.index');
+    $trail->push($item->name . ' / Product', route('game-packages.show', $item));
 });
+
+Breadcrumbs::for('product-packages.create', function (BreadcrumbTrail $trail, TopupgamePackage $data): void {
+    $trail->parent('game-packages.index');
+    $trail->push($data->name . ' / Tambah Produk', route('product-packages.create', ['id' => $data->id]));
+});
+
+
 // End Produk
 
 // Category
@@ -45,6 +53,8 @@ Breadcrumbs::for('platform.edit', function (BreadcrumbTrail $trail, Platform $it
 
     $trail->push($item->name . ' / Edit', route('platform.edit', $item));
 });
+
+
 
 // Breadcrumbs::for('platform.edit', function (Breadcrumbs $trail, Platform $item){
 //     $trail->parent('category.index', route('category.index'));

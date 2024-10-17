@@ -1,8 +1,9 @@
 <x-app-layout>
     <x-slot name="header">
-        {{ Breadcrumbs::render('gallery.create') }}
+        {{ Breadcrumbs::render('product-packages.create', $data) }}
+
         <h2 class="font-semibold text-2xl text-gray-800 leading-tight mt-3 ml-4">
-            {{ __('Tambah Image') }}
+            {{ __('Tambah Product') }}
         </h2>
     </x-slot>
 
@@ -34,32 +35,25 @@
                             </ul>
                         </div>
                     @endif
-                    <form method="post" action="{{ route('product-packages.store') }}">
+                    <form method="post" action="{{ route('diamonds.store') }}">
                         @csrf
                         <div class="card mt-5">
-
                             <div class="card-body flex gap-2">
                                 <div class="w-full">
 
                                     <div class="mb-4">
-                                        <select
-                                            class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                            name="topupgame_package_id" id="grid-state">
-                                            <option>Pilih Produk</option>
-                                            @foreach ($data as $item)
-                                                <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                            @endforeach
+                                        <select 
+                                            class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 "
+                                            name="game_id" id="grid-state">                          
+                                            <option  value="{{ $data->id }}">{{ $data->name }}</option>
                                         </select>
-                                        @error('topupgame_package_id')
+                                        @error('game_id')
                                             <x-input-error :messages="$message"></x-input-error>
                                         @enderror
                                     </div>
                                     <div class="mb-4">
-                                        <div class="bg-white p-6 rounded-lg shadow-lg">
-                                            <h1 class="text-2xl font-semibold mb-4">Upload an Image</h1>
-                                            <div class="preview mt-4 mb-3" id="imagePreview">
-                                                <p class="text-gray-500">No image selected</p>
-                                            </div>
+                                        <div class="bg-white p-6 rounded-lg shadow-lg gap-3 flex flex-col">
+                                            <h1 class="text-2xl font-semibold mb-4">Tambah Produk Diamond</h1>
                                             <x-text-input type="number" name="price" class="block"
                                                 placeholder="Harga"></x-text-input>
                                             @error('price')
@@ -67,7 +61,7 @@
                                             @enderror
 
                                             <x-text-input type="number" name="diamond" class="block"
-                                                placeholder="diamond"></x-text-input>
+                                                placeholder="diamond" ></x-text-input>
                                             @error('diamond')
                                                 <x-input-error :messages="$message"></x-input-error>
                                             @enderror

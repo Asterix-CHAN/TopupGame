@@ -16,7 +16,7 @@
                 <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4 ">
                     <div class=" w-full ">
                         {{--  --}}
-                        <form method="post" action="{{ route('topup-package.store') }}" enctype="multipart/form-data">
+                        <form method="post" action="{{ route('game-packages.store') }}" enctype="multipart/form-data">
                             @csrf
 
 

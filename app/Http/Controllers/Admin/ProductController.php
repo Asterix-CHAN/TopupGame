@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\ProductPackage;
 use App\Models\TopupgamePackage;
 use App\Http\Controllers\Controller;
+use App\Models\Diamond;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ProductController extends Controller
@@ -16,20 +17,23 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $items = ProductPackage::with('game_packages')->get();
-         // sweetAlert Delete message
-         $title = 'Delete Product!';
-         $text = "Are you sure you want to delete?";
-         confirmDelete($title, $text);
-        return view('pages.admin.product-packages.index', compact('items'));
+        // $items = ProductPackage::with('game_packages', 'diamond', 'event', 'battlepass')->get(); 
+        //  // sweetAlert Delete message
+        //  $title = 'Delete Product!';
+        //  $text = "Are you sure you want to delete?";
+        //  confirmDelete($title, $text);
+        // return view('pages.admin.product-packages.index', compact('items'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(string $id)
     {
-        $data = TopupgamePackage::all();
+        $data = TopupgamePackage::find($id);
+        if(!$data){
+            return redirect()->back()->with('error', 'Product Package not found');
+        }
         return view('pages.admin.product-packages.create', compact('data'));
     }
 
@@ -38,15 +42,15 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'price' => 'required|integer',
-            'diamond' => 'required|integer',
-            'topupgame_package_id' => 'required|integer|exists:topupgame_packages,id',
-        ]);
+        // $data = $request->validate([
+        //     'price' => 'required|integer',
+        //     'diamond' => 'required|integer',
+        //     'topupgame_package_id' => 'required|integer|exists:topupgame_packages,id',
+        // ]);
 
-        ProductPackage::create($data);
-        Alert::success('Success Title', 'Success Message');
-        return redirect()->route('product-packages.index')->with('success', 'Data Berhasil Ditambahkan');
+        // ProductPackage::create($data);
+        // Alert::success('Success Title', 'Success Message');
+        // return redirect()->route('product-packages.index')->with('success', 'Data Berhasil Ditambahkan');
     }
 
     /**

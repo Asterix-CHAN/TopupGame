@@ -3,17 +3,18 @@
 namespace App\Http\Controllers\Admin;
 
 
+use App\Models\Diamond;
+
+
 use App\Models\Category;
-
-
 use App\Models\Platform;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\ProductPackage;
 use App\Models\TopupgamePackage;
 use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\Admin\TopupgamePackageRequest;
-use App\Models\ProductPackage;
 
 class TopupgamePackageController extends Controller
 {
@@ -37,10 +38,9 @@ class TopupgamePackageController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(string $id)
     {
-        // $categories = Category::all(); 
-        // return view('pages.admin.topup-game-package.index', compact('categories')); 
+      
     }
 
     /**
@@ -72,14 +72,13 @@ class TopupgamePackageController extends Controller
     {
 
         $items = TopupgamePackage::find($id);
-
-        $products = ProductPackage::with('game_packages')->where('topupgame_package_id', $id)->get();
-
-        if (!$items || $products->isEmpty()) {
-            return redirect()->back()->with('error', 'Data not found');
-        }
-
-        return view('pages.admin.topup-game-package.show-products', compact('items', 'products'));
+        // $products = ProductPackage::with('game_packages')->where('topupgame_package_id', $id)->get();
+        $diamonds = Diamond::with('game_packages')->where('game_id', $id)->get();
+        // if (!$items || $products->isEmpty()) {
+        //     return redirect()->back()->with('error', 'Data not found');
+        // }
+       
+        return view('pages.admin.topup-game-package.show-products', compact('items', 'diamonds'));
     }
 
     /**
@@ -124,7 +123,7 @@ class TopupgamePackageController extends Controller
         $item->update($data);
         $item->categories()->sync($request->category_id);
         Alert::success('Success Title', 'Success Message');
-        return redirect()->route('topup-package.index')->with('success', 'Data berhasil diubah');
+        return redirect()->route('game-packages.index')->with('success', 'Data berhasil diubah');
     }
 
     /**

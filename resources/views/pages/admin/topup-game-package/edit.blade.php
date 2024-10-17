@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
 
-        {{ Breadcrumbs::render('topup-package.edit', $item) }}
+        {{ Breadcrumbs::render('game-packages.edit', $item) }}
 
         <div class="md:container mx-auto sm:px-6 lg:px-8">
             <h2 class="font-semibold text-2xl text-gray-800 leading-tight mt-3">
@@ -29,7 +29,7 @@
                             </ul>
                         </div>
                     @endif
-                    <form method="post" action="{{ route('topup-package.update', $item->id) }}"
+                    <form method="post" action="{{ route('game-packages.update', $item->id) }}"
                         enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
@@ -128,7 +128,7 @@
 
     @push('addon-script')
         <script>
-            const imageUpload = document.getElementById('imageLoad'); // Sesuaikan id-nya (case sensitive)
+            const imageUpload = document.getElementById('imageLoad'); 
             const imagePreview = document.getElementById('imagePreview');
 
             imageUpload.addEventListener('change', function() {

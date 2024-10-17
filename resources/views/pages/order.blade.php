@@ -81,9 +81,10 @@
                     <!-- H2 -->
                     <!-- Card Promo Diamond -->
                     <div class="grid text-center grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 justify-center ">
-                        <!-- Start Card 1 -->         <!-- id btn-buy-1 untuk buttonOrder.js animasi screen handphone -->
-                                                    {{-- untuk jquery pake class price-button --}} 
-                        <button data-price="120000" data-topup="5" id="btn-buy-1"  
+                        <!-- Start Card 1 --> <!-- id btn-buy-1 untuk buttonOrder.js animasi screen handphone -->
+                        {{-- untuk jquery pake class price-button --}}
+                        @forelse ($diamonds as $diamond)
+                        <button data-price="{{ $diamond->price }}" data-topup="{{ $diamond->diamond}}" id="btn-buy-1"
                             class=" price-button w-auto flex-auto md:flex-initial px-2 md:px-4 items-center relative flex duration-300 ease-in-out hover:shadow-2xl hover:ring-2 hover:ring-primary-500 hover:ring-offset-2 hover:ring-offset-white md:rounded-2x border-2 min-h-[50px] z-20 rounded-xl cursor-pointer hover:bg-white gap-2 py-1 overflow-x-hidden">
                             <div class="absolute rounded-xl inset-0 bg-gradient-to-r from-black/70 z-10"></div>
                             <img src="{{ url('Game/src') }}/images/logo/diamond.png" alt="Game Logo"
@@ -91,13 +92,27 @@
                             <div
                                 class=" flex w-full flex-col text-white text-start justify-start pl-2 flex-1 z-20 relative">
                                 <h4 class=" text-xs xl:text-md font-medium  md:text-base text-ellipsis overflow-hidden">
-                                    5 Diamond</h4>
-                                <p class="text-xs xl:text-md text-ellipsis overflow-hidden">Rp 1000</p>
+                                    {{ $diamond->diamond}} Diamond</h4>
+                                <p class="text-xs xl:text-md text-ellipsis overflow-hidden">{{ $diamond->price }}</p>
                                 <p
                                     class="text-xs md:text-sm text-ellipsis overflow-hidden line-through text-white italic mt-2 bg-red-600 w-20 animate-pulse skew-y-3">
                                     Rp 2000</p>
                             </div>
                         </button>
+                        @empty
+                        <div 
+                            class=" price-button w-auto flex-auto md:flex-initial px-2 md:px-4 items-center relative flex duration-300 ease-in-out hover:shadow-2xl hover:ring-2 hover:ring-primary-500 hover:ring-offset-2 hover:ring-offset-white md:rounded-2x border-2 min-h-[50px] z-20 rounded-xl cursor-pointer hover:bg-white gap-2 py-1 overflow-x-hidden">
+                            <div class="absolute rounded-xl inset-0 bg-gradient-to-r from-black/70 z-10"></div>
+                            <img src="{{ url('Game/src') }}/images/logo/diamond.png" alt="Game Logo"
+                                class="relative aspect-square h-10 w-10 rounded-lg !object-cover !object-center md:h-14 md:w-14 md:rounded-xl left-0 z-20">
+                            <div
+                                class=" flex w-full flex-col text-white text-start justify-start pl-2 flex-1 z-20 relative">
+                                <h4 class=" text-xs xl:text-md font-medium  md:text-base text-ellipsis overflow-hidden">
+                                    Tidak Ada Diamond</h4>
+                            </div>
+                        </div>
+                        @endforelse
+                       
                         <!-- End Card 1 -->
                     </div>
                     <!-- End: Card Promo Diamond -->
@@ -108,7 +123,7 @@
                     <!-- H2 -->
                     <!-- Card Weekly Pass -->
                     <div class="grid text-center grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-2 justify-center">
-                        <!-- Start Card 1 -->  <!-- id btn-buy-2 untuk buttonOrder.js animasi screen handphone -->
+                        <!-- Start Card 1 --> <!-- id btn-buy-2 untuk buttonOrder.js animasi screen handphone -->
                         <button data-price="Rp 27.000" data-topup="x1 Weekly Diamond Pass (Misi Top Up + 100)"
                             id="btn-buy-2"
                             class="price-button w-auto flex-auto md:flex-initial pl-2 pr-0 md:pr-1 items-center relative flex duration-300 ease-in-out hover:shadow-2xl hover:ring-2 hover:ring-primary-500 hover:ring-offset-2 hover:ring-offset-white md:rounded-2x border-2 min-h-[50px]  z-20 rounded-xl cursor-pointer hover:bg-white hover:text-slate-700 overflow-x-hidden gap-1">
@@ -123,7 +138,7 @@
                             </div>
                         </button>
                         <!-- End Card 1 -->
-                       
+
                     </div>
                     <!-- End Card Wekkly Pass -->
                     <!-- H2 -->
@@ -190,7 +205,7 @@
     {{-- @vite('resources/js/shippingDetail.js') --}}
 
     {{-- button topup --}}
-    <script>
+    {{-- <script>
         $(function() {
             // Saat tombol harga diklik
             $(".price-button").on("click", function() {
@@ -243,6 +258,53 @@
                     button.classList.add('bg-slate-800'); // Remove the classes when disabled
                 }
             };
+        });
+    </script> --}}
+
+    <script>
+        $(function() {
+            function check() {
+                let data = {};
+                const inputs = document.querySelectorAll("#shipping-detail input[data-input]");
+                for (let index = 0; index < inputs.length; index++) {
+                    const input = inputs[index];
+                    data[input.id] = input.value;
+                }
+                console.log(data);
+
+                const findEmpty = Object.values(data).filter((value) => value === "");
+                const button = document.querySelector("#button-beli");
+
+                if (findEmpty.length == 0) {
+                    button.disabled = false;
+                    button.classList.add('pointer', 'bg-blue-500');
+                    button.classList.remove('bg-slate-800');
+                } else {
+                    button.disabled = true;
+                    button.classList.remove('pointer', 'bg-blue-500');
+                    button.classList.add('bg-slate-800');
+                }
+            }
+
+            const inputs = document.querySelectorAll("#shipping-detail input[data-input]");
+            inputs.forEach(input => {
+                input.addEventListener("input", function() {
+                    check();
+                });
+            });
+
+            $(".price-button").on("click", function() {
+                var price = $(this).data("price");
+                var topup = $(this).data("topup");
+                
+                $("#topup-value").val(topup).trigger("input");
+                $("#topup-price").val(price).trigger("input");
+                
+                $("#price-list, #price-list2").text(price.toLocaleString('id-ID'));
+                $("#topup, #topup2").text(topup.toLocaleString('id-ID') + " Diamond");
+            });
+            
+            check();
         });
     </script>
 

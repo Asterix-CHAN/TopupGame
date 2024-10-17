@@ -1,17 +1,17 @@
 <div id="offcanvas"
     class="w-full px-4 py-6 rounded-lg rounded-b-none md:rounded-lg md:relative md:z-10 bg-slate-500 shadow-md shadow-slate-700 flex h-auto fixed bottom-0 left-0 right-0 translate-y-full transition-transform duration-300 ease-in-out  md:translate-y-0 md:flex md:flex-col z-40">
-    <div id="shipping-detail" class=" px-4 relative flex flex-col w-full">
+    <div class=" px-4 relative flex flex-col w-full">
 
         <button id="close-offcanvas" class="md:hidden text-right text-white">
             <i class="fa-solid fa-xmark text-2xl"></i>
         </button>
-        <form action="{{ route('checkout') }}">
+        <form action="{{ route('checkout') }}" id="shipping-detail">
             @csrf
             <div" class="flex flex-col justify-center items-center md:items-stretch">
                 {{-- Total Diamon --}}
                 <div class="flex flex-col mb-4 w-full">
                     <p id="topup" class="text-white font-semibold">Informasi Pesanan</p>
-                    <input data-input id="topup-value" type="text" value="" name=""  required/>
+                    <input data-input id="topup-value" type="hidden" value="" name="" required />
 
                 </div>
                 {{-- Total Diamond --}}
@@ -53,6 +53,7 @@
                     </label>
                     <div>
                         <p id="price-list" class="right-0 text-base md:text-lg text-white"></p>
+                        <input data-input id="topup-price" type="hidden" value="" name="" required />
                     </div>
                     <!-- Item Wrapper -->
                     {{-- <div class=" max-w-xl mx-auto">
