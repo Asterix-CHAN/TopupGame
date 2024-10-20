@@ -1,26 +1,34 @@
-{{-- @props(['formAction' => false])
-
-<div>
-    @if($formAction)
-        <form wire:submit.prevent="{{ $formAction }}">
-    @endif
-            <div class="bg-white p-4 sm:px-6 sm:py-4 border-b border-gray-150">
-                @if(isset($title))
-                    <h3 class="text-lg leading-6 font-medium text-gray-900">
-                        {{ $title }}
-                    </h3>
-                @endif
-            </div>
-            <div class="bg-white px-4 sm:p-6">
-                <div class="space-y-6">
+<div x-data="{ 'showModal': false }" @keydown.escape="showModal = false">
+    <!-- Trigger for Modal -->
+    <div  @click="showModal = true">{{ $trigger }}</div>
+    <!-- Modal -->
+    <div
+        class="fixed inset-0 z-30 flex items-center justify-center overflow-auto bg-black bg-opacity-50 "
+        x-show="showModal"
+    >
+        <!-- Modal inner -->
+        <div 
+            class="max-w-3xl  px-6 py-4 mx-auto text-left bg-white rounded shadow-lg"
+            @click.away="showModal = false"
+            x-transition:enter="motion-safe:ease-out duration-300" 
+            x-transition:enter-start="opacity-0 scale-90" 
+            x-transition:enter-end="opacity-100 scale-100"
+        >
+            <!-- content -->
+            <div class="min-w-[200px] min-h-[100px] flex px-2 items-center justify-center">
+                <p class="text-gray-700">
                     {{ $content }}
+                </p>
+            </div>
+             <!-- Title / Close-->
+            
+             <div class="flex  items-center justify-end gap-2">
+                <div >
+                    {{ $submit }}
+                </div>
+                <div class="z-50 cursor-pointer" @click="showModal = false">{{ $cancel }}
                 </div>
             </div>
-
-            <div class="bg-white px-4 pb-5 sm:px-4 sm:flex">
-                {{ $buttons }}
-            </div>
-    @if($formAction)
-        </form>
-    @endif
-</div> --}}
+        </div>
+    </div>
+</div>

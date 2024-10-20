@@ -20,10 +20,16 @@
                     <div class="overflow-x-auto ">
                         <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
 
+                            {{-- Button Add Data --}}
                             <div class="col-lg-12 mb-4 flex justify-end">
-                                <a href="{{ route('product-packages.create', $items->uuid) }}"
-                                    class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-slate-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150">{{ __('Tambah Produk Diamond') }}</a>
+                                <form action="{{ route('product-packages.create', $items->uuid) }}" method="GET">
+                                    @csrf
+                                    @method('GET')
+                                    <x-secondary-button type='submit'> <i
+                                            class="fa-solid fa-folder-plus mr-2"></i>{{ __('Tambah Produk Diamond') }}</x-secondary-button>
+                                </form>
                             </div>
+
                             <div class="overflow-hidden shadow-md sm:rounded-lg flex flex-row gap-3">
                                 <table class="min-w-full divide-y divide-gray-200 items-center">
                                     <thead class="bg-gray-50 ">
@@ -37,7 +43,6 @@
                                             <th scope="col"
                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Diamond</th>
-
                                             <th scope="col"
                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Price</th>
@@ -74,11 +79,18 @@
                                                         <i
                                                             class="fa-solid fa-pen-to-square mx-1"></i>{{ __('Edit') }}
                                                     </a>
-                                                    <a href="{{ route('event.createEvent', $item->uuid) }}"
-                                                        class="text-green-600 hover:text-green-400">
-                                                        <i
-                                                            class="fa-solid fa-calendar-plus mx-1"></i>{{ __('Tambah Event') }}
-                                                    </a>
+
+                                                    <form action="{{ route('event.createEvent', $item->uuid) }}"
+                                                        method="GET">
+                                                        @csrf
+                                                        @method('GET')
+                                                        <button type="submit"
+                                                            class="text-green-600 hover:text-green-400">
+                                                            <i
+                                                                class="fa-solid fa-calendar-plus mx-1"></i>{{ __('Tambah Event') }}
+                                                        </button>
+                                                    </form>
+
                                                     <a href="" class="text-red-600 hover:text-red-400"
                                                         data-confirm-delete="true">
                                                         <i class="fa fa-trash mx-1"></i>{{ __('Delete') }}

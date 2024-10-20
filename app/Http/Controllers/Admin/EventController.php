@@ -45,7 +45,6 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-
         $data = $request->validate([
             'uuid' => 'string|unique:events,uuid',
             'price' => 'required|numeric|min:0|max:100000000',
@@ -57,7 +56,8 @@ class EventController extends Controller
         // 
         $gamePackage = TopupgamePackage::where('id', $request->game_id)->firstOrFail();
         if (!$gamePackage) {
-            return redirect()->route('game-packages.index')->withErrors('Game Package not found');
+            Alert::error('Error', 'Game ID Tidak Ditemukan');
+            return redirect()->route('game-packages.index')->with('error','Game Package not found');
         }
         $data['slug'] = Str::slug($gamePackage->name);
         $data['uuid'] = Str::uuid();
@@ -65,7 +65,8 @@ class EventController extends Controller
         // 
         $diamondPackage = Diamond::where('id', $request->diamond_id)->first();
         if (!$diamondPackage) {
-            return redirect()->route('game-packages.index')->withErrors('Diamond Package not found');
+            Alert::error('Error', 'Diamond ID Tidak Ditemukan');
+            return redirect()->route('game-packages.index')->with('error','Diamond Package not found');
         }
 
         // $data['price'] = $data['price'] ?? null;

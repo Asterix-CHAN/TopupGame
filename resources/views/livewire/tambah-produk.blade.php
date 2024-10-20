@@ -1,13 +1,4 @@
 <x-modal>
-    @if (session('status'))
-        <script>
-            Swal.fire({
-                title: '{{ session('status') }}',
-                icon: 'success',
-                confirmButtonText: 'OK'
-            });
-        </script>
-    @endif
 
     <x-slot name="title">
         Tambah Produk

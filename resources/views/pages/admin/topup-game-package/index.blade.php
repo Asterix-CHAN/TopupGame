@@ -24,7 +24,7 @@
                             <div class="col-lg-12 mb-4 flex justify-end">
 
                                 <div x-data="{ isOpen: false }" class="relative">
-                                    <x-secondary-button @click="isOpen = !isOpen">{{ __('Tambah Game') }}
+                                    <x-secondary-button  @click="isOpen = !isOpen"><i class="fa-solid fa-folder-plus mr-2"></i>{{ __('Tambah Game') }}
                                     </x-secondary-button>
 
                                     <div x-show="isOpen"
@@ -102,7 +102,7 @@
 
                                                 <td scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    {{ $item->platform_name ? $item->platform_name->name : 'No platform available' }} 
+                                                    {{ $item->platform_name ? $item->platform_name->name : 'No platform available' }}
                                                 </td>
                                                 <td scope="col"
                                                     class="px-6 py-3 items-end  text-xs font-medium text-gray-500 tracking-wider gap-1 flex flex-col ">
@@ -114,14 +114,31 @@
                                                         class="text-orange-500 hover:text-orange-400 flex flex-row">
                                                         <i class="fa-solid fa-warehouse mx-1"></i>Product
                                                     </a>
-                                                    <form action="{{ route('game-packages.destroy', $item->id) }}" method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit"
-                                                        class="text-red-600 hover:text-red-400 flex flex-row"
-                                                        data-confirm-delete="true"><i
-                                                            class="fa fa-trash mx-1"></i>Delete</button>
-                                                    </form>
+
+                                                    <x-modal>
+                                                        <x-slot name="trigger">
+                                                            <button type="button"
+                                                                class="text-red-600 hover:text-red-400 flex flex-row"
+                                                                data-confirm-delete="true"><i
+                                                                    class="fa fa-trash mx-1"></i>Delete</button>
+                                                        </x-slot>
+                                                        <x-slot name="content">
+                                                            <p>Are you sure you want to delete this product?</p>
+                                                        </x-slot>
+                                                        <x-slot name="submit">
+                                                            <form
+                                                                action="{{ route('game-packages.destroy', $item->id) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <x-primary-button 
+                                                                    class="text-white bg-red-500  hover:bg-red-700 focus:bg-red-700 flex flex-row"
+                                                                    data-confirm-delete="true"><i
+                                                                        class="fa fa-trash mx-1"></i>Delete</x-primary-button>
+                                                            </form>
+                                                        </x-slot>
+                                                        <x-slot name="cancel"><x-secondary-button>Cancel</x-secondary-button></x-slot>
+                                                    </x-modal>
                                                 </td>
                                             </tr>
                                         @empty
