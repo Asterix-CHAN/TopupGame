@@ -14,7 +14,8 @@ class Platform extends Model
 
    
     protected $fillable = [
-        'name'
+        'name',
+        'slug'
     ];
 
     protected $hidden = [];

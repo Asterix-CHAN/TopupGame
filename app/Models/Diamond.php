@@ -12,7 +12,7 @@ class Diamond extends Model
     use SoftDeletes;
     
     protected $fillable = [
-       'game_id', 'price', 'diamond', 'slug'
+      'uuid', 'game_id', 'price', 'diamond', 'slug'
         
     ];
 

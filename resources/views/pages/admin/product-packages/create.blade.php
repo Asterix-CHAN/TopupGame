@@ -74,8 +74,6 @@
                             <x-primary-button>Create</x-primary-button>
                         </div>
                     </form>
-
-                   
                 </div>
                
 

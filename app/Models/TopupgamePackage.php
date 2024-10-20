@@ -15,6 +15,7 @@ class TopupgamePackage extends Model
     use SoftDeletes;
 
     protected $fillable = [
+        'uuid',
         'name',
         'developer',
         'description',

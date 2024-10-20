@@ -11,17 +11,6 @@
         <div class="main-wrapper flex flex-col mb-5">
             <div class="main-content flex">
                 <div class="container w-1/2">
-
-                    @if (Session::has('success'))
-                        <script>
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Success!',
-                                text: '{{ Session::get('success') }}'
-                            });
-                        </script>
-                    @endif
-
                     <form method="post" action="{{ route('gallery.update', $galeri->id) }}" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')

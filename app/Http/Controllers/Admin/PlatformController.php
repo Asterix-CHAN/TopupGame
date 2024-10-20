@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Platform;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -37,6 +38,8 @@ class PlatformController extends Controller
         $data = $request->validate([
             'name' => 'required|string|min:1|max:10'
         ]);
+
+        $data['slug'] = Str::slug($request->name);
 
         Platform::create($data);
         Alert::success('Success Title', 'Success Message');

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('topupgame_packages', function (Blueprint $table) {
             $table->id();
+            $table->string('uuid')->unique();
             $table->string('name');
             $table->string('developer');
             $table->text('description')->nullable();

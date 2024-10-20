@@ -22,13 +22,13 @@ class TopupgamePackageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|max:255',
-            'developer' => 'required|max:255',
-            'description' => 'required|max:255',
-            'about' => 'required|max:255',
+            'name' => 'required|string|max:255',
+            'developer' => 'required|string|max:255',
+            'description' => 'nullable|string|max:255',
+            'about' => 'nullable|string|max:255',
             'price' => 'required|numeric',
-            'stock' => 'required|max:255',
-            'platform_id' => 'required|max:255',
+            'stock' => 'required|string|max:255',
+            'platform_id' => 'required|string|max:255',
             // 'categories' => 'required|max:255',
             'category_id' => 'required|array|min:1',
             'category_id.*' => 'required|integer|exists:categories,id',

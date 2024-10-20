@@ -12,6 +12,8 @@ use App\Models\TopupgamePackage;
 use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
 
+
+
 class EventController extends Controller
 {
     /**
@@ -19,16 +21,23 @@ class EventController extends Controller
      */
     public function index()
     {
-        //
+        $items = Event::with('diamond', 'game_packages')->get();
+        return view('pages.admin.events.index', compact('items'));
+    }
+
+    public function create()
+    {
+        // $topupgame_packages = TopupgamePackage::all();
+        // return view('pages.admin.galleries.create', compact('topupgame_packages'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create($id)
+    public function createEvent($uuid)
     {
-        $data = Diamond::with([ 'game_packages'])->findOrFail($id);
-        return view('pages.admin.product-packages.create-events', compact('data'));
+        $diamonds = Diamond::with(['game_packages'])->where('uuid', '=', $uuid)->firstOrFail();
+        return view('pages.admin.product-packages.create-events', compact('diamonds'));
     }
 
     /**
@@ -36,24 +45,44 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        // Validate the incoming request data
+
         $data = $request->validate([
+            'uuid' => 'string|unique:events,uuid',
             'price' => 'required|numeric|min:0|max:100000000',
-            'diamond_event' => 'integer',
+            'diamond_event' => 'nullable|integer',
             'game_id' => 'required|integer|exists:topupgame_packages,id',
             'diamond_id' => 'integer|exists:diamonds,id'
         ]);
 
-        $gamePackage = TopupgamePackage::findOrFail($request->game_id);
+        // 
+        $gamePackage = TopupgamePackage::where('id', $request->game_id)->firstOrFail();
+        if (!$gamePackage) {
+            return redirect()->route('game-packages.index')->withErrors('Game Package not found');
+        }
         $data['slug'] = Str::slug($gamePackage->name);
+        $data['uuid'] = Str::uuid();
 
-          // If diamond_id is not provided, set it to null
-        $data['diamond_id'] = $request->diamond_id ?? null;
+        // 
+        $diamondPackage = Diamond::where('id', $request->diamond_id)->first();
+        if (!$diamondPackage) {
+            return redirect()->route('game-packages.index')->withErrors('Diamond Package not found');
+        }
+
+        // $data['price'] = $data['price'] ?? null;
+
+        $existingEvent = Event::where('diamond_id', $diamondPackage->id)->first();
+
+        if ($existingEvent) {
+            $existingEvent->update(
+                ['price' => $data['price'], 
+                'diamond_event' => $data['diamond_event']]);
+            Alert::success('Success', 'Data Berhasil Diperbarui');
+            return redirect()->route('game-packages.index')->with('success', 'Data Event Berhasil Diperbarui');
+        }
 
         Event::create($data);
-
         Alert::success('Success', 'Data Berhasil Ditambahkan');
-        return redirect()->route('game-packages.index')->with('success', 'Data Berhasil Ditambahkan');
+        return redirect()->route('game-packages.index')->with('success', 'Data Event Berhasil Ditambahkan');
     }
 
     /**

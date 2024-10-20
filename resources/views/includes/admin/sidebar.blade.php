@@ -2,7 +2,7 @@
 </div>
 
 <div id="sidebar"
-    class="bg-white fixed  md:relative h-full w-1/2 md:w-full inset-0 md:block shadow-xl px-3 z-20 rounded-r-2xl overflow-x-hidden decoration-none box-shadow ">
+    class="bg-white fixed  md:relative min-h-screen w-1/2 md:w-full inset-0 md:block shadow-xl px-3 z-20 rounded-r-2xl rounded-b-none overflow-x-hidden decoration-none box-shadow ">
 
     <div class="space-y-6 md:space-y-10 mt-10 container">
         <div class="flex items-end justify-end">
@@ -15,9 +15,9 @@
                     <path
                         d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
                 </svg>
-
             </button>
         </div>
+        
         <!-- Sidebar header -->
         <h1 class="font-bold text-4xl text-center md:hidden">
             N<span class="text-teal-600">.</span>
@@ -50,8 +50,8 @@
                 <span>Dashboard</span>
             </x-side-link>
 
-            <div class="w-full relative" x-data="{ expanded: false }" wire:navigate >
-                <button @click="expanded = ! expanded" 
+            <div class="w-full relative" x-data="{ expanded: false }" wire:navigate>
+                <button @click="expanded = ! expanded"
                     :class="expanded ? 'bg-teal-500 text-white hover:text-white rounded-b-none focus:shadow-none' : ''"
                     class="w-full text-start text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:text-base rounded-md transition duration-150 ease-in-out hover:shadow-xl hover:shadow-teal-500/50 ">
                     <svg class="w-5 h-5 fill-current inline-block" xmlns="http://www.w3.org/2000/svg"
@@ -62,8 +62,9 @@
                     <span>Produk</span>
                 </button>
 
-                <div x-show="expanded" x-collapse.duration.1000ms class="w-full py-2 pr-2 pl-1 gap-2 flex flex-col bg-slate-200 rounded-md rounded-t-none shadow-xl">
-                   
+                <div x-show="expanded" x-collapse.duration.1000ms
+                    class="w-full py-2 pr-2 pl-1 gap-2 flex flex-col bg-slate-200 rounded-md rounded-t-none shadow-xl">
+
                     <x-side-link href="{{ route('diamonds.index') }}" wire:navigate :active="request()->routeIs('diamonds.index')">
                         <svg class="w-5 h-5 fill-current inline-block" xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 512 512">
@@ -73,16 +74,28 @@
                         <span>Diamond</span>
                     </x-side-link>
 
+                    <x-side-link href="{{ route('events.index') }}" wire:navigate :active="request()->routeIs('events.index')">
+                        <svg class="w-5 h-5 fill-current inline-block" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 448 512">
+                            <path
+                                d="M128 0c17.7 0 32 14.3 32 32l0 32 128 0 0-32c0-17.7 14.3-32 32-32s32 14.3 32 32l0 32 48 0c26.5 0 48 21.5 48 48l0 48L0 160l0-48C0 85.5 21.5 64 48 64l48 0 0-32c0-17.7 14.3-32 32-32zM0 192l448 0 0 272c0 26.5-21.5 48-48 48L48 512c-26.5 0-48-21.5-48-48L0 192zM329 305c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-95 95-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l64 64c9.4 9.4 24.6 9.4 33.9 0L329 305z" />
+                        </svg>
+                        <span>Events</span>
+                    </x-side-link>
+
                     <x-side-link href="{{ route('game-packages.index') }}" wire:navigate :active="request()->routeIs('game-packages.index')">
-                        <svg  class="w-5 h-5 fill-current inline-block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M274.9 34.3c-28.1-28.1-73.7-28.1-101.8 0L34.3 173.1c-28.1 28.1-28.1 73.7 0 101.8L173.1 413.7c28.1 28.1 73.7 28.1 101.8 0L413.7 274.9c28.1-28.1 28.1-73.7 0-101.8L274.9 34.3zM200 224a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zM96 200a24 24 0 1 1 0 48 24 24 0 1 1 0-48zM224 376a24 24 0 1 1 0-48 24 24 0 1 1 0 48zM352 200a24 24 0 1 1 0 48 24 24 0 1 1 0-48zM224 120a24 24 0 1 1 0-48 24 24 0 1 1 0 48zm96 328c0 35.3 28.7 64 64 64l192 0c35.3 0 64-28.7 64-64l0-192c0-35.3-28.7-64-64-64l-114.3 0c11.6 36 3.1 77-25.4 105.5L320 413.8l0 34.2zM480 328a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/></svg>
+                        <svg class="w-5 h-5 fill-current inline-block" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 640 512">
+                            <path
+                                d="M274.9 34.3c-28.1-28.1-73.7-28.1-101.8 0L34.3 173.1c-28.1 28.1-28.1 73.7 0 101.8L173.1 413.7c28.1 28.1 73.7 28.1 101.8 0L413.7 274.9c28.1-28.1 28.1-73.7 0-101.8L274.9 34.3zM200 224a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zM96 200a24 24 0 1 1 0 48 24 24 0 1 1 0-48zM224 376a24 24 0 1 1 0-48 24 24 0 1 1 0 48zM352 200a24 24 0 1 1 0 48 24 24 0 1 1 0-48zM224 120a24 24 0 1 1 0-48 24 24 0 1 1 0 48zm96 328c0 35.3 28.7 64 64 64l192 0c35.3 0 64-28.7 64-64l0-192c0-35.3-28.7-64-64-64l-114.3 0c11.6 36 3.1 77-25.4 105.5L320 413.8l0 34.2zM480 328a24 24 0 1 1 0 48 24 24 0 1 1 0-48z" />
+                        </svg>
                         <span>Games</span>
                     </x-side-link>
-             
 
                 </div>
             </div>
 
-           
+
             <x-side-link href="{{ route('category.index') }}" wire:navigate :active="request()->routeIs('category.index')">
                 <svg class="w-5 h-5 fill-current inline-block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                     <path

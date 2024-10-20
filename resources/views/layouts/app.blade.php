@@ -24,8 +24,42 @@
     <div class="min-h-screen  relative" x-data="{ open: false }" x-init="if (window.innerWidth >= 768) open = true"> {{-- <- x-init for sidebar --}}
         @include('layouts.navigation')
         {{-- resources/views/app.blade.php --}}
-
         {{-- {{ Breadcrumbs::render('dashboard') }} --}}
+        @if (Session::has('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: '{{ Session::get('success') }}'
+            });
+        </script>
+    @endif
+    
+    @if ( Session::has('error'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                'text':  '{{ Session::get('error') }}'
+            });
+        </script>
+    @endif
+
+    
+    @if ($errors->any())
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+        role="alert">
+        <div class="alert-title">
+            <h4 class="text-lg font-semibold">Whoops!</h4>
+        </div>
+        <span class="block sm:inline">There are some problems with your input.</span>
+        <ul class="mt-2 list-disc pl-5">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
         <div class="min-w-screen flex mx-auto justify-center ">
             <!-- Page sidebar -->

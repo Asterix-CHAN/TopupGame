@@ -14,16 +14,6 @@
         <div class="main-wrapper flex flex-col mb-5">
             <div class="main-content">
                 <div class="container w-1/2">
-
-                    @if (Session::has('success'))
-                        <script>
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Success!',
-                                text: '{{ Session::get('success') }}'
-                            });
-                        </script>
-                    @endif
                     <form method="post" action="{{ route('platform.update', $item->id) }}">
                         @csrf
                         @method('PUT')
@@ -36,9 +26,9 @@
                                             class="block text-gray-700 text-sm font-bold mb-2">{{ __('Name') }}</label>
                                         <x-text-input type="text" name="name"
                                             value="{{ $item->name }}"></x-text-input>
-                                        {{-- @error('name')
-                                                <x-input-error :message="{{ $message }}"></x-input-error>
-                                            @enderror --}}
+                                        @error('name')
+                                            <x-input-error :message="{{ $message }}"></x-input-error>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>

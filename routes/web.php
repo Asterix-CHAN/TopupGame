@@ -30,6 +30,9 @@ use App\Http\Controllers\Admin\TopupgamePackageController;
 |
 */
 
+Route::middleware(['auth'])->group(function(){
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+ });
 
 // Index
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -46,7 +49,7 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function() {
         return view('dashboard');
     })->name('dashboard');
     Route::resource('product-packages', ProductController::class);
-    Route::get('product-packages/create/{id}', [ProductController::class, 'create'])->name('product-packages.create');
+    Route::get('product-packages/create/{uuid}', [ProductController::class, 'create'])->name('product-packages.create');
     // Route::post('diamonds/event', [DiamondController::class, 'createEvent'])->name('diamonds.createEvent');
     Route::resource('game-packages', TopupgamePackageController::class);
     Route::resource('category', CategoryController::class);
@@ -54,15 +57,17 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function() {
     Route::resource('platform', PlatformController::class);
     Route::resource('diamonds', DiamondController::class);
     Route::resource('events', EventController::class);
-    Route::get('events/create/{id}', [EventController::class, 'create'])->name('event.create');
+    Route::get('events/create-event/{uuid}', [EventController::class, 'createEvent'])->name('event.createEvent');
     Route::get('/users', [UserController::class, 'show'])->name('users.show');
     Route::get('/users/{id}', [UserController::class, 'destroy'])->name('users.delete');
     // Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
 });
 
- Route::middleware(['auth'])->group(function(){
-    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
- });
+Route::get('/cart', function(){
+    return view('pages.cart');
+})->name('cart');
+
+
 // Role User
 Route::middleware('role:user')->group(function(){
     // Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');

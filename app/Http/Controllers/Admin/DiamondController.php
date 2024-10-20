@@ -18,6 +18,7 @@ class DiamondController extends Controller
     public function index()
     {
         $items = Diamond::with('game_packages')->get();
+       
         // sweetAlert Delete message
         $title = 'Delete Diamond!';
         $text = "Are you sure you want to delete?";
@@ -40,13 +41,16 @@ class DiamondController extends Controller
     {
         
         $data = $request->validate([
+            'uuid' => 'string|unique',
             'price' => 'required|numeric|min:0|max:100000000',
             'diamond' => 'required|integer',
             'game_id' => 'required|integer|exists:topupgame_packages,id',
         ]);
 
         $gamePackage = TopupgamePackage::findOrFail($request->game_id);
+        
         $data['slug'] = Str::slug($gamePackage->name);
+        $data['uuid'] = Str::uuid();
         
         Diamond::create($data);
         Alert::success('Success Title', 'Success Message');

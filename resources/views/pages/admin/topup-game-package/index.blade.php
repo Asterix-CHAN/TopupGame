@@ -1,19 +1,7 @@
 <x-app-layout>
 
 
-    @if (Session::has('success'))
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Success!',
-                text: '{{ Session::get('success') }}'
-            });
-        </script>
-    @endif
-
-
     <x-slot name="header">
-
         <div class="mx-2 md:container md:mx-auto sm:px-8 lg:px-10">
             <h2 class="font-semibold text-2xl text-gray-800 leading-tight mt-3 ">
                 {{ __('Daftar Game') }}
@@ -25,9 +13,9 @@
 
     <main>
         <!-- Begin Page Content -->
-        <div class="container-fluid pt-10">
+        <div class="container-fluid px-2 md:px-0 pt-10">
             <!-- Page Heading -->
-            <div class="md:container mx-auto">
+            <div class="md:container mx-auto ">
                 <div class="flex flex-col">
                     {{-- sm:-mx-6 lg:-mx-8 --}}
                     <div class="overflow-x-auto">
@@ -57,7 +45,7 @@
                                         <tr>
                                             <th scope="col"
                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                ID</th>
+                                                No</th>
                                             <th scope="col"
                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Name</th>
@@ -114,22 +102,26 @@
 
                                                 <td scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    {{ $item->platform_name ? $item->platform_name->name : 'No platform available' }}
-
+                                                    {{ $item->platform_name ? $item->platform_name->name : 'No platform available' }} 
+                                                </td>
                                                 <td scope="col"
-                                                    class="px-6 py-3 text-center items-center  text-xs font-medium text-gray-500 tracking-wider gap-1 ">
-                                                    <a href="{{ route('game-packages.edit', $item->id) }}"
+                                                    class="px-6 py-3 items-end  text-xs font-medium text-gray-500 tracking-wider gap-1 flex flex-col ">
+                                                    <a href="{{ route('game-packages.edit', $item->uuid) }}"
                                                         class="text-blue-600 hover:text-blue-400 flex flex-row"><i
                                                             class="fa-solid fa-pen-to-square mx-1"></i>Edit
                                                     </a>
-                                                    <a href="{{ route('game-packages.show', $item->id) }}"
+                                                    <a href="{{ route('game-packages.show', $item->slug) }}"
                                                         class="text-orange-500 hover:text-orange-400 flex flex-row">
                                                         <i class="fa-solid fa-warehouse mx-1"></i>Product
                                                     </a>
-                                                    <a href="{{ route('game-packages.destroy', $item->id) }}"
+                                                    <form action="{{ route('game-packages.destroy', $item->id) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit"
                                                         class="text-red-600 hover:text-red-400 flex flex-row"
                                                         data-confirm-delete="true"><i
-                                                            class="fa fa-trash mx-1"></i>Delete</a>
+                                                            class="fa fa-trash mx-1"></i>Delete</button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @empty

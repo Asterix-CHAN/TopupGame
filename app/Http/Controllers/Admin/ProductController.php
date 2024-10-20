@@ -28,9 +28,9 @@ class ProductController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(string $id)
+    public function create(string $uuid)
     {
-        $data = TopupgamePackage::find($id);
+        $data = TopupgamePackage::where('uuid', $uuid)->firstOrFail();
         $diamonds = Diamond::all();
         if (!$data) {
             return redirect()->back()->with('error', 'Product Package not found');

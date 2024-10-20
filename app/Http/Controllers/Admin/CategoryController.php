@@ -42,14 +42,16 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        $data = $request->validate([
             'name' => 'required|string|max:10',
         ]);
-
+       
+        $data['slug'] = Str::slug($request->name);
+        $data['uuid'] = Str::uuid(); 
         // Generate the slug
         // $validated['slug'] = Str::slug($request->name);
         try {
-            Category::create($validated);
+            Category::create($data);
             Alert::success('Success Title', 'Success Message');
             return redirect()->back()->with('success', 'Data berhasil ditambahkan');
         } catch (\Exception $e) {

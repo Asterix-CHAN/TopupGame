@@ -31,7 +31,7 @@ Breadcrumbs::for('game-packages.show', function (BreadcrumbTrail $trail, Topupga
 
 Breadcrumbs::for('product-packages.create', function (BreadcrumbTrail $trail, TopupgamePackage $data): void {
     $trail->parent('game-packages.index');
-    $trail->push($data->name . ' / Tambah Produk', route('product-packages.create', ['id' => $data->id]));
+    $trail->push($data->name . ' / Tambah Produk', route('product-packages.create', ['uuid' => $data->uuid]));
 });
 
 

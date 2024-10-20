@@ -11,15 +11,6 @@
         <div class="main-wrapper flex flex-col mb-5">
             <div class="main-content flex">
                 <div class="container w-1/2">
-                    @if (Session::has('success'))
-                        <script>
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Success!',
-                                text: '{{ Session::get('success') }}'
-                            });
-                        </script>
-                    @endif
                     @if ($errors->any())
                         <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
                             role="alert">

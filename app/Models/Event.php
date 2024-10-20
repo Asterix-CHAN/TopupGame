@@ -12,7 +12,7 @@ class Event extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'price', 'diamond_event', 'slug', 'game_id', 'diamond_id'
+       'uuid', 'price', 'diamond_event', 'slug', 'game_id', 'diamond_id'
     ];
 
     protected $hidden = [];

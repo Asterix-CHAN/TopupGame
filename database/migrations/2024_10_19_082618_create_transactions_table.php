@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('events', function (Blueprint $table) {
+        Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->uuid('uuid')->unique(); 
+            $table->foreignId('user_id')->constrained('users');
             $table->foreignId('game_id')->nullable()->constrained('topupgame_packages');
             $table->foreignId('diamond_id')->nullable()->constrained('diamonds');
-            $table->string('diamond_event')->nullable();
+            $table->foreignId('diamond_event')->nullable()->constrained('events');
+            // $table->string('payment_method', 50);
+            $table->decimal('total_amount', 10, 2);
             $table->decimal('price',15, 0)->default(0);
-            $table->string('slug');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('events');
+        Schema::dropIfExists('transactions');
     }
 };

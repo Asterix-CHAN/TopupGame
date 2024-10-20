@@ -29,9 +29,9 @@ class TopupgamePackageController extends Controller
         $items = TopupgamePackage::with(['platform_name'])->paginate(10);
 
         // sweetAlert Delete message
-        $title = 'Delete Product!';
-        $text = "Are you sure you want to delete?";
-        confirmDelete($title, $text);
+        // $title = 'Delete Produk Game!';
+        // $text = "Are you sure you want to delete?";
+        // confirmDelete($title, $text);
 
         return view('pages.admin.topup-game-package.index', compact('items', 'categories', 'platforms'));
     }
@@ -49,11 +49,23 @@ class TopupgamePackageController extends Controller
     {
         $data = $request->all();
         $data['slug'] = Str::slug($request->name);
+        $data['uuid'] = Str::uuid();
 
+        // 
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('assets/gallery', 'public');
             $data['image'] = $imagePath;
         }
+
+        // 
+        $existName = TopupgamePackage::where('name', $data['name'])->exists();
+        if ($existName) {
+            Alert::error('Error', 'Product Name already exists');
+            return redirect()->back()->withInput()->with('error', 'Product Name already exists');
+
+        }
+
+        // 
         $items = TopupgamePackage::create($data);
         // create data topupgame and categories to pivot table
         $items->categories()->attach($request->category_id);
@@ -66,26 +78,23 @@ class TopupgamePackageController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $slug)
     {
 
-        $items = TopupgamePackage::find($id);
-        // $products = ProductPackage::with('game_packages')->where('topupgame_package_id', $id)->get();
-        $diamonds = Diamond::with('game_packages')->where('game_id', $id)->get();
-        $events = Event::with('game_packages')->where('game_id', $id)->get();
-        // if (!$items || $products->isEmpty()) {
-        //     return redirect()->back()->with('error', 'Data not found');
-        // }
-
+        $items = TopupgamePackage::where('slug',$slug)->firstOrFail();
+        
+        $diamonds = Diamond::with('game_packages')->where('slug', $slug)->get();
+        $events = Event::with('game_packages')->where('slug', $slug)->get();
+      
         return view('pages.admin.topup-game-package.show-products', compact('items', 'diamonds', 'events'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $uuid)
     {
-        $item = TopupgamePackage::with(['platform_name'])->findOrFail($id);
+        $item = TopupgamePackage::with(['platform_name'])->where('uuid',$uuid)->firstOrFail();
         $platforms = Platform::all();
         $categories = Category::all();
         return view('pages.admin.topup-game-package.edit', compact('item', 'categories', 'platforms'));
@@ -134,7 +143,8 @@ class TopupgamePackageController extends Controller
             $item = TopupgamePackage::findOrFail($id);
             $item->delete();
             Alert::success('Success Title', 'Success Message');
-            return redirect()->back()->with('success', 'Data Berhasil dihapus');
+            return redirect()->route('game-packages.index')->with('success', 'Data Berhasil dihapus');
+            //
         } catch (\Exception $e) {
             Alert::error('Error Title', 'Error Message');
             return redirect()->back()->with('error', 'Data gagal dihapus');

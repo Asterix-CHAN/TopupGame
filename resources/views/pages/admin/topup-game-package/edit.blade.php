@@ -15,20 +15,6 @@
         <div class="main-wrapper flex flex-col mb-5">
             <div class="main-content">
                 <div class="container w-1/2">
-                    @if ($errors->any())
-                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
-                            role="alert">
-                            <div class="alert-title">
-                                <h4 class="text-lg font-semibold">Whoops!</h4>
-                            </div>
-                            <span class="block sm:inline">There are some problems with your input.</span>
-                            <ul class="mt-2 list-disc pl-5">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
                     <form method="post" action="{{ route('game-packages.update', $item->id) }}"
                         enctype="multipart/form-data">
                         @csrf
