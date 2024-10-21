@@ -1,8 +1,7 @@
-<div class="relative z-10 " aria-labelledby="modal-title" role="dialog" aria-modal="true" x-on:click="show = false"
-    x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
-    x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
 
-    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity z-40" aria-hidden="true"></div>
+<div class="relative z-10 " aria-labelledby="modal-title" role="dialog" aria-modal="true" x-on:click="show = false">
+
+    <div class="fixed inset-0 z-30 flex items-center justify-center overflow-auto bg-black bg-opacity-50" aria-hidden="true"></div>
 
     <div class="fixed inset-0 z-50 w-screen overflow-y-auto">
         <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"
@@ -18,8 +17,6 @@
                         {{--  --}}
                         <form method="post" action="{{ route('game-packages.store') }}" enctype="multipart/form-data">
                             @csrf
-
-
                             <div class="card mt-5">
                                 <div class="card-body flex gap-2">
                                     <div class="w-full">
@@ -166,3 +163,5 @@
         });
     </script>
 @endpush
+
+

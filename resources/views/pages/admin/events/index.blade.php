@@ -62,7 +62,7 @@
                                                     {{ $index + 1 }}</td>
                                                 <td scope="col"
                                                     class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                                                    <a href="{{ route('game-packages.show', $item->id) }}"
+                                                    <a href="{{ route('game-packages.show', $item->slug) }}"
                                                         class="hover:text-blue-600">
                                                         {{ $item->game_packages->name }}</a>
                                                 </td>

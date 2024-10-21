@@ -89,9 +89,14 @@ class EventController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $slug)
     {
-        //
+        // $items = TopupgamePackage::where('slug',$slug)->firstOrFail();
+        
+        // $diamonds = Diamond::with('game_packages')->where('slug', $slug)->get();
+        // $events = Event::with('game_packages')->where('slug', $slug)->get();
+      
+        // return view('pages.admin.topup-game-package.show-products', compact('items', 'diamonds', 'events'));
     }
 
     /**
