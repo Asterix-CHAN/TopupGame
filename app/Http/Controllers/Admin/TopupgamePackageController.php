@@ -107,15 +107,13 @@ class TopupgamePackageController extends Controller
     {
 
         $data = $request->validate([
-            'name' => 'required|string|max:255',
-            'developer' => 'required|max:255',
-            'description' => 'required|max:255',
-            'about' => 'required|max:255',
-            'price' => 'required|numeric',
-            'stock' => 'required|numeric',
-            'category_id' => 'required|array|min:1',
-            'category_id.*' => 'required|integer|exists:categories,id',
-            'platform_id' => 'required|integer|max:255',
+            'name' => 'string|max:255',
+            'developer' => 'string|max:255',
+            'description' => 'text|max:255',
+            'about' => 'longText|max:255',
+            'category_id' => 'array|min:1',
+            'category_id.*' => 'integer|exists:categories,id',
+            'platform_id' => 'integer|max:255',
             'image' => 'image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
@@ -139,15 +137,15 @@ class TopupgamePackageController extends Controller
      */
     public function destroy(string $id)
     {
-        try {
+       
             $item = TopupgamePackage::findOrFail($id);
-            $item->delete();
-            Alert::success('Success Title', 'Success Message');
-            return redirect()->route('game-packages.index')->with('success', 'Data Berhasil dihapus');
-            //
-        } catch (\Exception $e) {
+            if ($item->delete()) {
+                Alert::success('Success Title', 'Success Message');
+                return redirect()->route('game-packages.index')->with('success', 'Data Berhasil dihapus');
+            }
+            
             Alert::error('Error Title', 'Error Message');
             return redirect()->back()->with('error', 'Data gagal dihapus');
-        }
+        
     }
 }

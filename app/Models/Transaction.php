@@ -11,6 +11,7 @@ class Transaction extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
+        'uuid',
         'uid_game',
         'server_game',
         'user_id',

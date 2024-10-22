@@ -12,6 +12,7 @@ use App\Http\Controllers\GameListController;
 use App\Http\Controllers\Admin\UserController;
 
 use App\Http\Controllers\Admin\EventController;
+use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\Admin\DiamondController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\ProductController;
@@ -30,17 +31,13 @@ use App\Http\Controllers\Admin\TopupgamePackageController;
 |
 */
 
-Route::middleware(['auth'])->group(function(){
-    Route::get('/checkout/{slug}', [CheckoutController::class, 'index'])->name('checkout');
-    Route::post('/order/{slug}', [OrderController::class, 'process'])->name('order_process');
- });
 
 // Index
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/games', [GameListController::class, 'index'])->name('games');
 Route::get('/filter/{name}', [GamelistController::class, 'show'])->name('showPlatform');
 // Route::get('/order/{id}', [OrderController::class, 'index'])->name('order');
-Route::get('/order/{slug}', [OrderController::class, 'index'])->name('order');
+Route::get('/order/{slug}', [CheckoutController::class, 'index'])->name('order');
 
 // Role Admin
 Route::middleware(['auth', 'verified', 'role:admin'])->group(function() {
@@ -66,6 +63,11 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function() {
 Route::get('/cart', function(){
     return view('pages.cart');
 })->name('cart');
+
+Route::middleware(['auth'])->group(function(){
+    Route::get('/transaction/{slug}', [TransactionController::class, 'index'])->name('transaction.index');
+    Route::post('/order/{slug}', [CheckoutController::class, 'process'])->name('order_process');
+ });
 
 
 // Role User

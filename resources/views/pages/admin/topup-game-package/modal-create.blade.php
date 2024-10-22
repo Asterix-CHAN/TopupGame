@@ -59,15 +59,6 @@
                                             @enderror
                                         </div>
 
-                                        <div class="mb-4">
-                                            <label class="block text-gray-700 text-sm font-bold mb-2">Price</label>
-                                            <x-text-input type="text" name="price" value="{{ old('price') }}"
-                                                placeholder="Price"></x-text-input>
-                                            @error('price')
-                                                <x-input-error :messages="$message"></x-input-error>
-                                            @enderror
-                                        </div>
-
                                         <div class="mb-2">
                                             <label for="category_id"
                                                 class="block text-gray-700 text-sm font-bold mb-2">Categories</label>
@@ -96,14 +87,6 @@
                                             @enderror
                                         </div>
 
-                                        <div class="mb-4">
-                                            <label class="block text-gray-700 text-sm font-bold mb-2">Stock</label>
-                                            <x-text-input type="text" name="stock" value="{{ old('stock') }}"
-                                                placeholder="Stock"></x-text-input>
-                                            @error('stock')
-                                                <x-input-error :messages="$message"></x-input-error>
-                                            @enderror
-                                        </div>
 
                                         <div class="mb-4">
                                             <label for="imageUpload"

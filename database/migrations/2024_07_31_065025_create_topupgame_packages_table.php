@@ -19,8 +19,6 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->longText('about')->nullable();
             $table->string('slug');
-            $table->double('price');
-            $table->string('stock')->nullable();
             $table->text('image')->nullable();
             // $table->foreignId('category_id')->constrained(table: 'categories');
             // $table->string('platform');

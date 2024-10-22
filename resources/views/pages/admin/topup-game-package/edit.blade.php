@@ -44,16 +44,7 @@
                                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                             name="about">{{ $item->about }}</textarea>
                                     </div>
-                                    <div class="mb-4">
-                                        <label class="block text-gray-700 text-sm font-bold mb-2">Price</label>
-                                        <x-text-input type="text" name="price"
-                                            value="{{ $item->price }}"></x-text-input>
-                                    </div>
-                                    <div class="mb-4">
-                                        <label class="block text-gray-700 text-sm font-bold mb-2">Stock</label>
-                                        <x-text-input type="text" name="stock"
-                                            value="{{ $item->stock }}"></x-text-input>
-                                    </div>
+                    
                                     <div class="mb-4">
                                         <select name="category_id[]" id="category_id"
                                             class="select2-multiple shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline overflow-y-hidden"

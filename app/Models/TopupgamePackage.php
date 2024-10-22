@@ -21,10 +21,8 @@ class TopupgamePackage extends Model
         'description',
         'about',
         'slug',
-        'price',
         // 'categories',
         'platform_id',
-        'stock',
         'image',
     ];
 

@@ -12,7 +12,9 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        //
+       Transaction::with('game',  'user')->get();
+        return view('pages.checkout');
+    
     }
 
     /**

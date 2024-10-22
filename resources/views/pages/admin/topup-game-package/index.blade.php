@@ -56,9 +56,6 @@
                                             <th scope="col"
                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Developer</th>
-                                            <th scope="col"
-                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                Stock</th>
 
                                             <th scope="col"
                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -88,10 +85,6 @@
                                                 <td scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     {{ $item->developer }}</td>
-                                                <td scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    {{ $item->stock }}</td>
-
                                                 <td scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase ">
                                                     @forelse ($item->categories as $category)

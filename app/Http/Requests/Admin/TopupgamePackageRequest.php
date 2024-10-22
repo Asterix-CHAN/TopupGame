@@ -26,8 +26,6 @@ class TopupgamePackageRequest extends FormRequest
             'developer' => 'required|string|max:255',
             'description' => 'nullable|string|max:255',
             'about' => 'nullable|string|max:255',
-            'price' => 'required|numeric',
-            'stock' => 'required|string|max:255',
             'platform_id' => 'required|string|max:255',
             // 'categories' => 'required|max:255',
             'category_id' => 'required|array|min:1',

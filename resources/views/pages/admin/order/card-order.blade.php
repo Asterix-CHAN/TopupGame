@@ -10,7 +10,7 @@
             <!-- Total Diamond (hidden field) -->
             <div class="flex flex-col mb-4 w-full">
                 <p id="topup" class="text-white font-semibold">Informasi Pesanan</p>
-                <input data-input id="topup-value" value="" name="diamond_total" required />
+                <input data-input id="topup-value" type="hidden" value="" name="diamond_total" required />
             </div>
 
             <!-- Input ID User -->
@@ -41,12 +41,14 @@
 
             <!-- Input Phone Number -->
             <div class="flex flex-col mb-4 w-full">
+                
                 <label for="phone-number" class="text-sm md:text-lg font-semibold mb-2">
                     Nomor WhatsApp
                 </label>
+                
                 <input data-input type="tel" id="phone-number" name="phone_number"
                     class="border border-gray-200 rounded-lg px-4 py-2 bg-white text-small focus:border-blue-200 focus:outline-none"
-                    placeholder="Masukkan Nomor WhatsApp" />
+                    placeholder="+62" />
                 @error('phone_number')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
