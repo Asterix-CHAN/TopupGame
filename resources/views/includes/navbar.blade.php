@@ -37,7 +37,7 @@
                                 <i class="fa-solid fa-gamepad "></i>{{ __('Games') }}</x-nav-link>
                           </li>
                           <li class="mx-3 h-full">
-                              <x-nav-link href="{{ route('checkout') }}" wire:navigate 
+                              <x-nav-link href="" wire:navigate 
                                  ><i
                                       class="fa-solid fa-money-bill"></i>{{ __('Transaksi') }}</x-nav-link>
                           </li>

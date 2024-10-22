@@ -38,7 +38,9 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+            'phone_number' => ['required','string', 'regex:/^(\+62|08)[0-9]{9,12}$/']
+        ], [
+            'phone_number.regex' => 'Nomor telepon harus dimulai dengan +62 atau 08 dan terdiri dari 10-13 digit.',]);
 // dd($request->email);
         // $email=Mail::to($request->email)->send(new register($request->email));
         // dd($email);
@@ -48,6 +50,7 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'phone_number' => $request->phone_number
         ]);
 
         $user->assignRole('user');

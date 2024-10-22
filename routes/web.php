@@ -31,7 +31,8 @@ use App\Http\Controllers\Admin\TopupgamePackageController;
 */
 
 Route::middleware(['auth'])->group(function(){
-    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+    Route::get('/checkout/{slug}', [CheckoutController::class, 'index'])->name('checkout');
+    Route::post('/order/{slug}', [OrderController::class, 'process'])->name('order_process');
  });
 
 // Index
@@ -40,7 +41,6 @@ Route::get('/games', [GameListController::class, 'index'])->name('games');
 Route::get('/filter/{name}', [GamelistController::class, 'show'])->name('showPlatform');
 // Route::get('/order/{id}', [OrderController::class, 'index'])->name('order');
 Route::get('/order/{slug}', [OrderController::class, 'index'])->name('order');
-
 
 // Role Admin
 Route::middleware(['auth', 'verified', 'role:admin'])->group(function() {

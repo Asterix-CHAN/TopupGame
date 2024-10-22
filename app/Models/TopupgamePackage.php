@@ -59,8 +59,12 @@ class TopupgamePackage extends Model
     {
         return $this->hasMany(Event::class, 'game_id', 'id');
     }
-    public function batllepass()
+    public function battlepass()
     {
         return $this->hasMany(Battlepass::class, 'game_id', 'id');
+    }
+
+    public function transaction(){
+        return $this->hasMany(Transaction::class, 'game_id', 'id');
     }
 }

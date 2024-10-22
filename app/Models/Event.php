@@ -26,4 +26,8 @@ class Event extends Model
     public function diamond(){
         return $this->belongsTo(Diamond::class, 'diamond_id', 'id');
     }
+
+    public function transaction(){
+        return $this->hasMany(Transaction::class, 'event_id', 'id');
+    }
 }

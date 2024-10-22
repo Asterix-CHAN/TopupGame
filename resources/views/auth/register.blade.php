@@ -26,12 +26,18 @@
         </div>
 
         {{-- phone number --}}
-        {{-- <div class="mt-4">
-            <x-input-label for="phone_number" :value="__('No Telepon')" />
-            <x-text-input id="phone_number" class="block mt-1 w-full " type="text" name="phone_number"
-                :value="old('phone_number')" required autocomplete="phone_number" />
-            <x-input-error :messages="$errors->get('phone_number')" class="mt-2" />
-        </div> --}}
+        <div class="mt-4">
+            <x-input-label for="phone_number" :value="__('Phone Number')" />
+            <div x-data="{ show: true }" class="relative mt-2 rounded-md shadow-sm flex flex-row">
+                <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                    <span x-show="show" class="text-gray-500 sm:text-sm">+62</span>
+                </div>
+                <x-text-input x-on:click="show = false"
+                x-on:blur="show = $event.target.value === '' ? true : false"  id="phone_number" class="block mt-1 w-full" type="text" name="phone_number"
+                    :value="old('phone_number')" required autofocus autocomplete="phon_number" />
+                <x-input-error :messages="$errors->get('phone_number')" class="mt-2" />
+            </div>
+        </div>
 
         <!-- Password -->
         <div class="mt-4">
