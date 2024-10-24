@@ -1,34 +1,43 @@
-{{-- <div class="flex justify-center items-center mt-10">
-    <button @click="show = true" class="px-4 py-2 bg-blue-500 text-white rounded-lg">
-        Click me to open modal
-    </button>
-</div> --}}
-{{-- <button @click="show = true">{{ $trigger }}</button>  
-<div x-data="{ show: false }" x-show="show" x-cloak class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-20 backdrop-blur">
-    <div class="relative w-full max-w-2xl p-4 h-full md:h-auto">
+<div x-data="{ 'showModal': false }" @keydown.escape="showModal = false" 
+>
 
-          
-        <!-- Modal content -->
-        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-            <!-- Modal header -->
-            <div class="flex justify-between items-start p-4 border-b dark:border-gray-600">
-                <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                    {{ $title ?? '' }}
-                </h3>
-                <button @click="show = false" type="button" class="text-gray-400 hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto dark:hover:bg-gray-600 dark:hover:text-white">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                    </svg>
-                </button>
+    <!-- Trigger for Modal -->
+    <div @click="showModal = true">{{ $trigger }}</div>
+    <!-- Modal -->
+    <div class="fixed inset-0 z-30 flex items-center justify-center overflow-auto bg-black bg-opacity-50 transform transition-all"
+        x-show="showModal"     
+        >
+
+        <!-- Modal inner -->
+        <div class="max-w-3xl  px-6 py-4 mx-auto text-left bg-white rounded shadow-lg transform transition-all" @click.away="showModal = false"
+            x-transition:enter="transition ease-out duration-200" 
+            x-transition:enter-start="opacity-0 scale-95"
+            x-transition:enter-end="opacity-100 scale-100" 
+            x-transition:leave="transition ease-in duration-75"
+            x-transition:leave-start="opacity-100 
+            scale-100" x-transition:leave-end="opacity-0 scale-95">
+        <div class="flex justify-between items-start p-4 border-b dark:border-gray-600">
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                {{ $title ?? '' }}
+            </h3>
+        </div>
+
+
+            <!-- content -->
+            <div class="min-w-[200px] min-h-[100px] flex px-2 items-center justify-center">
+                <p class="text-gray-700">
+                    {{ $content }}
+                </p>
             </div>
-            <!-- Modal body -->
-            <div class="p-6 max-h-96 overflow-y-scroll">
-                {{ $slot }}
-            </div>
-            <!-- Modal footer -->
-            <div class="flex items-center p-6 space-x-2 border-t border-gray-200 dark:border-gray-600">
-                {{ $footer ?? '' }}
+            <!-- Title / Close-->
+
+            <div class="flex  items-center justify-end gap-2">
+                <div>
+                    {{ $submit }}
+                </div>
+                <div class="z-50 cursor-pointer" @click="showModal = false">{{ $cancel }}
+                </div>
             </div>
         </div>
     </div>
-</div> --}}
+</div>

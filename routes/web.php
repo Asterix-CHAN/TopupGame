@@ -58,16 +58,19 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function() {
     Route::get('/users', [UserController::class, 'show'])->name('users.show');
     Route::get('/users/{id}', [UserController::class, 'destroy'])->name('users.delete');
     // Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+    // Route::resource('transaction', TransactionController::class);
 });
 
-Route::get('/cart', function(){
-    return view('pages.cart');
-})->name('cart');
+
 
 Route::middleware(['auth'])->group(function(){
-    Route::get('/transaction/{slug}', [TransactionController::class, 'index'])->name('transaction.index');
-    Route::post('/order/{slug}', [CheckoutController::class, 'process'])->name('order_process');
- });
+    Route::get('/checkout/troli', [CheckoutController::class, 'cart'])->name('cart.index');
+    Route::post('/checkout/{uuid}', [CheckoutController::class, 'process'])->name('checkout.process');
+    Route::post('/checkout/delete/{uuid}', [CheckoutController::class, 'destroy'])->name('checkout.delete');
+    // Route::resource('transaction', TransactionController::class);
+    Route::get('/transactions/{uuid}', [TransactionController::class, 'index'])->name('transaction.index');
+    Route::post('/transactions', [TransactionController::class, 'store'])->name('transaction.store');
+    });
 
 
 // Role User

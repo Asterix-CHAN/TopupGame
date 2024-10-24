@@ -1,17 +1,5 @@
 <x-app-layout>
    
-    
-    @if (Session::has('success'))
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Success!',
-                text: '{{ Session::get('success') }}'
-            });
-        </script>
-    @endif
-
-
     <x-slot name="header">
       
         <div class="mx-2 md:container md:mx-auto sm:px-8 lg:px-10">
@@ -20,7 +8,6 @@
             </h2>
         </div>
     </x-slot>
-
 
 
     <main>
@@ -72,7 +59,7 @@
                                                 Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody class="bg-white divide-y divide-gray-200 items-center">
+                                    <tbody class="bg-white divide-y divide-gray-200">
                                         @forelse ($users as $index=>$user)
                                             <tr>
                                                 <td scope="col"
@@ -88,7 +75,7 @@
                                                     class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider {{ $user->roles->pluck('name')->implode(', ') == 'admin' ? 'text-orange-600' : 'text-cyan-600' }}" >
                                                     {{ $user->roles->pluck('name')->implode(', ')  }}</td>
                                                 <td scope="col"
-                                                    class="px-6 py-3 text-center items-center  text-xs font-medium text-gray-500 tracking-wider gap-1 ">
+                                                    class="px-6 py-3 items-end  text-xs font-medium text-gray-500 tracking-wider gap-1 flex flex-col ">
                                                     <a href=""
                                                         class="text-blue-600 hover:text-blue-400 flex flex-row"><i
                                                             class="fa-solid fa-pen-to-square mx-1"></i>Edit

@@ -26,6 +26,10 @@ class Transaction extends Model
 
     ];
     
+    public function detail(){
+        return $this->hasMany(TransactionDetail::class, 'transaction_id', 'id');
+    }
+
     public function game(){
         return $this->belongsTo(TopupgamePackage::class, 'game_id', 'id');
     }

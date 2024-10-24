@@ -2,9 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
+use App\Models\Platform;
+use Illuminate\Database\Seeder;
 use App\Models\TopupgamePackage;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 
 class GameSeeder extends Seeder
 {
@@ -13,9 +15,15 @@ class GameSeeder extends Seeder
      */
     public function run(): void
     {
+    // $categories = Category::whereIn('name', ['War', 'Action', 'Horror'])->get()->pluck('id')->toArray();
+    // $platforms = Platform::all();
     // TopupgamePackage::create([
     //     'name' => 'Genshin Impact',
-    //     ''
+    //     'developer' => 'Hoyoverse',
+
+    //     'categories' => $categories,
+    //     'platforms' => $platforms,
+        
     // ]);
     }
 }

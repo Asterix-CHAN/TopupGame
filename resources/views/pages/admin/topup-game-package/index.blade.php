@@ -112,7 +112,48 @@
                                                         <i class="fa-solid fa-warehouse mx-1"></i>Produk
                                                     </a>
                                                     {{-- Delete --}}
-                                                    <x-modal>
+                                                    {{-- <button x-data=""
+                                                        x-on:click.prevent="$dispatch('open-modal', 'confirm-game-deletion')"
+                                                        class="text-red-600 hover:text-red-400 "
+                                                        data-confirm-delete="true"><i
+                                                            class="fa fa-trash mx-1"></i>Delete</button>
+
+                                                    <x-modal name="confirm-game-deletion" :show="$errors->gameDeletion->isNotEmpty()" focusable>
+                                                        <form action="{{ route('game-packages.destroy', $item->id) }}"
+                                                            method="POST" class="p-6">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <h2 class="text-lg font-medium text-gray-900">
+                                                                {{ __('Are you sure you want to delete your game?') }}
+                                                            </h2>
+
+                                                            <p class="mt-1 text-sm text-gray-600">
+                                                                {{ __('Once your game is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your game.') }}
+                                                            </p>
+
+                                                            <div class="mt-6">
+                                                                <x-input-label for="password"
+                                                                    value="{{ __('Password') }}" class="sr-only" />
+
+                                                                <x-text-input id="password" name="password"
+                                                                    type="password" class="mt-1 block w-3/4"
+                                                                    placeholder="{{ __('Password') }}" />
+
+                                                                <x-input-error :messages="$errors->gameDeletion->get('password')" class="mt-2" />
+                                                                
+                                                                <div class="mt-6 flex justify-end">
+                                                                    <x-secondary-button x-on:click="$dispatch('close')">
+                                                                        {{ __('Cancel') }}
+                                                                    </x-secondary-button>
+
+                                                                    <x-danger-button class="ms-3">
+                                                                        {{ __('Delete Game') }}
+                                                                    </x-danger-button>
+                                                                </div>
+                                                        </form>
+                                                    </x-modal> --}}
+
+                                                    <x-modal-destroy>
                                                         <x-slot name="trigger">
                                                             <button type="button"
                                                                 class="text-red-600 hover:text-red-400 flex flex-row"
@@ -139,7 +180,7 @@
                                                         </x-slot>
                                                         <x-slot
                                                             name="cancel"><x-secondary-button>Cancel</x-secondary-button></x-slot>
-                                                    </x-modal>
+                                                    </x-modal-destroy>
                                                 </td>
                                             </tr>
                                         @empty

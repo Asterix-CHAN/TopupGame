@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('diamond_total')->default(0);
             $table->string('phone_number');
             $table->decimal('price',15, 0)->default(0)->nullable();
-            $table->decimal('total_amount', 10, 2)->default(0);         
+            $table->decimal('total_amount', 10, 0)->default(0)->nullable();         
             $table->softDeletes();
             $table->timestamps();
         });

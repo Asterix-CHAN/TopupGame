@@ -193,7 +193,7 @@
             <!-- End Left Side -->
 
             <!-- Right Side -->
-            <div class="w-full md:w-1/4 md:h-screen flex flex-col gap-y-2 order-last md:order-none ">
+            <div class="w-full md:w-1/4 md:h-screen flex flex-col gap-y-2 order-last md:order-none md:sticky md:top-32  ">
 
                 <!-- START: Shipping Details-->
                 @include('pages.admin.order.card-order')

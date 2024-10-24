@@ -2,10 +2,10 @@
 </div>
 
 <div id="sidebar"
-    class="bg-white fixed  md:relative min-h-screen w-1/2 md:w-full inset-0 md:block shadow-xl px-3 z-20 rounded-r-2xl rounded-b-none overflow-x-hidden decoration-none box-shadow ">
+    class="bg-white  fixed md:sticky md:top-32 min-h-screen w-1/2 md:w-full inset-0 md:block shadow-xl px-3 z-20 rounded-r-2xl rounded-b-none overflow-x-hidden decoration-none box-shadow ">
 
-    <div class="space-y-6 md:space-y-10 mt-10 container">
-        <div class="flex items-end justify-end">
+    <div class="space-y-6 md:space-y-10 mt-10 ">
+        <div class="flex items-end justify-end ">
             <button
                 class="relative middle none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] text-gray-500 hover:bg-blue-gray-500/10  md:hidden items-center"
                 type="button" @click="open = !open">
@@ -40,7 +40,7 @@
         </div>
 
         <!-- Menu items -->
-        <div id="menu" class="flex flex-col space-y-2">
+        <div id="menu" class="flex flex-col space-y-2 overflow-x-hidden px-4 md:px-6">
 
             <x-side-link href="{{ route('dashboard') }}" wire:navigate :active="request()->routeIs('dashboard')">
                 <svg class="w-5 h-5 fill-current inline-block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">

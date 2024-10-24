@@ -60,7 +60,7 @@
                                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                         {{ $data->name }}</td>
                                                     <td scope="col"
-                                                        class="px-6 py-3 text-center text-xs font-medium text-gray-500 tracking-wider gap-2">
+                                                        class="px-6 py-3 items-end flex flex-col text-xs font-medium text-gray-500 tracking-wider gap-2">
                                                         <a href="{{ route('category.edit', $data->slug) }}"
                                                             class="text-blue-600 hover:text-blue-400 "><i
                                                                 class="fa-solid fa-pen-to-square mx-1"></i>{{ __('Edit') }}
@@ -123,7 +123,7 @@
                                                         {{ $item->name }}</td>
 
                                                     <td scope="col"
-                                                        class="px-6 py-3 text-center text-xs font-medium text-gray-500 tracking-wider gap-2">
+                                                        class="px-6 py-3 items-end flex flex-col text-xs font-medium text-gray-500 tracking-wider gap-2">
 
                                                         <a href="{{ route('platform.edit', $item->slug) }}"
                                                             class="text-blue-600 hover:text-blue-400 "><i

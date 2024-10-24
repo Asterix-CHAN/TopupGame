@@ -12,7 +12,7 @@
             <!-- Left Side -->
 
             <div id="filterNav"
-                class="w-full h-screen inset-0 z-50 md:z-30 md:w-1/5 fixed bg-black bg-opacity-85 shadow-2xl md:ml-8 -left-full md:block md:sticky md:top-24 transition-all duration-300 ease-in-out md:bg-transparent">
+                class="w-full h-screen inset-0 z-50 md:z-30 md:w-1/5 fixed  md:ml-8 -left-full md:block md:sticky md:top-24 transition-all duration-300 ease-in-out md:bg-transparent">
 
                 <div id="filter-container"
                     class="flex md:flex-none flex-col relative w-full sm:w-1/2 md:w-full h-full bg-white md:rounded-2xl ">

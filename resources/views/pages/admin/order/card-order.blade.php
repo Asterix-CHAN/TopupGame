@@ -1,11 +1,11 @@
 <div id="offcanvas"
-    class="w-full px-4 py-6 rounded-lg rounded-b-none md:rounded-lg md:relative md:z-10 bg-slate-500 shadow-md shadow-slate-700 flex h-auto fixed bottom-0 left-0 right-0 translate-y-full transition-transform duration-300 ease-in-out  md:translate-y-0 md:flex md:flex-col z-40">
+    class="w-full md:sticky md:top-32  px-4 py-6 rounded-lg rounded-b-none md:rounded-lg  md:z-10 bg-slate-500 shadow-md shadow-slate-700 flex h-auto fixed bottom-0 left-0 right-0 translate-y-full transition-transform duration-300 ease-in-out  md:translate-y-0 md:flex md:flex-col z-40">
     <div class=" px-4 relative flex flex-col w-full">
 
         <button id="close-offcanvas" class="md:hidden text-right text-white">
             <i class="fa-solid fa-xmark text-2xl"></i>
         </button>
-        <form action="{{ route('order_process', $item->slug) }}" method="POST" id="shipping-detail">
+        <form action="{{ route('checkout.process', $item->uuid) }}" method="POST" id="shipping-detail">
             @csrf
             <!-- Total Diamond (hidden field) -->
             <div class="flex flex-col mb-4 w-full">
@@ -60,7 +60,7 @@
                     Total
                 </label>
                 <p id="price-list" class="right-0 text-base md:text-lg text-white"></p>
-                <input data-input id="topup-price" type="hidden" value="" name="total_amount" required />
+                <input data-input id="topup-price" type="hidden" value="" name="price" required />
             </div>
 
             <!-- Tombol -->
