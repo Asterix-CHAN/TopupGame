@@ -33,37 +33,39 @@ class TransactionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, $uuid)
     {
-        $data = Transaction::with('game', 'user')->first();
+        $data = Transaction::with('game', 'user')->where('uuid', $uuid)->first();
 
         $phoneNumber = $data['phone_number'];
         $length = 5;
         $invoice = Str::random($length);
 
         $token = '1L9kc1hCTU12ELiFz3u8';
-        $message = "
-*INVOICE {$invoice}*
+        $message = "*Ivoice {$invoice}*
         
-*PEMBELIAN*
+*Pembelian*
 
+{$data->game->name}
 UID Game: {$data->uid_game}
 Server Game: {$data->server_game}
-Status Payment: Pending
+Status Payment: PENDING
+*-------------------------------------*
 
-*BANK TRANSFER*
+*Bank Transfer*
 
-BCA
-435345345345
+BCA 43534543554
 {$data->user->name}
-{$data->price}
+*Rp. {$data->price}*
+*-------------------------------------*
+
+Invoice expired at 25-Oct-2024 12:53
 
 Note : 
 Payment processed automatically in 15 minutes.
-Avoid transaction at 11PM to 6AM GMT+7
+Avoid transaction at 11AM to 6AM GMT+7
 
-Thank you!
-";
+Thank you!";
 
         $curl = curl_init();
         curl_setopt_array($curl, array(
@@ -90,7 +92,7 @@ Thank you!
         curl_close($curl);
 
         Alert::success('Success', 'Diamond Berhasil Dibeli');
-        return redirect()->route('cart.index')->with('success', 'Data Terkirim');
+        return redirect()->route('cart.index', $data->uuid)->with('success', 'Data Terkirim');
     }
 
     /**

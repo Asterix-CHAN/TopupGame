@@ -5,7 +5,7 @@
 
         <div class="space-y-4">
             <div class="space-y-2">
-                <form action="{{ route('transaction.store') }}" method="POST">
+                <form action="{{ route('transaction.store', $items->uuid) }}" method="POST">
                     @csrf
                 <dl class="flex items-center justify-between gap-4">
                     <dt class="text-base font-normal text-gray-500 dark:text-gray-400">Harga</dt>

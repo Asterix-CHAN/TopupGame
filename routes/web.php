@@ -69,7 +69,7 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/checkout/delete/{uuid}', [CheckoutController::class, 'destroy'])->name('checkout.delete');
     // Route::resource('transaction', TransactionController::class);
     Route::get('/transactions/{uuid}', [TransactionController::class, 'index'])->name('transaction.index');
-    Route::post('/transactions', [TransactionController::class, 'store'])->name('transaction.store');
+    Route::post('/transactions/{uuid}', [TransactionController::class, 'store'])->name('transaction.store');
     });
 
 
