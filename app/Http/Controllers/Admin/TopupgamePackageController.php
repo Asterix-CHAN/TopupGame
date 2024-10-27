@@ -29,9 +29,9 @@ class TopupgamePackageController extends Controller
         $items = TopupgamePackage::with(['platform_name'])->paginate(10);
 
         // sweetAlert Delete message
-        // $title = 'Delete Produk Game!';
-        // $text = "Are you sure you want to delete?";
-        // confirmDelete($title, $text);
+        $title = 'Delete Produk Game!';
+        $text = "Are you sure you want to delete?";
+        confirmDelete($title, $text);
 
         return view('pages.admin.topup-game-package.index', compact('items', 'categories', 'platforms'));
     }
@@ -135,17 +135,11 @@ class TopupgamePackageController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $uuid)
     {
-       
-            $item = TopupgamePackage::findOrFail($id);
-            if ($item->delete()) {
+            $item = TopupgamePackage::where('uuid', $uuid)->first();
+            $item->delete();
                 Alert::success('Success Title', 'Success Message');
-                return redirect()->route('game-packages.index')->with('success', 'Data Berhasil dihapus');
+                return redirect()->back()->with('success', 'Data Berhasil dihapus');
             }
-            
-            Alert::error('Error Title', 'Error Message');
-            return redirect()->back()->with('error', 'Data gagal dihapus');
-        
-    }
 }

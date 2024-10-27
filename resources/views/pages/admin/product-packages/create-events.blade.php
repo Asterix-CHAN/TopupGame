@@ -44,24 +44,28 @@
                                         <div class="bg-white p-6 rounded-lg shadow-lg gap-3 flex flex-col">
                                             <h1 class="text-2xl font-semibold mb-4">Tambah Produk Events</h1>
                                             <p>Harga Awal {{ $diamonds->price }}</p>
-                                            {{-- <p>Harga Awal Event{{ $events->price ?? 0}}</p> --}}
+                                            {{-- <p>Harga Awal Event {{ $events->price ?? 0 }}</p> --}}
                                             <div class="mb-4">
-                                            <label for="price" class="block text-gray-700 text-sm font-bold mb-2">Harga Event</label>
-                                            <x-text-input type="number" name="price" class="block"
-                                                placeholder="Harga Event"></x-text-input>
-                                            @error('price')
-                                                <x-input-error :messages="$message"></x-input-error>
-                                            @enderror
+                                                <label for="price"
+                                                    class="block text-gray-700 text-sm font-bold mb-2">Harga
+                                                    Event</label>
+                                                <x-text-input type="number" name="price" class="block"
+                                                    placeholder="Harga Event"></x-text-input>
+                                                @error('price')
+                                                    <x-input-error :messages="$message"></x-input-error>
+                                                @enderror
                                             </div>
 
                                             <div class="mb-4">
-                                            <label for="diamond_event" class="block text-gray-700 text-sm font-bold mb-2">Jumlah Diamond Event</label>
-                                            <x-text-input type="number" name="diamond_event" class="block"
-                                                placeholder="Jumlah Diamond Event"></x-text-input>
-                                            @error('diamond_event')
-                                                <x-input-error :messages="$message"></x-input-error>
-                                            @enderror
-                                        </div>
+                                                <label for="diamond_event"
+                                                    class="block text-gray-700 text-sm font-bold mb-2">Jumlah Diamond
+                                                    Event</label>
+                                                <x-text-input type="number" name="diamond_event" class="block"
+                                                    placeholder="Jumlah Diamond Event"></x-text-input>
+                                                @error('diamond_event')
+                                                    <x-input-error :messages="$message"></x-input-error>
+                                                @enderror
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

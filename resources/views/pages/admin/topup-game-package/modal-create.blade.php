@@ -1,7 +1,7 @@
-
 <div class="relative z-10 " aria-labelledby="modal-title" role="dialog" aria-modal="true" x-on:click="show = false">
 
-    <div class="fixed inset-0 z-30 flex items-center justify-center overflow-auto bg-black bg-opacity-50" aria-hidden="true"></div>
+    <div class="fixed inset-0 z-30 flex items-center justify-center overflow-auto bg-black bg-opacity-50"
+        aria-hidden="true"></div>
 
     <div class="fixed inset-0 z-50 w-screen overflow-y-auto">
         <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"
@@ -71,7 +71,7 @@
                                             @error('category_id[]')
                                                 <x-input-error :messages="$message"></x-input-error>
                                             @enderror
-                                        </div> 
+                                        </div>
 
                                         <div class="mb-4">
                                             <label for="platforms"
@@ -109,7 +109,6 @@
                                 </div>
 
                             </div>
-
                     </div>
                 </div>
                 <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row gap-2 justify-end sm:px-6">
@@ -146,5 +145,3 @@
         });
     </script>
 @endpush
-
-

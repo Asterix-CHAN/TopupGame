@@ -26,7 +26,4 @@ class Diamond extends Model
         return $this->belongsTo(TopupgamePackage::class, 'game_id', 'id');
     }
 
-    public function transaction(){
-        return $this->hasMany(Transaction::class, 'diamond_id', 'id');
-    }
 }

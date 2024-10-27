@@ -9,8 +9,6 @@
         </div>
     </x-slot>
 
-
-
     <main>
         <!-- Begin Page Content -->
         <div class="container-fluid px-2 md:px-0 pt-10">
@@ -23,7 +21,132 @@
 
                             <div class="col-lg-12 mb-4 flex justify-end">
 
-                                <div x-data="{ isOpen: false }" class="relative">
+                                <x-secondary-button x-data=""  x-on:click.prevent="$dispatch('open-modal', 'modal-create-game')" name="">
+                                    <i class="fa-solid fa-folder-plus mr-1"></i>{{ __('Tambah Game') }}
+                                </x-secondary-button>
+
+                                <x-modal name="modal-create-game" focusable >
+                                    <div class=" w-full inset-0 items-center  bg-white shadow-xl rounded-lg pb-2 scroll-m-0">
+                                        {{--  --}}
+                                        <form method="post" action="{{ route('game-packages.store') }}" class="mx-5"
+                                            enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="card mt-5">
+                                                <div class="card-body flex gap-2">
+                                                    <div class="w-full">
+                                                        <div class="mb-4">
+                                                            <label
+                                                                class="block text-gray-700 text-sm font-bold mb-2">Name</label>
+                                                            <x-text-input type="text" name="name"
+                                                                value="{{ old('name') }}"
+                                                                placeholder="Name"></x-text-input>
+                                                            @error('name')
+                                                                <x-input-error :messages="$message"></x-input-error>
+                                                            @enderror
+                                                        </div>
+
+                                                        <div class="mb-4">
+                                                            <label
+                                                                class="block text-gray-700 text-sm font-bold mb-2">Developer</label>
+                                                            <x-text-input type="text" name="developer"
+                                                                value="{{ old('developer') }}"
+                                                                placeholder="Developer"></x-text-input>
+                                                            @error('developer')
+                                                                <x-input-error :messages="$message"></x-input-error>
+                                                            @enderror
+                                                        </div>
+
+                                                        <div class="mb-4">
+                                                            <label
+                                                                class="block text-gray-700 text-sm font-bold mb-2">Description</label>
+                                                            <x-text-input type="text" name="description"
+                                                                value="{{ old('description') }}"
+                                                                placeholder="Description"></x-text-input>
+                                                            @error('description')
+                                                                <x-input-error :messages="$message"></x-input-error>
+                                                            @enderror
+
+                                                        </div>
+                                                        <div class="mb-4">
+                                                            <label
+                                                                class="block text-gray-700 text-sm font-bold mb-2">About</label>
+                                                            <textarea type="text" cols="50"
+                                                                class="shadow appearance-none border rounded w-full px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                                name="about" placeholder="About">{{ old('about') }}</textarea>
+                                                            @error('about')
+                                                                <x-input-error :messages="$message"></x-input-error>
+                                                            @enderror
+                                                        </div>
+
+                                                        <div class="mb-2">
+                                                            <label for="category_id"
+                                                                class="block text-gray-700 text-sm font-bold mb-2">Categories</label>
+                                                            <select name="category_id[]" id="category_id"
+                                                                class="select2-multiple" multiple>
+                                                                @foreach ($categories as $category)
+                                                                    <option value="{{ $category->id }}">
+                                                                        {{ $category->name }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                            @error('category_id[]')
+                                                                <x-input-error :messages="$message"></x-input-error>
+                                                            @enderror
+                                                        </div>
+
+                                                        <div class="mb-4">
+                                                            <label for="platforms"
+                                                                class="block text-gray-700 text-sm font-bold mb-2">Platform</label>
+                                                            <select name="platform_id" class="w-full rounded-md">
+                                                                <option>Pilih Platform!</option>
+                                                                @foreach ($platforms as $platform)
+                                                                    <option value="{{ $platform->id }}">
+                                                                        {{ $platform->name }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                            @error('platform_id')
+                                                                <x-input-error :messages="$message"></x-input-error>
+                                                            @enderror
+                                                        </div>
+
+
+                                                        <div class="mb-4">
+                                                            <label for="imageUpload"
+                                                                class="block text-gray-700 text-sm font-bold mb-2">Image</label>
+                                                            <div class="preview mt-4 mb-3" id="imagePreview">
+                                                                <p
+                                                                    class="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                                                                    No image
+                                                                    selected</p>
+                                                                <p class="text-xs text-gray-500 dark:text-gray-400">PNG,
+                                                                    JPG, JPEG (MAX.
+                                                                    2MB)</p>
+
+                                                            </div>
+                                                            <x-text-input type="text" type="file" name="image"
+                                                                id="imageUpload"></x-text-input>
+                                                            @error('image')
+                                                                <x-input-error :messages="$message"></x-input-error>
+                                                            @enderror
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="mt-6 flex justify-end">
+                                                <x-secondary-button x-on:click="$dispatch('close')">
+                                                    {{ __('Cancel') }}
+                                                </x-secondary-button>
+
+                                                <x-primary-button class="ms-3">
+                                                    {{ __('Simpan') }}
+                                                </x-primary-button>
+                                            </div>
+                                        </form>
+                                    </div>   
+                                </x-modal>
+
+                                {{-- <div x-data="{ isOpen: false }" class="relative">
                                     <x-secondary-button @click="isOpen = !isOpen"><i
                                             class="fa-solid fa-folder-plus mr-1"></i>{{ __('Tambah Game') }}
                                     </x-secondary-button>
@@ -34,10 +157,7 @@
                                             @include('pages.admin.topup-game-package.modal-create')
                                         </div>
                                     </div>
-                                </div>
-                                {{-- Livewire Button  --}}
-                                {{-- <x-secondary-button onclick="Livewire.dispatch('openModal', { component: 'tambah-produk' })">Tambah Produk</x-secondary-button> --}}
-
+                                </div> --}}
                             </div>
 
                             <div class="overflow-x-auto shadow-md sm:rounded-lg">
@@ -106,54 +226,20 @@
                                                         class="text-blue-600 hover:text-blue-400 flex flex-row"><i
                                                             class="fa-solid fa-pen-to-square mx-1"></i>Edit
                                                     </a>
+                                                    
                                                     {{-- Product --}}
                                                     <a href="{{ route('game-packages.show', $item->slug) }}"
                                                         class="text-orange-500 hover:text-orange-400 flex flex-row">
                                                         <i class="fa-solid fa-warehouse mx-1"></i>Produk
                                                     </a>
+                                                    
                                                     {{-- Delete --}}
-                                                    {{-- <button x-data=""
-                                                        x-on:click.prevent="$dispatch('open-modal', 'confirm-game-deletion')"
-                                                        class="text-red-600 hover:text-red-400 "
-                                                        data-confirm-delete="true"><i
-                                                            class="fa fa-trash mx-1"></i>Delete</button>
+                                                   <a href="{{ route('game-packages.destroy', $item->uuid) }}" class="text-red-600 hover:text-red-400 flex flex-row"
+                                                    data-confirm-delete="true"><i
+                                                        class="fa fa-trash mx-1"></i>Delete
+                                                   </a>
 
-                                                    <x-modal name="confirm-game-deletion" :show="$errors->gameDeletion->isNotEmpty()" focusable>
-                                                        <form action="{{ route('game-packages.destroy', $item->id) }}"
-                                                            method="POST" class="p-6">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <h2 class="text-lg font-medium text-gray-900">
-                                                                {{ __('Are you sure you want to delete your game?') }}
-                                                            </h2>
-
-                                                            <p class="mt-1 text-sm text-gray-600">
-                                                                {{ __('Once your game is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your game.') }}
-                                                            </p>
-
-                                                            <div class="mt-6">
-                                                                <x-input-label for="password"
-                                                                    value="{{ __('Password') }}" class="sr-only" />
-
-                                                                <x-text-input id="password" name="password"
-                                                                    type="password" class="mt-1 block w-3/4"
-                                                                    placeholder="{{ __('Password') }}" />
-
-                                                                <x-input-error :messages="$errors->gameDeletion->get('password')" class="mt-2" />
-                                                                
-                                                                <div class="mt-6 flex justify-end">
-                                                                    <x-secondary-button x-on:click="$dispatch('close')">
-                                                                        {{ __('Cancel') }}
-                                                                    </x-secondary-button>
-
-                                                                    <x-danger-button class="ms-3">
-                                                                        {{ __('Delete Game') }}
-                                                                    </x-danger-button>
-                                                                </div>
-                                                        </form>
-                                                    </x-modal> --}}
-
-                                                    <x-modal-destroy>
+                                                    {{-- <x-modal-destroy>
                                                         <x-slot name="trigger">
                                                             <button type="button"
                                                                 class="text-red-600 hover:text-red-400 flex flex-row"
@@ -180,7 +266,7 @@
                                                         </x-slot>
                                                         <x-slot
                                                             name="cancel"><x-secondary-button>Cancel</x-secondary-button></x-slot>
-                                                    </x-modal-destroy>
+                                                    </x-modal-destroy> --}}
                                                 </td>
                                             </tr>
                                         @empty
@@ -198,12 +284,7 @@
                 </div>
             </div>
         </div>
-
-
     </main>
-
-
-
 
 
 </x-app-layout>

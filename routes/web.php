@@ -9,8 +9,9 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\GameListController;
 
-use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\MidtransController;
 
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\Admin\DiamondController;
@@ -57,18 +58,20 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function() {
     Route::get('events/create-event/{uuid}', [EventController::class, 'createEvent'])->name('event.createEvent');
     Route::get('/users', [UserController::class, 'show'])->name('users.show');
     Route::get('/users/{id}', [UserController::class, 'destroy'])->name('users.delete');
-    // Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
-    // Route::resource('transaction', TransactionController::class);
+    Route::get('/transaction/index', [TransactionController::class, 'index'])->name('transaction.index');
 });
 
 
 
 Route::middleware(['auth'])->group(function(){
-    Route::get('/checkout/troli', [CheckoutController::class, 'cart'])->name('cart.index');
+    // Chekout Controller
+    Route::get('/checkout/troli/{cart}', [CheckoutController::class, 'cart'])->name('cart.index');
     Route::post('/checkout/{uuid}', [CheckoutController::class, 'process'])->name('checkout.process');
     Route::post('/checkout/delete/{uuid}', [CheckoutController::class, 'destroy'])->name('checkout.delete');
-    // Route::resource('transaction', TransactionController::class);
-    Route::get('/transactions/{uuid}', [TransactionController::class, 'index'])->name('transaction.index');
+    Route::post('/checkout/payment/{uuid}', [CheckoutController::class, 'payment'])->name('checkout.payment');
+    // Transaction Controller
+    
+    Route::get('/transactions/{uuid}', [TransactionController::class, 'show'])->name('transaction.show');
     Route::post('/transactions/{uuid}', [TransactionController::class, 'store'])->name('transaction.store');
     });
 
@@ -92,3 +95,13 @@ Route::get('/email/verify', function () {
 })->middleware('auth')->name('verification.notice');
 
 require __DIR__.'/auth.php';
+
+
+// midtrans
+Route::post('/midtrans/callback', [MidtransController::class, 'notificationHandler']);
+Route::get('/midtrans/finish', [MidtransController::class, 'finishRedirect']);
+Route::get('/midtrans/unfinish', [MidtransController::class, 'unfinishRedirect']);
+Route::get('/midtrans/failed', [MidtransController::class, 'errorRedirect']);
+
+
+

@@ -77,7 +77,7 @@
                   <!--  -->
                   <!--  Cart  -->
                   <div class="">
-                      <a href="{{ route('cart.index') }}" id="cart"
+                      <a href="" id="cart"
                           class="font-medium text-lg md:text-2xl hover:text-white hover:bg-slate-600 mr-2 w-10 h-10 items-center flex justify-center rounded-md focus:text-white focus:bg-slate-600"><i
                               class="fa-solid fa-cart-shopping"></i></a>
                   </div>

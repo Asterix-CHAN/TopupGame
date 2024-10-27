@@ -84,8 +84,7 @@
                         <!-- Start Card 1 --> <!-- id btn-buy-1 untuk buttonOrder.js animasi screen handphone -->
                         {{-- untuk jquery pake class price-button --}}
                         @forelse ($events as $event)
-                            <button data-price="{{ $event->price }}" data-topup="{{ $event->diamond->diamond }}"
-                                id="btn-buy-1"
+                            <div data-price="{{ $event->price }}" data-topup="{{ $event->diamond->diamond }}" id="btn-buy-1"
                                 class=" price-button w-auto flex-auto md:flex-initial px-2 md:px-4 items-center relative flex duration-300 ease-in-out hover:shadow-2xl hover:ring-2 hover:ring-primary-500 hover:ring-offset-2 hover:ring-offset-white md:rounded-2x border-2 min-h-[50px] z-20 rounded-xl cursor-pointer hover:bg-white gap-2 py-1 overflow-x-hidden">
                                 <div class="absolute rounded-xl inset-0 bg-gradient-to-r from-black/70 z-10"></div>
                                 <img src="{{ url('Game/src') }}/images/logo/diamond.png" alt="Game Logo"
@@ -100,7 +99,7 @@
                                         class="text-xs md:text-sm text-ellipsis overflow-hidden line-through text-white italic mt-2 bg-red-600 w-20 animate-pulse skew-y-3">
                                         Rp {{ $event->diamond->price }}</p>
                                 </div>
-                            </button>
+                            </div>
                         @empty
                             <div
                                 class=" price-button w-auto flex-auto md:flex-initial px-2 md:px-4 items-center relative flex duration-300 ease-in-out hover:shadow-2xl hover:ring-2 hover:ring-primary-500 hover:ring-offset-2 hover:ring-offset-white md:rounded-2x border-2 min-h-[50px] z-20 rounded-xl cursor-pointer hover:bg-white gap-2 py-1 overflow-x-hidden">
@@ -126,8 +125,7 @@
                     <!-- Card Weekly Pass -->
                     <div class="grid text-center grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-2 justify-center">
                         <!-- Start Card 1 --> <!-- id btn-buy-2 untuk buttonOrder.js animasi screen handphone -->
-                        <button data-price="Rp 27.000" data-topup="x1 Weekly Diamond Pass (Misi Top Up + 100)"
-                            id="btn-buy-2"
+                        <div data-price="Rp 27.000" data-topup="x1 Weekly Diamond Pass (Misi Top Up + 100)" id="btn-buy-2"
                             class="price-button w-auto flex-auto md:flex-initial pl-2 pr-0 md:pr-1 items-center relative flex duration-300 ease-in-out hover:shadow-2xl hover:ring-2 hover:ring-primary-500 hover:ring-offset-2 hover:ring-offset-white md:rounded-2x border-2 min-h-[50px]  z-20 rounded-xl cursor-pointer hover:bg-white hover:text-slate-700 overflow-x-hidden gap-1">
                             <div class="absolute rounded-xl inset-0 bg-gradient-to-r from-black/70  z-10"></div>
                             <img src="{{ url('Game/src') }}/images/logo/diamond.png" alt="Game Logo"
@@ -138,7 +136,7 @@
                                     x1 Weekly Diamond Pass (Misi Top Up + 100)</h5>
                                 <p class="text-xs md:text-sm text-ellipsis ">Rp 27.000</p>
                             </div>
-                        </button>
+                        </div>
                         <!-- End Card 1 -->
 
                     </div>
@@ -152,7 +150,7 @@
                     <div class="grid text-center grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 justify-center ">
                         <!-- Start Card 1 -->
                         @forelse ($events as $event)
-                            <button data-price="{{ $event->diamond->price }}" data-topup="{{ $event->diamond->diamond }}"
+                            <div data-price="{{ $event->diamond->price }}" data-topup="{{ $event->diamond->diamond }}"
                                 id="btn-buy-3"
                                 class="price-button w-auto flex-auto md:flex-initial px-4 md:px-4 items-center relative flex duration-300 ease-in-out hover:shadow-2xl hover:ring-2 hover:ring-primary-500 hover:ring-offset-2 hover:ring-offset-white md:rounded-2x border-2 min-h-[70px] z-20 rounded-xl cursor-pointer hover:bg-white ">
                                 <div class="absolute rounded-xl inset-0 bg-gradient-to-r from-black/70 z-10"></div>
@@ -165,7 +163,7 @@
                                     <p class="text-xs md:text-sm text-ellipsis overflow-hidden">Rp
                                         {{ $event->diamond->price }}</p>
                                 </div>
-                            </button>
+                            </div>
                         @empty
                             @foreach ($diamonds as $diamond)
                                 <button data-price="{{ $diamond->price }}" data-topup="{{ $diamond->diamond }}"
@@ -224,66 +222,6 @@
 @endsection
 
 @push('top-addon-script')
-    {{-- Input --}}
-    {{-- @vite('resources/js/shippingDetail.js') --}}
-
-    {{-- button topup --}}
-    {{-- <script>
-        $(function() {
-            // Saat tombol harga diklik
-            $(".price-button").on("click", function() {
-                var price = $(this).data("price");
-                var topup = $(this).data("topup");
-
-                // Update displayed values
-                $("#price-list, #price-list2").text(price.toLocaleString('id-ID'));
-                $("#topup, #topup2").text(topup.toLocaleString('id-ID') + " Diamond");
-
-                // Set top-up value in the hidden input
-                $("#topup-value").val(topup);
-                input.addEventListener("change", function(event) {
-                    data[event.target.id] = event.target.value;
-
-                    check();
-                });
-                // Perform the check for button enabling/disabling
-
-            });
-
-            let data = {};
-
-            const inputs = document.querySelectorAll("#shipping-detail input[data-input]");
-
-            for (let index = 0; index < inputs.length; index++) {
-                const input = inputs[index];
-
-                input.addEventListener("change", function(event) {
-                    data[event.target.id] = event.target.value;
-
-                    check();
-                });
-                // console.log(input);
-            };
-
-            function check() {
-                console.log(data);
-                const find = Object.values(data).filter((item) => item === "");
-
-                const button = document.querySelector("#shipping-detail button[type='submit']");
-
-                if (find.length == 0) {
-                    button.disabled = false;
-                    button.classList.add('pointer', 'bg-blue-500');
-                    button.classList.remove('bg-slate-800'); // Add the classes
-                } else {
-                    button.disabled = true;
-                    button.classList.remove('pointer', 'bg-blue-500');
-                    button.classList.add('bg-slate-800'); // Remove the classes when disabled
-                }
-            };
-        });
-    </script> --}}
-
     <script>
         $(function() {
             function check() {

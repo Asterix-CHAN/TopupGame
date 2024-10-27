@@ -10,6 +10,9 @@ class Transaction extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $attributes = [
+        'transaction_status' => 'IN_CART', // Set default value
+    ];
     protected $fillable = [
         'uuid',
         'uid_game',
@@ -17,6 +20,7 @@ class Transaction extends Model
         'user_id',
         'game_id',
         'diamond_total',
+        'transaction_status',
         'price',
         'total_amount',
         'phone_number'
@@ -38,11 +42,4 @@ class Transaction extends Model
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
-    public function diamond(){
-        return $this->belongsTo(Diamond::class, 'diamond_id', 'id');
-    }
-
-    public function event(){
-        return $this->belongsTo(Event::class, 'event_id', 'id');
-    }
 }

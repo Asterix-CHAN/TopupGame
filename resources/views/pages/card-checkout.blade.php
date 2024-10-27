@@ -5,11 +5,11 @@
 
         <div class="space-y-4">
             <div class="space-y-2">
-                <form action="{{ route('transaction.store', $items->uuid) }}" method="POST">
+                <form action="{{ route('checkout.payment', $items->uuid) }}" method="POST" >
                     @csrf
                 <dl class="flex items-center justify-between gap-4">
                     <dt class="text-base font-normal text-gray-500 dark:text-gray-400">Harga</dt>
-                    <dd class="text-base font-medium  dark:text-white">Rp. {{ $items->price }}</dd>
+                    <dd class="text-base font-medium  dark:text-white">{{ $items->price }}</dd>
                 </dl>
 
                 {{-- <dl class="flex items-center justify-between gap-4">
@@ -37,7 +37,8 @@
             <dl
                 class="flex items-center justify-between gap-4 border-t border-gray-200 pt-2 dark:border-gray-700">
                 <dt class="text-base font-bold  dark:text-white">Total Pembayaran</dt>
-                <dd class="text-base font-bold  dark:text-white">Rp. {{ $items->detail->first()->total_amount }}</dd>
+                <dd class="text-base font-bold  dark:text-white">{{ $items->price }}</dd>
+                {{-- {{ $items->detail->first()->total_amount }} --}}
             </dl>
 
             <dl

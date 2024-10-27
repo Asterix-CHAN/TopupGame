@@ -15,11 +15,10 @@ class TransactionController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index($uuid)
+    public function index()
     {
-        $items = Transaction::with(['detail', 'game',  'user',])->where('uuid', $uuid)->first();
-        //    dd($items->detail);
-        return view('pages.checkout',  compact('items'));
+      $items = Transaction::with(['game', 'user'])->get();
+      return view('pages.admin.transaction.index', compact('items'));
     }
 
     /**
@@ -98,9 +97,11 @@ Thank you!";
     /**
      * Display the specified resource.
      */
-    public function show(Transaction $transaction, $uuid)
+    public function show( $uuid)
     {
-       
+        $items = Transaction::with(['detail', 'game',  'user',])->where('uuid', $uuid)->first();
+        //    dd($items->detail);
+        return view('pages.checkout',  compact('items'));
     }
 
     /**

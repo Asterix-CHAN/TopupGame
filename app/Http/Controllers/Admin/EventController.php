@@ -36,7 +36,7 @@ class EventController extends Controller
      */
     public function createEvent($uuid)
     {
-        $diamonds = Diamond::with(['game_packages'])->where('uuid', '=', $uuid)->firstOrFail();
+        $diamonds = Diamond::with(['event','game_packages'])->where('uuid', '=', $uuid)->firstOrFail();
         return view('pages.admin.product-packages.create-events', compact('diamonds'));
     }
 

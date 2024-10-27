@@ -5,6 +5,7 @@
         <button id="close-offcanvas" class="md:hidden text-right text-white">
             <i class="fa-solid fa-xmark text-2xl"></i>
         </button>
+        
         <form action="{{ route('checkout.process', $item->uuid) }}" method="POST" id="shipping-detail">
             @csrf
             <!-- Total Diamond (hidden field) -->
@@ -41,11 +42,11 @@
 
             <!-- Input Phone Number -->
             <div class="flex flex-col mb-4 w-full">
-                
+
                 <label for="phone-number" class="text-sm md:text-lg font-semibold mb-2">
                     Nomor WhatsApp
                 </label>
-                
+
                 <input data-input type="tel" id="phone-number" name="phone_number"
                     class="border border-gray-200 rounded-lg px-4 py-2 bg-white text-small focus:border-blue-200 focus:outline-none"
                     placeholder="+62" />
@@ -62,6 +63,125 @@
                 <p id="price-list" class="right-0 text-base md:text-lg text-white"></p>
                 <input data-input id="topup-price" type="hidden" value="" name="price" required />
             </div>
+
+            <!-- START: Choose Payment-->
+            <div class="mb-4 w-full h-auto  ">
+                <label class="text-sm md:text-lg font-semibold mb-2 gap-y-2">
+                    Pilih Pembayaran
+                </label>
+                <!-- Item Wrapper -->
+                <div class=" max-w-xl mx-auto">
+                    <ul class="shadow-box text-white ">
+                        <!-- List E-Wallet -->
+                        <li class="relative border-b border-gray-200" x-data="{ selected: null }">
+                            <!-- Button -->
+                            <button type="button" class="w-full py-3 text-left "
+                                @click="selected !== 1 ? selected = 1 : selected = null">
+                                <div class="flex items-center justify-between font-semibold text-sm md:text-base ">
+                                    <h4><i class="fa-solid fa-wallet mr-2"></i> E-Wallet </h4>
+                                    <p  class="right-0 text-sm">Rp. 0</p>
+                                </div>
+                            </button>
+                            <!-- End Button -->
+                            <div class=" relative overflow-hidden transition-all max-h-0 duration-700 flex flex-col items-center "
+                                x-ref="container1"
+                                x-bind:style="selected == 1 ? 'max-height: ' + $refs.container1.scrollHeight + 'px' : ''">
+
+                                <!-- Start Card 1 -->
+                                <button type="button" data-value="dana" data-name="payment"
+                                    class="w-5/6 items-center px-4 focus:border-black relative flex rounded-xl duration-300 ease-in-out hover:shadow-2xl hover:ring-2 hover:ring-primary-500 hover:ring-offset-2 hover:ring-offset-white md:gap-x-3 md:rounded-2x md:p-3 border-2 h-[80px] cursor-pointer my-1">
+                                    <div class="w-32 h-[50px] relative rounded-xl">
+                                        <img src="../images/logo/logoDana.png" alt="Game Logo"
+                                            class="aspect-square h-full w-full rounded-lg !object-contain !object-center md:rounded-xl left-0 bg-white p-1">
+                                    </div>
+                                    <div class="relative flex w-full flex-col text-white justify-start text-start pl-2">
+                                        <h4 class=" truncate text-xxs font-semibold  md:text-base text-right">
+                                            Dana</h4>
+                                        <p class="text-xxs md:text-sm">Dicek Otomatis</p>
+                                        <hr class=" border border-slate-100 " />
+                                        <p class="text-xs md:text-sm mt-1">Rp. 1000</p>
+                                    </div>
+                                </button>
+
+                                <!-- Start Card 1 -->
+                                <button type="button" data-value="shoopepay" data-name="payment"
+                                    class="w-5/6 focus:border-2 focus:border-white focus:outline-none px-4 items-center relative flex rounded-xl duration-300 ease-in-out hover:shadow-2xl hover:ring-2 hover:ring-offset-2 hover:ring-offset-white md:gap-x-3 md:rounded-2x md:p-3 border-2 h-[80px] cursor-pointer my-1">
+                                    <div class="w-32 h-[50px] relative rounded-xl">
+                                        <img src="../images/logo/Shopepay logo.png" alt="Game Logo"
+                                            class=" aspect-square h-full w-full rounded-lg !object-contain !object-center md:rounded-xl left-0 bg-white p-1">
+                                    </div>
+                                    <div class="relative flex w-full flex-col text-white justify-start text-start pl-2">
+                                        <h4 class=" truncate text-xxs font-semibold  md:text-base text-right">
+                                            Shopee Pay</h4>
+                                        <p class="text-xxs md:text-sm">Dicek Otomatis</p>
+                                        <hr class=" border border-slate-100 " />
+                                        <p class="text-xs md:text-sm mt-1">Rp. 1000</p>
+                                    </div>
+                                </button>
+                                <!-- End Card 1 -->
+                            </div>
+                            <div class="w-full  text-right cursor-pointer"
+                                @click="selected !== 1 ? selected = 1 : selected = null">
+                                <i x-bind:class="selected ? 'fa-solid fa-chevron-up' : 'fa-solid fa-chevron-down'"></i>
+                            </div>
+                        </li>
+                        <!-- End E-wallet -->
+                        <li class="relative border-b border-gray-200 " x-data="{ selected: null }">
+
+                            <button type="button" class="w-full py-6 text-left"
+                                @click="selected !== 1 ? selected = 1 : selected = null">
+                                <div class="flex items-center justify-between font-semibold text-sm md:text-base ">
+                                    <h4>
+                                        <i class="fa-solid fa-file-invoice-dollar mr-2"></i>Virtual Account
+                                    </h4>
+                                    <i
+                                        x-bind:class="selected ? 'fa-solid fa-chevron-up ' : 'fa-solid fa-chevron-down'"></i>
+                                </div>
+                            </button>
+
+                            <div class=" relative overflow-hidden transition-all max-h-0 duration-700 flex flex-col justify-start items-center "
+                                x-ref="container2"
+                                x-bind:style="selected == 1 ? 'max-height: ' + $refs.container2.scrollHeight + 'px' : ''">
+
+                                <!-- Start Card 1 -->
+                                <div
+                                    class="w-5/6 flex-auto items-center px-4 relative flex rounded-xl duration-300 ease-in-out hover:shadow-2xl hover:ring-2 hover:ring-primary-500 hover:ring-offset-2 hover:ring-offset-white md:gap-x-3 md:rounded-2x md:p-3 border-2 h-[80px] cursor-pointer my-1">
+                                    <div class="w-32 h-[60px] relative rounded-xl">
+                                        <img src="../images/logo/logoDana.png" alt="Game Logo"
+                                            class="aspect-square h-full w-full rounded-lg !object-contain !object-center md:rounded-xl left-0 bg-white p-1">
+                                    </div>
+                                    <div
+                                        class="relative flex w-full flex-col text-white text-start justify-start pl-2">
+                                        <h4 class=" truncate text-xxs font-semibold  md:text-base">
+                                            Dana</h4>
+                                        <p class="text-xxs md:text-sm">Dicek Otomatis</p>
+                                        <p class="text-xs md:text-sm mt-1">Rp. 1000</p>
+                                    </div>
+                                </div>
+
+                                <!-- Start Card 1 -->
+                                <div
+                                    class="w-5/6 flex-auto  px-4 items-center relative flex rounded-xl duration-300 ease-in-out hover:shadow-2xl hover:ring-2 hover:ring-primary-500 hover:ring-offset-2 hover:ring-offset-white md:gap-x-3 md:rounded-2x md:p-3 border-2 h-[80px] cursor-pointer my-1">
+                                    <div class="w-32 h-[60px] relative rounded-xl">
+                                        <img src="../images/logo/Shopepay logo.png" alt="Game Logo"
+                                            class=" aspect-square h-full w-full rounded-lg !object-contain !object-center md:rounded-xl left-0 bg-white p-1">
+                                    </div>
+                                    <div
+                                        class="relative flex w-full flex-col text-white text-start justify-start pl-2">
+                                        <h4 class=" truncate text-xxs font-semibold  md:text-base">
+                                            Shoope Pay</h4>
+                                        <p class="text-xxs md:text-sm">Dicek Otomatis</p>
+                                        <p class="text-xs md:text-sm mt-1">Rp. 1000</p>
+                                    </div>
+                                </div>
+                                <!-- End Card 1 -->
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- End Item Wrapper -->
+            </div>
+            <!-- END:Choose Payment  -->
 
             <!-- Tombol -->
             @auth
