@@ -107,20 +107,14 @@ class CheckoutController extends Controller
             'customer_details' => [
                 'first_name' => $data->user->name,
                 'email' => $data->user->email,
-
             ],
-            'item_details' => [
-                'id' => $data->game->id,
-                'name' => $data->game->name,
-                "brand" => $data->game->developer,
-                "category" => $data->game->category,
-            ],
+            
             'enabled_payments' => [
                 'gopay',
             ],
             'vtweb' => []
         ];
-
+        // dd($data);
         try {
             $paymentUrl = Snap::createTransaction($midtrans_parameter)->redirect_url;
             // Redirect to Snap Payment Page
