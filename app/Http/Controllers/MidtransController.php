@@ -6,6 +6,8 @@ use Midtrans\Config;
 use Midtrans\Notification;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use App\Mail\TransactionSuccess;
+use Illuminate\Support\Facades\Mail;
 
 class MidtransController extends Controller
 {
@@ -27,13 +29,13 @@ class MidtransController extends Controller
         $order_id = $notif->order_id;
         $fraud = $notif->fraud_status;
 
-        $transaction = Transaction::where('uuid', $order_id)->firstOrFail();
+        $transaction = Transaction::where( 'uuid',$order_id)->firstOrFail();
         // error_log("Order ID $notif->order_id: "."transaction status = $status, fraud staus = $fraud");
 
 
         if ($status == 'capture') {
             if ($type == 'credit_card') {
-                if ($fraud == 'deny') {
+                if ($fraud == 'challenge') {
                     $transaction->transaction_status = 'CHALLENGE';
                 } else {
                     $transaction->transaction_status = 'SUCCESS';
@@ -57,17 +59,20 @@ class MidtransController extends Controller
         // sending to email
         if ($transaction) {
             if ($status == 'capture' && $fraud == 'accept') {
-                // Mail::to($transaction->user)->send(
-                //     new TransactionSuccess($transaction)
-                // );
+                Mail::to($transaction->user->email)->send(
+                    new TransactionSuccess($transaction),
+                    
+                );
             } else if ($status == 'settlement') {
-                // Mail::to($transaction->user)->send(
-                //     new TransactionSuccess($transaction)
-                // );
+                Mail::to($transaction->user->email)->send(
+                    new TransactionSuccess($transaction),
+                    
+                );
             } else if ($status == 'success') {
-                // Mail::to($transaction->user)->send(
-                //     new TransactionSuccess($transaction)
-                // );
+                Mail::to($transaction->user->email)->send(
+                    new TransactionSuccess($transaction),
+                    
+                );
             } else if ($status == 'capture'  && $fraud == 'deny') {
                 return response()->json([
                     'meta' => [

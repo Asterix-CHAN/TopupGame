@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use Midtrans\Snap;
 use Midtrans\Config;
 use App\Models\Event;
@@ -9,10 +10,12 @@ use App\Models\Diamond;
 use App\Models\Transaction;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Mail\TransactionSuccess;
 use App\Models\TopupgamePackage;
 use App\Models\TransactionDetail;
-use Exception;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Redirect;
 use RealRashid\SweetAlert\Facades\Alert;
 
 
@@ -32,7 +35,7 @@ class CheckoutController extends Controller
     // TROLI
     public function cart($cart)
     {
-        $transactions = Transaction::with('game')->where('transaction_status', $cart)->firstOrFail();
+        $transactions = Transaction::with('game')->where('IN_CART', $cart)->firstOrFail();
         return view('pages.cart', compact('transactions'));
     }
 
@@ -86,7 +89,7 @@ class CheckoutController extends Controller
     // PAYMENT
     public function payment(Request $request, $uuid)
     {
-        $data = Transaction::with(['detail', 'game', 'user'])->where('uuid', $uuid)->first();
+        $data = Transaction::with(['detail', 'game.gallery', 'user'])->where('uuid', $uuid)->firstOrFail();
 
         $data->transaction_status = "PENDING";
         $data->save();
@@ -104,17 +107,26 @@ class CheckoutController extends Controller
             'customer_details' => [
                 'first_name' => $data->user->name,
                 'email' => $data->user->email,
-                'phone' => $data->user->phone_number,
+
+            ],
+            'item_details' => [
+                'id' => $data->game->id,
+                'name' => $data->game->name,
+                "brand" => $data->game->developer,
+                "category" => $data->game->category,
             ],
             'enabled_payments' => [
                 'gopay',
-            ]           
+            ],
+            'vtweb' => []
         ];
 
         try {
             $paymentUrl = Snap::createTransaction($midtrans_parameter)->redirect_url;
             // Redirect to Snap Payment Page
             header('Location: ' . $paymentUrl);
+            // 
+
         } catch (Exception $e) {
             echo $e->getMessage();
         }
@@ -122,6 +134,9 @@ class CheckoutController extends Controller
         // $snapToken = Snap::getSnapToken($midtrans_parameter);
         // $data->snap_token = $snapToken;
         // $data->save();
+
+        // kirim ke email
+
 
         // return Redirect::back();
     }
