@@ -52,7 +52,7 @@ class MidtransController extends Controller
         } else if ($status == 'cancel') {
             $transaction->transaction_status = 'FAILED';
         }
-        //add database sesuai kondisi status midtrans
+      
         $transaction->save();
 
 

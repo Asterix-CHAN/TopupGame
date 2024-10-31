@@ -263,7 +263,7 @@
                 $("#topup-price").val(price).trigger("input");
 
                 $("#price-list, #price-list2").text('Rp. ' + price.toLocaleString('id-ID'));
-                $("#topup, #topup2").text(topup.toLocaleString('id-ID') + " Diamond");
+                $("#topup, #topup2").text(topup.toLocaleString('id-ID') + " Genesys Crystal");
             });
 
             check();

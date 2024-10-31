@@ -103,14 +103,14 @@ class TopupgamePackageController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $uuid)
     {
 
         $data = $request->validate([
             'name' => 'string|max:255',
             'developer' => 'string|max:255',
-            'description' => 'text|max:255',
-            'about' => 'longText|max:255',
+            'description' => 'string|max:255',
+            'about' => 'string|max:255',
             'category_id' => 'array|min:1',
             'category_id.*' => 'integer|exists:categories,id',
             'platform_id' => 'integer|max:255',
@@ -125,7 +125,7 @@ class TopupgamePackageController extends Controller
             $data['image'] = $imagePath;
         }
 
-        $item = TopupgamePackage::findOrFail($id);
+        $item = TopupgamePackage::where('uuid', $uuid)->firstOrFail();
         $item->update($data);
         $item->categories()->sync($request->category_id);
         Alert::success('Success Title', 'Success Message');

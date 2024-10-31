@@ -30,7 +30,7 @@
                                 {{-- <label for="counter-input" class="sr-only">Choose quantity:</label> --}}
                                 <div class="flex items-center justify-end order-3 ">
                                     <div class="text-end order-4 md:w-32">
-                                        <p class="text-base font-bold  dark:text-white">Rp. {{ $items->price }}
+                                        <p class="text-base font-bold  dark:text-white">Rp. {{ number_format($items->price, 0, ',', '.')  }}
                                         </p>
                                         </p>
                                     </div>

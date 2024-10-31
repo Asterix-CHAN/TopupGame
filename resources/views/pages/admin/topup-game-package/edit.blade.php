@@ -15,7 +15,7 @@
         <div class="main-wrapper flex flex-col mb-5">
             <div class="main-content">
                 <div class="container w-1/2">
-                    <form method="post" action="{{ route('game-packages.update', $item->id) }}"
+                    <form method="post" action="{{ route('game-packages.update', $item->uuid) }}"
                         enctype="multipart/form-data">
                         @csrf
                         @method('PUT')

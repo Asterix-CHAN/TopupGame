@@ -62,7 +62,7 @@
                     <span>Produk</span>
                 </button>
 
-                <div x-show="expanded" x-transition x-collapse.duration.500ms 
+                <div x-show="expanded"  x-collapse.duration.500ms 
                     class="w-full py-2 pr-2 pl-1 gap-2 flex flex-col bg-slate-200 rounded-md rounded-t-none shadow-xl">
 
                     <x-side-link href="{{ route('diamonds.index') }}" wire:navigate :active="request()->routeIs('diamonds.index')">
