@@ -198,7 +198,7 @@
         @guest
             <a href="{{ route('login') }}"
                 class="bg-cyan-900 hover:bg-cyan-600 text-white focus:bg-sky-800 focus:outline-none md:w-full py-2 md:rounded-2xl rounded-lg text-xs md:text-base text-center focus:text-white transition-all duration-200 px-6 mx-auto items-center">
-                SignIn atau SignUp Untuk Transaksi
+                Sign In atau Sign Up Untuk Transaksi
             </a>
         @endguest
 
