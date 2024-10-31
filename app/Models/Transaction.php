@@ -11,7 +11,7 @@ class Transaction extends Model
     use HasFactory, SoftDeletes;
 
     protected $attributes = [
-        'transaction_status' => 'IN_CART', // Set default value
+        'transaction_status' => 'IN_CART', 
     ];
     protected $fillable = [
         'uuid',
@@ -26,6 +26,7 @@ class Transaction extends Model
         'phone_number'
     ];
 
+   
     protected $hidden =[
 
     ];

@@ -160,7 +160,7 @@
                         <!-- Start Card 1 -->
                         <div
                             class="min-w-[30px] max-w-[250px] p-3 flex-col items-center relative flex rounded-xl duration-300 ease-in-out hover:shadow-2xl hover:ring-2 hover:ring-primary-500 hover:ring-offset-2 hover:ring-offset-white md:rounded-2x  z-20 backdrop-blur-xl backdrop-brightness-75 backdrop-contrast-100  shadow-md overflow-hidden">
-                            <a href="{{ route('order', $item->slug) }}" tabindex="0">
+                            <a href="{{ route('order', $item->slug) }}" tabindex="0" wire:navigate>
                                 <div class="min-w-50 min-h-50">
                                     <img src="{{ Storage::url($item->image) }}" alt="Game Logo"
                                         class="relative aspect-square w-full h-full rounded-lg object-cover object-center ring-1 md:rounded-xl">
@@ -196,7 +196,7 @@
                     @foreach ($items as $item)
                         <div
                             class="min-w-[30px] max-w-[250px] p-3 flex-col items-center relative flex rounded-xl duration-300 ease-in-out hover:shadow-2xl hover:ring-2 hover:ring-primary-500 hover:ring-offset-2 hover:ring-offset-white md:rounded-2x h-[150] z-20 backdrop-blur-xl backdrop-brightness-105">
-                            <a href="{{ route('order', $item->slug) }}" tabindex="0">
+                            <a href="{{ route('order', $item->slug) }}" tabindex="0" wire:navigate>
                                 <div class="w-full min-h-100 ">
                                     <img src="{{ Storage::url($item->image) }}" alt="Game Logo"
                                         class="relative aspect-square h-full w-full rounded-lg object-cover object-center ring-1 md:rounded-xl" />

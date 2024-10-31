@@ -34,7 +34,7 @@
                                     </div>
                                 </div> --}}
                                 {{-- Livewire Button  --}}
-                                {{-- <x-secondary-button onclick="Livewire.dispatch('openModal', { component: 'tambah-produk' })">Tambah Produk</x-secondary-button> --}}
+                                {{-- <x-secondary-button onclick="Livewire.dispatch('openModal', { component: { component: { component: 'tambah-produk' } } })">Tambah Produk</x-secondary-button> --}}
 
                             </div>
 

@@ -28,22 +28,20 @@
                   <div class="mx-3 hidden md:block md:self-stretch">
                       <ul id="menu" class="flex md:flex-row justify-center items-center h-full ">
                           <li class="mx-3 h-full">
-                            <x-nav-link href="{{ route('home') }}" wire:navigate :active="request()->routeIs('home')">
-                                <i class="fa-solid fa-house"></i>{{ __('Beranda') }}
-                            </x-nav-link>
+                              <x-nav-link href="{{ route('home') }}" wire:navigate :active="request()->routeIs('home')">
+                                  <i class="fa-solid fa-house"></i>{{ __('Beranda') }}
+                              </x-nav-link>
                           </li>
                           <li class="mx-3 h-full">
-                              <x-nav-link href="{{ route('games') }}" wire:navigate wire:navigate :active="request()->routeIs('games')">
-                                <i class="fa-solid fa-gamepad "></i>{{ __('Games') }}</x-nav-link>
+                              <x-nav-link href="{{ route('games') }}" wire:navigate :active="request()->routeIs('games')">
+                                  <i class="fa-solid fa-gamepad "></i>{{ __('Games') }}</x-nav-link>
                           </li>
                           <li class="mx-3 h-full">
-                              <x-nav-link href="" wire:navigate 
-                                 ><i
+                              <x-nav-link href="" wire:navigate><i
                                       class="fa-solid fa-money-bill"></i>{{ __('Transaksi') }}</x-nav-link>
                           </li>
                           <li class="mx-3 h-full">
-                              <x-nav-link href="#_" wire:navigate 
-                                  ><i
+                              <x-nav-link href="#_" wire:navigate><i
                                       class="fa-regular fa-newspaper"></i>{{ __('Blog') }}</x-nav-link>
                           </li>
                       </ul>
@@ -55,26 +53,13 @@
               <!-- Start Search, Login -->
               <div class=" h-full items-center flex gap-x-1 md:gap-x-2  gap-y-4 md:flex-row md:gap-y-0 mr-2">
                   <!-- Search -->
-                  <div
-                      class="transition-colors duration-300 ease-out hover:text-white hover:bg-slate-600  w-10 h-10 items-center flex justify-center rounded-md focus:text-white focus:bg-slate-600">
-                      <button id="searchBtn" type="button" class="font-medium md:text-2xl text-lg "><i
-                              class="fa-solid fa-magnifying-glass"></i></button>
-
-                  </div>
-                  <!-- Search Form -->
-                  <div id="searchModal" class="modal hidden z-50">
-                      <div class="w-screen h-screen fixed inset-0 bg-slate-700 bg-opacity-80 left-0 top-0 closeBtn">
-                      </div>
-                      <form action=""
-                          class="absolute -bottom-20 flex items-center self-end bg-slate-800 rounded-xl inset-0 mx-auto w-[300px] md:w-[600px] h-[50px] text-white">
-                          <label for="nav-search" class="mx-2 pl-2">
-                              <i class="fa-solid fa-magnifying-glass mr-2 "></i>
-                          </label>
-                          <input type="text" id="nav-search" placeholder="Search..."
-                              class="outline-none w-full h-full placeholder:italic rounded-r-lg border-none bg-slate-800 focus:outline-none focus:ring-0 focus:border-0 hover:rounded-lg">
-                      </form>
-                  </div>
-                  <!--  -->
+                  <button  type="button"
+                      class="font-medium md:text-2xl text-lg bg-transparent" x-data=''
+                      x-on:click.prevent="$dispatch('open-modal', 'modal-search')"><i
+                          class="fa-solid fa-magnifying-glass"></i>
+                  </button>
+                  {{--  --}}
+            
                   <!--  Cart  -->
                   <div class="">
                       <a href="" id="cart"
@@ -207,8 +192,7 @@
           <!-- List -->
           <ul>
               <li class="w-auto rounded-lg flex my-2">
-                  <x-side-link href="{{ route('home') }}"
-                      class=" w-full " wire:navigate :active="request()->routeIs('home')"><i
+                  <x-side-link href="{{ route('home') }}" class=" w-full " wire:navigate :active="request()->routeIs('home')"><i
                           class="fa-solid fa-house pl-2"></i><span class="pl-2">Home</span></x-side-link>
               </li>
               <li class="w-auto rounded-lg flex my-2">
@@ -216,15 +200,68 @@
                           class="fa-solid fa-gamepad pl-2"></i><span class="pl-2">Games</span></x-side-link>
               </li>
               <li class="w-auto rounded-lg flex my-2">
-                  <x-side-link href="#" class=" w-full "><i
-                          class="fa-solid fa-money-bill pl-2"></i><span class="pl-2">Transaksi</span></x-side-link>
+                  <x-side-link href="#" class=" w-full "><i class="fa-solid fa-money-bill pl-2"></i><span
+                          class="pl-2">Transaksi</span></x-side-link>
               </li>
               <li class="w-auto rounded-lg flex my-2">
-                  <x-side-link href="#" class=" w-full"><i
-                          class="fa-regular fa-newspaper pl-2"></i><span class="pl-2">Blog</span></x-side-link>
+                  <x-side-link href="#" class=" w-full"><i class="fa-regular fa-newspaper pl-2"></i><span
+                          class="pl-2">Blog</span></x-side-link>
               </li>
           </ul>
       </div>
 
   </nav>
   <!-- End Mobile Nav-->
+
+  {{-- Modal Search --}}
+  <x-modal name="modal-search">
+    <div
+        class="relative mx-auto transform overflow-hidden rounded-lg bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+        <div class="w-full text-end pt-2 pr-2">
+          <x-secondary-button x-on:click="$dispatch('close')">
+              <i class="fa-solid fa-xmark w-3 h-3"></i>
+          </x-secondary-button>
+      </div>
+
+        <div class="bg-white px-6 pb-8 pt-8 sm:p-8 my-auto rounded-t-lg border-b border-gray-200">
+           
+            <div class="w-full">
+                <form method="get" action="">
+                    @csrf
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="w-full">
+                                <div class="mb-6">
+                                    <label
+                                        class="block text-gray-800 text-sm font-semibold mb-2">Search</label>
+                                    <div class="relative">
+                                        <x-text-input type="text" name="name"
+                                            value="{{ old('name') }}"
+                                            class="w-full pl-10 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                                            placeholder="Search">
+                                        </x-text-input>
+                                        <i
+                                            class="fa-solid fa-magnifying-glass absolute left-3 top-3 h-5 w-5"></i>
+                                        @error('name')
+                                            <x-input-error :messages="$message"
+                                                class="text-red-500 mt-1"></x-input-error>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <div
+            class="flex bg-gray-50 px-6 py-4 rounded-b-lg border-t border-gray-200 sm:flex sm:flex-row gap-3 justify-end sm:px-8">
+
+            <x-primary-button
+                class="text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg px-4 py-2">
+                {{ __('Search') }}
+            </x-primary-button>
+        </div>
+        </form>
+    </div>
+
+</x-modal>

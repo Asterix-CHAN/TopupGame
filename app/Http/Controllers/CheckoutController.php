@@ -93,6 +93,9 @@ class CheckoutController extends Controller
 
         $data->transaction_status = "PENDING";
         $data->save();
+        // return $data;
+        // Mail::to($data->user->email)->send(
+        //     new TransactionSuccess($data) );
 
         Config::$serverKey = config('midtrans.serverKey');
         Config::$isProduction = config('midtrans.isProduction');
@@ -124,6 +127,7 @@ class CheckoutController extends Controller
         } catch (Exception $e) {
             echo $e->getMessage();
         }
+
 
         // $snapToken = Snap::getSnapToken($midtrans_parameter);
         // $data->snap_token = $snapToken;

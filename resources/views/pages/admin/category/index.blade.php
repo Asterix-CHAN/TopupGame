@@ -96,11 +96,11 @@
                                                         {{ $data->name }}</td>
                                                     <td scope="col"
                                                         class="px-6 py-3 items-end flex flex-col text-xs font-medium text-gray-500 tracking-wider gap-2">
-                                                        <a href="{{ route('category.edit', $data->slug) }}"
+                                                        <a href="{{ route('category.edit', $data->slug) }} " wire:navigate 
                                                             class="text-blue-600 hover:text-blue-400 "><i
                                                                 class="fa-solid fa-pen-to-square mx-1"></i>{{ __('Edit') }}
                                                         </a>
-                                                        <a href="{{ route('category.destroy', $data->slug) }}"
+                                                        <a href="{{ route('category.destroy', $data->slug) }}" 
                                                             class="text-red-600 hover:text-red-400 "
                                                             data-confirm-delete="true"><i
                                                                 class="fa fa-trash mx-1"></i>Delete</a>
@@ -198,7 +198,7 @@
                                                     <td scope="col"
                                                         class="px-6 py-3 items-end flex flex-col text-xs font-medium text-gray-500 tracking-wider gap-2">
 
-                                                        <a href="{{ route('platform.edit', $item->slug) }}"
+                                                        <a href="{{ route('platform.edit', $item->slug) }}" wire:navigate 
                                                             class="text-blue-600 hover:text-blue-400 "><i
                                                                 class="fa-solid fa-pen-to-square mx-1"></i>{{ __('Edit') }}
                                                         </a>

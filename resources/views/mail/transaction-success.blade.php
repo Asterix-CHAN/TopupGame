@@ -46,7 +46,7 @@
     </style>
     <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700" rel="stylesheet" type="text/css">
     <style type="text/css">
-        @import url(https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700);
+        @import url(https:fonts.googleapis.com/css?family=Ubuntu:300,400,500,700);
     </style>
     <!--<![endif]-->
 
@@ -166,10 +166,8 @@
 
         </div>
 
-
-
         <!--  -->
-        <div style="background:white;background-color:white;margin:0px auto;max-width:600px;">
+        {{-- <div style="background:white;background-color:white;margin:0px auto;max-width:600px;">
 
             <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation"
                 style="background:white;background-color:white;width:100%;">
@@ -193,8 +191,7 @@
                                                         <td style="width:550px;">
 
                                                             <img alt="Illustration" height="auto"
-                                                                src="https://i.pinimg.com/564x/dd/1f/88/dd1f88fbb80722d505e370f63ac0027e.jpg"
-                                                                style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;"
+                                                                src="{{ url($transaction->game->image[0]) }}"
                                                                 width="550" />
 
                                                         </td>
@@ -213,7 +210,7 @@
                 </tbody>
             </table>
 
-        </div>
+        </div> --}}
         <!--  -->
         <!-- Tbale -->
         <div style="background:white;background-color:white;margin:0px auto;max-width:600px;">
@@ -242,11 +239,11 @@
 
                                                             <div
                                                                 style="font-family:Assistant, Poppins, Helvetica;font-size:18px;line-height:1;text-align:left;color:#071C4D;">
-                                                                Hi, Rizky
+                                                                Hi, {{ $transaction->user->name }}
                                                                 <br /><br />
                                                                 Pembayaran Kamu Berhasil
                                                                 <br /><br />
-                                                                Order Id <strong>#85460458986549</strong></div>
+                                                                Order Id <strong>{{ $transaction->uuid }}</strong></div>
 
                                                         </td>
                                                     </tr>
@@ -261,12 +258,15 @@
                                                                 <tr>
                                                                     <td colspan="2">Metode Pembayaran</td>
                                                                 </tr>
+                                                                @foreach ($transaction->detail as $item)
                                                                 <tr>
-                                                                    <td><strong>Bank BCA</strong></td>
-                                                                    <td style="text-align: right;">Rp. 32.7845</td>
+                                                                    <td><strong>{{ $item->produk_name }}</strong></td>
+                                                                    <td style="text-align: right;">Rp, {{ $item->total_amount }}</td>
                                                                 </tr>
+                                                                @endforeach
+                                                                
                                                                 <tr>
-                                                                    <td><strong>Tax Ppn</strong></td>
+                                                                    <td><strong>Total Pembayaran</strong></td>
                                                                     <td style="text-align: right;">Rp. 32.7854</td>
                                                                 </tr>
                                                             </table>
@@ -286,10 +286,10 @@
                                                                         role="presentation"
                                                                         style="border:none;border-radius:8px;cursor:auto;mso-padding-alt:10px 25px;background:#FF9E53;"
                                                                         valign="middle">
-                                                                        <p
+                                                                        <a href="{{ url('transactions/payment-detail/' . $transaction->uuid) }}"
                                                                             style="display:inline-block;background:#FF9E53;color:#ffffff;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:18px;font-weight:bold;line-height:120%;margin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-padding-alt:0px;border-radius:8px;">
                                                                             Check Detail
-                                                                        </p>
+                                                                        </a>
                                                                     </td>
                                                                 </tr>
                                                             </table>

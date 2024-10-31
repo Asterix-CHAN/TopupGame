@@ -93,11 +93,12 @@
                                     class=" flex w-full flex-col text-white text-start justify-start pl-2 flex-1 z-20 relative">
                                     <h4 class=" text-xs xl:text-md font-medium  md:text-base text-ellipsis overflow-hidden">
                                         {{ $event->diamond->diamond }} Diamond</h4>
-                                    <p class="text-xs xl:text-md text-ellipsis overflow-hidden">{{ $event->price }}</p>
-
+                                    <p class="text-xs xl:text-md text-ellipsis overflow-hidden">Rp. {{ number_format($event->price,0, ',', '.') }}</p>
+                                   
                                     <p
                                         class="text-xs md:text-sm text-ellipsis overflow-hidden line-through text-white italic mt-2 bg-red-600 w-20 animate-pulse skew-y-3">
-                                        Rp {{ $event->diamond->price }}</p>
+                                        Rp. {{ number_format($event->diamond->price, 0, ',', '.') }}</p>
+                                      
                                 </div>
                             </div>
                         @empty
@@ -161,7 +162,7 @@
                                     <h4 class=" text-sm font-semibold  md:text-base text-ellipsis overflow-hidden">
                                         {{ $event->diamond->diamond }} Diamond</h4>
                                     <p class="text-xs md:text-sm text-ellipsis overflow-hidden">Rp
-                                        {{ $event->diamond->price }}</p>
+                                        {{ number_format($event->diamond->price, 0, ',', '.') }}</p>
                                 </div>
                             </div>
                         @empty
@@ -176,8 +177,8 @@
                                         class=" flex w-full flex-col text-white text-start justify-start pl-2 flex-1 z-20 relative">
                                         <h4 class=" text-sm font-semibold  md:text-base text-ellipsis overflow-hidden">
                                             {{ $diamond->diamond }} Diamond</h4>
-                                        <p class="text-xs md:text-sm text-ellipsis overflow-hidden">Rp
-                                            {{ $diamond->price }}</p>
+                                        <p class="text-xs md:text-sm text-ellipsis overflow-hidden">Rp.
+                                            {{ number_format($diamond->price, 0, ',', '.') }}</p>
                                     </div>
                                 </button>
                             @endforeach
@@ -261,7 +262,7 @@
                 $("#topup-value").val(topup).trigger("input");
                 $("#topup-price").val(price).trigger("input");
 
-                $("#price-list, #price-list2").text(price.toLocaleString('id-ID'));
+                $("#price-list, #price-list2").text('Rp. ' + price.toLocaleString('id-ID'));
                 $("#topup, #topup2").text(topup.toLocaleString('id-ID') + " Diamond");
             });
 

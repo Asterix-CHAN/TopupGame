@@ -72,9 +72,9 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $slug)
     {
-        $data = Category::findOrFail($id);
+        $data = Category::where('slug',$slug)->firstOrFail();
         return view('pages.admin.category.edit', ['datas' => $data]);
     }
 

@@ -2,15 +2,16 @@
 
 
 
+use App\Models\TransactionDetail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CheckoutController;
+
 use App\Http\Controllers\GameListController;
 
 use App\Http\Controllers\MidtransController;
-
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\TransactionController;
@@ -71,9 +72,10 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/checkout/payment/{uuid}', [CheckoutController::class, 'payment'])->name('checkout.payment');
     // Transaction Controller
     
-    Route::get('/transactions/{uuid}', [TransactionController::class, 'show'])->name('transaction.show');
+    Route::get('/transactions/payment-detail/{uuid}', [TransactionController::class, 'show'])->name('transaction.show');
     Route::post('/transactions/{uuid}', [TransactionController::class, 'store'])->name('transaction.store');
-    });
+    Route::get('/transactions/detail/{id}', [TransactionDetail::class, 'showDetail'])->name('transaction.detail');    
+});
 
 
 // Role User

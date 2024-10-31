@@ -160,118 +160,90 @@
                                 </div> --}}
                             </div>
 
-                            <div class="overflow-x-auto shadow-md sm:rounded-lg">
-                                <table class="min-w-full divide-y divide-gray-200 items-center">
+                            <div class="overflow-x-auto shadow-md sm:rounded-lg border-collapse border border-slate-400">
+                                <table class="min-w-full divide-y divide-gray-200 items-center  ">
                                     <thead class="bg-gray-50 ">
                                         <tr>
                                             <th scope="col"
-                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-r border-slate-300 ">
                                                 No</th>
                                             <th scope="col"
-                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-r border-slate-300">
                                                 Name</th>
                                             <th scope="col"
-                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-r border-slate-300">
                                                 Image</th>
                                             <th scope="col"
-                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-r border-slate-300">
                                                 Developer</th>
-
                                             <th scope="col"
-                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-r border-slate-300">
                                                 Category</th>
                                             <th scope="col"
-                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-r border-slate-300">
                                                 Platform</th>
                                             <th scope="col"
-                                                class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
+                                                class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-center ">
                                                 Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody class="bg-white divide-y divide-gray-200 items-center">
+                                    <tbody class="bg-white divide-y divide-gray-200  relative">
                                         @forelse ($items as $index=>$item)
                                             <tr>
                                                 <td scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-r border-slate-300">
                                                     {{ $index + 1 }}</td>
                                                 <td scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-r border-slate-300">
                                                     {{ $item->name }}</td>
                                                 <td scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-r border-slate-300">
                                                     <img src="{{ Storage::url($item->image) }}" alt=""
                                                         class="object-cover w-16 aspect-square rounded-lg object-center">
                                                 </td>
                                                 <td scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-r border-slate-300">
                                                     {{ $item->developer }}</td>
                                                 <td scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase ">
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase border-r border-slate-300">
                                                     @forelse ($item->categories as $category)
-                                                        {{ $category->name }}
+                                                      <span class="p-[3px] bg-slate-600 rounded-md font-semibold text-white">{{ $category->name }}</span>  
                                                     @empty
                                                         <span>No category found.</span>
                                                     @endforelse
                                                 </td>
 
                                                 <td scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-r border-slate-300">
                                                     {{ $item->platform_name ? $item->platform_name->name : 'No platform available' }}
                                                 </td>
 
                                                 <td scope="col"
-                                                    class="px-6 py-3 items-end  text-xs font-medium text-gray-500 tracking-wider gap-1 flex flex-col ">
+                                                    class="px-6 py-3 text-xs font-medium text-gray-500 tracking-wider gap-1  ">
                                                     {{-- Edit --}}
-                                                    <a href="{{ route('game-packages.edit', $item->uuid) }}"
-                                                        class="text-blue-600 hover:text-blue-400 flex flex-row"><i
+                                                    <a href="{{ route('game-packages.edit', $item->uuid) }} " wire:navigate 
+                                                        class="text-blue-600 hover:text-blue-400 items-center flex flex-row "><i
                                                             class="fa-solid fa-pen-to-square mx-1"></i>Edit
                                                     </a>
                                                     
                                                     {{-- Product --}}
-                                                    <a href="{{ route('game-packages.show', $item->slug) }}"
+                                                    <a href="{{ route('game-packages.show', $item->slug) }}" wire:navigate 
                                                         class="text-orange-500 hover:text-orange-400 flex flex-row">
                                                         <i class="fa-solid fa-warehouse mx-1"></i>Produk
                                                     </a>
                                                     
                                                     {{-- Delete --}}
-                                                   <a href="{{ route('game-packages.destroy', $item->uuid) }}" class="text-red-600 hover:text-red-400 flex flex-row"
+                                                   <a href="{{ route('game-packages.destroy', $item->uuid) }}" 
+                                                    class="text-red-600 hover:text-red-400 flex flex-row"
                                                     data-confirm-delete="true"><i
                                                         class="fa fa-trash mx-1"></i>Delete
                                                    </a>
 
-                                                    {{-- <x-modal-destroy>
-                                                        <x-slot name="trigger">
-                                                            <button type="button"
-                                                                class="text-red-600 hover:text-red-400 flex flex-row"
-                                                                data-confirm-delete="true"><i
-                                                                    class="fa fa-trash mx-1"></i>Delete</button>
-                                                        </x-slot>
-                                                        <x-slot name="title">
-                                                            <h3>Delete Produk</h3>
-                                                        </x-slot>
-                                                        <x-slot name="content">
-                                                            <p>Are you sure you want to delete this product?</p>
-                                                        </x-slot>
-                                                        <x-slot name="submit">
-                                                            <form
-                                                                action="{{ route('game-packages.destroy', $item->id) }}"
-                                                                method="POST">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <x-primary-button
-                                                                    class="text-white bg-red-500  hover:bg-red-700 focus:bg-red-700 flex flex-row"
-                                                                    data-confirm-delete="true"><i
-                                                                        class="fa fa-trash mx-1"></i>Delete</x-primary-button>
-                                                            </form>
-                                                        </x-slot>
-                                                        <x-slot
-                                                            name="cancel"><x-secondary-button>Cancel</x-secondary-button></x-slot>
-                                                    </x-modal-destroy> --}}
                                                 </td>
                                             </tr>
                                         @empty
                                             <tr>
-                                                <td colspan="9" class="text-center">Data Kosong</td>
+                                                <td colspan="7" class="text-center">Data Kosong</td>
                                             </tr>
                                         @endforelse
 

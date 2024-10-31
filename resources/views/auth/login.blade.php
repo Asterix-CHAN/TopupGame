@@ -1,6 +1,6 @@
 <x-guest-layout>
 
-    
+
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
     <x-slot name="header">
@@ -22,18 +22,25 @@
         <!-- Password -->
         <div class="mt-4">
             <div class="flex items-center justify-between">
-            <x-input-label for="password" :value="__('Password')" />
-            @if (Route::has('password.request'))
-                <a class="underline text-sm font-semibold text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-        </div>
-            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required
-                autocomplete="current-password" />
+                <x-input-label for="password" :value="__('Password')" />
+                @if (Route::has('password.request'))
+                    <a class="underline text-sm font-semibold text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        href="{{ route('password.request') }}">
+                        {{ __('Forgot your password?') }}
+                    </a>
+                @endif
+            </div>
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+            <div x-data="{ showPassword: false }" class="text-end">
+                <input id="password"
+                    class="block mt-1 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    :type="showPassword ? 'text' : 'password'" name="password" required
+                    autocomplete="current-password" />
+                <input type="checkbox" id="togglePassword" x-model="showPassword"
+                    class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" />
+                <label for="togglePassword" class="ms-2 text-sm text-gray-600">Show Password</label>
+            </div>
+
         </div>
 
         <!-- Remember Me -->
@@ -43,18 +50,18 @@
                     class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
                 <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
             </label>
-            
-                <x-primary-button class="ms-3">
-                    {{ __('Log in') }}
-                </x-primary-button>
-            
+
+            <x-primary-button class="ms-3">
+                {{ __('Log in') }}
+            </x-primary-button>
+
         </div>
 
-       
+
     </form>
 
-     <!--  Pesan -->
-     <div class="mt-4 text-center">
+    <!--  Pesan -->
+    <div class="mt-4 text-center">
         <div class="grid grid-cols-6 items-center">
             <hr class="my-2 border-gray-300">
             <p class="text-sm font-normal my-4 col-start-2 col-span-4">Atau masuk dengan</p>

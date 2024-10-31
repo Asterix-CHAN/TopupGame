@@ -9,7 +9,7 @@
                     @csrf
                 <dl class="flex items-center justify-between gap-4">
                     <dt class="text-base font-normal text-gray-500 dark:text-gray-400">Harga</dt>
-                    <dd class="text-base font-medium  dark:text-white">{{ $items->price }}</dd>
+                    <dd class="text-base font-medium  dark:text-white">Rp {{ number_format($items->price, 0, ',', '.') }}</dd>
                 </dl>
 
                 {{-- <dl class="flex items-center justify-between gap-4">
@@ -37,7 +37,7 @@
             <dl
                 class="flex items-center justify-between gap-4 border-t border-gray-200 pt-2 dark:border-gray-700">
                 <dt class="text-base font-bold  dark:text-white">Total Pembayaran</dt>
-                <dd class="text-base font-bold  dark:text-white">{{ $items->price }}</dd>
+                <dd class="text-base font-bold  dark:text-white">Rp. {{ number_format($items->price, 0, ',', '.') }}</dd>
                 {{-- {{ $items->detail->first()->total_amount }} --}}
             </dl>
 

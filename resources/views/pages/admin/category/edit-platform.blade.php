@@ -26,9 +26,10 @@
                                             class="block text-gray-700 text-sm font-bold mb-2">{{ __('Name') }}</label>
                                         <x-text-input type="text" name="name"
                                             value="{{ $item->name }}"></x-text-input>
-                                        @error('name')
-                                            <x-input-error :message="{{ $message }}"></x-input-error>
-                                        @enderror
+                                            @error('name')
+                                            <x-input-error :messages="$message"></x-input-error>
+                                         @enderror
+                                        
                                     </div>
                                 </div>
                             </div>

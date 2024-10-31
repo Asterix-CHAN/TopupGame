@@ -18,15 +18,24 @@
                     <div class="overflow-x-auto ">
                         <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
 
-                            {{-- <div class="col-lg-12 mb-4 flex justify-end">
-                                <a href="{{ route('product-packages.create', $items->id) }}"
-                                    class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-slate-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150">{{ __('Tambah Produk') }}</a>
-                            </div> --}}
+                            <div class="col-lg-12 mb-4 flex justify-end">
+                                <x-secondary-button
+                                    wire:click="$dispatch('openModal', { component: 'transaction-detail' })">
+                                    {{ __('Tambah') }}
+                                </x-secondary-button>
+
+
+                            </div>
 
                             <div class="shadow-md sm:rounded-lg">
+                                <form class="grid grid-cols-6 items-center gap-2 ">
+                                    <x-text-input class="col-span-1" name="q" placeholder="Search"
+                                        aria-label="Search" />
+                                    <x-primary-button class="col-span-1">Search</x-primary-button>
+                                </form>
                                 <table
-                                    class="min-w-full overflow-scroll divide-y divide-gray-200 items-center table-auto">
-                                    <thead class="bg-gray-50 ">
+                                    class="min-w-full overflow-scroll divide-y divide-gray-200 items-center table-auto ">
+                                    <thead class="bg-gray-50">
                                         <tr>
                                             <th scope="col"
                                                 class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase ">
@@ -58,9 +67,8 @@
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase  overflow-x-auto">
                                                     {{ $item->uuid }}</td>
                                                 <td scope="col"
-                                                    class="px-6 py-3 text-center text-xs font-semibold text-gray-500 uppercase tracking-wider">
-
-                                                    {{ $item->updated_at }}
+                                                    class="px-6 py-3 text-center text-xs font-semibold text-gray-500 uppercase ">
+                                                    {{ $item->updated_at->format('d F Y H:i:s') }}
                                                 </td>
                                                 <td scope="col"
                                                     class="px-6 py-3 text-center text-xs font-semibold text-gray-500 uppercase tracking-wider">
@@ -68,39 +76,42 @@
                                                         {{ $item->game->name }}</a>
                                                 </td>
                                                 <td scope="col"
-                                                    class="px-6 py-3  text-center  rounded-lg  text-xs font-medium text-gray-500 uppercase tracking-wider ">
+                                                    class="px-6 py-3  text-center    text-xs font-medium text-gray-500 uppercase tracking-wider ">
                                                     Rp. {{ $item->price }}
                                                 </td>
                                                 <td scope="col"
-                                                    class="px-6 py-3  text-center  rounded-lg  text-xs font-medium text-gray-500 uppercase tracking-wider ">
+                                                    class="px-6 py-3  text-center    text-xs font-medium text-gray-500 uppercase tracking-wider ">
                                                     {{ $item->diamond_total }}
                                                 </td>
                                                 <td scope="col"
-                                                    class="px-6 py-3  text-center  rounded-lg  text-xs font-medium text-gray-500 uppercase tracking-wider ">
+                                                    class="px-6 py-3  text-center    text-xs font-medium text-gray-500 uppercase tracking-wider ">
                                                     <span
-                                                        class="px-2 py-1 rounded-xl text-white font-semibold {{ $item->transaction_status == 'in_cart'
-                                                            ? 'bg-yellow-500'
+                                                        class="px-2 py-1 rounded-xl font-semibold 
+                                                        {{ $item->transaction_status == 'IN_CART'
+                                                            ? 'bg-yellow-200 ring-yellow-500 text-yellow-600 shadow-sm-light shadow-yellow-300 ring-1'
                                                             : ($item->transaction_status == 'PENDING'
-                                                                ? 'bg-orange-500'
+                                                                ? 'bg-orange-200 ring-orange-600 text-orange-700 shadow-sm-light shadow-orange-300 ring-1'
                                                                 : ($item->transaction_status == 'SUCCESS'
-                                                                    ? 'bg-green-500'
+                                                                    ? 'bg-green-100 ring-green-500 text-green-600 shadow-sm-light shadow-green-300 ring-1'
                                                                     : ($item->transaction_status == 'FAILED'
-                                                                        ? 'bg-red-500'
+                                                                        ? 'bg-red-200 ring-red-600 text-red-700 shadow-sm-light shadow-red-300 ring-1'
                                                                         : ($item->transaction_status == 'CANCEL'
-                                                                            ? 'bg-red-700'
+                                                                            ? 'bg-gray-100 ring-gray-400 text-gray-500 shadow-sm-light shadow-gray-300 ring-1'
                                                                             : ($item->transaction_status == 'EXPIRE'
-                                                                                ? 'bg-blue-900'
-                                                                                : 'bg-red-700'))))) }}">
+                                                                                ? 'bg-gray-900 text-gray-100'
+                                                                                : 'bg-pink-100 ring-pink-500 text-pink-500 shadow-sm-light shadow-pink-300 ring-1'))))) }}">
                                                         {{ $item->transaction_status }}
                                                     </span>
+
                                                 </td>
                                                 <td scope="col"
                                                     class="px-6 py-3 items-end  text-center text-xs font-medium text-gray-500 tracking-wider gap-1">
                                                     {{-- Product --}}
-                                                    <a href=""
+                                                    <button  wire:click="$dispatch('openModal', { component: 'transaction-detail' })"
                                                         class="text-orange-500 hover:text-orange-400 flex flex-row">
                                                         <i class="fa-solid fa-info mx-1"></i>Detail
-                                                    </a>
+                                                    </button>
+
                                                 </td>
                                             </tr>
                                         @empty
@@ -117,10 +128,7 @@
             </div>
         </div>
 
-
-
     </main>
-
 
 
 

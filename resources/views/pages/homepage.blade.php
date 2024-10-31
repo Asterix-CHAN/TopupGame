@@ -190,7 +190,7 @@
                 <div class="grid text-center grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 justify-center ">
                     <!-- Start Card 1 -->
                     @foreach ($items as $item)
-                        <a href="{{ route('order', $item->slug) }}" tabindex="0">
+                        <a href="{{ route('order', $item->slug) }}" tabindex="0" wire:navigate>
                             <div
                                 class="w-auto flex-auto md:flex-initial px-4 md:px-4 items-center relative flex rounded-xl duration-300 ease-in-out hover:shadow-2xl hover:ring-2 hover:ring-primary-500 hover:ring-offset-2 hover:ring-offset-white md:gap-x-3 md:rounded-2x md:p-3 border-2 min-h-[100px] z-20 overflow-x-hidden">
                                 <div class="absolute rounded-xl inset-0 bg-gradient-to-r from-black/70 ..."></div>
@@ -226,7 +226,7 @@
                     class="grid text-center grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-5 justify-between">
                     @foreach ($items as $item)
                         <!-- card 1 -->
-                        <a href="{{ route('order', $item->slug) }}" tabindex="0">
+                        <a href="{{ route('order', $item->slug) }}" tabindex="0" wire:navigate>
                             <div
                                 class="relative grid grid-cols-1 bg-clip-border  text-gray-700 shadow-md w-auto min-h-[200px] sm:min-h-[250px] md:h-[320px] items-center content-end border-4 border-white rounded-2xl">
                                 <img src="{{ Storage::url($item->image) }}" alt=""

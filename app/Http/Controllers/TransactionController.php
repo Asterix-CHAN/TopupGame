@@ -18,6 +18,8 @@ class TransactionController extends Controller
     public function index()
     {
       $items = Transaction::with(['game', 'user'])->get();
+   
+
       return view('pages.admin.transaction.index', compact('items'));
     }
 

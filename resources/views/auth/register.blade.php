@@ -32,9 +32,9 @@
                 <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                     <span x-show="show" class="text-gray-500 sm:text-sm">+62</span>
                 </div>
-                <x-text-input x-on:click="show = false"
-                x-on:blur="show = $event.target.value === '' ? true : false"  id="phone_number" class="block mt-1 w-full" type="text" name="phone_number"
-                    :value="old('phone_number')" required autofocus autocomplete="phon_number" />
+                <x-text-input x-on:click="show = false" x-on:blur="show = $event.target.value === '' ? true : false"
+                    id="phone_number" class="block mt-1 w-full" type="text" name="phone_number" :value="old('phone_number')"
+                    required autofocus autocomplete="phon_number" />
                 <x-input-error :messages="$errors->get('phone_number')" class="mt-2" />
             </div>
         </div>
@@ -43,19 +43,32 @@
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />
 
-            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required
-                autocomplete="new-password" />
+            <div x-data="{ showPassword: false }" class="text-end">
+                <input id="password"
+                    class="block mt-1 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    :type="showPassword ? 'text' : 'password'" name="password" required autocomplete="new-password" />
 
+                <input type="checkbox" id="togglePassword" x-model="showPassword"
+                    class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" />
+                <label for="togglePassword" class="ms-2 text-sm text-gray-600">Show Password</label>
+            </div>
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
         <!-- Confirm Password -->
-        <div class="mt-4">
+        <div class="mt-2">
             <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+            <div x-data="{ showPassword: false }" class="text-end">
 
-            <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password"
-                name="password_confirmation" required autocomplete="new-password" />
+                <input id="password_confirmation"
+                    class="block mt-1 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    :type="showPassword ? 'text' : 'password'" name="password_confirmation" required
+                    autocomplete="new-password" />
 
+                <input type="checkbox" id="togglePassword" x-model="showPassword"
+                    class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" />
+                <label for="togglePassword" class="ms-2 text-sm text-gray-600">Show Password</label>
+            </div>
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
