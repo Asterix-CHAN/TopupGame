@@ -1,6 +1,6 @@
   <!-- Start Header -->
-  <header class=" pt-2 top-0 fixed z-40 w-full shadow-lg items-center ">
-      <div class="mx-7 md:container lg:mx-auto md:relative md:flex-row gap-y-4 md:gap-y-0 top-navbar">
+  <header class=" pt-2 top-0 fixed z-40 w-full items-center bg-slate-100 bg-opacity-75  backdrop-blur-lg backdrop-brightness-105">
+      <div class="mx-7 md:container lg:mx-auto md:relative md:flex-row gap-y-4 md:gap-y-0 top-navbar ">
           <div class="flex h-[60px] justify-between">
 
               <div class="w-auto flex items-center py-2">

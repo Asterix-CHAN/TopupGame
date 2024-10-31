@@ -34,7 +34,7 @@
                                     <x-primary-button class="col-span-1">Search</x-primary-button>
                                 </form>
                                 <table
-                                    class="min-w-full overflow-scroll divide-y divide-gray-200 items-center table-auto ">
+                                    class="min-w-full overflow-scroll divide-y divide-gray-200 items-center table-fixed	">
                                     <thead class="bg-gray-50">
                                         <tr>
                                             <th scope="col"
@@ -60,7 +60,7 @@
                                                 Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody class="bg-white divide-y divide-gray-200 items-center">
+                                    <tbody class="bg-white divide-y divide-gray-200 items-center ">
                                         @forelse ($items as $item)
                                             <tr>
                                                 <td scope="col"
@@ -76,8 +76,8 @@
                                                         {{ $item->game->name }}</a>
                                                 </td>
                                                 <td scope="col"
-                                                    class="px-6 py-3  text-center    text-xs font-medium text-gray-500 uppercase tracking-wider ">
-                                                    Rp. {{ $item->price }}
+                                                    class="px-6 py-3 text-left  text-xs font-medium text-gray-500  tracking-wider">
+                                                    Rp. {{ number_format($item->price, 0, ',', '.')  }}
                                                 </td>
                                                 <td scope="col"
                                                     class="px-6 py-3  text-center    text-xs font-medium text-gray-500 uppercase tracking-wider ">

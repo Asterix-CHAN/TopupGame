@@ -4,8 +4,10 @@ window.onscroll = function () {
     const fixedNav = header.offsetTop;
     if (window.pageYOffset > fixedNav) {
         header.classList.add("navbar-fixed");
+        header.classList.remove('bg-slate-100');
     } else {
         header.classList.remove('navbar-fixed');
+        header.classList.add('bg-slate-100');
     }
 
 };
