@@ -24,17 +24,21 @@
                                     {{ __('Tambah') }}
                                 </x-secondary-button>
 
-
                             </div>
 
-                            <div class="shadow-md sm:rounded-lg">
-                                <form class="grid grid-cols-6 items-center gap-2 ">
-                                    <x-text-input class="col-span-1" name="q" placeholder="Search"
-                                        aria-label="Search" />
-                                    <x-primary-button class="col-span-1">Search</x-primary-button>
-                                </form>
-                                <table
-                                    class="min-w-full overflow-scroll divide-y divide-gray-200 items-center table-fixed	">
+
+                            <div class="shadow-md sm:rounded-lg lg:container pb-2">
+                                
+                                <div class=" mt-3 w-60 inline-flex">
+                                    <!-- Date filter inputs -->
+                                    <x-text-input type="text" id="myInput" value=""
+                                        placeholder="YYYY-mm-dd" />
+                                    <x-secondary-button class="bg-teal-500 py-2  ml-2 hover:bg-teal-700"
+                                        id="filterButton">Filter</x-secondary-button>
+                                </div>
+
+                                <table id="example"
+                                    class="min-w-full overflow-scroll divide-y divide-gray-200 items-center table-fixed ">
                                     <thead class="bg-gray-50">
                                         <tr>
                                             <th scope="col"
@@ -50,7 +54,7 @@
                                                 class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
                                                 Price</th>
                                             <th scope="col"
-                                                class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                                                class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase ">
                                                 Diamond</th>
                                             <th scope="col"
                                                 class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
@@ -68,7 +72,7 @@
                                                     {{ $item->uuid }}</td>
                                                 <td scope="col"
                                                     class="px-6 py-3 text-center text-xs font-semibold text-gray-500 uppercase ">
-                                                    {{ $item->updated_at->format('d F Y H:i:s') }}
+                                                    {{ $item->updated_at }}
                                                 </td>
                                                 <td scope="col"
                                                     class="px-6 py-3 text-center text-xs font-semibold text-gray-500 uppercase tracking-wider">
@@ -77,14 +81,14 @@
                                                 </td>
                                                 <td scope="col"
                                                     class="px-6 py-3 text-left  text-xs font-medium text-gray-500  tracking-wider">
-                                                    Rp. {{ number_format($item->price, 0, ',', '.')  }}
+                                                    Rp. {{ number_format($item->price, 0, ',', '.') }}
                                                 </td>
                                                 <td scope="col"
-                                                    class="px-6 py-3  text-center    text-xs font-medium text-gray-500 uppercase tracking-wider ">
+                                                    class="px-6 py-3  text-left  text-xs font-medium text-gray-500 uppercase  ">
                                                     {{ $item->diamond_total }}
                                                 </td>
                                                 <td scope="col"
-                                                    class="px-6 py-3  text-center    text-xs font-medium text-gray-500 uppercase tracking-wider ">
+                                                    class="px-6 py-3  text-center  text-xs font-medium text-gray-500 uppercase tracking-wider ">
                                                     <span
                                                         class="px-2 py-1 rounded-xl font-semibold 
                                                         {{ $item->transaction_status == 'IN_CART'
@@ -107,7 +111,8 @@
                                                 <td scope="col"
                                                     class="px-6 py-3 items-end  text-center text-xs font-medium text-gray-500 tracking-wider gap-1">
                                                     {{-- Product --}}
-                                                    <button  wire:click="$dispatch('openModal', { component: 'transaction-detail' })"
+                                                    <button
+                                                        wire:click="$dispatch('openModal', { component: 'transaction-detail' })"
                                                         class="text-orange-500 hover:text-orange-400 flex flex-row">
                                                         <i class="fa-solid fa-info mx-1"></i>Detail
                                                     </button>
@@ -121,6 +126,7 @@
                                         @endforelse
                                     </tbody>
                                 </table>
+                                {{-- {{ $items->links() }} --}}
                             </div>
                         </div>
                     </div>
@@ -129,11 +135,31 @@
         </div>
 
     </main>
+    <script>
+        $(document).ready(function() {
+            var table = $('#example').DataTable({
+                layout: {
+                    top1Start: {
+                        buttons: ['copy', 'csv', 'pdf', 'print']
+                    }
+                },
+            });
 
 
+            // datetime
+            $('#myInput').dtDateTime({
+                buttons:{
+                    today: 'true',
+                    clear: 'true',
+                }
+            });
 
+            //   filter date
+            $('#filterButton').on('click', function() {
+                var selectedDate = $('#myInput').val();
+                table.columns(1).search(selectedDate).draw();
+            });
 
-
-
-
+        });
+    </script>
 </x-app-layout>

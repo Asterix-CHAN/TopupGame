@@ -22,12 +22,15 @@
                         <div class="card mt-5">
 
                             <div class="card-body flex gap-2">
+
                                 <div class="w-full">
+
                                     <div class="mb-4">
                                         <label class="block text-gray-700 text-sm font-bold mb-2">Name</label>
                                         <x-text-input type="text" name="name"
                                             value="{{ $item->name }}"></x-text-input>
                                     </div>
+
                                     <div class="mb-4">
                                         <label class="block text-gray-700 text-sm font-bold mb-2">Developer</label>
                                         <x-text-input type="text" name="developer"
@@ -44,7 +47,7 @@
                                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                             name="about">{{ $item->about }}</textarea>
                                     </div>
-                    
+
                                     <div class="mb-4">
                                         <select name="category_id[]" id="category_id"
                                             class="select2-multiple shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline overflow-y-hidden"
@@ -92,6 +95,8 @@
                                         <x-primary-button>{{ __('Ubah') }}</x-primary-button>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
                     </form>
                 </div>
                 {{-- righ content --}}
@@ -105,7 +110,7 @@
 
     @push('addon-script')
         <script>
-            const imageUpload = document.getElementById('imageLoad'); 
+            const imageUpload = document.getElementById('imageLoad'); // Sesuaikan id-nya (case sensitive)
             const imagePreview = document.getElementById('imagePreview');
 
             imageUpload.addEventListener('change', function() {

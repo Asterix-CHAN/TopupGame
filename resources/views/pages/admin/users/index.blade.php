@@ -105,8 +105,4 @@
 
     </main>
 
-
-
-
-
 </x-app-layout>

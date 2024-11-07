@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\PlatformController;
 use App\Http\Controllers\Admin\TopupgamePackageController;
+use App\Http\Controllers\Users\AccountSettings;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,7 +75,10 @@ Route::middleware(['auth'])->group(function(){
     
     Route::get('/transactions/payment-detail/{uuid}', [TransactionController::class, 'show'])->name('transaction.show');
     Route::post('/transactions/{uuid}', [TransactionController::class, 'store'])->name('transaction.store');
-    Route::get('/transactions/detail/{id}', [TransactionDetail::class, 'showDetail'])->name('transaction.detail');    
+    Route::get('/transactions/detail/{id}', [TransactionDetail::class, 'showDetail'])->name('transaction.detail');   
+    
+    // 
+    Route::get('/user/account', [AccountSettings::class, 'index'])->name('account');
 });
 
 
@@ -89,6 +93,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
 });
 
 

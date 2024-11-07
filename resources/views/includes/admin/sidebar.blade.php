@@ -50,7 +50,7 @@
                 <span>Dashboard</span>
             </x-side-link>
 
-            <div class="w-full relative" x-data="{ expanded: false }" wire:navigate>
+            <div class="w-full relative" x-data="{ expanded: false }" >
                 <button @click="expanded = ! expanded"
                     :class="expanded ? 'bg-teal-500 text-white hover:text-white rounded-b-none focus:shadow-none' : ''"
                     class="w-full text-start text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:text-base rounded-md transition duration-150 ease-in-out hover:shadow-xl hover:shadow-teal-500/50 ">

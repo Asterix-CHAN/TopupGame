@@ -24,7 +24,7 @@ class TopupgamePackageController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::get();
         $platforms = Platform::with(['topup'])->get();
         $items = TopupgamePackage::with(['platform_name'])->paginate(10);
 
