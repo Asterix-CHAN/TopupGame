@@ -43,4 +43,7 @@ class Transaction extends Model
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
+    public function midtrans(){
+        return $this->hasMany(MidtransPayment::class, 'transaction_id', 'id');
+    }
 }

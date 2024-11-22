@@ -84,7 +84,6 @@
 
     
     @livewireScripts
-    @livewire('wire-elements-modal')
 
     {{-- Data Tables --}}
     <link href="https://cdn.datatables.net/v/dt/jq-3.7.0/jszip-3.10.1/dt-2.1.8/b-3.1.2/b-html5-3.1.2/b-print-3.1.2/date-1.5.4/r-3.0.3/sc-2.4.3/sb-1.8.1/sp-2.3.3/datatables.min.css" rel="stylesheet">

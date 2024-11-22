@@ -29,7 +29,7 @@ class MidtransController extends Controller
         $order_id = $notif->order_id;
         $fraud = $notif->fraud_status;
 
-        $transaction = Transaction::where( 'uuid',$order_id)->firstOrFail();
+        $transaction = Transaction::where('uuid', $order_id)->firstOrFail();
         // error_log("Order ID $notif->order_id: "."transaction status = $status, fraud staus = $fraud");
 
 
@@ -52,7 +52,7 @@ class MidtransController extends Controller
         } else if ($status == 'cancel') {
             $transaction->transaction_status = 'FAILED';
         }
-      
+
         $transaction->save();
 
 
@@ -61,17 +61,17 @@ class MidtransController extends Controller
             if ($status == 'capture' && $fraud == 'accept') {
                 Mail::to($transaction->user->email)->send(
                     new TransactionSuccess($transaction),
-                    
+
                 );
             } else if ($status == 'settlement') {
                 Mail::to($transaction->user->email)->send(
                     new TransactionSuccess($transaction),
-                    
+
                 );
             } else if ($status == 'success') {
                 Mail::to($transaction->user->email)->send(
                     new TransactionSuccess($transaction),
-                    
+
                 );
             } else if ($status == 'capture'  && $fraud == 'deny') {
                 return response()->json([

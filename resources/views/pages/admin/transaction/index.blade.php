@@ -19,16 +19,16 @@
                         <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
 
                             <div class="col-lg-12 mb-4 flex justify-end">
-                                <x-secondary-button
-                                    wire:click="$dispatch('openModal', { component: 'transaction-detail' })">
+                                {{-- <x-secondary-button x-data="{}"
+                                    x-on:click="window.livewire.emitTo('transaction-detail', 'show')">
                                     {{ __('Tambah') }}
-                                </x-secondary-button>
-
+                                </x-secondary-button> --}}
                             </div>
-
+                            
+                            <livewire:transaction-detail />
 
                             <div class="shadow-md sm:rounded-lg lg:container pb-2">
-                                
+
                                 <div class=" mt-3 w-60 inline-flex">
                                     <!-- Date filter inputs -->
                                     <x-text-input type="text" id="myInput" value=""
@@ -148,7 +148,7 @@
 
             // datetime
             $('#myInput').dtDateTime({
-                buttons:{
+                buttons: {
                     today: 'true',
                     clear: 'true',
                 }
