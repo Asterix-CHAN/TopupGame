@@ -8,8 +8,8 @@ Alpine.plugin(focus)
 Alpine.plugin(collapse);
 
 
-window.Alpine = Alpine;
-Alpine.start();
+// window.Alpine = Alpine;
+// Alpine.start();
 
 
 

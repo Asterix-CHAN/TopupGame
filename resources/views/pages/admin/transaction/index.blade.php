@@ -19,13 +19,14 @@
                         <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
 
                             <div class="col-lg-12 mb-4 flex justify-end">
-                                {{-- <x-secondary-button x-data="{}"
-                                    x-on:click="window.livewire.emitTo('transaction-detail', 'show')">
+                                {{-- <x-secondary-button  x-data x-on:click="Livewire.dispatchTo('transaction-detail', 'show')">
                                     {{ __('Tambah') }}
                                 </x-secondary-button> --}}
+
+                                <x-secondary-button onclick="Livewire.dispatch('openModal', { component: 'transaction-detail' })">Transaksi</x-secondary-button>
+
                             </div>
-                            
-                            <livewire:transaction-detail />
+                            <Livewire:modal />
 
                             <div class="shadow-md sm:rounded-lg lg:container pb-2">
 

@@ -1,4 +1,4 @@
-<x-modal-wrapper wire:model="show">
+<div>
     <div class="relative transform overflow-hidden rounded-lg bg-white w-full p-6 text-sm shadow-lg">
         <!-- Header -->
         <div class="w-full flex flex-row items-center justify-between mb-6">
@@ -102,6 +102,8 @@
                 Total: <span class="text-red-500">Rp 99.000</span>
             </div>
         </div>
+
+       
     </div>
     
-</x-modal-wrapper>
+</div>

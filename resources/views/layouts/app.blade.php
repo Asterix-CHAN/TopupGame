@@ -14,7 +14,7 @@
     {{-- selec2 cdn --}}
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
    
-    @vite(['resources/css/app.css', 'resources/css/dateTime.css', 'resources/js/app.js',])
+    @vite(['resources/css/app.css', 'resources/js/app.js',])
     @livewireStyles
 
     @include('sweetalert::alert')
@@ -82,16 +82,16 @@
     </div>
 
 
-    
+    @livewire('wire-elements-modal')
     @livewireScripts
 
     {{-- Data Tables --}}
-    <link href="https://cdn.datatables.net/v/dt/jq-3.7.0/jszip-3.10.1/dt-2.1.8/b-3.1.2/b-html5-3.1.2/b-print-3.1.2/date-1.5.4/r-3.0.3/sc-2.4.3/sb-1.8.1/sp-2.3.3/datatables.min.css" rel="stylesheet">
+    {{-- <link href="https://cdn.datatables.net/v/dt/jq-3.7.0/jszip-3.10.1/dt-2.1.8/b-3.1.2/b-html5-3.1.2/b-print-3.1.2/date-1.5.4/r-3.0.3/sc-2.4.3/sb-1.8.1/sp-2.3.3/datatables.min.css" rel="stylesheet">
   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/v/dt/jq-3.7.0/jszip-3.10.1/dt-2.1.8/b-3.1.2/b-html5-3.1.2/b-print-3.1.2/date-1.5.4/r-3.0.3/sc-2.4.3/sb-1.8.1/sp-2.3.3/datatables.min.js"></script>
-    <script src="https://cdn.datatables.net/datetime/1.5.4/js/dataTables.dateTime.min.js"></script>
+    <script src="https://cdn.datatables.net/datetime/1.5.4/js/dataTables.dateTime.min.js"></script> --}}
 {{-- Data Tables --}}
     
     <script src="{{ url('Game/src/assets/fontawesome-free-6.5.1-web/fontawesome-free-6.5.1-web/js/all.js') }}"></script>
