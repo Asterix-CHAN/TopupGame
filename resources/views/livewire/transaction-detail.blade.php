@@ -102,8 +102,10 @@
                 Total: <span class="text-red-500">Rp 99.000</span>
             </div>
         </div>
-
-       
+        
+        <div class="mt-3 w-full flex flex-initial justify-end ">
+        <x-secondary-button onclick="Livewire.dispatch('closeModal')">Close</x-secondary-button>
+        </div>
     </div>
     
 </div>
