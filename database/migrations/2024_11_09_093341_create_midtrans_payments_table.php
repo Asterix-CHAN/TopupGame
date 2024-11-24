@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('midtrans_payments', function (Blueprint $table) {
             $table->id();
+            $table->string('uuid')->unique();
             $table->string('snap_token')->nullable();
             $table->foreignId('transaction_id')->constrained('transactions');
             $table->string('payment_type');

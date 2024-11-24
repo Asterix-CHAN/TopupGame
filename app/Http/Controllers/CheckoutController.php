@@ -11,6 +11,7 @@ use App\Models\Transaction;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Mail\TransactionSuccess;
+use App\Models\MidtransPayment;
 use App\Models\TopupgamePackage;
 use App\Models\TransactionDetail;
 use Illuminate\Support\Facades\Auth;
@@ -49,7 +50,7 @@ class CheckoutController extends Controller
             'uid_game' => 'required|string',
             'transaction_status' => 'sometimes|string|in:IN_CART,CHALLENGE,SUCCESS,PENDING,CANCEL,FAILED,EXPIRED',
             'diamond_total' => 'required|integer|min:0',
-            'total_amount' => 'nullable|numeric|min:0',
+            'gross_amount' => 'nullable|numeric|min:0',
             'phone_number' => ['required', 'string', 'regex:/^(\+62|08)[0-9]{9,12}$/',],
             'price' => 'nullable|numeric|min:0'
         ], [
@@ -66,16 +67,24 @@ class CheckoutController extends Controller
             'phone_number' => $data['phone_number'],
             'price' => $data['price'] ?? 0,
             'diamond_total' => $data['diamond_total'] ?? 0,
-            'total_amount' => $data['total_amount'] ?? 0,
+            'gross_amount' => $data['gross_amount'] ?? 0,
         ]);
 
         TransactionDetail::create([
             'uuid' => (string) Str::uuid(),
             'transaction_id' => $transaction->id,
             'username' => Auth::user()->name,
-            'desc]98ription' => $request->input('description'),
+            'description' => $request->input('description'),
             'produk_name' => $gamePackages->name,
-            'total_amount' => $transaction->price += $transaction->price
+            'gross_amount' => $transaction->price += $transaction->price
+        ]);
+
+        MidtransPayment::create([
+            'uuid' => (string) Str::uuid(),
+            'transaction_id' => $transaction->id,
+            'payment_type' => 'bank_transfer',
+            'va_number' => $request->input('va_number'),
+            'bank' => $request->input('bank')
         ]);
 
         if (!$transaction) {
@@ -89,7 +98,7 @@ class CheckoutController extends Controller
     // PAYMENT
     public function payment(Request $request, $uuid)
     {
-        $data = Transaction::with(['detail', 'game.gallery', 'user'])->where('uuid', $uuid)->firstOrFail();
+        $data = Transaction::with(['detail', 'game.gallery', 'user', 'midtrans'])->where('uuid', $uuid)->firstOrFail();
 
         $data->transaction_status = "PENDING";
         $data->save();
@@ -111,32 +120,40 @@ class CheckoutController extends Controller
                 'first_name' => $data->user->name,
                 'email' => $data->user->email,
             ],
-            
+
             'enabled_payments' => [
                 'gopay',
             ],
             'vtweb' => []
         ];
         // dd($data);
-        try {
-            $paymentUrl = Snap::createTransaction($midtrans_parameter)->redirect_url;
-            // Redirect to Snap Payment Page
-            header('Location: ' . $paymentUrl);
-            // 
+        // try {
+        //     $paymentUrl = Snap::createTransaction($midtrans_parameter)->redirect_url;
+        //     // Redirect to Snap Payment Page
+        //     header('Location: ' . $paymentUrl);
+        //     // 
 
-        } catch (Exception $e) {
-            echo $e->getMessage();
-        }
+        // } catch (Exception $e) {
+        //     echo $e->getMessage();
+        // }
 
 
-        // $snapToken = Snap::getSnapToken($midtrans_parameter);
-        // $data->snap_token = $snapToken;
-        // $data->save();
+        $snapToken = Snap::getSnapToken($midtrans_parameter);
+
+        // Find or create the related MidtransPayment record
+        $midtransPayment = $data->midtrans()->firstOrCreate(
+            ['transaction_id' => $data->id],
+            ['snap_token' => $snapToken]
+        );
+
+        // Update the snap_token in case it needs to be refreshed
+        $midtransPayment->snap_token = $snapToken;
+        $midtransPayment->save();
 
         // kirim ke email
 
 
-        // return Redirect::back();
+        return Redirect::back();
     }
 
 

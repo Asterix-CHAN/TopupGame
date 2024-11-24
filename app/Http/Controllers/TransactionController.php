@@ -101,7 +101,7 @@ Thank you!";
      */
     public function show( $uuid)
     {
-        $items = Transaction::with(['detail', 'game',  'user',])->where('uuid', $uuid)->first();
+        $items = Transaction::with(['detail', 'game',  'user', 'midtrans'])->where('uuid', $uuid)->first();
         //    dd($items->detail);
         return view('pages.checkout',  compact('items'));
     }

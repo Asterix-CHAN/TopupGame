@@ -1,16 +1,17 @@
-// import $ from 'jquery';
 import './bootstrap';
 
 import Alpine from 'alpinejs';
 import collapse from '@alpinejs/collapse';
 import focus from '@alpinejs/focus';
-Alpine.plugin(focus)
+
+// Tambahkan plugin ke instans global Alpine
+Alpine.plugin(focus);
 Alpine.plugin(collapse);
 
+window.Alpine = Alpine;
 
-// window.Alpine = Alpine;
-// Alpine.start();
-
+// Mulai Alpine.js
+Alpine.start();
 
 
 

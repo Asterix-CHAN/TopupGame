@@ -50,7 +50,7 @@
                 <span>Dashboard</span>
             </x-side-link>
 
-            <div class="w-full relative" x-data="{ expanded: false }" >
+            <div class="w-full relative" x-data="{ expanded: false }">
                 <button @click="expanded = ! expanded"
                     :class="expanded ? 'bg-teal-500 text-white hover:text-white rounded-b-none focus:shadow-none' : ''"
                     class="w-full text-start text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:text-base rounded-md transition duration-150 ease-in-out hover:shadow-xl hover:shadow-teal-500/50 ">
@@ -62,7 +62,7 @@
                     <span>Produk</span>
                 </button>
 
-                <div x-show="expanded"  x-collapse.duration.500ms 
+                <div x-show="expanded"   x-collapse.duration.500ms 
                     class="w-full py-2 pr-2 pl-1 gap-2 flex flex-col bg-slate-200 rounded-md rounded-t-none shadow-xl">
 
                     <x-side-link href="{{ route('diamonds.index') }}" wire:navigate :active="request()->routeIs('diamonds.index')">

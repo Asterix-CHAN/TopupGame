@@ -11,10 +11,12 @@ class MidtransPayment extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
+        'uuid',
         'snap_token',
         'payment_type',
         'bank',
-        'va_number'
+        'va_number',
+        'transaction_id'
     ];
 
     protected $hidden = [
