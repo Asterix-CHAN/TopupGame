@@ -112,6 +112,9 @@
         });
     </script>
 
+
+</div>
+
     @stack('addon-script')
 </body>
 

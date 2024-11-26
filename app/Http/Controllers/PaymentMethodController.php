@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\MethodPayment;
+use App\Models\PaymentMethod;
 use Illuminate\Http\Request;
 
-class MethodPaymentController extends Controller
+class PaymentMethodController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        
+        $items = PaymentMethod::all();
+        return view('pages.admin.payment-method.index', compact('items'));
     }
 
     /**
@@ -34,7 +36,7 @@ class MethodPaymentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(MethodPayment $methodPayment)
+    public function show(PaymentMethod $paymentMethod)
     {
         //
     }
@@ -42,7 +44,7 @@ class MethodPaymentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(MethodPayment $methodPayment)
+    public function edit(PaymentMethod $paymentMethod)
     {
         //
     }
@@ -50,7 +52,7 @@ class MethodPaymentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, MethodPayment $methodPayment)
+    public function update(Request $request, PaymentMethod $paymentMethod)
     {
         //
     }
@@ -58,7 +60,7 @@ class MethodPaymentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(MethodPayment $methodPayment)
+    public function destroy(PaymentMethod $paymentMethod)
     {
         //
     }

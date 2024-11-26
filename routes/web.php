@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\PlatformController;
 use App\Http\Controllers\Admin\TopupgamePackageController;
+use App\Http\Controllers\PaymentMethodController;
 use App\Http\Controllers\Users\AccountSettings;
 
 /*
@@ -57,6 +58,7 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function() {
     Route::resource('platform', PlatformController::class);
     Route::resource('diamonds', DiamondController::class);
     Route::resource('events', EventController::class);
+    Route::resource('payment-method', PaymentMethodController::class);
     Route::get('events/create-event/{uuid}', [EventController::class, 'createEvent'])->name('event.createEvent');
     Route::get('/users', [UserController::class, 'show'])->name('users.show');
     Route::get('/users/{id}', [UserController::class, 'destroy'])->name('users.delete');
