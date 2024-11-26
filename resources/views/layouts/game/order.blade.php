@@ -8,7 +8,7 @@
     @include('includes.style')
     <script src="//unpkg.com/alpinejs" defer></script>
     <script src="{{ url('frontend/libraries/jquery/jquery-3.7.1.js') }}"></script>
-
+    @livewireStyles
 
 </head>
 
@@ -56,11 +56,12 @@
 
     @include('includes.footer')
     
-
+    
     @stack('top-addon-script')
     @include('includes.script')
     @stack('bottom-addon-script')
-   
+    @livewire('wire-elements-modal')
+    @livewireScripts
 </body>
 
 </html>

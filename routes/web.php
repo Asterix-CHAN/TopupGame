@@ -68,6 +68,7 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function() {
 Route::middleware(['auth'])->group(function(){
     // Chekout Controller
     Route::get('/checkout/troli/{cart}', [CheckoutController::class, 'cart'])->name('cart.index');
+    // Route::get('/checkout/detail/{uuid}', [CheckoutController::class, 'show'])->name('checkout.show');
     Route::post('/checkout/{uuid}', [CheckoutController::class, 'process'])->name('checkout.process');
     Route::post('/checkout/delete/{uuid}', [CheckoutController::class, 'destroy'])->name('checkout.delete');
     Route::post('/checkout/payment/{uuid}', [CheckoutController::class, 'payment'])->name('checkout.payment');

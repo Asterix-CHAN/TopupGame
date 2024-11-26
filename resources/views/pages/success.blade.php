@@ -14,7 +14,11 @@
       <div class="text-center">
           <h3 class="md:text-2xl text-base text-gray-900 font-semibold text-center">Payment Done!</h3>
           <p class="text-gray-600 my-2">Thank you for completing your secure online payment.</p>
-          <p> Have a great day!  </p>
+          {{-- <p> {{ $midtrans->snap_token }}  </p> --}}
+          <x-secondary-button id="pay-button">
+            Bayar
+        </x-secondary-button>
+        <pre><div id="result-json">JSON result will appear here after payment:<br></div></pre> 
           <div class="py-10 text-center">
               <a href="#" class="px-12 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3">
                   GO BACK 
@@ -23,5 +27,27 @@
       </div>
   </div>
 </div>
+
+{{-- <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
+<script type="text/javascript">
+  document.getElementById('pay-button').onclick = function(){
+    // SnapToken acquired from previous step
+    snap.pay('{{ $midtrans->snap_token }}', {
+      // Optional
+      onSuccess: function(result){
+        /* You may add your own js here, this is just example */ document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+      },
+      // Optional
+      onPending: function(result){
+        /* You may add your own js here, this is just example */ document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+      },
+      // Optional
+      onError: function(result){
+        /* You may add your own js here, this is just example */ document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+      }
+    });
+  };
+</script> --}}
+
 
 @endsection

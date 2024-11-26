@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+
 use Midtrans\Config;
 use Midtrans\Notification;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use App\Models\MidtransPayment;
 use App\Mail\TransactionSuccess;
 use Illuminate\Support\Facades\Mail;
 
@@ -22,18 +24,25 @@ class MidtransController extends Controller
         Config::$is3ds = config('midtrans.is3ds');
 
         // Midtrans Notification
-        $notif = new Notification();
+        try {
+            $notif = new Notification();
+        } catch (\Exception $e) {
+            exit($e->getMessage());
+        }
 
         $status = $notif->transaction_status;
         $type = $notif->payment_type;
         $order_id = $notif->order_id;
         $fraud = $notif->fraud_status;
 
+        // dd($notif);
+
         $transaction = Transaction::where('uuid', $order_id)->firstOrFail();
+        $midtransPayment = MidtransPayment::with('transaction')->where('transaction_id', $transaction->id)->firstOrFail();
         // error_log("Order ID $notif->order_id: "."transaction status = $status, fraud staus = $fraud");
 
 
-        if ($status == 'capture') {
+        if ($status == 'capture' ) {
             if ($type == 'credit_card') {
                 if ($fraud == 'challenge') {
                     $transaction->transaction_status = 'CHALLENGE';
@@ -42,18 +51,57 @@ class MidtransController extends Controller
                 }
             }
         } else if ($status == 'settlement') {
+            if ($type == 'bank_transfer') {
+                $midtransPayment->merchant_id = $notif->merchant_id;
+                $midtransPayment->payment_type = $type;
+                $midtransPayment->midtrans_transaction_id = $notif->transaction_id;
+                $midtransPayment->bank = $notif->va_numbers[0]->bank;
+                $midtransPayment->va_number = $notif->va_numbers[0]->va_number;
+
+            } else if ($type == 'qris') {
+                $midtransPayment->payment_type = $type;
+                $midtransPayment->midtrans_transaction_id = $notif->transaction_id;
+                $midtransPayment->bank = $notif->acquirer;
+            }
             $transaction->transaction_status = 'SUCCESS';
         } else if ($status == 'pending') {
             $transaction->transaction_status = 'PENDING';
         } else if ($status == 'deny') {
+
             $transaction->transaction_status = 'FAILED';
         } else if ($status == 'expire') {
+            if ($type == 'qris') {
+                $midtransPayment->payment_type = $type;
+            }
             $transaction->transaction_status = 'EXPIRED';
         } else if ($status == 'cancel') {
             $transaction->transaction_status = 'FAILED';
         }
 
+        // if ($type == 'bank_transfer') {
+        //     $midtransPayment->payment_type = $type;
+        //     $midtransPayment->midtrans_transaction_id = $notif->transaction_id;
+
+        //     if (isset($notif->va_numbers[0])) {
+        //         $midtransPayment->bank = $notif->va_numbers[0]->bank;
+        //         $midtransPayment->va_number = $notif->va_numbers[0]->va_number;
+        //     } else {
+        //         throw  new \Exception('Invalid va_numbers data for bank transfer');
+        //     }
+        // } else if ($type == 'qris') {
+        //     $midtransPayment->payment_type = $type;
+        //     $midtransPayment->midtrans_transaction_id = $notif->transaction_id;
+
+        //     if (isset($notif->acquirer)) {
+        //         $midtransPayment->bank = $notif->acquirer;
+        //     } else {
+        //         throw new \Exception('Invalid acquirer data for QRIS payment');
+        //     }
+        // }
+
+
         $transaction->save();
+        $midtransPayment->save();
 
 
         // sending to email

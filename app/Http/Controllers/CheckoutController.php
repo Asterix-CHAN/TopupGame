@@ -33,6 +33,12 @@ class CheckoutController extends Controller
         return view('pages.order', compact('item', 'events', 'diamonds'));
     }
 
+    // public function show($uuid)
+    // {
+    //     $midtrans = MidtransPayment::where('uuid', $uuid)->firstOrFail();
+    //     return view('pages.success', compact('midtrans'));
+    // }
+
     // TROLI
     public function cart($cart)
     {
@@ -83,8 +89,6 @@ class CheckoutController extends Controller
             'uuid' => (string) Str::uuid(),
             'transaction_id' => $transaction->id,
             'payment_type' => 'bank_transfer',
-            'va_number' => $request->input('va_number'),
-            'bank' => $request->input('bank')
         ]);
 
         if (!$transaction) {
@@ -98,7 +102,7 @@ class CheckoutController extends Controller
     // PAYMENT
     public function payment(Request $request, $uuid)
     {
-        $data = Transaction::with(['detail', 'game.gallery', 'user', 'midtrans'])->where('uuid', $uuid)->firstOrFail();
+        $data = Transaction::with(['game.gallery', 'user'])->where('uuid', $uuid)->firstOrFail();
 
         $data->transaction_status = "PENDING";
         $data->save();
@@ -118,44 +122,46 @@ class CheckoutController extends Controller
             ],
             'customer_details' => [
                 'first_name' => $data->user->name,
+                'last_name' => '',
                 'email' => $data->user->email,
+                'phone' => $data->user->phone_number
+            ],
+            [
+                "enabled_payments" => [],
             ],
 
-            'enabled_payments' => [
-                'gopay',
-            ],
             'vtweb' => []
         ];
         // dd($data);
-        // try {
-        //     $paymentUrl = Snap::createTransaction($midtrans_parameter)->redirect_url;
-        //     // Redirect to Snap Payment Page
-        //     header('Location: ' . $paymentUrl);
-        //     // 
+        try {
+            $paymentUrl = Snap::createTransaction($midtrans_parameter)->redirect_url;
+            // dd($paymentUrl);
+            // Redirect to Snap Payment Page
+            return redirect()->away($paymentUrl);
+            // 
 
-        // } catch (Exception $e) {
-        //     echo $e->getMessage();
-        // }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
 
+        // $data->save();
+        // $snapToken = Snap::getSnapToken($midtrans_parameter);
 
-        $snapToken = Snap::getSnapToken($midtrans_parameter);
+        // // Find or create the related MidtransPayment record
+        // $midtransPayment = $data->midtrans()->firstOrCreate(
+        //     ['transaction_id' => $data->id],
+        //     ['snap_token' => $snapToken]
+        // );
 
-        // Find or create the related MidtransPayment record
-        $midtransPayment = $data->midtrans()->firstOrCreate(
-            ['transaction_id' => $data->id],
-            ['snap_token' => $snapToken]
-        );
-
-        // Update the snap_token in case it needs to be refreshed
-        $midtransPayment->snap_token = $snapToken;
-        $midtransPayment->save();
+        // // Update the snap_token in case it needs to be refreshed
+        // $midtransPayment->snap_token = $snapToken;
+        // $midtransPayment->save();
 
         // kirim ke email
-
-
         return Redirect::back();
-    }
 
+        // return redirect()->route('checkout.show', $midtransPayment->uuid);
+    }
 
     // DESTROY
     public function destroy($uuid)

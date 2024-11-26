@@ -113,43 +113,21 @@
                                 <div class="relative flex w-full flex-col  justify-start text-start pl-2">
                                     <h3 class="truncate text-md font-semibold  md:text-xl">
                                         Gopay</h3>
-                                    <p class="text-xs md:text-lg mt-1">Rp. {{ $items->price}}</p>
+                                      
+                                        <p class="text-xs md:text-lg mt-1">Biaya Admin: Rp 0</p>
+                                  
+                                    
                                 </div>
                             </div>
 
                             <div class="text-center justify-center px-4 flex flex-col items-end relative  my-1 ">
-                                <x-secondary-button x-data=""
-                                    x-on:click.prevent="$dispatch('open-modal', 'method-payment')"
+                                {{-- <button onclick="Livewire.dispatch('openModal', { component: 'edit-user' })">Edit User</button> --}}
+
+                                <x-secondary-button 
+                                    onclick="Livewire.dispatch('openModal', {component: 'method-payment'})"
                                     class="h-[60px] rounded-lg font-extrabold text-blue-500 hover:text-white hover:bg-blue-500">
                                     GANTI
-                                </x-secondary-button>
-
-                                <x-modal name="method-payment">
-                                    <div
-                                        class="inset-0 items-center h-[600px] w-[800px] bg-white shadow-xl rounded-lg pb-2 scroll-m-0">
-                                        <div class="pt-3">
-                                            <h2 class="text-2xl text-start pl-2 font-bold text-gray-900">
-                                                {{ __('Pilih Metode Pembayaran') }}
-                                            </h2>
-                                            <hr class=" border border-slate-200 " />
-                                        </div>
-
-                                        <div class="p-6">
-
-                                            <hr class=" border border-slate-200 " />
-
-                                            <div class="mt-6 flex justify-end">
-                                                <x-secondary-button x-on:click="$dispatch('close')">
-                                                    {{ __('Cancel') }}
-                                                </x-secondary-button>
-
-                                                <x-primary-button class="ms-3">
-                                                    {{ __('Simpan') }}
-                                                </x-primary-button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </x-modal>
+                            </x-secondary-button>
                             </div>
 
 
@@ -166,4 +144,10 @@
             </div>
         </div>
     </section>
+
+
+
+  
 @endsection
+
+

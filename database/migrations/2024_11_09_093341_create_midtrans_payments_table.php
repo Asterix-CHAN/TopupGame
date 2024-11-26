@@ -14,9 +14,12 @@ return new class extends Migration
         Schema::create('midtrans_payments', function (Blueprint $table) {
             $table->id();
             $table->string('uuid')->unique();
-            $table->string('snap_token')->nullable();
+            $table->string('merchant_id')->nullable();
+            $table->string('midtrans_transaction_id')->nullable();
             $table->foreignId('transaction_id')->constrained('transactions');
             $table->string('payment_type');
+            $table->string('acquirer')->nullable();
+            $table->string('e_wallet')->nullable();
             $table->string('bank')->nullable();
             $table->string('va_number')->nullable();
             $table->softDeletes();
