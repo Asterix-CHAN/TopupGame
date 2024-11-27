@@ -1,4 +1,4 @@
-<div class=" flex items-center justify-center px-4">
+<div class=" flex items-center justify-center">
     <div class="w-full max-w-2xl bg-white rounded-lg shadow-lg p-6">
         <!-- Header -->
         <div class="flex justify-between items-center border-b pb-4 mb-4">
@@ -17,51 +17,34 @@
         </div>
         
         <!-- Form -->
-        <form>
+        <form wire:submit.prevent="update" method="POST"> 
+            @csrf
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <!-- GOPAY -->
-                <label class="flex items-center border rounded-lg p-4 cursor-pointer">
-                    <input type="radio" name="payment" value="gopay" class="hidden peer">
+                
+                @foreach ($items as $item)
+                
+                <label 
+                    class="flex items-center border rounded-lg p-4 cursor-pointer ">
+                    <!-- Input Radio -->
+                    <input 
+                        type="radio" 
+                        wire:model="payment_type"
+                        value="{{ $item->name }}" 
+                        class="hidden peer" 
+                        required>
+                    <!-- Label Content -->
                     <div class="flex items-center space-x-4 peer-checked:border-blue-500 peer-checked:ring-2 peer-checked:ring-blue-300 peer-checked:ring-offset-2">
-                        <img src="{{ url('Game/src/images/logo/gopay.png') }}" alt="Gopay" class="w-10 h-10">
+                        <img 
+                            src="{{ Storage::url($item->image) }}" 
+                            alt="Payment Logo" 
+                            class="w-10 h-10 object-contain object-center ">
                         <div>
-                            <p class="text-sm font-medium">GOPAY</p>
-                            <p class="text-sm text-gray-500">Biaya: IDR 3.212</p>
+                            <p class="text-sm font-medium">{{ $item->name }}</p>
+                            <p class="text-sm text-gray-500">Biaya: IDR {{ number_format($item->cost, 0, ',', '.') }}</p>
                         </div>
                     </div>
                 </label>
-                <!-- DANA -->
-                <label class="flex items-center border rounded-lg p-4 cursor-pointer">
-                    <input type="radio" name="payment" value="dana" class="hidden peer">
-                    <div class="flex items-center space-x-4 peer-checked:border-blue-500 peer-checked:ring-2 peer-checked:ring-blue-300 peer-checked:ring-offset-2">
-                        <img src="dana-logo.png" alt="Dana" class="w-10 h-10">
-                        <div>
-                            <p class="text-sm font-medium">DANA Linkage</p>
-                            <p class="text-sm text-gray-500">Biaya: IDR 2.539</p>
-                        </div>
-                    </div>
-                </label>
-                <!-- HUBUNGKAN -->
-                <label class="flex items-center border rounded-lg p-4 cursor-pointer">
-                    <input type="radio" name="payment" value="hubungkan" class="hidden peer">
-                    <div class="flex items-center space-x-4 peer-checked:border-blue-500 peer-checked:ring-2 peer-checked:ring-blue-300 peer-checked:ring-offset-2">
-                        <img src="hubungkan-logo.png" alt="Hubungkan" class="w-10 h-10">
-                        <div>
-                            <p class="text-sm font-medium">Hubungkan</p>
-                            <p class="text-sm text-gray-500">Biaya: IDR 2.600</p>
-                        </div>
-                    </div>
-                </label>
-                <!-- LINK AJA -->
-                <label class="flex items-center border rounded-lg p-4 cursor-pointer">
-                    <input type="radio" name="payment" value="linkaja" class="hidden peer">
-                    <div class="flex items-center space-x-4 peer-checked:border-blue-500 peer-checked:ring-2 peer-checked:ring-blue-300 peer-checked:ring-offset-2">
-                        <img src="linkaja-logo.png" alt="LinkAja" class="w-10 h-10">
-                        <div>
-                            <p class="text-sm font-medium">Link Aja!</p>
-                        </div>
-                    </div>
-                </label>
+                @endforeach
             </div>
             
             <!-- Submit Button -->

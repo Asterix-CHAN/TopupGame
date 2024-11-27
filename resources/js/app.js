@@ -8,10 +8,10 @@ import focus from '@alpinejs/focus';
 Alpine.plugin(focus);
 Alpine.plugin(collapse);
 
-window.Alpine = Alpine;
+// window.Alpine = Alpine;
 
-// Mulai Alpine.js
-Alpine.start();
+// // Mulai Alpine.js
+// Alpine.start();
 
 
 

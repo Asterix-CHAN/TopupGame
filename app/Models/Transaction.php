@@ -46,4 +46,6 @@ class Transaction extends Model
     public function midtrans(){
         return $this->hasMany(MidtransPayment::class, 'transaction_id', 'id');
     }
+
+   
 }

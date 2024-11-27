@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\MidtransPayment;
+use App\Models\PaymentMethod;
 use CURLFile;
 use App\Models\Transaction;
 use Illuminate\Support\Str;
@@ -103,10 +104,11 @@ Thank you!";
     public function show( $uuid)
     {
         $items = Transaction::with([ 'game',  'user',])->where('uuid', $uuid)->first();
-
+        $midtrans = MidtransPayment::with('transaction')->where('transaction_id', $items->id)->firstOrFail();
+        $payments = PaymentMethod::all();
         //    dd($items->midtrans);
         // $midtrans = MidtransPayment::where('uuid', $uuid)->first();
-        return view('pages.checkout',  compact('items', ));
+        return view('pages.checkout',  compact('items', 'midtrans', 'payments'));
     }
 
     /**

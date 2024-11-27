@@ -54,7 +54,7 @@
                                                 <td scope="col"
                                                     class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
                                                     <img src="{{ Storage::url($item->image) }}" alt=""
-                                                    class="object-cover w-16 aspect-square rounded-lg object-center">
+                                                    class="object-contain w-16 aspect-square rounded-lg object-center">
                                                 </td>
                                                 <td scope="col"
                                                     class="px-6 py-3  text-left  rounded-lg  text-xs font-medium text-gray-500 uppercase tracking-wider ">
@@ -93,12 +93,6 @@
 
 
     </main>
-
-
-
-
-
-
 
 
 </x-app-layout>

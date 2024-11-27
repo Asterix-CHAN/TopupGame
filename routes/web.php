@@ -74,6 +74,7 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/checkout/{uuid}', [CheckoutController::class, 'process'])->name('checkout.process');
     Route::post('/checkout/delete/{uuid}', [CheckoutController::class, 'destroy'])->name('checkout.delete');
     Route::post('/checkout/payment/{uuid}', [CheckoutController::class, 'payment'])->name('checkout.payment');
+    Route::post('/checkout/paymentMethod/{uuid}', [CheckoutController::class, 'paymentMethod'])->name('checkout.paymentMethod');
     // Transaction Controller
     
     Route::get('/transactions/payment-detail/{uuid}', [TransactionController::class, 'show'])->name('transaction.show');

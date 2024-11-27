@@ -43,12 +43,15 @@ class Create extends ModalComponent
         }
 
         $paymentMethod->save();
-
+        // session()->flash('status', 'Post successfully updated.');
         $this->closeModal();
+        // Memicu event untuk refresh halaman
+        // $this->dispatchBrowserEvent('reloadPage');
     }
-    
+
     public function render()
     {
+       
         return view('livewire.payment-method.create');
     }
 }

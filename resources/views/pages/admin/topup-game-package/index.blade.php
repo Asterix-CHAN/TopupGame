@@ -146,18 +146,6 @@
                                     </div>   
                                 </x-modal>
 
-                                {{-- <div x-data="{ isOpen: false }" class="relative">
-                                    <x-secondary-button @click="isOpen = !isOpen"><i
-                                            class="fa-solid fa-folder-plus mr-1"></i>{{ __('Tambah Game') }}
-                                    </x-secondary-button>
-
-                                    <div x-show="isOpen"
-                                        class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg">
-                                        <div class="rounded-md bg-white shadow-xs">
-                                            @include('pages.admin.topup-game-package.modal-create')
-                                        </div>
-                                    </div>
-                                </div> --}}
                             </div>
 
                             <div class="overflow-x-auto shadow-md sm:rounded-lg border-collapse border border-slate-400">

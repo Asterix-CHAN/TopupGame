@@ -12,6 +12,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Mail\TransactionSuccess;
 use App\Models\MidtransPayment;
+use App\Models\PaymentMethod;
 use App\Models\TopupgamePackage;
 use App\Models\TransactionDetail;
 use Illuminate\Support\Facades\Auth;
@@ -50,7 +51,6 @@ class CheckoutController extends Controller
     public function process(Request $request, $uuid)
     {
         $gamePackages = TopupgamePackage::where('uuid', $uuid)->firstOrFail();
-
         $data = $request->validate([
             'server_game' => 'required|string',
             'uid_game' => 'required|string',
@@ -88,8 +88,10 @@ class CheckoutController extends Controller
         MidtransPayment::create([
             'uuid' => (string) Str::uuid(),
             'transaction_id' => $transaction->id,
-            'payment_type' => 'bank_transfer',
+            'payment_type' => 'dana'
         ]);
+
+
 
         if (!$transaction) {
             Alert::error('Error', 'Data Gagal');
@@ -103,9 +105,12 @@ class CheckoutController extends Controller
     public function payment(Request $request, $uuid)
     {
         $data = Transaction::with(['game.gallery', 'user'])->where('uuid', $uuid)->firstOrFail();
-
+        $midtrans = MidtransPayment::with('transaction')->where('transaction_id', $data->id)->firstOrFail();
         $data->transaction_status = "PENDING";
+       
         $data->save();
+
+
         // return $data;
         // Mail::to($data->user->email)->send(
         //     new TransactionSuccess($data) );
@@ -126,41 +131,34 @@ class CheckoutController extends Controller
                 'email' => $data->user->email,
                 'phone' => $data->user->phone_number
             ],
-            [
-                "enabled_payments" => [],
-            ],
-
+            'enabled_payments' => [$midtrans->payment_type],
             'vtweb' => []
         ];
-        // dd($data);
+       
         try {
             $paymentUrl = Snap::createTransaction($midtrans_parameter)->redirect_url;
-            // dd($paymentUrl);
-            // Redirect to Snap Payment Page
+      
             return redirect()->away($paymentUrl);
-            // 
+          
 
         } catch (Exception $e) {
             echo $e->getMessage();
         }
 
-        // $data->save();
-        // $snapToken = Snap::getSnapToken($midtrans_parameter);
-
-        // // Find or create the related MidtransPayment record
-        // $midtransPayment = $data->midtrans()->firstOrCreate(
-        //     ['transaction_id' => $data->id],
-        //     ['snap_token' => $snapToken]
-        // );
-
-        // // Update the snap_token in case it needs to be refreshed
-        // $midtransPayment->snap_token = $snapToken;
-        // $midtransPayment->save();
-
-        // kirim ke email
         return Redirect::back();
 
         // return redirect()->route('checkout.show', $midtransPayment->uuid);
+    }
+
+    public function paymentMethod(Request $request, $uuid)
+    {
+        $data = Transaction::with(['game.gallery', 'user'])->where('uuid', $uuid)->firstOrFail();
+        $items = MidtransPayment::with('transaction')->where('transaction_id', $data->id)->firstOrFail();
+        $items->payment_type = $request->payment_type;
+
+        $items->save();
+
+        return redirect()->route('transaction.show',   $data->uuid);
     }
 
     // DESTROY

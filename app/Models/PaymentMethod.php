@@ -14,7 +14,12 @@ class PaymentMethod extends Model
         'name',
         'image',
         'cost',
+        
         ];
 
         protected $hidden = [];
+
+        public function transaction(){
+            return $this->belongsTo(Transaction::class, 'transaction_id', 'id');
+        }
 }

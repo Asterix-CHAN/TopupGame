@@ -38,7 +38,7 @@ class MidtransController extends Controller
         // dd($notif);
 
         $transaction = Transaction::where('uuid', $order_id)->firstOrFail();
-        $midtransPayment = MidtransPayment::with('transaction')->where('transaction_id', $transaction->id)->firstOrFail();
+        $midtransPayment = MidtransPayment::with( 'transaction')->where('transaction_id', $transaction->id)->firstOrFail();
         // error_log("Order ID $notif->order_id: "."transaction status = $status, fraud staus = $fraud");
 
 
