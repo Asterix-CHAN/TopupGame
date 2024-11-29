@@ -36,6 +36,9 @@
                                             <th scope="col"
                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Name</th>
+                                                <th scope="col"
+                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Payment Type</th>
                                             <th scope="col"
                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Biaya</th>
@@ -60,6 +63,10 @@
                                                     class="px-6 py-3  text-left  rounded-lg  text-xs font-medium text-gray-500 uppercase tracking-wider ">
                                                     {{ $item->name }}
                                                 </td>
+                                                <td scope="col"
+                                                class="px-6 py-3  text-left  rounded-lg  text-xs font-medium text-gray-500 uppercase tracking-wider ">
+                                                {{ $item->payment_type }}
+                                            </td>
                                                 <td scope="col"
                                                     class="px-6 py-3  text-left  rounded-lg  text-xs font-medium text-gray-500 uppercase tracking-wider ">
                                                     Rp. {{number_format($item->cost, 0, ',', '.') }}

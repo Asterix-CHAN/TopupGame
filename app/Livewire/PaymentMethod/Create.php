@@ -15,14 +15,16 @@ class Create extends ModalComponent
 
     public $uuid;
     public $name;
+    public $payment_type;
     public $image;
     public $cost;
 
     // Validasi properti
     protected $rules = [
         'name' => 'required|string|max:255',
+        'payment_type' => 'required|string|max:255',
         'cost' => 'required|numeric|min:0',
-        'image' => 'image|mimes:jpeg,png,jpg|max:2048', // Image bersifat opsional
+        'image' => 'image|mimes:jpeg,png,jpg|max:2048', 
     ];
 
     public function save()
@@ -35,6 +37,7 @@ class Create extends ModalComponent
         $paymentMethod->uuid = Str::uuid();
         $paymentMethod->name = $validatedData['name'];
         $paymentMethod->cost = $validatedData['cost'];
+        $paymentMethod->payment_type = $validatedData['payment_type'];
 
         // Simpan gambar jika ada
         if ($this->image) {

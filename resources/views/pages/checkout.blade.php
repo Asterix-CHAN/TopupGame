@@ -122,7 +122,6 @@
                             </div>
 
                             <div class="text-center justify-center px-4 flex flex-col items-end relative  my-1 ">
-                                {{-- <button onclick="Livewire.dispatch('openModal', { component: 'edit-user' })">Edit User</button> --}}
                                 {{-- <button onclick="Livewire.dispatch('openModal', { component: 'edit-user', arguments: { user: {{ $user->id }} }})">Edit User</button> --}}
 
                                 <x-secondary-button x-data=""
@@ -172,7 +171,7 @@
                                                             class="flex items-center border rounded-lg p-4 cursor-pointer ">
                                                             <!-- Input Radio -->
                                                             <input type="radio" name="payment_type"
-                                                                value="{{ $payment->name }}" class="hidden peer" required>
+                                                                value="{{ $payment->payment_type }}" class="hidden peer" required>
                                                             <!-- Label Content -->
                                                             <div
                                                                 class="flex items-center space-x-4 peer-checked:border-blue-500 peer-checked:ring-2 peer-checked:ring-blue-300 peer-checked:ring-offset-2">

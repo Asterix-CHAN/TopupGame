@@ -14,7 +14,7 @@ class PaymentMethod extends Model
         'name',
         'image',
         'cost',
-        
+        'payment_type'
         ];
 
         protected $hidden = [];
