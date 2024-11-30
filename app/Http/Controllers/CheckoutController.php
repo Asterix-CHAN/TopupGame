@@ -163,6 +163,6 @@ class CheckoutController extends Controller
         $transaction = Transaction::with('game')->where('uuid', $uuid)->firstOrFail();
         $transaction->delete();
 
-        return redirect()->route('cart.index');
+        return redirect()->route('home');
     }
 }
