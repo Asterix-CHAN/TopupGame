@@ -116,8 +116,6 @@
                                         {{ $midtrans->payment_type }}</h3>
 
                                     <p class="text-xs md:text-lg mt-1">Biaya Admin: Rp 0</p>
-
-
                                 </div>
                             </div>
 

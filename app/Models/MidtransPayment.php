@@ -17,6 +17,7 @@ class MidtransPayment extends Model
         'payment_type',
         'acquirer',
         'bank',
+        'store',
         'va_number',
         'transaction_id'
     ];

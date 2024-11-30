@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('e_wallet')->nullable();
             $table->string('bank')->nullable();
             $table->string('va_number')->nullable();
+            $table->string('store')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

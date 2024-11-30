@@ -23,10 +23,11 @@
                                     {{ __('Tambah') }}
                                 </x-secondary-button> --}}
 
-                                <x-secondary-button onclick="Livewire.dispatch('openModal', { component: 'transaction-detail' })">Transaksi</x-secondary-button>
+                                <x-secondary-button
+                                    onclick="Livewire.dispatch('openModal', { component: 'transaction-detail' })">Transaksi</x-secondary-button>
 
                             </div>
-                            <Livewire:modal />
+                            {{-- <Livewire:modal /> --}}
 
                             <div class="shadow-md sm:rounded-lg lg:container pb-2">
 
@@ -52,11 +53,17 @@
                                                 class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
                                                 Name Game</th>
                                             <th scope="col"
+                                                class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase ">
+                                                Diamond</th>
+                                            <th scope="col"
                                                 class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
                                                 Price</th>
                                             <th scope="col"
-                                                class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase ">
-                                                Diamond</th>
+                                                class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                                                Qty</th>
+                                            <th scope="col"
+                                                class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                                                Gross Amount</th>
                                             <th scope="col"
                                                 class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
                                                 Transaction Status</th>
@@ -81,13 +88,23 @@
                                                         {{ $item->game->name }}</a>
                                                 </td>
                                                 <td scope="col"
+                                                    class="px-6 py-3  text-left  text-xs font-medium text-gray-500 uppercase  ">
+                                                    {{ $item->diamond_total }}
+                                                </td>
+                                                <td scope="col"
                                                     class="px-6 py-3 text-left  text-xs font-medium text-gray-500  tracking-wider">
                                                     Rp. {{ number_format($item->price, 0, ',', '.') }}
                                                 </td>
                                                 <td scope="col"
                                                     class="px-6 py-3  text-left  text-xs font-medium text-gray-500 uppercase  ">
-                                                    {{ $item->diamond_total }}
+                                                    1
                                                 </td>
+                                             
+                                                <td scope="col"
+                                                    class="px-6 py-3 text-left  text-xs font-medium text-gray-500  tracking-wider">
+                                                    Rp. {{ number_format($item->gross_amount, 0, ',', '.') }}
+                                                </td>
+
                                                 <td scope="col"
                                                     class="px-6 py-3  text-center  text-xs font-medium text-gray-500 uppercase tracking-wider ">
                                                     <span

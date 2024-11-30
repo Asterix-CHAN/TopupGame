@@ -34,12 +34,6 @@ class CheckoutController extends Controller
         return view('pages.order', compact('item', 'events', 'diamonds'));
     }
 
-    // public function show($uuid)
-    // {
-    //     $midtrans = MidtransPayment::where('uuid', $uuid)->firstOrFail();
-    //     return view('pages.success', compact('midtrans'));
-    // }
-
     // TROLI
     public function cart($cart)
     {
@@ -101,6 +95,18 @@ class CheckoutController extends Controller
         return redirect()->route('transaction.show',   $transaction->uuid);
     }
 
+    // Metode Pembayaran
+    public function paymentMethod(Request $request, $uuid)
+    {
+        $data = Transaction::with(['game.gallery', 'user'])->where('uuid', $uuid)->firstOrFail();
+        $items = MidtransPayment::with('transaction')->where('transaction_id', $data->id)->firstOrFail();
+        $items->payment_type = $request->payment_type;
+
+        $items->save();
+
+        return redirect()->route('transaction.show',   $data->uuid);
+    }
+
     // PAYMENT
     public function payment(Request $request, $uuid)
     {
@@ -147,19 +153,9 @@ class CheckoutController extends Controller
 
         return Redirect::back();
 
-        // return redirect()->route('checkout.show', $midtransPayment->uuid);
     }
 
-    public function paymentMethod(Request $request, $uuid)
-    {
-        $data = Transaction::with(['game.gallery', 'user'])->where('uuid', $uuid)->firstOrFail();
-        $items = MidtransPayment::with('transaction')->where('transaction_id', $data->id)->firstOrFail();
-        $items->payment_type = $request->payment_type;
-
-        $items->save();
-
-        return redirect()->route('transaction.show',   $data->uuid);
-    }
+    
 
     // DESTROY
     public function destroy($uuid)

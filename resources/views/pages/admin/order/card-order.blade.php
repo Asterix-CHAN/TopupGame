@@ -63,7 +63,7 @@
                 <p id="price-list" class="right-0 text-base md:text-lg text-white"></p>
                 <input data-input id="topup-price" type="hidden" value="" name="price" required />
             </div>
-
+{{-- 
             <!-- START: Choose Payment-->
             <div class="mb-4 w-full h-auto  ">
                 <label class="text-sm md:text-lg font-semibold mb-2 gap-y-2">
@@ -181,7 +181,7 @@
                 </div>
                 <!-- End Item Wrapper -->
             </div>
-            <!-- END:Choose Payment  -->
+            <!-- END:Choose Payment  --> --}}
 
             <!-- Tombol -->
             @auth
