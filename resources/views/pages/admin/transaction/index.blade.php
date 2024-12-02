@@ -23,11 +23,11 @@
                                     {{ __('Tambah') }}
                                 </x-secondary-button> --}}
 
-                                <x-secondary-button
-                                    onclick="Livewire.dispatch('openModal', { component: 'transaction-detail' })">Transaksi</x-secondary-button>
+                                <x-secondary-button x-data=""
+                                    x-on:click="$dispatch('open-modal', 'tambah-produk')">Transaksi</x-secondary-button>
 
                             </div>
-                            {{-- <Livewire:modal /> --}}
+                            
 
                             <div class="shadow-md sm:rounded-lg lg:container pb-2">
 

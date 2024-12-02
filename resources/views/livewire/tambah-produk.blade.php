@@ -1,86 +1,79 @@
-<x-modal>
-
-    <x-slot name="title">
-        Tambah Produk
-    </x-slot>
-
-    <x-slot name="content">
-        <div class=" w-full ">
+    <x-modal name="modal-create-game" focusable >
+        <div class=" w-full inset-0 items-center  bg-white shadow-xl rounded-lg pb-2 scroll-m-0">
             {{--  --}}
-            <form wire:submit.prevent="save">
+            <form method="post" action="{{ route('game-packages.store') }}" class="mx-5"
+                enctype="multipart/form-data">
                 @csrf
                 <div class="card mt-5">
                     <div class="card-body flex gap-2">
                         <div class="w-full">
                             <div class="mb-4">
-                                <label class="block text-gray-700 text-sm font-bold mb-2">Name</label>
-                                <x-text-input type="text" name="name" value="{{ old('name') }} "
-                                    wire:model="name" placeholder="Name"></x-text-input>
+                                <label
+                                    class="block text-gray-700 text-sm font-bold mb-2">Name</label>
+                                <x-text-input type="text" name="name"
+                                    value="{{ old('name') }}"
+                                    placeholder="Name"></x-text-input>
                                 @error('name')
                                     <x-input-error :messages="$message"></x-input-error>
                                 @enderror
-
                             </div>
+
                             <div class="mb-4">
-                                <label class="block text-gray-700 text-sm font-bold mb-2">Developer</label>
-                                <x-text-input type="text" name="developer" value="{{ old('developer') }}"
-                                    wire:model="developer" placeholder="Developer"></x-text-input>
+                                <label
+                                    class="block text-gray-700 text-sm font-bold mb-2">Developer</label>
+                                <x-text-input type="text" name="developer"
+                                    value="{{ old('developer') }}"
+                                    placeholder="Developer"></x-text-input>
                                 @error('developer')
                                     <x-input-error :messages="$message"></x-input-error>
                                 @enderror
                             </div>
 
                             <div class="mb-4">
-                                <label class="block text-gray-700 text-sm font-bold mb-2">Description</label>
-                                <x-text-input type="text" name="description" value="{{ old('description') }}"
-                                    wire:model="description" placeholder="Description"></x-text-input>
+                                <label
+                                    class="block text-gray-700 text-sm font-bold mb-2">Description</label>
+                                <x-text-input type="text" name="description"
+                                    value="{{ old('description') }}"
+                                    placeholder="Description"></x-text-input>
                                 @error('description')
                                     <x-input-error :messages="$message"></x-input-error>
                                 @enderror
 
                             </div>
                             <div class="mb-4">
-                                <label class="block text-gray-700 text-sm font-bold mb-2">About</label>
+                                <label
+                                    class="block text-gray-700 text-sm font-bold mb-2">About</label>
                                 <textarea type="text" cols="50"
                                     class="shadow appearance-none border rounded w-full px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                    name="about" wire:model="about" placeholder="About">{{ old('about') }}</textarea>
+                                    name="about" placeholder="About">{{ old('about') }}</textarea>
                                 @error('about')
                                     <x-input-error :messages="$message"></x-input-error>
                                 @enderror
-
                             </div>
-                            <div class="mb-4">
-                                <label class="block text-gray-700 text-sm font-bold mb-2">Price</label>
-                                <x-text-input type="text" name="price" wire:model="price"
-                                    value="{{ old('price') }}" placeholder="Price"></x-text-input>
-                                @error('price')
-                                    <x-input-error :messages="$message"></x-input-error>
-                                @enderror
 
-                            </div>
                             <div class="mb-2">
                                 <label for="category_id"
                                     class="block text-gray-700 text-sm font-bold mb-2">Categories</label>
-                                <select name="category_id[]" id="category_id" wire:model="category_id"
-                                    class="select2-multiple" multiple="multiple">
+                                <select name="category_id[]" id="category_id"
+                                    class="select2-multiple" multiple>
                                     @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        <option value="{{ $category->id }}">
+                                            {{ $category->name }}</option>
                                     @endforeach
-
                                 </select>
                                 @error('category_id[]')
                                     <x-input-error :messages="$message"></x-input-error>
                                 @enderror
-
                             </div>
+
                             <div class="mb-4">
                                 <label for="platforms"
                                     class="block text-gray-700 text-sm font-bold mb-2">Platform</label>
-                                <select name="platform_id" wire:model="platform_id" class="w-full rounded-md">
-                                    <option disabled>Pilih Platform!</option>
-
+                                <select name="platform_id" class="w-full rounded-md">
+                                    <option>Pilih Platform!</option>
                                     @foreach ($platforms as $platform)
-                                        <option value="{{ $platform->id }}">{{ $platform->name }}</option>
+                                        <option value="{{ $platform->id }}">
+                                            {{ $platform->name }}</option>
                                     @endforeach
                                 </select>
                                 @error('platform_id')
@@ -88,24 +81,21 @@
                                 @enderror
                             </div>
 
-                            <div class="mb-4">
-                                <label class="block text-gray-700 text-sm font-bold mb-2">Stock</label>
-                                <x-text-input type="text" name="stock" wire:model="stock"
-                                    value="{{ old('stock') }}" placeholder="Stock"></x-text-input>
-                                @error('stock')
-                                    <x-input-error :messages="$message"></x-input-error>
-                                @enderror
-                            </div>
 
                             <div class="mb-4">
                                 <label for="imageUpload"
                                     class="block text-gray-700 text-sm font-bold mb-2">Image</label>
                                 <div class="preview mt-4 mb-3" id="imagePreview">
-                                    <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">No image selected</p>
-                                    <p class="text-xs text-gray-500 dark:text-gray-400">PNG, JPG, JPEG (MAX. 2MB)</p>
+                                    <p
+                                        class="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                                        No image
+                                        selected</p>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400">PNG,
+                                        JPG, JPEG (MAX.
+                                        2MB)</p>
 
                                 </div>
-                                <x-text-input type="file" name="image" wire:model="image"
+                                <x-text-input type="text" type="file" name="image"
                                     id="imageUpload"></x-text-input>
                                 @error('image')
                                     <x-input-error :messages="$message"></x-input-error>
@@ -116,16 +106,16 @@
                     </div>
 
                 </div>
-                <x-primary-button>{{ __('Create') }}</x-primary-button>
+                <div class="mt-6 flex justify-end">
+                    <x-secondary-button x-on:click="$dispatch('close')">
+                        {{ __('Cancel') }}
+                    </x-secondary-button>
+
+                    <x-primary-button class="ms-3">
+                        {{ __('Simpan') }}
+                    </x-primary-button>
+                </div>
             </form>
-        </div>
-    </x-slot>
+        </div>   
+    </x-modal>
 
-    <x-slot name="buttons">
-        <div class="flex items-end w-full justify-end">
-            <x-secondary-button wire:click="$dispatch('closeModal')">{{ __('Close') }}</x-secondary-button>
-        </div>
-    </x-slot>
-
-
-</x-modal>

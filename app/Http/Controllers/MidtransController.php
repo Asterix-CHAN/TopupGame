@@ -40,7 +40,7 @@ class MidtransController extends Controller
         // error_log("Order ID $notif->order_id: "."transaction status = $status, fraud staus = $fraud");
 
 
-        // MIDTRANS CONDITION STATUS NOTIFICATION
+        // MIDTRANS STATUS NOTIFICATION
         if ($status == 'capture') {
             if ($type == 'credit_card') {
                 $transaction->transaction_status = ($fraud == 'challenge') ? 'CHALLENGE' : 'SUCCESS';

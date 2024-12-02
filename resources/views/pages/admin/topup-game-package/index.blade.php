@@ -25,9 +25,9 @@
                                     <i class="fa-solid fa-folder-plus mr-1"></i>{{ __('Tambah Game') }}
                                 </x-secondary-button>
 
-                                <x-modal name="modal-create-game" focusable >
+                                {{-- <x-modal name="modal-create-game" focusable >
                                     <div class=" w-full inset-0 items-center  bg-white shadow-xl rounded-lg pb-2 scroll-m-0">
-                                        {{--  --}}
+                                    
                                         <form method="post" action="{{ route('game-packages.store') }}" class="mx-5"
                                             enctype="multipart/form-data">
                                             @csrf
@@ -144,9 +144,11 @@
                                             </div>
                                         </form>
                                     </div>   
-                                </x-modal>
+                                </x-modal> --}}
 
                             </div>
+
+                            <livewire:TambahProduk />
 
                             <div class="overflow-x-auto shadow-md sm:rounded-lg border-collapse border border-slate-400">
                                 <table class="min-w-full divide-y divide-gray-200 items-center  ">

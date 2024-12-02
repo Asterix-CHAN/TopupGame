@@ -11,7 +11,7 @@ use App\Models\TopupgamePackage;
 use LivewireUI\Modal\ModalComponent;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class TambahProduk extends ModalComponent
+class TambahProduk extends Component
 {
     use WithFileUploads;
     public $name;
@@ -67,7 +67,7 @@ class TambahProduk extends ModalComponent
         session()->flash('status', 'successfully');
 
         
-        $this->closeModal();
+        // $this->closeModal();
         
     }
 
