@@ -45,34 +45,34 @@ class TopupgamePackageController extends Controller
      * Store a newly created resource in storage.
      */
 
-    public function store(TopupgamePackageRequest $request)
-    {
-        $data = $request->all();
-        $data['slug'] = Str::slug($request->name);
-        $data['uuid'] = Str::uuid();
+    // public function store(TopupgamePackageRequest $request)
+    // {
+    //     $data = $request->all();
+    //     $data['slug'] = Str::slug($request->name);
+    //     $data['uuid'] = Str::uuid();
 
-        // 
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('assets/gallery', 'public');
-            $data['image'] = $imagePath;
-        }
+    //     // 
+    //     if ($request->hasFile('image')) {
+    //         $imagePath = $request->file('image')->store('assets/gallery', 'public');
+    //         $data['image'] = $imagePath;
+    //     }
 
-        // 
-        $existName = TopupgamePackage::where('name', $data['name'])->exists();
-        if ($existName) {
-            Alert::error('Error', 'Product Name already exists');
-            return redirect()->back()->withInput()->with('error', 'Product Name already exists');
+    //     // 
+    //     $existName = TopupgamePackage::where('name', $data['name'])->exists();
+    //     if ($existName) {
+    //         Alert::error('Error', 'Product Name already exists');
+    //         return redirect()->back()->withInput()->with('error', 'Product Name already exists');
 
-        }
+    //     }
 
-        // 
-        $items = TopupgamePackage::create($data);
-        // create data topupgame and categories to pivot table
-        $items->categories()->attach($request->category_id);
+    //     // 
+    //     $items = TopupgamePackage::create($data);
+    //     // create data topupgame and categories to pivot table
+    //     $items->categories()->attach($request->category_id);
 
-        Alert::success('Success Title', 'Success Message');
-        return redirect()->back()->with('success', 'Data Berhasil ditambahkan');
-    }
+    //     Alert::success('Success Title', 'Success Message');
+    //     return redirect()->back()->with('success', 'Data Berhasil ditambahkan');
+    // }
 
 
     /**

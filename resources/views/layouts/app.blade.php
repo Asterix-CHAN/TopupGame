@@ -109,21 +109,24 @@
 
 
     {{-- <script src="{{ url('select2/dist/js/select2.min.js') }}"></script> --}}
-    <script>
-        $(document).ready(function() {
-            // Select2 Multiple
-            $('.select2-multiple').select2({
-                placeholder: "Select",
-                multiple: true,
-                tags: true,
-                allowClear: true
+ 
+        {{-- <script>
+            $(document).ready(function() {
+                // Select2 Multiple
+                $('.select2-multiple').select2({
+                    placeholder: "Select",
+                    multiple: true,
+                    tags: true,
+                    allowClear: true
+                });
+                
+    
             });
+        </script> --}}
+    
 
-        });
-    </script>
 
-
-    </div>
+ 
 
     @stack('addon-script')
 </body>

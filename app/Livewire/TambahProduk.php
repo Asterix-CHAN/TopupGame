@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Category;
 use App\Models\Platform;
 use Illuminate\Support\Str;
+use Livewire\Attributes\Url;
 use Livewire\WithFileUploads;
 use App\Models\TopupgamePackage;
 use LivewireUI\Modal\ModalComponent;
@@ -18,22 +19,26 @@ class TambahProduk extends Component
     public $developer;
     public $description;
     public $about;
-    public $price;
-    public $stock;
+    #[Url()]
     public $category_id = [];
+    public $categories;
     public $platform_id;
     public $image;
+
+    public function mount()
+    {
+        $this->categories = Category::all(); // Memuat data kategori dari database
+    }
     protected $rules = [
-        'name' => 'required|max:255',
-        'developer' => 'required|max:255',
-        'description' => 'required|max:255',
-        'about' => 'required|max:255',
-        'price' => 'required|numeric',
-        'stock' => 'required|max:255',
+        'name' => 'required|string|max:255',
+        'developer' => 'required|string|max:255',
+        'description' => 'required|string|max:255',
+        'about' => 'required|string|max:255',
+       
         'category_id' => 'required|array|min:1',
         'category_id.*' => 'required|integer|exists:categories,id',
-        'platform_id' => 'required|max:255',
-        'image' => 'image|mimes:jpeg,png,jpg|max:2048',
+        'platform_id' => 'required|integer|max:255',
+        'image' => 'file|mimes:png,jpg,pdf|max:2048',
     ];
 
     public function save(){
@@ -44,12 +49,11 @@ class TambahProduk extends Component
         $product = new TopupgamePackage();
        
         // Assign validated data to the model
+        $product->uuid = Str::uuid();
         $product->name = $validatedData['name'];
         $product->developer = $validatedData['developer'];
         $product->description = $validatedData['description'];
         $product->about = $validatedData['about'];
-        $product->price = $validatedData['price'];
-        $product->stock = $validatedData['stock'];
         $product->platform_id = $validatedData['platform_id'];
         $product['slug'] = Str::slug($product->name);
 
@@ -59,15 +63,26 @@ class TambahProduk extends Component
             $product->image = $imagePath;
         }
 
+        $existName = TopupgamePackage::where('name', $product['name'])->exists();
+        if ($existName) {
+            Alert::error('Error', 'Product Name already exists');
+            return redirect()->back()->withInput()->with('error', 'Product Name already exists');
+
+        }
         // Attach categories
         $product->save();
-        $product->categories()->sync($this->category_id);
+        $product->categories()->attach($validatedData['category_id']);
+
+       
+        
         Alert::success('Success Title', 'Success Message');
 
         session()->flash('status', 'successfully');
 
         
         // $this->closeModal();
+        return redirect()->route('game-packages.index');
+
         
     }
 
