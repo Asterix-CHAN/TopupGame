@@ -82,7 +82,7 @@ class CheckoutController extends Controller
         MidtransPayment::create([
             'uuid' => (string) Str::uuid(),
             'transaction_id' => $transaction->id,
-            'payment_type' => 'dana'
+            'payment_type' => 'gopay'
         ]);
 
 

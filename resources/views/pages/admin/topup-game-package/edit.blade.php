@@ -128,6 +128,21 @@
                 }
             });
         </script>
+         <script>
+            $(document).ready(function() {
+                // Select2 Multiple
+                $('.select2-multiple').select2({
+                    placeholder: "Select",
+                    multiple: true,
+                    tags: true,
+                    allowClear: true
+                });
+                
+    
+            });
+        </script>
     @endpush
+
+   
 
 </x-app-layout>

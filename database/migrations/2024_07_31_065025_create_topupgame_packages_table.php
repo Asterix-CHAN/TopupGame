@@ -20,7 +20,7 @@ return new class extends Migration
             $table->longText('about')->nullable();
             $table->string('slug');
             $table->text('image')->nullable();
-            // $table->foreignId('category_id')->constrained(table: 'categories');
+            // $table->array('categories');
             // $table->string('platform');
             // $table->foreignId('product_id')->constrained('products_packages');
             $table->softDeletes();

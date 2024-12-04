@@ -1,7 +1,16 @@
     <x-modal name="modal-create-game" focusable>
+        @if (Session::has('success'))
+            <script>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: '{{ Session::get('success') }}'
+                });
+            </script>
+        @endif
         <div class=" w-full inset-0 items-center  bg-white shadow-xl rounded-lg pb-2 scroll-m-0">
             {{--  --}}
-            <form method="post" wire:submit="save" class="mx-5" enctype="multipart/form-data">
+            <form method="post" wire:submit.prevent="save" class="mx-5" enctype="multipart/form-data">
                 @csrf
                 <div class="card mt-5">
                     <div class="card-body flex gap-2">
@@ -16,7 +25,7 @@
 
                             <div class="mb-4">
                                 <label class="block text-gray-700 text-sm font-bold mb-2">Developer</label>
-                                <x-text-input type="text" wire:model="developer" 
+                                <x-text-input type="text" wire:model="developer"
                                     placeholder="Developer"></x-text-input>
                                 @error('developer')
                                     <x-input-error :messages="$message"></x-input-error>
@@ -45,7 +54,8 @@
                             <div class="mb-2" wire:ignore>
                                 <label for="category_id"
                                     class="block text-gray-700 text-sm font-bold mb-2">Categories</label>
-                                <select  wire:model="category_id" multiple id="category_id" class="select2-multiple w-full px-10">
+                                <select wire:model="category_id" multiple id="category_id"
+                                    class="select2-multiple w-full px-10">
                                     @foreach ($categories as $category)
                                         <option value="{{ $category->id }}">
                                             {{ $category->name }}</option>
@@ -84,8 +94,7 @@
                                         2MB)</p>
 
                                 </div>
-                                <x-text-input  type="file" wire:model="image"
-                                    id=""></x-text-input>
+                                <x-text-input type="file" wire:model="image" id=""></x-text-input>
                                 @if ($image)
                                     <img class="w-50 h-40 object-contain object-center mt-5 rounded-lg"
                                         src="{{ $image->temporaryUrl() }}">
@@ -112,23 +121,21 @@
         </div>
 
         @script()
+            <script>
+                $(document).ready(function() {
+                    $('.select2-multiple').select2({
+                        placeholder: "Select",
+                        multiple: true,
+                        tags: true,
+                        allowClear: true
+                    });
+                    $('.select2-multiple').on('change', function() {
+                        let data = $(this).val();
+                        // $wire.set('category_id', data, false);
+                        $wire.category_id = data;
 
-        <script>
-            $(document).ready(function(){
-                $('.select2-multiple').select2({
-                    placeholder: "Select",
-                    multiple: true,
-                    tags: true,
-                    allowClear: true
+                    });
                 });
-                $('.select2-multiple').on('change', function(){
-                    let data = $(this).val();
-                    // $wire.set('category_id', data, false);
-                    $wire.category_id = data;
-    
-                });
-            });
-           
-        </script>
+            </script>
         @endscript
     </x-modal>

@@ -6,11 +6,9 @@ use Livewire\Component;
 use App\Models\Category;
 use App\Models\Platform;
 use Illuminate\Support\Str;
-use Livewire\Attributes\Url;
 use Livewire\WithFileUploads;
 use App\Models\TopupgamePackage;
-use LivewireUI\Modal\ModalComponent;
-use RealRashid\SweetAlert\Facades\Alert;
+
 
 class TambahProduk extends Component
 {
@@ -19,7 +17,7 @@ class TambahProduk extends Component
     public $developer;
     public $description;
     public $about;
-    #[Url()]
+    // #[Url()]
     public $category_id = [];
     public $categories;
     public $platform_id;
@@ -65,23 +63,32 @@ class TambahProduk extends Component
 
         $existName = TopupgamePackage::where('name', $product['name'])->exists();
         if ($existName) {
-            Alert::error('Error', 'Product Name already exists');
-            return redirect()->back()->withInput()->with('error', 'Product Name already exists');
+            $this->dispatch('sweet-alert', 
+            icon: 'error', 
+            title: 'Data Sudah Dibuat');
+            return redirect()->back();
 
         }
-        // Attach categories
-        $product->save();
-        $product->categories()->attach($validatedData['category_id']);
-
+        try{
+            $product->save();
+            $product->categories()->attach($validatedData['category_id']);
+    
+           
+            $this->reset(['name', 'developer', 'description', 'about', 'platform_id', 'category_id', 'image']);
+        
+            $this->dispatch('sweet-alert', 
+            icon: 'success', 
+            title: 'Data Berhasil Disimpan');
+            return redirect()->route('game-packages.index');
+        } catch (\Exception $e) {
+            $this->dispatch('sweet-alert', 
+            icon: 'error', 
+            title: 'Data Gagal Ditambahkan');
+        }
        
-        
-        Alert::success('Success Title', 'Success Message');
 
-        session()->flash('status', 'successfully');
-
-        
-        // $this->closeModal();
-        return redirect()->route('game-packages.index');
+        // session()->flash('status', 'successfully');
+        // return redirect()->route('game-packages.index');
 
         
     }

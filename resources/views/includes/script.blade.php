@@ -13,7 +13,7 @@
     <script src="{{ url('Game/src/js/scrollreveal.min.js') }}"></script>
     <!-- main js -->
     @vite('resources/js/script.js')
-    @vite('resources/js/app.js')
+    {{-- @vite('resources/js/app.js') --}}
    
     <!--  -->
     <script src="{{ url('Game/src/js/carouselSwiper.js') }}"></script>

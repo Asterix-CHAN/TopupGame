@@ -13,6 +13,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     {{-- selec2 cdn --}}
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+{{-- 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
+
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
@@ -25,7 +28,7 @@
         @include('layouts.navigation')
         {{-- resources/views/app.blade.php --}}
         {{-- {{ Breadcrumbs::render('dashboard') }} --}}
-        @if (Session::has('success'))
+        {{-- @if (Session::has('success'))
             <script>
                 Swal.fire({
                     icon: 'success',
@@ -43,13 +46,8 @@
                     'text': '{{ Session::get('error') }}'
                 });
             </script>
-        @endif
-
-        {{-- @if (session('status'))
-            <div class="alert alert-success">
-                {{ session('status') }}
-            </div>
         @endif --}}
+
 
 
         @if ($errors->any())
@@ -87,7 +85,7 @@
         </div>
     </div>
 
-
+    <x-success-alert/>
     @livewire('wire-elements-modal')
     @livewireScripts
 
@@ -123,10 +121,9 @@
     
             });
         </script> --}}
-    
+      
 
 
- 
 
     @stack('addon-script')
 </body>
