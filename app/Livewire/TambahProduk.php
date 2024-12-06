@@ -32,7 +32,6 @@ class TambahProduk extends Component
         'developer' => 'required|string|max:255',
         'description' => 'required|string|max:255',
         'about' => 'required|string|max:255',
-       
         'category_id' => 'required|array|min:1',
         'category_id.*' => 'required|integer|exists:categories,id',
         'platform_id' => 'required|integer|max:255',
@@ -73,9 +72,6 @@ class TambahProduk extends Component
             $product->save();
             $product->categories()->attach($validatedData['category_id']);
     
-           
-            $this->reset(['name', 'developer', 'description', 'about', 'platform_id', 'category_id', 'image']);
-        
             $this->dispatch('sweet-alert', 
             icon: 'success', 
             title: 'Data Berhasil Disimpan');
