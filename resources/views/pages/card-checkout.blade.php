@@ -37,7 +37,7 @@
             <dl
                 class="flex items-center justify-between gap-4 border-t border-gray-200 pt-2 dark:border-gray-700">
                 <dt class="text-base font-bold  dark:text-white">Total Pembayaran</dt>
-                <dd class="text-base font-bold  dark:text-white">Rp. {{ number_format($items->price, 0, ',', '.') }}</dd>
+                <dd class="text-base font-bold  dark:text-white">Rp. {{ number_format($items->gross_amount, 0, ',', '.') }}</dd>
                 {{-- {{ $items->detail->first()->total_amount }} --}}
             </dl>
 

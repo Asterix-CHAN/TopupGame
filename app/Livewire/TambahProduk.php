@@ -22,10 +22,12 @@ class TambahProduk extends Component
     public $categories;
     public $platform_id;
     public $image;
+    public $platforms;
 
     public function mount()
     {
         $this->categories = Category::all(); // Memuat data kategori dari database
+        $this->platforms = Platform::with('topup')->get();
     }
     protected $rules = [
         'name' => 'required|string|max:255',
@@ -65,7 +67,7 @@ class TambahProduk extends Component
             $this->dispatch('sweet-alert', 
             icon: 'error', 
             title: 'Data Sudah Dibuat');
-            return redirect()->back();
+            return redirect()->route('game-packages.index');
 
         }
         try{
@@ -91,11 +93,7 @@ class TambahProduk extends Component
 
     public function render()
     {
-        $categories = Category::all();
-        $platforms = Platform::with(['topup'])->get();
-        $items = TopupgamePackage::with(['platform_name'])->get();
-       
-        return view('livewire.tambah-produk', compact('items', 'categories', 'platforms'));
+        return view('livewire.tambah-produk');
     }
 
 

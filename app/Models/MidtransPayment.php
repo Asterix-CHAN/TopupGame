@@ -12,13 +12,8 @@ class MidtransPayment extends Model
 
     protected $fillable = [
         'uuid',
-        'merchant_id',
-        'midtrans_transaction_id',
+        'link_snap',
         'payment_type',
-        'acquirer',
-        'bank',
-        'store',
-        'va_number',
         'transaction_id'
     ];
 

@@ -13,8 +13,9 @@ class PaymentMethod extends Model
         'uuid',
         'name',
         'image',
-        'cost',
-        'payment_type'
+        'fee_admin',
+        'payment_type',
+        'slug'
         ];
 
         protected $hidden = [];

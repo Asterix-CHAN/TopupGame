@@ -12,10 +12,12 @@ class Index extends Component
 {
     use WithPagination, WithoutUrlPagination;
 
-    #[On('sweet-alert')]
-    public function updateCreate($items = null){
 
-    }
+
+    #[On('sweet-alert')]
+    // public function updateCreate($items = null){
+
+    // }
     public function render()
     {
         

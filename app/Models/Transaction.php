@@ -22,7 +22,7 @@ class Transaction extends Model
         'diamond_total',
         'transaction_status',
         'price',
-        'total_amount',
+        'gross_amount',
         'phone_number'
     ];
 

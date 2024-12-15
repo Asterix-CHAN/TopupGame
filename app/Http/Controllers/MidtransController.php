@@ -47,31 +47,15 @@ class MidtransController extends Controller
             }
         } else if ($status == 'settlement') {
             $midtransPayment->payment_type = $type;
-
-            if ($type == 'bank_transfer') {
-                $midtransPayment->bank = $notif->va_numbers[0]->bank;
-                $midtransPayment->va_number = $notif->va_numbers[0]->va_number;
-            } else if ($type == 'qris') {
-                $midtransPayment->e_wallet = $notif->acquirer;
-            } else if ($type == 'cstore') {
-                $midtransPayment->store = $notif->store;
-            }
-
-            $midtransPayment->midtrans_transaction_id = $notif->transaction_id;
-            $midtransPayment->merchant_id = $notif->merchant_id;
-
             $transaction->transaction_status = 'SUCCESS';
         } else if ($status == 'pending') {
             $transaction->transaction_status = 'PENDING';
         } else if ($status == 'deny') {
             $transaction->transaction_status = 'FAILED';
         } else if ($status == 'expire') {
-            if ($type == 'qris') {
-                $midtransPayment->payment_type = $type;
-            }
             $transaction->transaction_status = 'EXPIRED';
         } else if ($status == 'cancel') {
-            $transaction->transaction_status = 'FAILED';
+            $transaction->transaction_status = 'CANCEL';
         }
 
 

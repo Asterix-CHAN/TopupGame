@@ -35,24 +35,24 @@ class CheckoutController extends Controller
     }
 
     // TROLI
-    public function cart($cart)
-    {
-        $transactions = Transaction::with('game')->where('IN_CART', $cart)->firstOrFail();
-        return view('pages.cart', compact('transactions'));
-    }
+    public function cart(Request $request, $transaction_status)
+{
+    $transactions = Transaction::with('game')->where('transaction_status', $transaction_status)->first();
+    return view('pages.cart', compact('transactions'));
+}
 
     // PROCESS PAYMENT
     public function process(Request $request, $uuid)
     {
         $gamePackages = TopupgamePackage::where('uuid', $uuid)->firstOrFail();
         $data = $request->validate([
-            'server_game' => 'required|string',
-            'uid_game' => 'required|string',
+            'server_game' => 'required|string|max:255',
+            'uid_game' => 'required|string|max:255',
             'transaction_status' => 'sometimes|string|in:IN_CART,CHALLENGE,SUCCESS,PENDING,CANCEL,FAILED,EXPIRED',
             'diamond_total' => 'required|integer|min:0',
-            'gross_amount' => 'nullable|numeric|min:0',
+            // 'gross_amount' => 'required|numeric|min:0',
             'phone_number' => ['required', 'string', 'regex:/^(\+62|08)[0-9]{9,12}$/',],
-            'price' => 'nullable|numeric|min:0'
+            'price' => 'required|numeric|min:0'
         ], [
             'phone_number.regex' => 'Nomor telepon harus dimulai dengan +62 atau 08 dan terdiri dari 10-13 digit.',
         ]);
@@ -67,7 +67,7 @@ class CheckoutController extends Controller
             'phone_number' => $data['phone_number'],
             'price' => $data['price'] ?? 0,
             'diamond_total' => $data['diamond_total'] ?? 0,
-            'gross_amount' => $data['gross_amount'] ?? 0,
+            'gross_amount' => $data['price'] += $data['price'],
         ]);
 
         TransactionDetail::create([
@@ -113,7 +113,7 @@ class CheckoutController extends Controller
         $data = Transaction::with(['game.gallery', 'user'])->where('uuid', $uuid)->firstOrFail();
         $midtrans = MidtransPayment::with('transaction')->where('transaction_id', $data->id)->firstOrFail();
         $data->transaction_status = "PENDING";
-       
+
         $data->save();
 
 
@@ -138,24 +138,20 @@ class CheckoutController extends Controller
                 'phone' => $data->user->phone_number
             ],
             'enabled_payments' => [$midtrans->payment_type],
-            'vtweb' => []
         ];
-       
+
         try {
             $paymentUrl = Snap::createTransaction($midtrans_parameter)->redirect_url;
-      
-            return redirect()->away($paymentUrl);
-          
 
+            return redirect()->away($paymentUrl);
         } catch (Exception $e) {
             echo $e->getMessage();
         }
 
         return Redirect::back();
-
     }
 
-    
+
 
     // DESTROY
     public function destroy($uuid)

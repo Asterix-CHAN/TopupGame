@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('payment_type');
             $table->string('name');
             $table->text('image');
-            $table->decimal('cost')->nullable();
+            $table->decimal('fee_admin')->nullable();
+            $table->string('slug')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
