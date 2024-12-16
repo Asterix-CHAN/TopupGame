@@ -21,14 +21,13 @@
         <tbody class="bg-white divide-y divide-gray-200 items-center">
             @forelse ($items as $index=>$item)
                 <tr wire:key="{{ $item->id }}">
-
                     <td scope="col"
                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         {{ $index + 1 }}
                     </td>
                     <td scope="col"
                         class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                        <img src="{{ Storage::url($item->image) }}" alt=""
+                        <img src="{{ Storage::url($item->image) }}" alt="preview_{{ $item->name }}"
                             class="object-contain w-16 aspect-square rounded-lg object-center">
                     </td>
                     <td scope="col"
@@ -50,11 +49,13 @@
                             class="text-blue-600 hover:text-blue-400">
                             <i class="fa-solid fa-pen-to-square mx-1"></i> Ubah
                         </button>
-                        <a href="" class="text-red-600 hover:text-red-400 " data-confirm-delete="true"><i
-                                class="fa fa-trash mx-1"></i>Delete</a>
+                        <button
+                             wire:click="confirmAlert({{ $item->id }})"
+                            class="text-red-600 hover:text-red-400">
+                            <i class="fa fa-trash mx-1"></i>Delete
+                        </button>
+    
                     </td>
-
-
                 </tr>
             @empty
                 <tr>
@@ -67,3 +68,4 @@
         {{ $items->links() }}
     </div>
 </div>
+

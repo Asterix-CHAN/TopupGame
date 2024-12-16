@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 
+use App\Models\Event;
+
+
 use App\Models\Diamond;
-
-
 use App\Models\Category;
 use App\Models\Platform;
 use Illuminate\Support\Str;
@@ -13,9 +14,9 @@ use Illuminate\Http\Request;
 use App\Models\ProductPackage;
 use App\Models\TopupgamePackage;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\Admin\TopupgamePackageRequest;
-use App\Models\Event;
 
 class TopupgamePackageController extends Controller
 {
@@ -138,6 +139,9 @@ class TopupgamePackageController extends Controller
     public function destroy(string $uuid)
     {
             $item = TopupgamePackage::where('uuid', $uuid)->first();
+            if($item->image){
+                Storage::delete('public/'. $item->image);
+            }
             $item->delete();
                 Alert::success('Success Title', 'Success Message');
                 return redirect()->back()->with('success', 'Data Berhasil dihapus');

@@ -22,25 +22,32 @@ class Create extends ModalComponent
     public $temporary = null;
     public $fee_admin;
     public PaymentMethod $payment;
-    
-  
+
+    protected $listeners = ['deleteThis' => 'confirm'];
+
 
     // Validasi properti
     protected $rules = [
         'name' => 'required|string|max:255',
         'payment_type' => 'required|string|max:255',
         'fee_admin' => 'required|numeric|min:0',
-        'image' => 'image|mimes:jpeg,png,jpg,svg|max:2048',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,svg|max:2048',
     ];
 
-   public function mount(PaymentMethod $payment){
-    $this->payment = $payment;
-    $this->name = $payment->name;
-    $this->payment_type = $payment->payment_type;
-    $this->fee_admin = $payment->fee_admin;
-    $this->image = $payment->image;
-    $this->temporary = $payment->image;
-   }
+    public function mount(PaymentMethod $payment = null)
+    {
+        if ($payment) {
+            $this->payment = $payment;
+            $this->id = $payment->id;
+            $this->name = $payment->name;
+            $this->payment_type = $payment->payment_type;
+            $this->fee_admin = $payment->fee_admin;
+            $this->image = null
+;            $this->temporary = $payment->image;
+        } else {
+            $this->resetFields();
+        }
+    }
 
     public function resetFields()
     {
@@ -57,16 +64,19 @@ class Create extends ModalComponent
         $validatedData = $this->validate();
 
         // Membuat entitas baru items
-        $items =  new PaymentMethod();
+        $items = $this->id ? PaymentMethod::find($this->id) : new PaymentMethod();
         $items->uuid = Str::uuid();
         $items->name = $validatedData['name'];
         $items->fee_admin = $validatedData['fee_admin'];
         $items->payment_type = $validatedData['payment_type'];
         $items->slug = Str::slug($this->name);
-        // Simpan gambar jika ada
-        if ($this->image) {
+          // Simpan gambar jika ada
+          if ( $this->image) {
             $imagePath = $this->image->store('assets/payment-methods', 'public');
             $items->image = $imagePath;
+        } elseif (!$this->id) {
+            // Hapus gambar jika tidak ada saat update
+            $items->image = null;
         }
 
         try {
@@ -90,18 +100,18 @@ class Create extends ModalComponent
         }
     }
 
+    public function confirm($id){
+        $this->id = $id;
+        $this->dispatch('confirm-alert');
+    }
 
-    // public function edit($id)
-    // {
-    //    $payment = PaymentMethod::findOrFail($id);
-     
-    //        $this->id = $payment->id;
-    //        $this->name = $payment->name;
-    //        $this->payment_type = $payment->payment_type;
-    //        $this->fee_admin = $payment->fee_admin;
-    //        $this->image = $payment->image;
-    // }
-
+    public function delete(){
+        $items = PaymentMethod::find($this->id);
+        $items->delete();
+        $this->dispatch('sweet-alert', $items, icon: 'success', title: '
+        Data Berhasil Dihapus');
+    
+    }
 
     public function update()
     {

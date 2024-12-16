@@ -29,12 +29,9 @@
                 <option value="gopay">E-Wallet / Qris</option>
                 <option value="va">Virtual Account</option>
             </select>
-            {{-- <input 
-                type="text" 
-               
-                class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
-                placeholder="Enter cost"/>
-            @error('payment_type') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror --}}
+            @error('payment_type')
+                <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
         </div>
 
 
@@ -71,18 +68,15 @@
                 </button>
             </div>
 
-            <!-- Preview -->
-            @if ($image)
                 <div class="mt-4">
                     @if ($temporary)
                         <img src="{{ asset('storage/' . $temporary) }}"
-                            class="w-32 h-32 object-contain p-2 object-center rounded-lg shadow-md" alt="Preview">
+                            class="w-32 h-32 object-contain p-2 object-center rounded-lg shadow-md" alt="">
                     @elseif ($image)
-                        <img src="{{ $image->temporaryUrl() }}" class="w-32 h-32 object-contain  object-center p-2 rounded-lg shadow-md"
-                            alt="Preview">
+                        <img src="{{ $image->temporaryUrl() }}"
+                            class="w-32 h-32 object-contain  object-center p-2 rounded-lg shadow-md" alt="">
                     @endif
                 </div>
-            @endif
         </div>
 
         <!-- Submit Button -->

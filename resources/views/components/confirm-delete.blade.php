@@ -1,31 +1,26 @@
 <div 
     x-data="{ open: false }" 
     x-show="open"
-    @confirm-alert.window="
+    @confirm.window="
         Swal.fire({
-            title: 'Are you sure?',
-            text: 'You won\'t be able to revert this!',
-            icon: 'warning',
+            title: event.detail.title,
+            text: event.detail.text,
+            icon: event.detail.icon,
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!',
-            cancelButtonText: 'No, cancel!'
+            confirmButtonText: event.detail.confirmButtonText,
+            cancelButtonText: event.detail.cancelButtonText,
         }).then((result) => {
             if (result.isConfirmed) {
-                Swal.fire(
-                    'Deleted!',
-                    'Your file has been deleted.',
-                    'success'
-                );
+                $wire.deleteConfirmed(event.detail.id);
             } else if (result.dismiss === Swal.DismissReason.cancel) {
                 Swal.fire(
                     'Cancelled',
-                    'Your file is safe.',
+                    'Your data is safe.',
                     'info'
                 );
             }
         });
     "
->
-</div>
+></div>

@@ -22,7 +22,7 @@
                                 onclick="Livewire.dispatch('openModal', {component: 'payment_method.create'})">Tambah Pembayaran</x-secondary-button>
                             </div>
                             <div class="overflow-hidden shadow-md sm:rounded-lg">
-                                <livewire:payment_method.index/>
+                                <livewire:PaymentMethod.Index />
                             </div>
                         </div>
                     </div>
