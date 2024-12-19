@@ -14,7 +14,7 @@ class TransactionDetail extends Model
         'uuid', 
         'transaction_id', 
         'produk_name', 
-        'total_amount',
+
         'description',
     ];
 

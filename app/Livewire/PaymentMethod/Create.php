@@ -17,7 +17,7 @@ class Create extends ModalComponent
 
     public $id;
     public $name;
-    public $payment_type;
+    public $category;
     public $image = null;
     public $temporary = null;
     public $fee_admin;
@@ -40,10 +40,10 @@ class Create extends ModalComponent
             $this->payment = $payment;
             $this->id = $payment->id;
             $this->name = $payment->name;
-            $this->payment_type = $payment->payment_type;
+            $this->category = $payment->category;
             $this->fee_admin = $payment->fee_admin;
-            $this->image = null
-;            $this->temporary = $payment->image;
+            $this->image = null;
+            $this->temporary = $payment->image;
         } else {
             $this->resetFields();
         }
@@ -53,7 +53,7 @@ class Create extends ModalComponent
     {
         $this->id = null;
         $this->name = '';
-        $this->payment_type = '';
+        $this->category = '';
         $this->fee_admin = '';
         $this->image = null;
     }
@@ -70,8 +70,8 @@ class Create extends ModalComponent
         $items->fee_admin = $validatedData['fee_admin'];
         $items->payment_type = $validatedData['payment_type'];
         $items->slug = Str::slug($this->name);
-          // Simpan gambar jika ada
-          if ( $this->image) {
+        // Simpan gambar jika ada
+        if ($this->image) {
             $imagePath = $this->image->store('assets/payment-methods', 'public');
             $items->image = $imagePath;
         } elseif (!$this->id) {
@@ -100,17 +100,18 @@ class Create extends ModalComponent
         }
     }
 
-    public function confirm($id){
+    public function confirm($id)
+    {
         $this->id = $id;
         $this->dispatch('confirm-alert');
     }
 
-    public function delete(){
+    public function delete()
+    {
         $items = PaymentMethod::find($this->id);
         $items->delete();
         $this->dispatch('sweet-alert', $items, icon: 'success', title: '
         Data Berhasil Dihapus');
-    
     }
 
     public function update()

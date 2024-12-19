@@ -21,19 +21,18 @@
 
 
         <div>
-            <label for="payment_type" class="block text-sm font-medium text-gray-700">Payment Type</label>
-            <select id="payment_type" wire:model="payment_type"
+            <label for="category" class="block text-sm font-medium text-gray-700">Payment Type</label>
+            <select id="category" wire:model="category"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option selected>Choose a Payment</option>
                 <option value="credit_cart">Credit Card</option>
                 <option value="gopay">E-Wallet / Qris</option>
                 <option value="va">Virtual Account</option>
             </select>
-            @error('payment_type')
+            @error('category')
                 <span class="text-red-500 text-sm">{{ $message }}</span>
             @enderror
         </div>
-
 
         <!-- Cost -->
         <div>

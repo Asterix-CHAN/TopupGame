@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('uuid')->unique();
             $table->foreignId('transaction_id')->constrained('transactions');
             $table->string('produk_name');
-            $table->decimal('total_amount', 10, 0)->default(0);
             $table->text('description')->nullable();
             $table->softDeletes();
             $table->timestamps();

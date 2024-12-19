@@ -15,6 +15,7 @@ class Transaction extends Model
     ];
     protected $fillable = [
         'uuid',
+        'invoice',
         'uid_game',
         'server_game',
         'user_id',

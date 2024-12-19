@@ -14,7 +14,7 @@ class PaymentMethod extends Model
         'name',
         'image',
         'fee_admin',
-        'payment_type',
+        'category',
         'slug'
         ];
 

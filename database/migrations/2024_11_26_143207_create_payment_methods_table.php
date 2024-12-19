@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('payment_methods', function (Blueprint $table) {
             $table->id();
             $table->string('uuid')->unique();
-            $table->string('payment_type');
+            $table->string('category');
             $table->string('name');
             $table->text('image');
             $table->decimal('fee_admin')->nullable();

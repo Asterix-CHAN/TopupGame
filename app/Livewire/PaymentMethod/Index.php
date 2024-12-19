@@ -14,25 +14,28 @@ class Index extends Component
     use WithPagination, WithoutUrlPagination;
     public PaymentMethod $payment;
     public $id;
-    
+
     public function mount(PaymentMethod $payment)
     {
         $this->payment = $payment;
     }
-    
+
     public function confirmAlert($id)
-{   
-     $this->id = $id;
-    // dd($data);
-    $this->dispatch('confirmAlert',  [
-        'id'=> $id],
-        title: 'Are you sure?',
-        text: 'You won\'t be able to revert this!',
-        icon: 'warning',
-        confirmButtonText: 'Yes, delete it!',
-        cancelButtonText: 'No, cancel!', // Kirim ID ke front-end
-    );
-}
+    {
+        $this->id = $id;
+
+        $this->dispatch(
+            'confirmAlert',
+            [
+                'id' => $id
+            ],
+            title: 'Are you sure?',
+            text: 'You won\'t be able to revert this!',
+            icon: 'warning',
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!', // Kirim ID ke front-end
+        );
+    }
     #[On('delete')]
     public function delete($id = null)
     {
@@ -40,8 +43,8 @@ class Index extends Component
         $payment = PaymentMethod::find($id);
 
         if ($payment) {
-            if($payment->image){
-                Storage::delete('public/'. $payment->image);
+            if ($payment->image) {
+                Storage::delete('public/' . $payment->image);
             }
             $payment->delete();
 

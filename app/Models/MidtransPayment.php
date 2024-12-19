@@ -14,7 +14,7 @@ class MidtransPayment extends Model
         'uuid',
         'link_snap',
         'payment_type',
-        'transaction_id'
+        'transaction_id',
     ];
 
     protected $hidden = [

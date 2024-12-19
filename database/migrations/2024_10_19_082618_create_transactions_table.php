@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->string('uuid')->unique();
+            $table->string('invoice')->unique();
             $table->string('uid_game')->nullable();
             $table->string('server_game')->nullable();
             $table->foreignId('user_id')->constrained('users');

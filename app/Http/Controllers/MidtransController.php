@@ -35,7 +35,7 @@ class MidtransController extends Controller
         $order_id = $notif->order_id;
         $fraud = $notif->fraud_status;
 
-        $transaction = Transaction::where('uuid', $order_id)->firstOrFail();
+        $transaction = Transaction::where('uuid ', $order_id)->firstOrFail();
         $midtransPayment = MidtransPayment::with('transaction')->where('transaction_id', $transaction->id)->firstOrFail();
         // error_log("Order ID $notif->order_id: "."transaction status = $status, fraud staus = $fraud");
 
@@ -46,7 +46,6 @@ class MidtransController extends Controller
                 $transaction->transaction_status = ($fraud == 'challenge') ? 'CHALLENGE' : 'SUCCESS';
             }
         } else if ($status == 'settlement') {
-            $midtransPayment->payment_type = $type;
             $transaction->transaction_status = 'SUCCESS';
         } else if ($status == 'pending') {
             $transaction->transaction_status = 'PENDING';
@@ -58,7 +57,7 @@ class MidtransController extends Controller
             $transaction->transaction_status = 'CANCEL';
         }
 
-
+        $midtransPayment->payment_type = $type;
         $transaction->save();
         $midtransPayment->save();
 

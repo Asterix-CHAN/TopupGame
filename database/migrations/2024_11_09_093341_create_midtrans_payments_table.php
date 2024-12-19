@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('uuid')->unique();
             $table->foreignId('transaction_id')->constrained('transactions');
             $table->string('payment_type');
+            $table->string('link_snap');
             $table->softDeletes();
             $table->timestamps();
         });

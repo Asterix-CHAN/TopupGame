@@ -36,10 +36,10 @@ class CheckoutController extends Controller
 
     // TROLI
     public function cart(Request $request, $transaction_status)
-{
-    $transactions = Transaction::with('game')->where('transaction_status', $transaction_status)->first();
-    return view('pages.cart', compact('transactions'));
-}
+    {
+        $transactions = Transaction::with('game')->where('transaction_status', $transaction_status)->first();
+        return view('pages.cart', compact('transactions'));
+    }
 
     // PROCESS PAYMENT
     public function process(Request $request, $uuid)
@@ -59,6 +59,7 @@ class CheckoutController extends Controller
 
         $transaction = Transaction::create([
             'uuid' => (string) Str::uuid(),
+            'invoice' => 'INV-'. Str::random(10),
             'user_id' =>  auth()->user()->id,
             'game_id' => $gamePackages->id,
             'server_game' => $data['server_game'],
@@ -76,13 +77,13 @@ class CheckoutController extends Controller
             'username' => Auth::user()->name,
             'description' => $request->input('description'),
             'produk_name' => $gamePackages->name,
-            'gross_amount' => $transaction->price += $transaction->price
         ]);
 
         MidtransPayment::create([
             'uuid' => (string) Str::uuid(),
             'transaction_id' => $transaction->id,
-            'payment_type' => 'gopay'
+            'payment_type' => '',
+            'link_snap' => ''
         ]);
 
 
@@ -116,11 +117,6 @@ class CheckoutController extends Controller
 
         $data->save();
 
-
-        // return $data;
-        // Mail::to($data->user->email)->send(
-        //     new TransactionSuccess($data) );
-
         Config::$serverKey = config('midtrans.serverKey');
         Config::$isProduction = config('midtrans.isProduction');
         Config::$isSanitized = config('midtrans.isSanitized');
@@ -128,7 +124,7 @@ class CheckoutController extends Controller
 
         $midtrans_parameter = [
             'transaction_details' => [
-                'order_id' => $data->uuid,
+                'order_id' =>  $data->invoice,
                 'gross_amount' => (int) $data->price
             ],
             'customer_details' => [
@@ -138,10 +134,16 @@ class CheckoutController extends Controller
                 'phone' => $data->user->phone_number
             ],
             'enabled_payments' => [$midtrans->payment_type],
+            'credit_card' => [
+                'secure' => true
+            ]
         ];
 
         try {
             $paymentUrl = Snap::createTransaction($midtrans_parameter)->redirect_url;
+
+            $midtrans->link_snap = $paymentUrl;
+            $midtrans->save();
 
             return redirect()->away($paymentUrl);
         } catch (Exception $e) {
