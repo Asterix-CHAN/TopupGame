@@ -2,7 +2,7 @@
 </div>
 
 <div id="sidebar"
-    class="bg-white  fixed md:sticky md:top-32 min-h-screen w-1/2 md:w-full inset-0 md:block shadow-xl px-3 z-20 rounded-r-2xl rounded-b-none overflow-x-hidden decoration-none box-shadow ">
+    class="bg-white  fixed md:sticky md:top-32 min-h-screen w-2/3 md:w-full inset-0 md:block shadow-xl px-3 z-20 rounded-r-2xl rounded-b-none overflow-x-hidden decoration-none box-shadow ">
 
     <div class="space-y-6 md:space-y-10 mt-10 ">
         <div class="flex items-end justify-end ">

@@ -29,7 +29,7 @@ class Create extends ModalComponent
     // Validasi properti
     protected $rules = [
         'name' => 'required|string|max:255',
-        'payment_type' => 'required|string|max:255',
+        'category' => 'required|string|max:255',
         'fee_admin' => 'required|numeric|min:0',
         'image' => 'nullable|image|mimes:jpeg,png,jpg,svg|max:2048',
     ];
@@ -68,7 +68,7 @@ class Create extends ModalComponent
         $items->uuid = Str::uuid();
         $items->name = $validatedData['name'];
         $items->fee_admin = $validatedData['fee_admin'];
-        $items->payment_type = $validatedData['payment_type'];
+        $items->category = $validatedData['category'];
         $items->slug = Str::slug($this->name);
         // Simpan gambar jika ada
         if ($this->image) {

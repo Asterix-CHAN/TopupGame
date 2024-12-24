@@ -10,7 +10,7 @@
     <form wire:submit.prevent="save" class="space-y-4">
         <!-- Name -->
         <div>
-            <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+            <label for="name" class="block text-sm font-medium text-gray-700">Bank</label>
             <input type="text" wire:model="name"
                 class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Enter payment method name">
@@ -21,13 +21,18 @@
 
 
         <div>
-            <label for="category" class="block text-sm font-medium text-gray-700">Payment Type</label>
+            <label for="category" class="block text-sm font-medium text-gray-700">Tipe Pembayaran</label>
             <select id="category" wire:model="category"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option selected>Choose a Payment</option>
                 <option value="credit_cart">Credit Card</option>
                 <option value="gopay">E-Wallet / Qris</option>
+                <option value="shopeepay">Shopee Pay</option>
                 <option value="va">Virtual Account</option>
+                <option value="echannel">Mandiri Bill</option>
+                <option value="cstore">Gerai</option>
+                <option value="cardless_credit">Kredit Tanpa Kartu</option>
+            
             </select>
             @error('category')
                 <span class="text-red-500 text-sm">{{ $message }}</span>
@@ -36,7 +41,7 @@
 
         <!-- Cost -->
         <div>
-            <label for="cost" class="block text-sm font-medium text-gray-700">Fee</label>
+            <label for="cost" class="block text-sm font-medium text-gray-700">Fee Admin</label>
             <input type="number" id="fee_admin" wire:model="fee_admin"
                 class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Enter cost">

@@ -12,8 +12,8 @@
                   </div>
                   <!-- End Hamburger Menu -->
                   <!-- logo -->
-                  <div class="flex justify-center md:justify-normal items-center">
-                      <a href="#" class="font-semibold text-md md:text-xl lg:text-2xl"><img
+                  <div class="flex justify-center md:justify-normal items-center ">
+                      <a href="#" class="font-semibold text-md md:text-xl lg:text-2xl hidden md:block"><img
                               src="{{ url('Game/src/images/logo/nongki.png') }}" alt="" srcset=""
                               class="w-10 md:w-13 object-cover object-center overflow-auto"></a>
                   </div>

@@ -44,31 +44,38 @@ class CheckoutController extends Controller
     // PROCESS PAYMENT
     public function process(Request $request, $uuid)
     {
+
+        // Ambil nilai dari input
+        $eventValue = $request->input('event'); // Contohnya: "50000|100"
+
+        // Pisahkan nilai menjadi harga dan jumlah diamond
+        [$price, $diamond] = explode('|', $eventValue);
+
         $gamePackages = TopupgamePackage::where('uuid', $uuid)->firstOrFail();
         $data = $request->validate([
             'server_game' => 'required|string|max:255',
             'uid_game' => 'required|string|max:255',
             'transaction_status' => 'sometimes|string|in:IN_CART,CHALLENGE,SUCCESS,PENDING,CANCEL,FAILED,EXPIRED',
-            'diamond_total' => 'required|integer|min:0',
+            'diamond_total' => 'nullable|integer|min:0',
             // 'gross_amount' => 'required|numeric|min:0',
             'phone_number' => ['required', 'string', 'regex:/^(\+62|08)[0-9]{9,12}$/',],
-            'price' => 'required|numeric|min:0'
+            'price' => 'nullable|numeric|min:0'
         ], [
             'phone_number.regex' => 'Nomor telepon harus dimulai dengan +62 atau 08 dan terdiri dari 10-13 digit.',
         ]);
 
         $transaction = Transaction::create([
             'uuid' => (string) Str::uuid(),
-            'invoice' => 'INV-'. Str::random(10),
+            'invoice' => 'INV-' . Str::random(10),
             'user_id' =>  auth()->user()->id,
             'game_id' => $gamePackages->id,
             'server_game' => $data['server_game'],
             'transaction_status' => 'IN_CART',
             'uid_game' => $data['uid_game'],
             'phone_number' => $data['phone_number'],
-            'price' => $data['price'] ?? 0,
-            'diamond_total' => $data['diamond_total'] ?? 0,
-            'gross_amount' => $data['price'] += $data['price'],
+            'price' => $price,
+            'diamond_total' => $diamond,
+            'gross_amount' => $price += $price,
         ]);
 
         TransactionDetail::create([
@@ -113,6 +120,8 @@ class CheckoutController extends Controller
     {
         $data = Transaction::with(['game.gallery', 'user'])->where('uuid', $uuid)->firstOrFail();
         $midtrans = MidtransPayment::with('transaction')->where('transaction_id', $data->id)->firstOrFail();
+
+        // $data->gross_amount = $data->price += $request->input('channel');
         $data->transaction_status = "PENDING";
 
         $data->save();
@@ -125,7 +134,7 @@ class CheckoutController extends Controller
         $midtrans_parameter = [
             'transaction_details' => [
                 'order_id' =>  $data->invoice,
-                'gross_amount' => (int) $data->price
+                'gross_amount' => (int) $data->gross_amount
             ],
             'customer_details' => [
                 'first_name' => $data->user->name,
@@ -133,7 +142,7 @@ class CheckoutController extends Controller
                 'email' => $data->user->email,
                 'phone' => $data->user->phone_number
             ],
-            'enabled_payments' => [$midtrans->payment_type],
+            'enabled_payments' => [$request->input('channel')],
             'credit_card' => [
                 'secure' => true
             ]

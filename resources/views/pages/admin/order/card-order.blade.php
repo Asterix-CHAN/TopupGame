@@ -6,12 +6,11 @@
             <i class="fa-solid fa-xmark text-2xl"></i>
         </button>
         
-        <form action="{{ route('checkout.process', $item->uuid) }}" method="POST" id="shipping-detail">
-            @csrf
+        
             <!-- Total Diamond (hidden field) -->
             <div class="flex flex-col mb-4 w-full">
                 <p id="topup" class="text-white font-semibold">Informasi Pesanan</p>
-                <input data-input id="topup-value" type="hidden" value="" name="diamond_total" required />
+                {{-- <input data-input id="topup-value" type="hidden" value="" name="diamond_total" required /> --}}
             </div>
 
             <!-- Input ID User -->
@@ -61,7 +60,7 @@
                     Total
                 </label>
                 <p id="price-list" class="right-0 text-base md:text-lg text-white"></p>
-                <input data-input id="topup-price" type="hidden" value="" name="price" required />
+                {{-- <input data-input id="topup-price" type="hidden" value="" name="price" required /> --}}
             </div>
 {{-- 
             <!-- START: Choose Payment-->
@@ -186,7 +185,7 @@
             <!-- Tombol -->
             @auth
                 <div class="w-full">
-                    <button disabled type="submit" id="button-beli"
+                    <button type="submit" id="button-beli"
                         class="bg-slate-800 text-white focus:bg-sky-500 focus:outline-none w-full py-2 md:rounded-2xl rounded-lg text-base md:text-lg focus:text-sky-700 transition-all duration-200 px-6 mx-auto items-center">
                         <i class="fa-solid fa-cart-shopping mr-2"></i>Beli
                     </button>
