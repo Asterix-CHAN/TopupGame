@@ -34,11 +34,16 @@ class CheckoutController extends Controller
         return view('pages.order', compact('item', 'events', 'diamonds'));
     }
 
-    // TROLI
-    public function cart(Request $request, $transaction_status)
-    {
-        $transactions = Transaction::with('game')->where('transaction_status', $transaction_status)->first();
+    // // TROLI
+    public function cartList(){
+        // $transactions = Transaction::all(); // Gunakan 'transactions' untuk konsistensi.
+        // return view('pages.cart', compact('transactions'));
+
+        $user = Auth::user();
+        $transactions = Transaction::with('game', 'user')->where('user_id',$user->id)->get();
+        // dd($transactions);
         return view('pages.cart', compact('transactions'));
+        
     }
 
     // PROCESS PAYMENT
@@ -46,7 +51,7 @@ class CheckoutController extends Controller
     {
 
         // Ambil nilai dari input
-        $eventValue = $request->input('event'); // Contohnya: "50000|100"
+        $eventValue = $request->input('select'); // Contohnya: "50000|100"
 
         // Pisahkan nilai menjadi harga dan jumlah diamond
         [$price, $diamond] = explode('|', $eventValue);

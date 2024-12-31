@@ -19,10 +19,10 @@ class TransactionController extends Controller
      */
     public function index()
     {
-      $items = Transaction::with(['game', 'user'])->get();
-   
+        $items = Transaction::with(['game', 'user'])->get();
 
-      return view('pages.admin.transaction.index', compact('items'));
+
+        return view('pages.admin.transaction.index', compact('items'));
     }
 
     /**
@@ -101,10 +101,10 @@ Thank you!";
     /**
      * Display the specified resource.
      */
-    public function show( $uuid)
+    public function show($uuid)
     {
-        $items = Transaction::with([ 'game',  'user',])->where('uuid', $uuid)->first();
-        $midtrans = MidtransPayment::with('transaction')->where('transaction_id', $items->id)->firstOrFail();
+        $items = Transaction::with(['game',  'user',])->where('uuid', $uuid)->first();
+        $midtrans = MidtransPayment::with('transaction')->where('transaction_id', $items->id)->first();
         $payments = PaymentMethod::all();
         //    dd($items->midtrans);
         // $midtrans = MidtransPayment::where('uuid', $uuid)->first();

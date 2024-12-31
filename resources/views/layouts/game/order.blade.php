@@ -52,6 +52,7 @@
 
     <!-- Start Main -->
     @yield('content')
+
     {{-- End Main --}}
 
     @include('includes.footer')

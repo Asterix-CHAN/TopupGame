@@ -11,7 +11,7 @@ closeOffcanvasButton.addEventListener('click', () => {
 });
 
 
-const buttonBuy = document.querySelectorAll('#btn-buy-1, #btn-buy-2, #btn-buy-3');
+const buttonBuy = document.querySelectorAll('.price-button');
 const buyMobile = document.getElementById('buy-mobile');
 
 buttonBuy.forEach(button => {

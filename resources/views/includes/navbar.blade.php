@@ -1,5 +1,6 @@
   <!-- Start Header -->
-  <header class=" pt-2 top-0 fixed z-40 w-full items-center bg-slate-100 bg-opacity-75  backdrop-blur-lg backdrop-brightness-105">
+  <header
+      class=" pt-2 top-0 fixed z-40 w-full items-center bg-slate-100 bg-opacity-75  backdrop-blur-lg backdrop-brightness-105">
       <div class="mx-7 md:container lg:mx-auto md:relative md:flex-row gap-y-4 md:gap-y-0 top-navbar ">
           <div class="flex h-[60px] justify-between">
 
@@ -51,21 +52,25 @@
               <!-- End Navbar Menu -->
 
               <!-- Start Search, Login -->
-              <div class=" h-full items-center flex gap-x-1 md:gap-x-2  gap-y-4 md:flex-row md:gap-y-0 mr-2">
+              <div class=" h-full items-center flex gap-x-1 md:gap-x-2  gap-y-4 md:flex-row md:gap-y-0 md:mr-2">
                   <!-- Search -->
-                  <button  type="button"
-                      class="font-medium md:text-2xl text-lg bg-transparent" x-data=''
-                      x-on:click.prevent="$dispatch('open-modal', 'modal-search')"><i
+                  <button type="button"
+                      class="font-medium md:text-2xl text-lg bg-transparent hover:text-white hover:bg-slate-600 rounded-md p-1"
+                      x-data='' x-on:click.prevent="$dispatch('open-modal', 'modal-search')"><i
                           class="fa-solid fa-magnifying-glass"></i>
                   </button>
                   {{--  --}}
-            
+
                   <!--  Cart  -->
                   <div class="">
-                      <a href="{{ route('cart-list') }}" id="cart"
-                          class="font-medium text-lg md:text-2xl hover:text-white hover:bg-slate-600 mr-2 w-10 h-10 items-center flex justify-center rounded-md focus:text-white focus:bg-slate-600"><i
-                              class="fa-solid fa-cart-shopping"></i></a>
+                      @auth
+                          <a href="{{ route('cart-list') }}" wire:navigate 
+                             id="cart"
+                              class="font-medium text-lg md:text-2xl hover:text-white hover:bg-slate-600 md:mr-2 w-10 h-10 items-center flex justify-center rounded-md focus:text-white focus:bg-slate-600"><i
+                                  class="fa-solid fa-cart-shopping"></i></a>
+                      @endauth
                   </div>
+
                   @guest
                       <!-- User -->
                       <form action="{{ route('login') }}">
@@ -106,18 +111,16 @@
                       </form>
                   @endguest
 
-
                   @auth
                       <!-- User -->
                       {{-- Desktop --}}
                       <div class="relative ml-3 ">
                           <x-dropdown>
                               <x-slot name="trigger">
-                                  <button
-                                      class="relative flex max-w-xs items-center text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-1 focus:ring-offset-gray-600 focus:rounded-r-full pl-2"
-                                      id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                                  <button class="relative flex max-w-xs items-center text-sm  md:pl-2" id="user-menu-button"
+                                      aria-expanded="false" aria-haspopup="true">
                                       <span class="absolute -inset-1.5"></span>
-                                      <span class="">{{ Auth::user()->name }}</span>
+                                      <span class="hidden md:block">{{ Auth::user()->name }}</span>
                                       <img class="h-8 w-8 rounded-full ml-1"
                                           src="{{ url('Game/src/images/content/apex-legends.jpg') }}" alt="">
                                   </button>
@@ -192,7 +195,7 @@
           <!-- List -->
           <ul>
               <li class="w-auto rounded-lg flex my-2">
-                  <x-side-link href="{{ route('home') }}" class=" w-full " wire:navigate :active="request()->routeIs('home')"><i
+                  <x-side-link href="{{ route('home') }}" class="w-full " wire:navigate :active="request()->routeIs('home')"><i
                           class="fa-solid fa-house pl-2"></i><span class="pl-2">Home</span></x-side-link>
               </li>
               <li class="w-auto rounded-lg flex my-2">
@@ -215,53 +218,49 @@
 
   {{-- Modal Search --}}
   <x-modal name="modal-search">
-    <div
-        class="relative mx-auto transform overflow-hidden rounded-lg bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-        <div class="w-full text-end pt-2 pr-2">
-          <x-secondary-button x-on:click="$dispatch('close')">
-              <i class="fa-solid fa-xmark w-3 h-3"></i>
-          </x-secondary-button>
+      <div
+          class="relative mx-auto transform overflow-hidden rounded-lg bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+          <div class="w-full text-end pt-2 pr-2">
+              <x-secondary-button x-on:click="$dispatch('close')">
+                  <i class="fa-solid fa-xmark w-3 h-3"></i>
+              </x-secondary-button>
+          </div>
+
+          <div class="bg-white px-6 pb-8 pt-8 sm:p-8 my-auto rounded-t-lg border-b border-gray-200">
+
+              <div class="w-full">
+                  <form method="get" action="">
+                      @csrf
+                      <div class="card">
+                          <div class="card-body">
+                              <div class="w-full">
+                                  <div class="mb-6">
+                                      <label class="block text-gray-800 text-sm font-semibold mb-2">Search</label>
+                                      <div class="relative">
+                                          <x-text-input type="text" name="name" value="{{ old('name') }}"
+                                              class="w-full pl-10 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                                              placeholder="Search">
+                                          </x-text-input>
+                                          <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 h-5 w-5"></i>
+                                          @error('name')
+                                              <x-input-error :messages="$message" class="text-red-500 mt-1"></x-input-error>
+                                          @enderror
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+              </div>
+          </div>
+          <div
+              class="flex bg-gray-50 px-6 py-4 rounded-b-lg border-t border-gray-200 sm:flex sm:flex-row gap-3 justify-end sm:px-8">
+
+              <x-primary-button
+                  class="text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg px-4 py-2">
+                  {{ __('Search') }}
+              </x-primary-button>
+          </div>
+          </form>
       </div>
 
-        <div class="bg-white px-6 pb-8 pt-8 sm:p-8 my-auto rounded-t-lg border-b border-gray-200">
-           
-            <div class="w-full">
-                <form method="get" action="">
-                    @csrf
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="w-full">
-                                <div class="mb-6">
-                                    <label
-                                        class="block text-gray-800 text-sm font-semibold mb-2">Search</label>
-                                    <div class="relative">
-                                        <x-text-input type="text" name="name"
-                                            value="{{ old('name') }}"
-                                            class="w-full pl-10 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-                                            placeholder="Search">
-                                        </x-text-input>
-                                        <i
-                                            class="fa-solid fa-magnifying-glass absolute left-3 top-3 h-5 w-5"></i>
-                                        @error('name')
-                                            <x-input-error :messages="$message"
-                                                class="text-red-500 mt-1"></x-input-error>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-            </div>
-        </div>
-        <div
-            class="flex bg-gray-50 px-6 py-4 rounded-b-lg border-t border-gray-200 sm:flex sm:flex-row gap-3 justify-end sm:px-8">
-
-            <x-primary-button
-                class="text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg px-4 py-2">
-                {{ __('Search') }}
-            </x-primary-button>
-        </div>
-        </form>
-    </div>
-
-</x-modal>
+  </x-modal>

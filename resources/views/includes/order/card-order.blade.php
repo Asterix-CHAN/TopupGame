@@ -2,7 +2,7 @@
     class="w-full md:sticky md:top-32  px-4 py-6 rounded-lg rounded-b-none md:rounded-lg  md:z-10 bg-slate-500 shadow-md shadow-slate-700 flex h-auto fixed bottom-0 left-0 right-0 translate-y-full transition-transform duration-300 ease-in-out  md:translate-y-0 md:flex md:flex-col z-40">
     <div class=" px-4 relative flex flex-col w-full">
 
-        <button id="close-offcanvas" class="md:hidden text-right text-white">
+        <button type="button" id="close-offcanvas" class="md:hidden text-right text-white">
             <i class="fa-solid fa-xmark text-2xl"></i>
         </button>
         
@@ -18,7 +18,7 @@
                 <label for="id-user" class="text-sm md:text-lg font-semibold mb-2">
                     ID
                 </label>
-                <input data-input type="text" id="id-user" name="uid_game"
+                <input data-input type="text" id="id-user" name="uid_game" wire:model="uid_game"
                     class="border border-gray-200 rounded-lg px-4 py-2 bg-white text-small focus:border-blue-200 focus:outline-none"
                     placeholder="Masukkan User ID..." />
                 @error('uid_game')
@@ -31,7 +31,7 @@
                 <label for="server-user" class="text-sm md:text-lg font-semibold mb-2">
                     Server
                 </label>
-                <input data-input type="text" id="server-user" name="server_game"
+                <input data-input type="text" id="server-user" name="server_game" wire:model="server_game"
                     class="border border-gray-200 rounded-lg px-4 py-2 bg-white text-small focus:border-blue-200 focus:outline-none"
                     placeholder="Masukkan User Server..." />
                 @error('server_game')
@@ -46,7 +46,7 @@
                     Nomor WhatsApp
                 </label>
 
-                <input data-input type="tel" id="phone-number" name="phone_number"
+                <input data-input type="tel" id="phone-number" name="phone_number" wire:model="phone_number"
                     class="border border-gray-200 rounded-lg px-4 py-2 bg-white text-small focus:border-blue-200 focus:outline-none"
                     placeholder="+62" />
                 @error('phone_number')
@@ -185,13 +185,13 @@
             <!-- Tombol -->
             @auth
                 <div class="w-full">
-                    <button type="submit" id="button-beli"
+                    <button type="submit" id="button-beli" wire:submit="create"
                         class="bg-slate-800 text-white focus:bg-sky-500 focus:outline-none w-full py-2 md:rounded-2xl rounded-lg text-base md:text-lg focus:text-sky-700 transition-all duration-200 px-6 mx-auto items-center">
                         <i class="fa-solid fa-cart-shopping mr-2"></i>Beli
                     </button>
                 </div>
             @endauth
-        </form>
+      
 
 
         @guest

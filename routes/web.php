@@ -40,7 +40,6 @@ use App\Http\Controllers\Users\AccountSettings;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/games', [GameListController::class, 'index'])->name('games');
 Route::get('/filter/{name}', [GamelistController::class, 'show'])->name('showPlatform');
-Route::get('/cart-list', [HomeController::class, 'cartList'])->name('cart-list');
 Route::get('/order/{slug}', [CheckoutController::class, 'index'])->name('order');
 
 // Role Admin
@@ -70,14 +69,16 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function() {
 Route::middleware(['auth'])->group(function(){
     // Chekout Controller
     // Route::get('/checkout/{transaction_status}', [CheckoutController::class, 'cart'])->name('checkout.cart');
+    Route::get('/troli', [CheckoutController::class, 'cartList'])->name('cart-list');
+
 
     // Route::get('/checkout/detail/{uuid}', [CheckoutController::class, 'show'])->name('checkout.show');
     Route::post('/checkout/{uuid}', [CheckoutController::class, 'process'])->name('checkout.process');
     Route::post('/checkout/delete/{uuid}', [CheckoutController::class, 'destroy'])->name('checkout.delete');
     Route::post('/checkout/payment/{uuid}', [CheckoutController::class, 'payment'])->name('checkout.payment');
     Route::post('/checkout/paymentMethod/{uuid}', [CheckoutController::class, 'paymentMethod'])->name('checkout.paymentMethod');
+
     // Transaction Controller
-    
     Route::get('/transactions/payment-detail/{uuid}', [TransactionController::class, 'show'])->name('transaction.show');
     Route::post('/transactions/{uuid}', [TransactionController::class, 'store'])->name('transaction.store');
     Route::get('/transactions/detail/{id}', [TransactionDetail::class, 'showDetail'])->name('transaction.detail');   
