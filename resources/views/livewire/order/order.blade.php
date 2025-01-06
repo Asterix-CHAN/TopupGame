@@ -34,9 +34,9 @@
         </div>
 
         <!-- Informasi Pesanan -->
-        <form action="" method="POST" id="shipping-detail">
-            <!-- Pilih Diamond -->
+        <form wire:submit.prevent="process" id="shipping-detail">
 
+            <!-- Pilih Diamond -->
             @include('includes.order.menu')
     </div>
     <!-- End Left Side -->

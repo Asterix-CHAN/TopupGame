@@ -14,7 +14,6 @@ class TransactionDetail extends Model
         'uuid', 
         'transaction_id', 
         'produk_name', 
-
         'description',
     ];
 
