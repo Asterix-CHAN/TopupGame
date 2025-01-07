@@ -58,52 +58,20 @@
 @endsection
 
 @push('top-addon-script')
-    {{-- <script>
+    <script>
         $(function() {
-            function check() {
-                let data = {};
-                const inputs = document.querySelectorAll("#shipping-detail input[data-input]");
-                for (let index = 0; index < inputs.length; index++) {
-                    const input = inputs[index];
-                    data[input.id] = input.value;
-                }
-                console.log(data);
-
-                const findEmpty = Object.values(data).filter((value) => value === "");
-                const button = document.querySelector("#button-beli");
-
-                if (findEmpty.length == 0) {
-                    button.disabled = false;
-                    button.classList.add('pointer', 'bg-blue-500');
-                    button.classList.remove('bg-slate-800');
-                } else {
-                    button.disabled = true;
-                    button.classList.remove('pointer', 'bg-blue-500');
-                    button.classList.add('bg-slate-800');
-                }
-            }
-
-            const inputs = document.querySelectorAll("#shipping-detail input[data-input]");
-            inputs.forEach(input => {
-                input.addEventListener("input", function() {
-                    check();
-                });
-            });
-
             $(".price-button").on("click", function() {
                 var price = $(this).data("price");
                 var topup = $(this).data("topup");
-
+                
                 $("#topup-value").val(topup).trigger("input");
                 $("#topup-price").val(price).trigger("input");
 
                 $("#price-list, #price-list2").text('Rp. ' + price.toLocaleString('id-ID'));
                 $("#topup, #topup2").text(topup.toLocaleString('id-ID') + " Genesys Crystal");
             });
-
-            check();
         });
-    </script>  --}}
+    </script> 
 
     {{-- offcanvas --}}
     @vite('resources/js/buttonOrder.js')

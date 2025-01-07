@@ -18,7 +18,7 @@
             <input type="radio" class="peer hidden" id="event{{ $event->id }}" name="select"
                 wire:model="select" value="{{ $event->price }}|{{ $event->diamond_event }}" />
 
-            <label for="event{{ $event->id }}"
+            <label for="event{{ $event->id }}" data-price="{{ $event->price }}" data-topup="{{ $event->diamond_event }}"
                 class="price-button w-auto flex-auto md:flex-initial pl-1 md:px-2 items-center relative flex duration-300 ease-in-out hover:shadow-2xl hover:ring-2 hover:ring-sky-500 hover:ring-offset-2 hover:ring-offset-white md:rounded-2x border-2 min-h-[70px] z-20 rounded-xl cursor-pointer hover:bg-white peer-checked:ring-2 peer-checked:ring-teal-500 peer-checked:ring-offset-2 peer-checked:ring-offset-teal-500 peer-checked:scale-105 overflow-hidden">
                 <div class="absolute rounded-xl inset-0 bg-gradient-to-r from-black/70 z-10"></div>
                 <img src="{{ url('Game/src') }}/images/logo/diamond.png" alt="Game Logo"
@@ -88,7 +88,7 @@
             <input type="radio" class="peer hidden" id="diamond{{ $item->id }}" name="select"
                 wire:model="select" value="{{ $item->price }}|{{ $item->diamond }}" />
 
-            <label for="diamond{{ $item->id }}"
+            <label for="diamond{{ $item->id }}" data-price="{{ $item->price }}" data-topup="{{ $item->diamond }}"
                 class="price-button w-auto flex-auto md:flex-initial px-4 md:px-4 items-center relative flex duration-300 ease-in-out hover:shadow-2xl hover:ring-2 hover:ring-sky-500 hover:ring-offset-2 hover:ring-offset-white md:rounded-2x border-2 min-h-[70px] z-20 rounded-xl cursor-pointer hover:bg-white peer-checked:ring-2 peer-checked:ring-teal-500 peer-checked:ring-offset-2 peer-checked:ring-offset-teal-500 peer-checked:scale-105 overflow-hidden">
                 <div class="absolute rounded-xl inset-0 bg-gradient-to-r from-black/70 z-10"></div>
                 <img src="{{ url('Game/src') }}/images/logo/diamond.png" alt="Game Logo"
