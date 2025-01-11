@@ -108,10 +108,15 @@ class Create extends ModalComponent
 
     public function delete()
     {
+        try{
         $items = PaymentMethod::find($this->id);
         $items->delete();
         $this->dispatch('sweet-alert', $items, icon: 'success', title: '
-        Data Berhasil Dihapus');
+        Pembayaran Berhasil Dihapus');
+     } catch(\Throwable $th){
+        $this->dispatch('sweet-alert', $items, icon: 'error', title: '
+        Pembayaran Gagal Dihapus');
+     }
     }
 
     public function update()

@@ -14,7 +14,7 @@
                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Fee Admin</th>
                 <th scope="col"
-                    class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    class="px-1 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Action</th>
             </tr>
         </thead>
@@ -36,25 +36,26 @@
                     </td>
                     <td scope="col"
                         class="px-6 py-3  text-left  rounded-lg  text-xs font-medium text-gray-500  tracking-wider ">
-                        {{ $item->payment_type }}
+                        {{ $item->slug }}
                     </td>
                     <td scope="col"
                         class="px-6 py-3  text-left  rounded-lg  text-xs font-medium text-gray-500 uppercase tracking-wider ">
                         Rp. {{ number_format($item->fee_admin, 0, ',', '.') }}
                     </td>
                     <td scope="col"
-                        class="px-6 py-3 text-center text-xs font-medium text-gray-500 tracking-wider gap-2">
+                        class="px-2 py-3 text-center text-xs font-medium text-gray-500 tracking-wider space-x-1 space-y-1">
                         <button
                             wire:click="$dispatch('openModal', { component: 'payment_method.create', arguments: { payment: {{ $item->id }} }})"
-                            class="text-blue-600 hover:text-blue-400">
-                            <i class="fa-solid fa-pen-to-square mx-1"></i> Ubah
+                            class="text-blue-600 hover:text-blue-400 rounded bg-blue-50 ring-1 ring-blue-500 p-1">
+                            <i class="fa-solid fa-pen-to-square mx-1"></i>Ubah
                         </button>
-                        <button
-                             wire:click="confirmAlert({{ $item->id }})"
-                            class="text-red-600 hover:text-red-400">
+                        <button class="text-green-600 hover:text-green-400 rounded bg-green-50 ring-1 ring-green-500 p-1">
+                            <i class="fa-solid fa-check mx-1"></i>Aktifkan
+                        </button>
+                        <button wire:click="confirmAlert({{ $item->id }})" class="text-red-600 hover:text-red-400  rounded bg-red-50 ring-1 ring-red-500 p-1">
                             <i class="fa fa-trash mx-1"></i>Delete
                         </button>
-    
+
                     </td>
                 </tr>
             @empty
@@ -68,4 +69,3 @@
         {{ $items->links() }}
     </div>
 </div>
-
