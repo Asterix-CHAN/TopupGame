@@ -60,40 +60,46 @@ class Create extends ModalComponent
 
     public function save()
     {
-        // Validasi data
+        // Validasi data input
         $validatedData = $this->validate();
 
-        // Membuat entitas baru items
+        // Cek apakah proses ini untuk update atau create data
         $items = $this->id ? PaymentMethod::find($this->id) : new PaymentMethod();
+
+        // Set nilai atribut
         $items->uuid = Str::uuid();
         $items->name = $validatedData['name'];
         $items->fee_admin = $validatedData['fee_admin'];
         $items->category = $validatedData['category'];
-        $items->slug = Str::slug($this->name);
-        // Simpan gambar jika ada
+        $items->slug = Str::slug($validatedData['name']); // Menggunakan nama yang sudah divalidasi
+
+        // Handle upload gambar jika ada
         if ($this->image) {
             $imagePath = $this->image->store('assets/payment-methods', 'public');
             $items->image = $imagePath;
         } elseif (!$this->id) {
-            // Hapus gambar jika tidak ada saat update
+            // Hapus gambar jika tidak ada gambar baru saat update
             $items->image = null;
         }
 
         try {
+            // Simpan data ke database
             $items->save();
-            $this->closeModal();
 
+            // Tutup modal dan reset form
+            $this->closeModal();
+            $this->resetFields();
+
+            // Tampilkan notifikasi sukses
             $this->dispatch(
                 'sweet-alert',
-                $items,
                 icon: 'success',
                 title: 'Data Berhasil Disimpan',
             );
-            $this->resetFields();
         } catch (\Throwable $th) {
+            // Tampilkan notifikasi error jika gagal menyimpan
             $this->dispatch(
                 'sweet-alert',
-                $items,
                 icon: 'error',
                 title: 'Data Gagal Disimpan',
             );
@@ -108,15 +114,15 @@ class Create extends ModalComponent
 
     public function delete()
     {
-        try{
-        $items = PaymentMethod::find($this->id);
-        $items->delete();
-        $this->dispatch('sweet-alert', $items, icon: 'success', title: '
+        try {
+            $items = PaymentMethod::find($this->id);
+            $items->delete();
+            $this->dispatch('sweet-alert', $items, icon: 'success', title: '
         Pembayaran Berhasil Dihapus');
-     } catch(\Throwable $th){
-        $this->dispatch('sweet-alert', $items, icon: 'error', title: '
+        } catch (\Throwable $th) {
+            $this->dispatch('sweet-alert', $items, icon: 'error', title: '
         Pembayaran Gagal Dihapus');
-     }
+        }
     }
 
     public function update()
